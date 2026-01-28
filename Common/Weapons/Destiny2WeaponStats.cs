@@ -465,6 +465,29 @@ namespace Destiny2.Common.Weapons
 			}
 		}
 
+		public override void UseStyle(Player player, Rectangle heldItemFrame)
+		{
+			base.UseStyle(player, heldItemFrame);
+
+			if (player.itemAnimationMax <= 0)
+				return;
+
+			float recoilStrength = GetRecoilStrength();
+			if (recoilStrength <= 0f)
+				return;
+
+			float progress = 1f - (player.itemAnimation / (float)player.itemAnimationMax);
+			float kick = Math.Clamp(1f - progress, 0f, 1f);
+			kick *= kick;
+
+			float rotationKick = MathHelper.ToRadians(recoilStrength * 4f) * kick;
+			player.itemRotation -= rotationKick * player.direction;
+
+			float offsetKick = recoilStrength * 4f * kick;
+			Vector2 recoilDir = player.itemRotation.ToRotationVector2();
+			player.itemLocation -= recoilDir * offsetKick;
+		}
+
 		public override bool PreDrawTooltipLine(DrawableTooltipLine line, ref int yOffset)
 		{
 			if (line.Mod != Mod.Name)
@@ -538,6 +561,11 @@ namespace Destiny2.Common.Weapons
 			"Defense",
 			"Ammo"
 		};
+
+		protected virtual float GetRecoilStrength()
+		{
+			return 0f;
+		}
 
 		protected static float CalculateFalloffTiles(float range, float minTiles, float maxTiles, float tilesAtFifty)
 		{

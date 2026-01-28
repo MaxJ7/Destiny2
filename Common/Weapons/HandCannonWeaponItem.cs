@@ -22,6 +22,11 @@ namespace Destiny2.Common.Weapons
 			return BaseRecoil * stabilityScalar;
 		}
 
+		protected override float GetRecoilStrength()
+		{
+			return GetRecoil();
+		}
+
 		public override float GetFalloffTiles()
 		{
 			Destiny2WeaponStats stats = GetStats();

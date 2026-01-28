@@ -38,3 +38,12 @@ Keybinds: {
 }
 
 Tiles.ModificationStation.MapEntry: Modification Station
+
+DamageClasses: {
+	ArcDamageClass.DisplayName: Arc Damage Class
+	KineticDamageClass.DisplayName: Kinetic Damage Class
+	SolarDamageClass.DisplayName: Solar Damage Class
+	StasisDamageClass.DisplayName: Stasis Damage Class
+	StrandDamageClass.DisplayName: Strand Damage Class
+	VoidDamageClass.DisplayName: Void Damage Class
+}
