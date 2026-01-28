@@ -1,0 +1,40 @@
+Items: {
+	Malfeasance: {
+		DisplayName: Malfeasance
+		Tooltip: ""
+	}
+
+	MalfeasanceCatalyst: {
+		DisplayName: Malfeasance Catalyst
+		Tooltip: ""
+	}
+
+	ModificationStationItem: {
+		DisplayName: Modification Station Item
+		Tooltip: ""
+	}
+
+	Eyasluna: {
+		DisplayName: Eyasluna
+		Tooltip: ""
+	}
+}
+
+Projectiles: {
+	ExplosiveShadowSlug.DisplayName: Explosive Shadow Slug
+	Bullet.DisplayName: Bullet
+}
+
+Buffs: {
+	FrenzyBuff: {
+		DisplayName: Frenzy
+		Description: Increased damage and reload speed.
+	}
+}
+
+Keybinds: {
+	"Reload Weapon.DisplayName": Reload  Weapon
+	"Toggle Weapon Editor.DisplayName": Toggle  Weapon  Editor
+}
+
+Tiles.ModificationStation.MapEntry: Modification Station
