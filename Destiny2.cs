@@ -12,17 +12,20 @@ namespace Destiny2
 	{
 		public static ModKeybind ReloadKeybind;
 		public static ModKeybind EditorKeybind;
+		public static ModKeybind InfoKeybind;
 
 		public override void Load()
 		{
 			ReloadKeybind = KeybindLoader.RegisterKeybind(this, "Reload Weapon", "R");
 			EditorKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Editor", "O");
+			InfoKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Info", "I");
 		}
 
 		public override void Unload()
 		{
 			ReloadKeybind = null;
 			EditorKeybind = null;
+			InfoKeybind = null;
 		}
 	}
 }

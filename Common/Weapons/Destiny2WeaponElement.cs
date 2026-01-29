@@ -47,7 +47,7 @@ namespace Destiny2.Common.Weapons
 	{
 		public override StatInheritanceData GetModifierInheritance(DamageClass damageClass)
 		{
-			if (damageClass == DamageClass.Ranged)
+			if (damageClass == DamageClass.Generic)
 				return StatInheritanceData.Full;
 
 			return StatInheritanceData.None;
@@ -55,7 +55,7 @@ namespace Destiny2.Common.Weapons
 
 		public override bool GetEffectInheritance(DamageClass damageClass)
 		{
-			return damageClass == DamageClass.Ranged;
+			return damageClass == DamageClass.Generic;
 		}
 	}
 

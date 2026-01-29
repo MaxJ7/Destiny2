@@ -15,6 +15,8 @@ namespace Destiny2.Common.Perks
 		private bool hasRapidHit;
 		private bool hasKillClip;
 		private bool hasFrenzy;
+		private bool hasFourthTimes;
+		private bool hasRampage;
 		private Destiny2WeaponItem sourceWeaponItem;
 		private Destiny2AmmoType ammoType = Destiny2AmmoType.Primary;
 
@@ -28,6 +30,8 @@ namespace Destiny2.Common.Perks
 			hasRapidHit = false;
 			hasKillClip = false;
 			hasFrenzy = false;
+			hasFourthTimes = false;
+			hasRampage = false;
 			sourceWeaponItem = null;
 			ammoType = Destiny2AmmoType.Primary;
 
@@ -49,6 +53,10 @@ namespace Destiny2.Common.Perks
 						hasKillClip = true;
 					else if (perk is FrenzyPerk)
 						hasFrenzy = true;
+					else if (perk is FourthTimesTheCharmPerk)
+						hasFourthTimes = true;
+					else if (perk is RampagePerk)
+						hasRampage = true;
 				}
 			}
 		}
@@ -66,6 +74,13 @@ namespace Destiny2.Common.Perks
 
 				if (hasFrenzy && sourceWeaponItem.IsFrenzyActive)
 					multiplier *= FrenzyPerk.DamageMultiplier;
+
+				if (hasRampage)
+				{
+					float rampageMultiplier = sourceWeaponItem.GetRampageMultiplier();
+					if (rampageMultiplier > 1f)
+						multiplier *= rampageMultiplier;
+				}
 			}
 
 			if (multiplier > 1f)
@@ -83,11 +98,11 @@ namespace Destiny2.Common.Perks
 			if (sourceWeaponItem == null)
 				return;
 
-			if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy)
+			if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage)
 				return;
 
 			Player owner = GetOwner(projectile.owner);
-			sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy);
+			sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage);
 		}
 
 		private static Item GetSourceItem(IEntitySource source)

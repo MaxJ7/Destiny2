@@ -29,6 +29,20 @@ namespace Destiny2.Common.Perks
 		private static void InitializePerks()
 		{
 			Register(new AdaptiveFramePerk());
+			Register(new HighImpactFramePerk());
+			Register(new LightweightBowFramePerk());
+			Register(new AdaptiveBurstPerk());
+			Register(new PrecisionBowFramePerk());
+			Register(new PinpointSlugFramePerk());
+			Register(new HeavyBurstFramePerk());
+			Register(new LightweightFramePerk());
+			Register(new RapidFireFramePerk());
+			Register(new MicroMissileFramePerk());
+			Register(new AreaDenialFramePerk());
+			Register(new PrecisionFramePerk());
+			Register(new AggressiveFramePerk());
+			Register(new AggressiveBurstFramePerk());
+			Register(new WaveFramePerk());
 			Register(new HammerForgedRiflingPerk());
 			Register(new SmallborePerk());
 			Register(new ExtendedMagPerk());
@@ -37,6 +51,8 @@ namespace Destiny2.Common.Perks
 			Register(new RapidHitPerk());
 			Register(new KillClipPerk());
 			Register(new FrenzyPerk());
+			Register(new FourthTimesTheCharmPerk());
+			Register(new RampagePerk());
 			Register(new ExplosiveShadowPerk());
 			Register(new VorpalWeaponPerk());
 		}

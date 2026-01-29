@@ -18,6 +18,11 @@ Items: {
 		DisplayName: Eyasluna
 		Tooltip: ""
 	}
+
+	WardensLaw: {
+		DisplayName: Wardens Law
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -35,6 +40,7 @@ Buffs: {
 Keybinds: {
 	"Reload Weapon.DisplayName": Reload  Weapon
 	"Toggle Weapon Editor.DisplayName": Toggle  Weapon  Editor
+	"Toggle Weapon Info.DisplayName": Toggle  Weapon  Info
 }
 
 Tiles.ModificationStation.MapEntry: Modification Station

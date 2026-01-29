@@ -8,34 +8,29 @@ using Terraria.ModLoader;
 
 namespace Destiny2.Content.Weapons
 {
-	public sealed class Eyasluna : HandCannonWeaponItem
+	public sealed class WardensLaw : HandCannonWeaponItem
 	{
-		protected override Destiny2WeaponElement GetDefaultWeaponElement()
-		{
-			return Destiny2WeaponElement.Stasis;
-		}
-
-		public override string Texture => $"Terraria/Images/Item_{ItemID.PhoenixBlaster}";
+		public override string Texture => $"Terraria/Images/Item_{ItemID.FlintlockPistol}";
 
 		public override Destiny2WeaponStats BaseStats => new Destiny2WeaponStats(
-			range: 51f,
-			stability: 64f,
-			reloadSpeed: 45f,
-			roundsPerMinute: 140,
-			magazine: 11
+			range: 56f,
+			stability: 29f,
+			reloadSpeed: 27f,
+			roundsPerMinute: 120,
+			magazine: 16
 		);
 
 		protected override void RollFramePerk()
 		{
-			SetFramePerk(nameof(AdaptiveFramePerk));
+			SetFramePerk(nameof(HeavyBurstFramePerk));
 		}
 
 		protected override void RollPerks()
 		{
 			string barrel = RollFrom(nameof(SmallborePerk), nameof(HammerForgedRiflingPerk));
 			string magazine = RollFrom(nameof(ExtendedMagPerk), nameof(TacticalMagPerk));
-			string majorOne = RollFrom(nameof(OutlawPerk), nameof(RapidHitPerk), nameof(VorpalWeaponPerk));
-			string majorTwo = RollFrom(nameof(KillClipPerk), nameof(FrenzyPerk));
+			string majorOne = RollFrom(nameof(FourthTimesTheCharmPerk), nameof(OutlawPerk), nameof(RapidHitPerk));
+			string majorTwo = RollFrom(nameof(KillClipPerk), nameof(FrenzyPerk), nameof(RampagePerk));
 
 			SetPerks(barrel, magazine, majorOne, majorTwo);
 		}

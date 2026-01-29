@@ -11,7 +11,7 @@ namespace Destiny2.Content.Projectiles
 	public sealed class Bullet : ModProjectile
 	{
 		private const float MaxDistance = 1200f;
-		private const float DustSpacing = 8f;
+		private const float DustSpacing = 4f;
 		private const float CollisionWidth = 6f;
 
 		private Vector2 hitStart;
@@ -137,48 +137,136 @@ namespace Destiny2.Content.Projectiles
 
 		private static void SpawnDust(Vector2 start, Vector2 end, Destiny2WeaponElement element)
 		{
+			if (Main.dedServ)
+				return;
+
 			GetDustStyle(element, out int dustType, out Color dustColor);
+			Vector2 direction = (end - start).SafeNormalize(Vector2.UnitX);
+			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
 			float length = Vector2.Distance(start, end);
 			int count = Math.Max(2, (int)(length / DustSpacing));
 			for (int i = 0; i < count; i++)
 			{
 				float t = i / (float)(count - 1);
 				Vector2 pos = Vector2.Lerp(start, end, t);
-				Dust dust = Dust.NewDustDirect(pos - new Vector2(2f), 4, 4, dustType, 0f, 0f, 80, dustColor, 1.2f);
-				dust.noGravity = true;
-				dust.velocity *= 0.2f;
+				int dustCount = Main.rand.Next(2, 4);
+				for (int j = 0; j < dustCount; j++)
+				{
+					float hueShift = (j - 1) * 0.03f;
+					Color shifted = ShiftHue(dustColor, hueShift);
+					Vector2 offset = perpendicular * Main.rand.NextFloat(-2f, 2f) + direction * Main.rand.NextFloat(-1f, 1f);
+					float scale = Main.rand.NextFloat(1.0f, 1.45f);
+					Dust dust = Dust.NewDustDirect(pos + offset - new Vector2(2f), 4, 4, dustType, 0f, 0f, 40, shifted, scale);
+					dust.noGravity = true;
+					dust.noLight = false;
+					dust.velocity *= 0.3f;
+					dust.color = shifted;
+				}
 			}
 		}
 
 		private static void GetDustStyle(Destiny2WeaponElement element, out int dustType, out Color dustColor)
 		{
-			switch (element)
+			dustType = DustID.WhiteTorch;
+			dustColor = GetElementColor(element);
+		}
+
+		private static Color GetElementColor(Destiny2WeaponElement element)
+		{
+			return element switch
 			{
-				case Destiny2WeaponElement.Stasis:
-					dustType = DustID.BlueTorch;
-					dustColor = new Color(30, 60, 160);
-					break;
-				case Destiny2WeaponElement.Strand:
-					dustType = DustID.GreenTorch;
-					dustColor = new Color(60, 240, 90);
-					break;
-				case Destiny2WeaponElement.Solar:
-					dustType = DustID.OrangeTorch;
-					dustColor = new Color(255, 120, 40);
-					break;
-				case Destiny2WeaponElement.Arc:
-					dustType = DustID.Electric;
-					dustColor = new Color(120, 200, 255);
-					break;
-				case Destiny2WeaponElement.Void:
-					dustType = DustID.PurpleTorch;
-					dustColor = new Color(170, 80, 220);
-					break;
-				default:
-					dustType = DustID.FireworkFountain_Yellow;
-					dustColor = new Color(255, 150, 70);
-					break;
+				Destiny2WeaponElement.Void => new Color(196, 0, 240),
+				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
+				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
+				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
+				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
+				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
+				_ => new Color(255, 248, 163)
+			};
+		}
+
+		private static Color ShiftHue(Color color, float shift)
+		{
+			Vector3 rgb = color.ToVector3();
+			float max = Math.Max(rgb.X, Math.Max(rgb.Y, rgb.Z));
+			float min = Math.Min(rgb.X, Math.Min(rgb.Y, rgb.Z));
+			float delta = max - min;
+
+			float hue = 0f;
+			if (delta > 0.0001f)
+			{
+				if (max == rgb.X)
+					hue = (rgb.Y - rgb.Z) / delta;
+				else if (max == rgb.Y)
+					hue = 2f + (rgb.Z - rgb.X) / delta;
+				else
+					hue = 4f + (rgb.X - rgb.Y) / delta;
+				hue /= 6f;
 			}
+
+			if (hue < 0f)
+				hue += 1f;
+
+			float saturation = max <= 0f ? 0f : delta / max;
+			float value = max;
+			float shiftedHue = hue + shift;
+			if (shiftedHue < 0f)
+				shiftedHue += 1f;
+			else if (shiftedHue >= 1f)
+				shiftedHue -= 1f;
+
+			return ColorFromHsv(shiftedHue, saturation, value);
+		}
+
+		private static Color ColorFromHsv(float hue, float saturation, float value)
+		{
+			float c = value * saturation;
+			float x = c * (1f - Math.Abs((hue * 6f) % 2f - 1f));
+			float m = value - c;
+
+			float r;
+			float g;
+			float b;
+			float h = hue * 6f;
+
+			if (h < 1f)
+			{
+				r = c;
+				g = x;
+				b = 0f;
+			}
+			else if (h < 2f)
+			{
+				r = x;
+				g = c;
+				b = 0f;
+			}
+			else if (h < 3f)
+			{
+				r = 0f;
+				g = c;
+				b = x;
+			}
+			else if (h < 4f)
+			{
+				r = 0f;
+				g = x;
+				b = c;
+			}
+			else if (h < 5f)
+			{
+				r = x;
+				g = 0f;
+				b = c;
+			}
+			else
+			{
+				r = c;
+				g = 0f;
+				b = x;
+			}
+
+			return new Color(r + m, g + m, b + m);
 		}
 
 		private Destiny2WeaponElement GetWeaponElement()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Weapons;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
@@ -49,9 +50,19 @@ namespace Destiny2.Common.UI
 			PerkSlotType.Major,
 			PerkSlotType.Major
 		};
+		private static readonly Destiny2WeaponElement[] WeaponElements = new[]
+		{
+			Destiny2WeaponElement.Kinetic,
+			Destiny2WeaponElement.Stasis,
+			Destiny2WeaponElement.Strand,
+			Destiny2WeaponElement.Solar,
+			Destiny2WeaponElement.Arc,
+			Destiny2WeaponElement.Void
+		};
 		private UIText itemText;
 		private UIText statsSourceText;
 		private UIText frameText;
+		private UIText elementText;
 		private Item selectedItem;
 
 		public override void OnInitialize()
@@ -113,6 +124,8 @@ namespace Destiny2.Common.UI
 
 			AddFrameRow(panel, rowTop);
 			rowTop += RowHeight;
+			AddElementRow(panel, rowTop);
+			rowTop += RowHeight;
 			for (int i = 0; i < PerkSlotNames.Length; i++)
 			{
 				AddPerkRow(panel, rowTop, i);
@@ -155,6 +168,10 @@ namespace Destiny2.Common.UI
 				SetStatText("Reload", "--");
 				SetStatText("RPM", "--");
 				SetStatText("Magazine", "--");
+				if (frameText != null)
+					frameText.SetText("Frame: --");
+				if (elementText != null)
+					elementText.SetText("Element: --");
 				for (int i = 0; i < perkTexts.Count; i++)
 					perkTexts[i].SetText("--");
 				return;
@@ -178,6 +195,9 @@ namespace Destiny2.Common.UI
 				frameText.SetText($"Frame: {frameName}");
 			}
 
+			if (elementText != null)
+				elementText.SetText($"Element: {weapon.WeaponElement}");
+
 			for (int i = 0; i < perkTexts.Count; i++)
 			{
 				string perkName = "None";
@@ -200,14 +220,14 @@ namespace Destiny2.Common.UI
 			panel.Append(valueText);
 			statTexts[key] = valueText;
 
-			UITextPanel<string> minusButton = CreateButton("-", () => apply(minusStep));
+			UITextPanel<string> minusButton = CreateButton("-", () => apply(GetModifiedDelta(minusStep)));
 			minusButton.Left.Set(StatMinusLeft, 0f);
 			minusButton.Top.Set(top, 0f);
 			minusButton.Width.Set(RowButtonWidth, 0f);
 			minusButton.Height.Set(RowButtonHeight, 0f);
 			panel.Append(minusButton);
 
-			UITextPanel<string> plusButton = CreateButton("+", () => apply(plusStep));
+			UITextPanel<string> plusButton = CreateButton("+", () => apply(GetModifiedDelta(plusStep)));
 			plusButton.Left.Set(StatPlusLeft, 0f);
 			plusButton.Top.Set(top, 0f);
 			plusButton.Width.Set(RowButtonWidth, 0f);
@@ -271,11 +291,61 @@ namespace Destiny2.Common.UI
 			panel.Append(nextButton);
 		}
 
+		private void AddElementRow(UIElement panel, float top)
+		{
+			UIText labelText = new UIText("Element:");
+			labelText.Left.Set(LeftPadding, 0f);
+			labelText.Top.Set(top + RowLabelOffset, 0f);
+			panel.Append(labelText);
+
+			elementText = new UIText("Element: --");
+			elementText.Left.Set(PerkValueLeft, 0f);
+			elementText.Top.Set(top + RowLabelOffset, 0f);
+			panel.Append(elementText);
+
+			UITextPanel<string> prevButton = CreateButton("<", () => CycleElement(-1));
+			prevButton.Left.Set(PrevButtonLeft, 0f);
+			prevButton.Top.Set(top, 0f);
+			prevButton.Width.Set(RowButtonWidth, 0f);
+			prevButton.Height.Set(RowButtonHeight, 0f);
+			panel.Append(prevButton);
+
+			UITextPanel<string> nextButton = CreateButton(">", () => CycleElement(1));
+			nextButton.Left.Set(NextButtonLeft, 0f);
+			nextButton.Top.Set(top, 0f);
+			nextButton.Width.Set(RowButtonWidth, 0f);
+			nextButton.Height.Set(RowButtonHeight, 0f);
+			panel.Append(nextButton);
+		}
+
 		private static UITextPanel<string> CreateButton(string text, Action onClick)
 		{
 			UITextPanel<string> button = new UITextPanel<string>(text);
 			button.OnLeftClick += (_, _) => onClick?.Invoke();
 			return button;
+		}
+
+		private static float GetModifiedDelta(float baseDelta)
+		{
+			float sign = Math.Sign(baseDelta);
+			if (Math.Abs(sign) < 0.001f)
+				return 0f;
+
+			if (!IsControlDown())
+				return baseDelta;
+
+			float step = IsShiftDown() ? 10f : 5f;
+			return step * sign;
+		}
+
+		private static bool IsControlDown()
+		{
+			return Main.keyState.IsKeyDown(Keys.LeftControl) || Main.keyState.IsKeyDown(Keys.RightControl);
+		}
+
+		private static bool IsShiftDown()
+		{
+			return Main.keyState.IsKeyDown(Keys.LeftShift) || Main.keyState.IsKeyDown(Keys.RightShift);
 		}
 
 		private void ApplyRange(float delta)
@@ -388,6 +458,32 @@ namespace Destiny2.Common.UI
 				nextIndex += frames.Count;
 
 			weapon.ReplaceFramePerk(frames[nextIndex].Key);
+		}
+
+		private void CycleElement(int direction)
+		{
+			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
+				return;
+
+			if (WeaponElements.Length == 0)
+				return;
+
+			Destiny2WeaponElement currentElement = weapon.WeaponElement;
+			int index = 0;
+			for (int i = 0; i < WeaponElements.Length; i++)
+			{
+				if (WeaponElements[i] == currentElement)
+				{
+					index = i;
+					break;
+				}
+			}
+
+			int nextIndex = (index + direction) % WeaponElements.Length;
+			if (nextIndex < 0)
+				nextIndex += WeaponElements.Length;
+
+			weapon.SetWeaponElement(WeaponElements[nextIndex]);
 		}
 
 		private bool TryGetWeapon(out Destiny2WeaponItem weapon, out Item item)

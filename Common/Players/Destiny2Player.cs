@@ -20,6 +20,8 @@ namespace Destiny2.Common.Players
 		{
 			if (Destiny2.EditorKeybind?.JustPressed == true)
 				Destiny2WeaponEditorSystem.Toggle();
+			if (Destiny2.InfoKeybind?.JustPressed == true)
+				Destiny2WeaponInfoSystem.Toggle();
 
 			if (Destiny2.ReloadKeybind?.JustPressed != true)
 				return;

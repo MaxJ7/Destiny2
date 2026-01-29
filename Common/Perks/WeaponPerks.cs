@@ -114,4 +114,26 @@ namespace Destiny2.Common.Perks
 		public override string DisplayName => "Frenzy";
 		public override string Description => "After 12 seconds in combat, gain increased damage and reload speed for a short time.";
 	}
+
+	public sealed class FourthTimesTheCharmPerk : Destiny2Perk
+	{
+		internal const int HitsRequired = 4;
+		internal const int WindowTicks = 120;
+		internal const int AmmoReturned = 2;
+		public override string IconTexture => "Destiny2/Assets/Perks/FourthTimesTheCharm";
+		public override string DisplayName => "Fourth Times the Charm";
+		public override string Description =>
+			"Rapidly landing hits will return two rounds to the magazine. Scoring 4 hits within 2 seconds refills 2 ammo.";
+	}
+
+	public sealed class RampagePerk : Destiny2Perk
+	{
+		internal const int MaxStacks = 3;
+		internal const int DurationTicks = 180;
+		internal static readonly float[] DamageMultiplierByStacks = { 1f, 1.08f, 1.16f, 1.24f };
+		public override string IconTexture => "Destiny2/Assets/Perks/Rampage";
+		public override string DisplayName => "Rampage";
+		public override string Description =>
+			"Kills with this weapon temporarily grant increased damage. Stacks 3x (8%/16%/24%).";
+	}
 }

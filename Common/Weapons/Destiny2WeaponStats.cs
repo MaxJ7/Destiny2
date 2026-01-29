@@ -66,16 +66,22 @@ namespace Destiny2.Common.Weapons
 		private int outlawTimer;
 		private int rapidHitTimer;
 		private int rapidHitStacks;
+		private int fourthTimesHitTimer;
+		private int fourthTimesHitCount;
+		private int rampageTimer;
+		private int rampageStacks;
 		private int killClipWindowTimer;
 		private int killClipTimer;
 		private bool killClipPending;
 		private int frenzyTimer;
 		private int frenzyCombatTimer;
 		private int frenzyCombatGraceTimer;
+		private bool hasElementOverride;
+		private Destiny2WeaponElement elementOverride;
 
 		public abstract Destiny2WeaponStats BaseStats { get; }
 		public virtual Destiny2AmmoType AmmoType => Destiny2AmmoType.Primary;
-		public virtual Destiny2WeaponElement WeaponElement => Destiny2WeaponElement.Kinetic;
+		public Destiny2WeaponElement WeaponElement => hasElementOverride ? elementOverride : GetDefaultWeaponElement();
 
 		protected override bool CloneNewInstances => true;
 
@@ -106,12 +112,18 @@ namespace Destiny2.Common.Weapons
 			clone.outlawTimer = outlawTimer;
 			clone.rapidHitTimer = rapidHitTimer;
 			clone.rapidHitStacks = rapidHitStacks;
+			clone.fourthTimesHitTimer = fourthTimesHitTimer;
+			clone.fourthTimesHitCount = fourthTimesHitCount;
+			clone.rampageTimer = rampageTimer;
+			clone.rampageStacks = rampageStacks;
 			clone.killClipWindowTimer = killClipWindowTimer;
 			clone.killClipTimer = killClipTimer;
 			clone.killClipPending = killClipPending;
 			clone.frenzyTimer = frenzyTimer;
 			clone.frenzyCombatTimer = frenzyCombatTimer;
 			clone.frenzyCombatGraceTimer = frenzyCombatGraceTimer;
+			clone.hasElementOverride = hasElementOverride;
+			clone.elementOverride = elementOverride;
 			return clone;
 		}
 
@@ -146,6 +158,9 @@ namespace Destiny2.Common.Weapons
 				tag["catalystPerkKey"] = catalystPerkKey;
 				tag["catalystItemType"] = catalystItemType;
 			}
+
+			if (hasElementOverride)
+				tag["elementOverride"] = (int)elementOverride;
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -185,6 +200,18 @@ namespace Destiny2.Common.Weapons
 			else
 				catalystItemType = 0;
 
+			if (tag.ContainsKey("elementOverride"))
+			{
+				hasElementOverride = true;
+				elementOverride = (Destiny2WeaponElement)tag.GetInt("elementOverride");
+			}
+			else
+			{
+				hasElementOverride = false;
+				elementOverride = default;
+			}
+			SyncDamageTypeToElement();
+
 			bool hasPerkData = perkKeys.Count > 0
 				|| !string.IsNullOrWhiteSpace(framePerkKey)
 				|| !string.IsNullOrWhiteSpace(catalystPerkKey);
@@ -221,6 +248,10 @@ namespace Destiny2.Common.Weapons
 				writer.Write(catalystPerkKey ?? string.Empty);
 				writer.Write(catalystItemType);
 			}
+
+			writer.Write(hasElementOverride);
+			if (hasElementOverride)
+				writer.Write((int)elementOverride);
 		}
 
 		public override void NetReceive(BinaryReader reader)
@@ -260,6 +291,13 @@ namespace Destiny2.Common.Weapons
 				catalystItemType = 0;
 			}
 
+			hasElementOverride = reader.ReadBoolean();
+			if (hasElementOverride)
+				elementOverride = (Destiny2WeaponElement)reader.ReadInt32();
+			else
+				elementOverride = default;
+			SyncDamageTypeToElement();
+
 			bool hasPerkData = perkKeys.Count > 0
 				|| !string.IsNullOrWhiteSpace(framePerkKey)
 				|| !string.IsNullOrWhiteSpace(catalystPerkKey);
@@ -273,6 +311,7 @@ namespace Destiny2.Common.Weapons
 			foreach (Destiny2Perk perk in GetPerks())
 				perk.ModifyStats(ref stats);
 			ApplyActivePerkStats(ref stats);
+			ApplyFrameRateOfFire(ref stats);
 			return stats;
 		}
 
@@ -283,6 +322,17 @@ namespace Destiny2.Common.Weapons
 
 		public string FramePerkKey => framePerkKey;
 		public string CatalystPerkKey => catalystPerkKey;
+		public bool HasElementOverride => hasElementOverride;
+
+		protected virtual Destiny2WeaponElement GetDefaultWeaponElement()
+		{
+			return Destiny2WeaponElement.Kinetic;
+		}
+
+		protected virtual int GetFrameRoundsPerMinute(Destiny2Perk framePerk, int currentRpm)
+		{
+			return currentRpm;
+		}
 
 		public void ApplyCustomStats(Destiny2WeaponStats stats)
 		{
@@ -296,6 +346,20 @@ namespace Destiny2.Common.Weapons
 			hasCustomStats = false;
 			customStats = default;
 			SyncMagazineAfterStatChange();
+		}
+
+		public void SetWeaponElement(Destiny2WeaponElement element)
+		{
+			elementOverride = element;
+			hasElementOverride = true;
+			SyncDamageTypeToElement();
+		}
+
+		public void ClearWeaponElementOverride()
+		{
+			hasElementOverride = false;
+			elementOverride = default;
+			SyncDamageTypeToElement();
 		}
 
 		public virtual float GetFalloffTiles()
@@ -321,6 +385,16 @@ namespace Destiny2.Common.Weapons
 		public int ReloadTimerMax => reloadTimerMax;
 		internal bool IsKillClipActive => killClipTimer > 0;
 		internal bool IsFrenzyActive => frenzyTimer > 0;
+		internal bool IsRampageActive => rampageTimer > 0 && rampageStacks > 0;
+
+		internal float GetRampageMultiplier()
+		{
+			if (!IsRampageActive)
+				return 1f;
+
+			int stacks = Math.Clamp(rampageStacks, 0, RampagePerk.MaxStacks);
+			return RampagePerk.DamageMultiplierByStacks[stacks];
+		}
 
 		public override bool CanUseItem(Player player)
 		{
@@ -364,6 +438,7 @@ namespace Destiny2.Common.Weapons
 			UpdatePerkTimers(player);
 			UpdateReload(player);
 			UpdateUseTimeFromStats();
+			SyncDamageTypeToElement();
 		}
 
 		public override void UpdateInventory(Player player)
@@ -373,6 +448,7 @@ namespace Destiny2.Common.Weapons
 			UpdatePerkTimers(player);
 			UpdateReload(player);
 			UpdateUseTimeFromStats();
+			SyncDamageTypeToElement();
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -745,6 +821,7 @@ namespace Destiny2.Common.Weapons
 			bool rapidHitWasActive = rapidHitTimer > 0 && rapidHitStacks > 0;
 			bool killClipWasActive = killClipTimer > 0;
 			bool frenzyWasActive = frenzyTimer > 0;
+			bool rampageWasActive = rampageTimer > 0 && rampageStacks > 0;
 
 			if (outlawTimer > 0)
 				outlawTimer--;
@@ -771,6 +848,16 @@ namespace Destiny2.Common.Weapons
 			if (killClipWasActive && killClipTimer <= 0)
 				SendPerkDebug(player, "Kill Clip expired");
 
+			if (rampageTimer > 0)
+			{
+				rampageTimer--;
+				if (rampageTimer <= 0)
+					rampageStacks = 0;
+			}
+
+			if (rampageWasActive && rampageTimer <= 0)
+				SendPerkDebug(player, "Rampage expired");
+
 			if (frenzyTimer > 0)
 				frenzyTimer--;
 
@@ -789,14 +876,24 @@ namespace Destiny2.Common.Weapons
 				frenzyCombatTimer = 0;
 			}
 
+			if (fourthTimesHitTimer > 0)
+			{
+				fourthTimesHitTimer--;
+				if (fourthTimesHitTimer <= 0)
+					fourthTimesHitCount = 0;
+			}
+
 			if (player?.HeldItem?.ModItem == this)
 				player.GetModPlayer<Destiny2Player>().RequestFrenzyBuff(frenzyTimer);
 		}
 
-		internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy)
+		internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage)
 		{
 			if (hasRapidHit && hit.Crit)
 				AddRapidHitStack(player);
+
+			if (hasFourthTimes)
+				RegisterFourthTimesHit(player);
 
 			if (hasFrenzy)
 				RegisterCombat(player);
@@ -809,6 +906,9 @@ namespace Destiny2.Common.Weapons
 
 			if (hasKillClip)
 				killClipWindowTimer = KillClipPerk.WindowTicks;
+
+			if (hasRampage)
+				AddRampageStack(player);
 		}
 
 		internal void NotifyPlayerHurt(Player player)
@@ -835,6 +935,48 @@ namespace Destiny2.Common.Weapons
 			}
 
 			rapidHitTimer = RapidHitPerk.DurationTicks;
+		}
+
+		private void RegisterFourthTimesHit(Player player)
+		{
+			if (fourthTimesHitTimer <= 0)
+				fourthTimesHitCount = 0;
+
+			fourthTimesHitCount++;
+			fourthTimesHitTimer = FourthTimesTheCharmPerk.WindowTicks;
+
+			if (fourthTimesHitCount < FourthTimesTheCharmPerk.HitsRequired)
+				return;
+
+			fourthTimesHitCount = 0;
+			fourthTimesHitTimer = 0;
+			GrantFourthTimesAmmo(player);
+		}
+
+		private void GrantFourthTimesAmmo(Player player)
+		{
+			int magazineSize = GetStats().Magazine;
+			if (magazineSize <= 0)
+				return;
+
+			int nextMagazine = Math.Min(magazineSize, currentMagazine + FourthTimesTheCharmPerk.AmmoReturned);
+			if (nextMagazine == currentMagazine)
+				return;
+
+			currentMagazine = nextMagazine;
+			SendPerkDebug(player, "Fourth Times the Charm");
+		}
+
+		private void AddRampageStack(Player player)
+		{
+			int nextStacks = Math.Min(rampageStacks + 1, RampagePerk.MaxStacks);
+			if (nextStacks != rampageStacks)
+			{
+				rampageStacks = nextStacks;
+				SendPerkDebug(player, $"Rampage x{rampageStacks}");
+			}
+
+			rampageTimer = RampagePerk.DurationTicks;
 		}
 
 		private void ActivateKillClip(Player player)
@@ -876,6 +1018,24 @@ namespace Destiny2.Common.Weapons
 				return;
 
 			Main.NewText(message, 255, 215, 100);
+		}
+
+		private void ApplyFrameRateOfFire(ref Destiny2WeaponStats stats)
+		{
+			if (string.IsNullOrWhiteSpace(framePerkKey))
+				return;
+
+			if (!Destiny2PerkSystem.TryGet(framePerkKey, out Destiny2Perk framePerk))
+				return;
+
+			int frameRpm = GetFrameRoundsPerMinute(framePerk, stats.RoundsPerMinute);
+			if (frameRpm > 0)
+				stats.RoundsPerMinute = frameRpm;
+		}
+
+		private void SyncDamageTypeToElement()
+		{
+			Item.DamageType = WeaponElement.GetDamageClass();
 		}
 
 		public IEnumerable<Destiny2Perk> GetPerks()

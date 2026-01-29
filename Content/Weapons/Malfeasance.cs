@@ -10,7 +10,10 @@ namespace Destiny2.Content.Weapons
 {
 	public sealed class Malfeasance : HandCannonWeaponItem
 	{
-		public override Destiny2WeaponElement WeaponElement => Destiny2WeaponElement.Kinetic;
+		protected override Destiny2WeaponElement GetDefaultWeaponElement()
+		{
+			return Destiny2WeaponElement.Kinetic;
+		}
 
 		public override Destiny2WeaponStats BaseStats => new Destiny2WeaponStats(
 			range: 45f,
@@ -31,7 +34,7 @@ namespace Destiny2.Content.Weapons
 			Item.height = 64;
 			Item.noMelee = true;
 			Item.autoReuse = true;
-			Item.scale = .5f;
+			Item.scale = .35f;
 			Item.DamageType = WeaponElement.GetDamageClass();
 			Item.damage = 32;
 			Item.knockBack = 3f;
