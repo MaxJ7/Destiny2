@@ -51,6 +51,56 @@ Buffs: {
 		DisplayName: Frenzy
 		Description: Increased damage and reload speed.
 	}
+
+	AdagioBuff: {
+		DisplayName: Adagio Buff
+		Description: Mods.Destiny2.Buffs.AdagioBuff.Description
+	}
+
+	DynamicSwayReductionBuff: {
+		DisplayName: Dynamic Sway Reduction Buff
+		Description: Mods.Destiny2.Buffs.DynamicSwayReductionBuff.Description
+	}
+
+	FeedingFrenzyBuff: {
+		DisplayName: Feeding Frenzy Buff
+		Description: Mods.Destiny2.Buffs.FeedingFrenzyBuff.Description
+	}
+
+	FourthTimesTheCharmBuff: {
+		DisplayName: Fourth Times The Charm Buff
+		Description: Mods.Destiny2.Buffs.FourthTimesTheCharmBuff.Description
+	}
+
+	KillClipBuff: {
+		DisplayName: Kill Clip Buff
+		Description: Mods.Destiny2.Buffs.KillClipBuff.Description
+	}
+
+	OnslaughtBuff: {
+		DisplayName: Onslaught Buff
+		Description: Mods.Destiny2.Buffs.OnslaughtBuff.Description
+	}
+
+	OutlawBuff: {
+		DisplayName: Outlaw Buff
+		Description: Mods.Destiny2.Buffs.OutlawBuff.Description
+	}
+
+	RampageBuff: {
+		DisplayName: Rampage Buff
+		Description: Mods.Destiny2.Buffs.RampageBuff.Description
+	}
+
+	RapidHitBuff: {
+		DisplayName: Rapid Hit Buff
+		Description: Mods.Destiny2.Buffs.RapidHitBuff.Description
+	}
+
+	TargetLockBuff: {
+		DisplayName: Target Lock Buff
+		Description: Mods.Destiny2.Buffs.TargetLockBuff.Description
+	}
 }
 
 Keybinds: {

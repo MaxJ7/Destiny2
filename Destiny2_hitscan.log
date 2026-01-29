@@ -1,0 +1,42 @@
+---- Hitscan Log Start 2026-01-28 23:47:04 ----
+---- Hitscan Log Start 2026-01-28 23:47:36 ----
+---- Hitscan Log Start 2026-01-28 23:49:03 ----
+---- Hitscan Log Start 2026-01-28 23:56:44 ----
+---- Hitscan Log Start 2026-01-29 00:10:34 ----
+---- Hitscan Log Start 2026-01-29 00:13:23 ----
+---- Hitscan Log Start 2026-01-29 00:15:50 ----
+---- Hitscan Log Start 2026-01-29 00:18:23 ----
+---- Hitscan Log Start 2026-01-29 00:23:29 ----
+---- Hitscan Log Start 2026-01-29 00:24:49 ----
+---- Hitscan Log Start 2026-01-29 00:31:26 ----
+---- Hitscan Log Start 2026-01-29 00:40:24 ----
+[00:41:02.761] Bullet scan: owner=0 onGround=True start=(32625.8,4806.0) velLen=1.00 aimRot=-2.46 dir=(-0.78,-0.63) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:02.889] Bullet scan: owner=0 onGround=True start=(32625.3,4806.6) velLen=1.00 aimRot=-2.56 dir=(-0.84,-0.55) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.028] Bullet scan: owner=0 onGround=True start=(32624.1,4809.9) velLen=1.00 aimRot=-3.00 dir=(-0.99,-0.14) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.153] Bullet scan: owner=0 onGround=True start=(32624.2,4812.8) velLen=1.00 aimRot=2.91 dir=(-0.97,0.23) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.296] Bullet scan: owner=0 onGround=True start=(32624.3,4813.2) velLen=1.00 aimRot=2.87 dir=(-0.96,0.27) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.419] Bullet scan: owner=0 onGround=True start=(32624.0,4811.3) velLen=1.00 aimRot=3.10 dir=(-1.00,0.04) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.549] Bullet scan: owner=0 onGround=True start=(32624.1,4809.8) velLen=1.00 aimRot=-2.99 dir=(-0.99,-0.15) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.698] Bullet scan: owner=0 onGround=True start=(32625.0,4807.2) velLen=1.00 aimRot=-2.64 dir=(-0.88,-0.48) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.816] Bullet scan: owner=0 onGround=True start=(32622.1,4813.2) velLen=1.00 aimRot=2.86 dir=(-0.96,0.28) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:03.960] Bullet scan: owner=0 onGround=True start=(32614.6,4812.7) velLen=1.00 aimRot=2.93 dir=(-0.98,0.21) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.086] Bullet scan: owner=0 onGround=True start=(32601.9,4811.3) velLen=1.00 aimRot=3.10 dir=(-1.00,0.04) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.221] Bullet scan: owner=0 onGround=True start=(32584.3,4811.2) velLen=1.00 aimRot=3.12 dir=(-1.00,0.03) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.350] Bullet scan: owner=0 onGround=True start=(32561.7,4810.5) velLen=1.00 aimRot=-3.08 dir=(-1.00,-0.06) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.490] Bullet scan: owner=0 onGround=True start=(32535.9,4810.5) velLen=1.00 aimRot=-3.08 dir=(-1.00,-0.06) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.629] Bullet scan: owner=0 onGround=True start=(32508.4,4813.1) velLen=1.00 aimRot=2.87 dir=(-0.96,0.27) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.757] Bullet scan: owner=0 onGround=True start=(32478.5,4812.6) velLen=1.00 aimRot=2.94 dir=(-0.98,0.20) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:04.896] Bullet scan: owner=0 onGround=True start=(32450.0,4816.4) velLen=1.00 aimRot=2.39 dir=(-0.73,0.68) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.023] Bullet scan: owner=0 onGround=True start=(32439.7,4818.0) velLen=1.00 aimRot=1.07 dir=(0.48,0.88) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.153] Bullet scan: owner=0 onGround=True start=(32435.4,4815.3) velLen=1.00 aimRot=0.56 dir=(0.85,0.53) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.285] Bullet scan: owner=0 onGround=True start=(32436.5,4812.5) velLen=1.00 aimRot=0.19 dir=(0.98,0.19) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.416] Bullet scan: owner=0 onGround=True start=(32436.6,4811.0) velLen=1.00 aimRot=-0.00 dir=(1.00,-0.00) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.553] Bullet scan: owner=0 onGround=True start=(32436.3,4808.6) velLen=1.00 aimRot=-0.31 dir=(0.95,-0.30) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.686] Bullet scan: owner=0 onGround=False start=(32437.7,4778.4) velLen=1.00 aimRot=-0.04 dir=(1.00,-0.04) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.828] Bullet scan: owner=0 onGround=False start=(32456.1,4743.1) velLen=1.00 aimRot=0.15 dir=(0.99,0.15) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:05.952] Bullet scan: owner=0 onGround=False start=(32486.2,4703.8) velLen=1.00 aimRot=0.78 dir=(0.71,0.70) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:06.089] Bullet scan: owner=0 onGround=False start=(32527.9,4653.4) velLen=1.00 aimRot=0.73 dir=(0.75,0.67) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:06.233] Bullet scan: owner=0 onGround=False start=(32585.3,4589.7) velLen=1.00 aimRot=0.78 dir=(0.71,0.70) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:06.370] Bullet scan: owner=0 onGround=False start=(32645.7,4526.7) velLen=1.00 aimRot=0.90 dir=(0.62,0.78) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:06.506] Bullet scan: owner=0 onGround=False start=(32709.6,4454.5) velLen=1.00 aimRot=0.55 dir=(0.85,0.53) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0
+[00:41:06.632] Bullet scan: owner=0 onGround=False start=(32770.4,4393.9) velLen=1.00 aimRot=0.86 dir=(0.65,0.76) ignoreTiles=False max=1728 tile=1728.0 npc=1728.0 dist=1728.0

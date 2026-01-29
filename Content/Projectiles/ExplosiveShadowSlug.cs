@@ -18,6 +18,9 @@ namespace Destiny2.Content.Projectiles
 		private const int StickTime = 60 * 10;
 		private const float StickyDustRadius = 6f;
 		private const float CollisionWidth = 8f;
+		private const int LaserSampleCount = 3;
+		private const bool EnableScanDebug = true;
+		private static ulong lastScanDebugTick;
 
 		private Vector2 hitStart;
 		private Vector2 hitEnd;
@@ -42,12 +45,33 @@ namespace Destiny2.Content.Projectiles
 
 		public override void OnSpawn(IEntitySource source)
 		{
+			if (float.IsNaN(Projectile.ai[1]) || float.IsInfinity(Projectile.ai[1]))
+				Projectile.ai[1] = 0f;
+
 			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
 			{
 				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
 				if (maxFalloffTiles > 0f)
 					maxDistance = Math.Max(16f, maxFalloffTiles * 3f * 16f);
 			}
+
+			string aimSource = "ai";
+			if (Projectile.ai[1] == 0f)
+			{
+				if (Projectile.velocity.LengthSquared() > 0.0001f)
+				{
+					Projectile.ai[1] = Projectile.velocity.ToRotation();
+					aimSource = "vel";
+				}
+				else
+				{
+					Projectile.ai[1] = GetFallbackAimRotation();
+					aimSource = "fallback";
+				}
+			}
+
+			if (EnableScanDebug && Main.netMode != NetmodeID.Server && aimSource == "fallback")
+				LogSpawnDebug(Projectile, aimSource);
 		}
 
 		public bool IsStickingToTarget
@@ -81,10 +105,18 @@ namespace Destiny2.Content.Projectiles
 
 			Projectile.localAI[0] = 1f;
 			Vector2 start = Projectile.Center;
-			Vector2 direction = Projectile.velocity.SafeNormalize(Vector2.UnitX);
-			float distance = GetTileCollisionDistance(start, direction, maxDistance);
+			float aimRot = Projectile.ai[1];
+			Vector2 direction = aimRot.ToRotationVector2();
+			if (!IsFinite(direction))
+				direction = GetFallbackAimDirection();
+
+			bool ignoreTiles = Projectile.ai[2] != 0f;
+			float distance = ignoreTiles ? maxDistance : GetTileCollisionDistance(start, direction, maxDistance);
 			Vector2 end = start + direction * distance;
 			end = TruncateToNpcHit(start, end);
+
+			if (EnableScanDebug && Main.netMode != NetmodeID.Server)
+				LogScanDebug(Projectile, start, direction, maxDistance, distance, aimRot, ignoreTiles);
 
 			hitStart = start;
 			hitEnd = end;
@@ -190,18 +222,87 @@ namespace Destiny2.Content.Projectiles
 
 		private static float GetTileCollisionDistance(Vector2 start, Vector2 direction, float maxDistance)
 		{
-			float[] samples = new float[3];
-			Vector2 end = start + direction * maxDistance;
-			Collision.LaserScan(start, end, 1f, samples.Length, samples);
+			return ScanDistance(start, direction, maxDistance);
+		}
 
-			float distance = maxDistance;
-			for (int i = 0; i < samples.Length; i++)
+		private static void LogScanDebug(Projectile projectile, Vector2 start, Vector2 direction, float maxDistance, float distance,
+			float aimRot, bool ignoreTiles)
+		{
+			ulong tick = Main.GameUpdateCount;
+			if (tick == lastScanDebugTick)
+				return;
+
+			lastScanDebugTick = tick;
+			int owner = projectile?.owner ?? -1;
+			bool ownerOnGround = false;
+			if (owner >= 0 && owner < Main.maxPlayers)
+				ownerOnGround = Main.player[owner].velocity.Y == 0f;
+
+			float velLen = projectile?.velocity.Length() ?? 0f;
+			Destiny2.LogHitscan(
+				$"Slug scan: owner={owner} onGround={ownerOnGround} start=({start.X:0.0},{start.Y:0.0}) velLen={velLen:0.00} aimRot={aimRot:0.00} dir=({direction.X:0.00},{direction.Y:0.00}) ignoreTiles={ignoreTiles} max={maxDistance:0} dist={distance:0.0}");
+		}
+
+		private static void LogSpawnDebug(Projectile projectile, string aimSource)
+		{
+			ulong tick = Main.GameUpdateCount;
+			if (tick == lastScanDebugTick)
+				return;
+
+			lastScanDebugTick = tick;
+			int owner = projectile?.owner ?? -1;
+			float velLen = projectile?.velocity.Length() ?? 0f;
+			float aimRot = projectile?.ai[1] ?? 0f;
+			Vector2 dir = aimRot.ToRotationVector2();
+			Destiny2.LogHitscan(
+				$"Slug spawn: owner={owner} velLen={velLen:0.00} aimSource={aimSource} aimRot={aimRot:0.00} dir=({dir.X:0.00},{dir.Y:0.00}) pos=({projectile?.Center.X:0.0},{projectile?.Center.Y:0.0})");
+		}
+
+		private Vector2 GetFallbackAimDirection()
+		{
+			int owner = Projectile.owner;
+			if (owner >= 0 && owner < Main.maxPlayers)
 			{
-				if (samples[i] < distance)
-					distance = samples[i];
+				Player player = Main.player[owner];
+				if (player != null)
+				{
+					if (Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer)
+					{
+						Vector2 aim = Main.MouseWorld - player.MountedCenter;
+						if (aim.LengthSquared() > 0.0001f)
+							return aim.SafeNormalize(Vector2.UnitX);
+					}
+
+					return new Vector2(player.direction, 0f);
+				}
 			}
 
-			return distance;
+			return Vector2.UnitX;
+		}
+
+		private float GetFallbackAimRotation()
+		{
+			Vector2 direction = GetFallbackAimDirection();
+			return direction.ToRotation();
+		}
+
+		private static bool IsFinite(Vector2 value)
+		{
+			return !float.IsNaN(value.X) && !float.IsNaN(value.Y) && !float.IsInfinity(value.X) && !float.IsInfinity(value.Y);
+		}
+
+		private static float ScanDistance(Vector2 start, Vector2 direction, float maxDistance)
+		{
+			float[] samples = new float[LaserSampleCount];
+			Vector2 end = start + direction * maxDistance;
+			Collision.LaserScan(start, end, 1f, LaserSampleCount, samples);
+
+			float distance = 0f;
+			for (int i = 0; i < LaserSampleCount; i++)
+				distance += samples[i];
+
+			distance /= LaserSampleCount;
+			return MathHelper.Clamp(distance, 0f, maxDistance);
 		}
 
 		private static Vector2 TruncateToNpcHit(Vector2 start, Vector2 end)

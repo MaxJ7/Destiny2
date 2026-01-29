@@ -230,7 +230,8 @@ namespace Destiny2.Common.Perks
 			Vector2 spawnPos = target.Center + direction * offsetDistance;
 			int ricochetDamage = Math.Max(1, (int)Math.Round(damageDone * TheRightChoiceFramePerk.RicochetDamageMultiplier));
 
-			int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, direction, projectile.type, ricochetDamage, projectile.knockBack, projectile.owner);
+			float aimRotation = direction.ToRotation();
+			int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, direction, projectile.type, ricochetDamage, projectile.knockBack, projectile.owner, 0f, aimRotation);
 			if (projId < 0 || projId >= Main.maxProjectiles)
 				return;
 
@@ -312,7 +313,8 @@ namespace Destiny2.Common.Perks
 			float offsetDistance = Math.Max(target.width, target.height) * 0.5f + 6f;
 			Vector2 spawnPos = target.Center + direction * offsetDistance;
 
-			int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, direction, projectile.type, damageDone, projectile.knockBack, projectile.owner);
+			float aimRotation = direction.ToRotation();
+			int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, direction, projectile.type, damageDone, projectile.knockBack, projectile.owner, 0f, aimRotation);
 			if (projId < 0 || projId >= Main.maxProjectiles)
 				return false;
 

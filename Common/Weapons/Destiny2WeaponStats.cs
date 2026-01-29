@@ -463,7 +463,43 @@ namespace Destiny2.Common.Weapons
 			if (HasPerk<DynamicSwayReductionPerk>())
 				RegisterDynamicSwayShot();
 
+			int bulletType = ModContent.ProjectileType<Bullet>();
+			int slugType = ModContent.ProjectileType<ExplosiveShadowSlug>();
+			if (type == bulletType || type == slugType)
+			{
+				Vector2 aimDirection = GetAimDirection(player, velocity);
+				float aimRotation = aimDirection.ToRotation();
+				int projId = Projectile.NewProjectile(source, position, aimDirection, type, damage, knockback, player.whoAmI, 0f, aimRotation);
+				if (projId >= 0 && projId < Main.maxProjectiles)
+				{
+					Projectile proj = Main.projectile[projId];
+					proj.netUpdate = true;
+				}
+
+				return false;
+			}
+
 			return true;
+		}
+
+		private static Vector2 GetAimDirection(Player player, Vector2 velocity)
+		{
+			if (velocity.LengthSquared() > 0.0001f)
+				return velocity.SafeNormalize(Vector2.UnitX);
+
+			if (player != null)
+			{
+				if (Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer)
+				{
+					Vector2 aim = Main.MouseWorld - player.MountedCenter;
+					if (aim.LengthSquared() > 0.0001f)
+						return aim.SafeNormalize(Vector2.UnitX);
+				}
+
+				return new Vector2(player.direction, 0f);
+			}
+
+			return Vector2.UnitX;
 		}
 
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
