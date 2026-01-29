@@ -9,6 +9,7 @@ namespace Destiny2.Common.Weapons
 	public abstract class HandCannonWeaponItem : Destiny2WeaponItem
 	{
 		private const int HeavyBurstShotsPerUse = 2;
+		private const int HeavyBurstShotIntervalTicks = 3;
 		private const float PrecisionFrameRecoilScalar = 0.93f;
 		private const float AggressiveFrameRangeScalar = 1.1f;
 		private const float MaxRecoilAngleAtZeroStability = 45f;
@@ -108,7 +109,8 @@ namespace Destiny2.Common.Weapons
 		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
 		{
 			ulong tick = Main.GameUpdateCount;
-			ulong resetTicks = (ulong)Math.Max(10, Item.useTime + 2);
+			int cycleTicks = Math.Max(1, Item.useAnimation + Item.reuseDelay);
+			ulong resetTicks = (ulong)Math.Max(10, cycleTicks + 2);
 			if (tick - lastShotTick > resetTicks)
 				recoilAngle = 0f;
 
@@ -132,16 +134,42 @@ namespace Destiny2.Common.Weapons
 			float step = maxAngle * stepScalar;
 			recoilAngle = Math.Min(maxAngle, recoilAngle + step);
 			lastShotTick = tick;
+
+			base.ModifyShootStats(player, ref position, ref velocity, ref type, ref damage, ref knockback);
 		}
 
 		private void ApplyBurstSettings()
 		{
-			if (Item.useTime <= 0)
+			int rpm = GetStats().RoundsPerMinute;
+			if (rpm <= 0)
 				return;
 
-			if (TryGetFramePerk(out Destiny2Perk framePerk)
-				&& (framePerk is HeavyBurstFramePerk || framePerk is AggressiveBurstFramePerk))
-				Item.useAnimation = Item.useTime * HeavyBurstShotsPerUse;
+			int baseUseTime = Math.Clamp((int)Math.Round(3600f / rpm), 1, 3600);
+			Item.reuseDelay = 0;
+
+			if (TryGetFramePerk(out Destiny2Perk framePerk))
+			{
+				if (framePerk is HeavyBurstFramePerk)
+				{
+					int shotInterval = Math.Max(1, HeavyBurstShotIntervalTicks);
+					Item.useTime = shotInterval;
+					Item.useAnimation = shotInterval * HeavyBurstShotsPerUse;
+
+					int burstCycle = baseUseTime * HeavyBurstShotsPerUse;
+					Item.reuseDelay = Math.Max(0, burstCycle - Item.useAnimation);
+					return;
+				}
+
+				if (framePerk is AggressiveBurstFramePerk)
+				{
+					Item.useTime = baseUseTime;
+					Item.useAnimation = baseUseTime * HeavyBurstShotsPerUse;
+					return;
+				}
+			}
+
+			Item.useTime = baseUseTime;
+			Item.useAnimation = baseUseTime;
 		}
 
 		private bool TryGetFramePerk(out Destiny2Perk framePerk)

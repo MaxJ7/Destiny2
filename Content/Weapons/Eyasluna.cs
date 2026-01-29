@@ -15,7 +15,6 @@ namespace Destiny2.Content.Weapons
 			return Destiny2WeaponElement.Stasis;
 		}
 
-		public override string Texture => $"Terraria/Images/Item_{ItemID.PhoenixBlaster}";
 
 		public override Destiny2WeaponStats BaseStats => new Destiny2WeaponStats(
 			range: 51f,
@@ -55,7 +54,7 @@ namespace Destiny2.Content.Weapons
 			Item.height = 64;
 			Item.noMelee = true;
 			Item.autoReuse = true;
-			Item.scale = 1f;
+			Item.scale = 0.25f;
 			Item.DamageType = WeaponElement.GetDamageClass();
 			Item.damage = 32;
 			Item.knockBack = 3f;

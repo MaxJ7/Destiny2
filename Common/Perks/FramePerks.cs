@@ -123,4 +123,15 @@ namespace Destiny2.Common.Perks
 		public override string IconTexture => "Destiny2/Assets/Perks/WaveFrame";
 		public override bool IsFrame => true;
 	}
+
+	public sealed class TheRightChoiceFramePerk : Destiny2Perk
+	{
+		public const int ShotsRequired = 7;
+		public const float RicochetDamageMultiplier = 2.5f;
+
+		public override string DisplayName => "The Right Choice";
+		public override string Description => "Every 7th shot ricochets to a new enemy and deals increased damage.";
+		public override string IconTexture => "Destiny2/Assets/Perks/TheRightChoiceFrame";
+		public override bool IsFrame => true;
+	}
 }

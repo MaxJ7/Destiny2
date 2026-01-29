@@ -1,3 +1,5 @@
+using System;
+using Destiny2.Common.Perks;
 using Destiny2.Common.UI;
 using Destiny2.Common.Weapons;
 using Destiny2.Content.Buffs;
@@ -10,10 +12,31 @@ namespace Destiny2.Common.Players
 	public sealed class Destiny2Player : ModPlayer
 	{
 		private int frenzyBuffTimer;
+		private int outlawBuffTimer;
+		private int rapidHitBuffTimer;
+		private int killClipBuffTimer;
+		private int rampageBuffTimer;
+		private int onslaughtBuffTimer;
+		private int feedingFrenzyBuffTimer;
+		private int adagioBuffTimer;
+		private int targetLockBuffTimer;
+		private int dynamicSwayBuffTimer;
+		private int fourthTimesBuffTimer;
+		private int eyesUpGuardianStacks;
 
 		public override void ResetEffects()
 		{
 			frenzyBuffTimer = 0;
+			outlawBuffTimer = 0;
+			rapidHitBuffTimer = 0;
+			killClipBuffTimer = 0;
+			rampageBuffTimer = 0;
+			onslaughtBuffTimer = 0;
+			feedingFrenzyBuffTimer = 0;
+			adagioBuffTimer = 0;
+			targetLockBuffTimer = 0;
+			dynamicSwayBuffTimer = 0;
+			fourthTimesBuffTimer = 0;
 		}
 
 		public override void ProcessTriggers(TriggersSet triggersSet)
@@ -54,15 +77,107 @@ namespace Destiny2.Common.Players
 				frenzyBuffTimer = timer;
 		}
 
+		internal void RequestOutlawBuff(int timer)
+		{
+			if (timer > outlawBuffTimer)
+				outlawBuffTimer = timer;
+		}
+
+		internal void RequestRapidHitBuff(int timer)
+		{
+			if (timer > rapidHitBuffTimer)
+				rapidHitBuffTimer = timer;
+		}
+
+		internal void RequestKillClipBuff(int timer)
+		{
+			if (timer > killClipBuffTimer)
+				killClipBuffTimer = timer;
+		}
+
+		internal void RequestRampageBuff(int timer)
+		{
+			if (timer > rampageBuffTimer)
+				rampageBuffTimer = timer;
+		}
+
+		internal void RequestOnslaughtBuff(int timer)
+		{
+			if (timer > onslaughtBuffTimer)
+				onslaughtBuffTimer = timer;
+		}
+
+		internal void RequestFeedingFrenzyBuff(int timer)
+		{
+			if (timer > feedingFrenzyBuffTimer)
+				feedingFrenzyBuffTimer = timer;
+		}
+
+		internal void RequestAdagioBuff(int timer)
+		{
+			if (timer > adagioBuffTimer)
+				adagioBuffTimer = timer;
+		}
+
+		internal void RequestTargetLockBuff(int timer)
+		{
+			if (timer > targetLockBuffTimer)
+				targetLockBuffTimer = timer;
+		}
+
+		internal void RequestDynamicSwayBuff(int timer)
+		{
+			if (timer > dynamicSwayBuffTimer)
+				dynamicSwayBuffTimer = timer;
+		}
+
+		internal void RequestFourthTimesBuff(int timer)
+		{
+			if (timer > fourthTimesBuffTimer)
+				fourthTimesBuffTimer = timer;
+		}
+
+		internal bool TryConsumeEyesUpGuardianStack()
+		{
+			if (eyesUpGuardianStacks <= 0)
+				return false;
+
+			eyesUpGuardianStacks--;
+			return true;
+		}
+
+		internal void GrantEyesUpGuardianStacks(int amount)
+		{
+			if (amount <= 0)
+				return;
+
+			int nextStacks = Math.Min(EyesUpGuardianPerk.MaxStacks, eyesUpGuardianStacks + amount);
+			eyesUpGuardianStacks = nextStacks;
+		}
+
 		public override void PostUpdate()
 		{
-			int buffType = ModContent.BuffType<FrenzyBuff>();
-			if (frenzyBuffTimer > 0)
+			ApplyTimedBuff(ModContent.BuffType<FrenzyBuff>(), frenzyBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<OutlawBuff>(), outlawBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<RapidHitBuff>(), rapidHitBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<KillClipBuff>(), killClipBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<RampageBuff>(), rampageBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<OnslaughtBuff>(), onslaughtBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<FeedingFrenzyBuff>(), feedingFrenzyBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<AdagioBuff>(), adagioBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<TargetLockBuff>(), targetLockBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<DynamicSwayReductionBuff>(), dynamicSwayBuffTimer);
+			ApplyTimedBuff(ModContent.BuffType<FourthTimesTheCharmBuff>(), fourthTimesBuffTimer);
+		}
+
+		private void ApplyTimedBuff(int buffType, int timer)
+		{
+			if (timer > 0)
 			{
-				Player.AddBuff(buffType, frenzyBuffTimer);
+				Player.AddBuff(buffType, timer);
 				int index = Player.FindBuffIndex(buffType);
 				if (index != -1)
-					Player.buffTime[index] = frenzyBuffTimer;
+					Player.buffTime[index] = timer;
 			}
 			else
 			{

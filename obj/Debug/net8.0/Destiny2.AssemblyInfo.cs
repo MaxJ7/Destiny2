@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Destiny2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ca043c899dbc672004ba5cee165b179979161109")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ccfeb5ea5eae28bcd8da34b95c8b52803b2472f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Destiny2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Destiny2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

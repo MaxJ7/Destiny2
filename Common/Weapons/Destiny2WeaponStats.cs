@@ -5,11 +5,13 @@ using Destiny2.Common.Items;
 using Destiny2.Common.Players;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Rarities;
+using Destiny2.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.UI.Chat;
@@ -36,11 +38,9 @@ namespace Destiny2.Common.Weapons
 
 	public abstract class Destiny2WeaponItem : ModItem
 	{
-		private const string FrameTooltipPrefix = "Destiny2Frame_";
-		private const string PerkSlotTooltipPrefix = "Destiny2PerkSlot_";
-		private const string CatalystTooltipPrefix = "Destiny2Catalyst_";
 		private const string StatsTooltipPrefix = "Destiny2Stats_";
 		private const string ElementTooltipPrefix = "Destiny2Element_";
+		private const string PerkIconsTooltipName = "Destiny2PerkIcons";
 		private const int TicksPerSecond = 60;
 		private static readonly string[] PerkSlotNames = new[]
 		{
@@ -49,6 +49,13 @@ namespace Destiny2.Common.Weapons
 			"Major Perk",
 			"Major Perk"
 		};
+
+		private struct KineticTremorsTargetState
+		{
+			public int HitCount;
+			public int HitTimer;
+			public int CooldownTimer;
+		}
 
 		private List<string> perkKeys = new List<string>();
 		private bool perksInitialized;
@@ -76,6 +83,18 @@ namespace Destiny2.Common.Weapons
 		private int frenzyTimer;
 		private int frenzyCombatTimer;
 		private int frenzyCombatGraceTimer;
+		private int onslaughtTimer;
+		private int onslaughtStacks;
+		private int feedingFrenzyTimer;
+		private int feedingFrenzyStacks;
+		private int adagioTimer;
+		private int targetLockHitTimer;
+		private int targetLockHitCount;
+		private int targetLockTargetId = -1;
+		private int dynamicSwayTimer;
+		private int dynamicSwayStacks;
+		private int rightChoiceShotCount;
+		private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
 		private bool hasElementOverride;
 		private Destiny2WeaponElement elementOverride;
 
@@ -122,6 +141,18 @@ namespace Destiny2.Common.Weapons
 			clone.frenzyTimer = frenzyTimer;
 			clone.frenzyCombatTimer = frenzyCombatTimer;
 			clone.frenzyCombatGraceTimer = frenzyCombatGraceTimer;
+			clone.onslaughtTimer = onslaughtTimer;
+			clone.onslaughtStacks = onslaughtStacks;
+			clone.feedingFrenzyTimer = feedingFrenzyTimer;
+			clone.feedingFrenzyStacks = feedingFrenzyStacks;
+			clone.adagioTimer = adagioTimer;
+			clone.targetLockHitTimer = targetLockHitTimer;
+			clone.targetLockHitCount = targetLockHitCount;
+			clone.targetLockTargetId = targetLockTargetId;
+			clone.dynamicSwayTimer = dynamicSwayTimer;
+			clone.dynamicSwayStacks = dynamicSwayStacks;
+			clone.rightChoiceShotCount = rightChoiceShotCount;
+			clone.kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>(kineticTremorsTargets);
 			clone.hasElementOverride = hasElementOverride;
 			clone.elementOverride = elementOverride;
 			return clone;
@@ -310,8 +341,8 @@ namespace Destiny2.Common.Weapons
 			Destiny2WeaponStats stats = hasCustomStats ? customStats : BaseStats;
 			foreach (Destiny2Perk perk in GetPerks())
 				perk.ModifyStats(ref stats);
-			ApplyActivePerkStats(ref stats);
 			ApplyFrameRateOfFire(ref stats);
+			ApplyActivePerkStats(ref stats);
 			return stats;
 		}
 
@@ -386,6 +417,7 @@ namespace Destiny2.Common.Weapons
 		internal bool IsKillClipActive => killClipTimer > 0;
 		internal bool IsFrenzyActive => frenzyTimer > 0;
 		internal bool IsRampageActive => rampageTimer > 0 && rampageStacks > 0;
+		internal bool IsAdagioActive => adagioTimer > 0;
 
 		internal float GetRampageMultiplier()
 		{
@@ -428,7 +460,22 @@ namespace Destiny2.Common.Weapons
 				currentMagazine--;
 			}
 
+			if (HasPerk<DynamicSwayReductionPerk>())
+				RegisterDynamicSwayShot();
+
 			return true;
+		}
+
+		public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
+		{
+			Vector2 direction = velocity.SafeNormalize(Vector2.UnitX);
+			Vector2 origin = position;
+			float muzzleDistance = MathHelper.Clamp(Item.width * Item.scale * 0.35f, 8f, 26f);
+			Vector2 muzzleOffset = direction * muzzleDistance;
+
+			position = origin;
+			if (Collision.CanHit(origin, 0, 0, origin + muzzleOffset, 0, 0))
+				position += muzzleOffset;
 		}
 
 		public override void HoldItem(Player player)
@@ -437,6 +484,7 @@ namespace Destiny2.Common.Weapons
 			EnsurePerksRolled();
 			UpdatePerkTimers(player);
 			UpdateReload(player);
+			UpdateReloadAnimation(player);
 			UpdateUseTimeFromStats();
 			SyncDamageTypeToElement();
 		}
@@ -447,6 +495,7 @@ namespace Destiny2.Common.Weapons
 			EnsurePerksRolled();
 			UpdatePerkTimers(player);
 			UpdateReload(player);
+			UpdateReloadAnimation(player);
 			UpdateUseTimeFromStats();
 			SyncDamageTypeToElement();
 		}
@@ -455,90 +504,19 @@ namespace Destiny2.Common.Weapons
 		{
 			tooltips.RemoveAll(line => line.Mod == "Terraria" && VanillaStatLines.Contains(line.Name));
 
-			Destiny2WeaponStats stats = GetStats();
-			Color headerColor = new Color(255, 212, 89);
-
-			tooltips.Add(new TooltipLine(Mod, "Destiny2StatsHeader", "Destiny 2 Stats")
-			{
-				OverrideColor = headerColor
-			});
+			Destiny2WeaponStats stats = BaseStats;
 			Destiny2WeaponElement element = WeaponElement;
-			tooltips.Add(new TooltipLine(Mod, ElementTooltipPrefix + element, $"Element: {element}"));
-			Destiny2AmmoType ammoType = AmmoType;
-			tooltips.Add(new TooltipLine(Mod, "Destiny2AmmoType", $"Ammo Type: {ammoType}"));
-			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Damage", $"Damage: {Item.damage}"));
+			tooltips.Add(new TooltipLine(Mod, ElementTooltipPrefix + element, $"{Item.damage} {element} Damage")
+			{
+				OverrideColor = GetElementColor(element)
+			});
 			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Range", $"Range: {stats.Range:0}"));
-			float effectiveRange = GetFalloffTiles();
-			if (effectiveRange > 0f)
-				tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "EffectiveRange", $"Effective Range: {effectiveRange:0} tiles"));
 			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Stability", $"Stability: {stats.Stability:0}"));
 			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Reload", $"Reload: {stats.ReloadSpeed:0}"));
-			float reloadSeconds = GetReloadSeconds();
-			if (reloadSeconds > 0f)
-				tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "ReloadTime", $"Reload Time: {reloadSeconds:0.0}s"));
 			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "RPM", $"RPM: {stats.RoundsPerMinute}"));
 			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Magazine", $"Magazine: {stats.Magazine}"));
-
-			tooltips.Add(new TooltipLine(Mod, "Destiny2FrameHeader", "Weapon Frame")
-			{
-				OverrideColor = headerColor
-			});
-
-			string frameLabel = "Frame: --";
-			string frameKey = "Empty";
-			if (!string.IsNullOrWhiteSpace(framePerkKey) && Destiny2PerkSystem.TryGet(framePerkKey, out Destiny2Perk framePerk))
-			{
-				frameLabel = $"Frame: {framePerk.DisplayName}";
-				frameKey = framePerk.Key;
-			}
-
-			tooltips.Add(new TooltipLine(Mod, FrameTooltipPrefix + frameKey, frameLabel));
-
-			tooltips.Add(new TooltipLine(Mod, "Destiny2PerksHeader", "Weapon Perks")
-			{
-				OverrideColor = headerColor
-			});
-
-			for (int i = 0; i < PerkSlotCount; i++)
-			{
-				string slotName = i < PerkSlotNames.Length ? PerkSlotNames[i] : $"Slot {i + 1}";
-				string slotLabel = $"{slotName}: --";
-				Destiny2Perk perk = null;
-				if (i < perkKeys.Count && Destiny2PerkSystem.TryGet(perkKeys[i], out Destiny2Perk slotPerk))
-				{
-					perk = slotPerk;
-					slotLabel = $"{slotName}: {perk.DisplayName}";
-				}
-
-				string key = i < perkKeys.Count ? perkKeys[i] : $"Empty_{i}";
-				tooltips.Add(new TooltipLine(Mod, PerkSlotTooltipPrefix + key, slotLabel));
-
-				if (perk != null && !string.IsNullOrWhiteSpace(perk.Description))
-					tooltips.Add(new TooltipLine(Mod, $"Destiny2PerkDesc_{key}_{i}", perk.Description));
-			}
-
-			tooltips.Add(new TooltipLine(Mod, "Destiny2ModsHeader", "Weapon Mods")
-			{
-				OverrideColor = headerColor
-			});
-			tooltips.Add(new TooltipLine(Mod, "Destiny2ModsSlot", "Mod Slot: --"));
-
-			if (HasCatalystSlot)
-			{
-				string catalystLabel = "Catalyst: Empty";
-				string catalystKey = "Empty";
-				if (!string.IsNullOrWhiteSpace(catalystPerkKey) && Destiny2PerkSystem.TryGet(catalystPerkKey, out Destiny2Perk catalystPerk))
-				{
-					catalystLabel = $"Catalyst: {catalystPerk.DisplayName}";
-					catalystKey = catalystPerk.Key;
-				}
-
-				tooltips.Add(new TooltipLine(Mod, CatalystTooltipPrefix + catalystKey, catalystLabel));
-			}
-			else
-			{
-				tooltips.Add(new TooltipLine(Mod, "Destiny2CatalystLocked", "Catalyst: Locked"));
-			}
+			tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "AmmoType", $"Ammo Type: {AmmoType}"));
+			tooltips.Add(new TooltipLine(Mod, PerkIconsTooltipName, " "));
 		}
 
 		public override void UseStyle(Player player, Rectangle heldItemFrame)
@@ -569,26 +547,7 @@ namespace Destiny2.Common.Weapons
 			if (line.Mod != Mod.Name)
 				return true;
 
-			string perkKey = null;
-			if (line.Name.StartsWith(FrameTooltipPrefix, StringComparison.Ordinal))
-				perkKey = line.Name.Substring(FrameTooltipPrefix.Length);
-			else if (line.Name.StartsWith(PerkSlotTooltipPrefix, StringComparison.Ordinal))
-				perkKey = line.Name.Substring(PerkSlotTooltipPrefix.Length);
-			else if (line.Name.StartsWith(CatalystTooltipPrefix, StringComparison.Ordinal))
-				perkKey = line.Name.Substring(CatalystTooltipPrefix.Length);
-			else if (line.Name == "Destiny2AmmoType")
-			{
-				Destiny2AmmoType ammoType = AmmoType;
-				Texture2D ammoIcon = ModContent.Request<Texture2D>(ammoType.GetIconTexture()).Value;
-				Vector2 ammoIconPos = new Vector2(line.X, line.Y);
-				Vector2 ammoTextPos = new Vector2(line.X + ammoIcon.Width + 6f, line.Y);
-
-				Main.spriteBatch.Draw(ammoIcon, ammoIconPos, null, line.OverrideColor ?? line.Color);
-				ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, line.Font, line.Text, ammoTextPos, line.Color, line.Rotation, line.Origin, line.BaseScale);
-
-				return false;
-			}
-			else if (line.Name.StartsWith(ElementTooltipPrefix, StringComparison.Ordinal))
+			if (line.Name.StartsWith(ElementTooltipPrefix, StringComparison.Ordinal))
 			{
 				string elementText = line.Name.Substring(ElementTooltipPrefix.Length);
 				if (!Enum.TryParse(elementText, out Destiny2WeaponElement element))
@@ -598,26 +557,69 @@ namespace Destiny2.Common.Weapons
 				Vector2 elementIconPos = new Vector2(line.X, line.Y);
 				Vector2 elementTextPos = new Vector2(line.X + elementIcon.Width + 6f, line.Y);
 
-				Main.spriteBatch.Draw(elementIcon, elementIconPos, null, line.OverrideColor ?? line.Color);
-				ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, line.Font, line.Text, elementTextPos, line.Color, line.Rotation, line.Origin, line.BaseScale);
+				Color textColor = line.OverrideColor ?? line.Color;
+				Main.spriteBatch.Draw(elementIcon, elementIconPos, null, Color.White);
+				ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, line.Font, line.Text, elementTextPos, textColor, line.Rotation, line.Origin, line.BaseScale);
 
 				return false;
 			}
-			else
-				return true;
+			if (line.Name == PerkIconsTooltipName)
+			{
+				const float iconSize = 20f;
+				const float gap = 6f;
+				Texture2D[] icons = new Texture2D[5];
+				icons[0] = GetPerkIcon(framePerkKey);
+				for (int i = 0; i < 4; i++)
+					icons[i + 1] = GetPerkIcon(i < perkKeys.Count ? perkKeys[i] : null);
 
-			if (!Destiny2PerkSystem.TryGet(perkKey, out Destiny2Perk perk) || string.IsNullOrWhiteSpace(perk.IconTexture))
-				return true;
+				float x = line.X;
+				float y = line.Y;
+				for (int i = 0; i < icons.Length; i++)
+				{
+					Rectangle iconRect = new Rectangle((int)x, (int)y, (int)iconSize, (int)iconSize);
+					Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, iconRect, Color.Black * 0.4f);
+					if (icons[i] != null)
+						Main.spriteBatch.Draw(icons[i], iconRect, Color.White);
+					x += iconSize + gap;
+				}
 
-			Texture2D icon = ModContent.Request<Texture2D>(perk.IconTexture).Value;
-			Vector2 iconSize = icon.Size();
-			Vector2 perkIconPos = new Vector2(line.X, line.Y);
-			Vector2 perkTextPos = new Vector2(line.X + iconSize.X + 6f, line.Y);
+				float lineHeight = line.Font.MeasureString(line.Text).Y * line.BaseScale.Y;
+				int extra = (int)Math.Max(0f, iconSize - lineHeight);
+				if (extra > 0)
+					yOffset += extra;
 
-			Main.spriteBatch.Draw(icon, perkIconPos, null, line.OverrideColor ?? line.Color);
-			ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, line.Font, line.Text, perkTextPos, line.Color, line.Rotation, line.Origin, line.BaseScale);
+				return false;
+			}
 
-			return false;
+			return true;
+		}
+
+		private static Texture2D GetPerkIcon(string perkKey)
+		{
+			if (string.IsNullOrWhiteSpace(perkKey))
+				return null;
+
+			if (!Destiny2PerkSystem.TryGet(perkKey, out Destiny2Perk perk))
+				return null;
+
+			if (string.IsNullOrWhiteSpace(perk.IconTexture))
+				return null;
+
+			return ModContent.Request<Texture2D>(perk.IconTexture).Value;
+		}
+
+		private static Color GetElementColor(Destiny2WeaponElement element)
+		{
+			return element switch
+			{
+				Destiny2WeaponElement.Void => new Color(196, 0, 240),
+				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
+				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
+				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
+				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
+				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
+				_ => new Color(255, 248, 163)
+			};
 		}
 
 		private static readonly HashSet<string> VanillaStatLines = new HashSet<string>(StringComparer.Ordinal)
@@ -761,6 +763,27 @@ namespace Destiny2.Common.Weapons
 			}
 		}
 
+		private void UpdateReloadAnimation(Player player)
+		{
+			if (!isReloading || reloadTimerMax <= 0 || player == null)
+				return;
+
+			if (player.itemAnimation <= 0)
+			{
+				// Keep the weapon held out while the reload animation plays.
+				player.itemAnimation = 2;
+				player.itemTime = 2;
+				player.itemAnimationMax = Math.Max(player.itemAnimationMax, Item.useAnimation);
+			}
+
+			float progress = 1f - (reloadTimer / (float)reloadTimerMax);
+			float downUp = (float)Math.Sin(progress * MathHelper.Pi);
+			float maxAngle = MathHelper.ToRadians(45f);
+			float offset = maxAngle * downUp * -player.direction;
+
+			player.SetCompositeArmFront(true, Player.CompositeArmStretchAmount.Full, player.itemRotation + offset);
+		}
+
 		private void SyncMagazineAfterStatChange()
 		{
 			int magazineSize = GetStats().Magazine;
@@ -798,6 +821,28 @@ namespace Destiny2.Common.Weapons
 
 			if (frenzyTimer > 0)
 				stats.ReloadSpeed += FrenzyPerk.ReloadSpeedBonus;
+
+			if (onslaughtTimer > 0 && onslaughtStacks > 0)
+			{
+				int stacks = Math.Clamp(onslaughtStacks, 0, OnslaughtPerk.MaxStacks);
+				stats.ReloadSpeed += OnslaughtPerk.ReloadSpeedByStacks[stacks];
+				stats.RoundsPerMinute = ApplyRpmScalar(stats.RoundsPerMinute, OnslaughtPerk.RpmScalarByStacks[stacks]);
+			}
+
+			if (feedingFrenzyTimer > 0 && feedingFrenzyStacks > 0)
+			{
+				int stacks = Math.Clamp(feedingFrenzyStacks, 0, FeedingFrenzyPerk.MaxStacks);
+				stats.ReloadSpeed += FeedingFrenzyPerk.ReloadSpeedByStacks[stacks];
+			}
+
+			if (adagioTimer > 0)
+			{
+				stats.Range += AdagioPerk.RangeBonus;
+				stats.RoundsPerMinute = ApplyRpmScalar(stats.RoundsPerMinute, AdagioPerk.RpmScalar);
+			}
+
+			if (dynamicSwayTimer > 0 && dynamicSwayStacks > 0)
+				stats.Stability += dynamicSwayStacks * DynamicSwayReductionPerk.StabilityPerStack;
 		}
 
 		protected float GetReloadSpeedTimeScalar()
@@ -812,7 +857,39 @@ namespace Destiny2.Common.Weapons
 				scalar *= RapidHitPerk.ReloadTimeScalarByStacks[stacks];
 			}
 
+			if (feedingFrenzyTimer > 0 && feedingFrenzyStacks > 0)
+			{
+				int stacks = Math.Clamp(feedingFrenzyStacks, 0, FeedingFrenzyPerk.MaxStacks);
+				scalar *= FeedingFrenzyPerk.ReloadTimeScalarByStacks[stacks];
+			}
+
+			if (HasPerk<AlloyMagPerk>())
+				scalar *= GetAlloyMagScalar();
+
 			return scalar;
+		}
+
+		private static int ApplyRpmScalar(int rpm, float scalar)
+		{
+			if (rpm <= 0)
+				return rpm;
+
+			int scaled = (int)Math.Round(rpm * scalar);
+			return Math.Max(1, scaled);
+		}
+
+		private float GetAlloyMagScalar()
+		{
+			int magazineSize = GetStats().Magazine;
+			if (magazineSize <= 0)
+				return 1f;
+
+			float ratio = Math.Clamp(currentMagazine / (float)magazineSize, 0f, 1f);
+			if (ratio > 0.5f)
+				return 1f;
+
+			float t = ratio / 0.5f;
+			return MathHelper.Lerp(AlloyMagPerk.EmptyMagScalar, AlloyMagPerk.HalfMagScalar, t);
 		}
 
 		private void UpdatePerkTimers(Player player)
@@ -822,6 +899,9 @@ namespace Destiny2.Common.Weapons
 			bool killClipWasActive = killClipTimer > 0;
 			bool frenzyWasActive = frenzyTimer > 0;
 			bool rampageWasActive = rampageTimer > 0 && rampageStacks > 0;
+			bool onslaughtWasActive = onslaughtTimer > 0 && onslaughtStacks > 0;
+			bool feedingFrenzyWasActive = feedingFrenzyTimer > 0 && feedingFrenzyStacks > 0;
+			bool adagioWasActive = adagioTimer > 0;
 
 			if (outlawTimer > 0)
 				outlawTimer--;
@@ -864,6 +944,32 @@ namespace Destiny2.Common.Weapons
 			if (frenzyWasActive && frenzyTimer <= 0)
 				SendPerkDebug(player, "Frenzy expired");
 
+			if (onslaughtTimer > 0)
+			{
+				onslaughtTimer--;
+				if (onslaughtTimer <= 0)
+					onslaughtStacks = 0;
+			}
+
+			if (onslaughtWasActive && onslaughtTimer <= 0)
+				SendPerkDebug(player, "Onslaught expired");
+
+			if (feedingFrenzyTimer > 0)
+			{
+				feedingFrenzyTimer--;
+				if (feedingFrenzyTimer <= 0)
+					feedingFrenzyStacks = 0;
+			}
+
+			if (feedingFrenzyWasActive && feedingFrenzyTimer <= 0)
+				SendPerkDebug(player, "Feeding Frenzy expired");
+
+			if (adagioTimer > 0)
+				adagioTimer--;
+
+			if (adagioWasActive && adagioTimer <= 0)
+				SendPerkDebug(player, "Adagio expired");
+
 			if (frenzyCombatGraceTimer > 0)
 			{
 				frenzyCombatGraceTimer--;
@@ -883,11 +989,40 @@ namespace Destiny2.Common.Weapons
 					fourthTimesHitCount = 0;
 			}
 
+			if (targetLockHitTimer > 0)
+			{
+				targetLockHitTimer--;
+				if (targetLockHitTimer <= 0)
+					ResetTargetLockState();
+			}
+
+			if (dynamicSwayTimer > 0)
+			{
+				dynamicSwayTimer--;
+				if (dynamicSwayTimer <= 0)
+					dynamicSwayStacks = 0;
+			}
+
+			UpdateKineticTremorsTargets();
+
 			if (player?.HeldItem?.ModItem == this)
-				player.GetModPlayer<Destiny2Player>().RequestFrenzyBuff(frenzyTimer);
+			{
+				Destiny2Player modPlayer = player.GetModPlayer<Destiny2Player>();
+				modPlayer.RequestFrenzyBuff(frenzyTimer);
+				modPlayer.RequestOutlawBuff(outlawTimer);
+				modPlayer.RequestRapidHitBuff(rapidHitStacks > 0 ? rapidHitTimer : 0);
+				modPlayer.RequestKillClipBuff(killClipTimer);
+				modPlayer.RequestRampageBuff(rampageStacks > 0 ? rampageTimer : 0);
+				modPlayer.RequestOnslaughtBuff(onslaughtStacks > 0 ? onslaughtTimer : 0);
+				modPlayer.RequestFeedingFrenzyBuff(feedingFrenzyStacks > 0 ? feedingFrenzyTimer : 0);
+				modPlayer.RequestAdagioBuff(adagioTimer);
+				modPlayer.RequestTargetLockBuff(targetLockHitCount > 0 ? targetLockHitTimer : 0);
+				modPlayer.RequestDynamicSwayBuff(dynamicSwayStacks > 0 ? dynamicSwayTimer : 0);
+				modPlayer.RequestFourthTimesBuff(fourthTimesHitTimer);
+			}
 		}
 
-		internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage)
+		internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy)
 		{
 			if (hasRapidHit && hit.Crit)
 				AddRapidHitStack(player);
@@ -909,6 +1044,25 @@ namespace Destiny2.Common.Weapons
 
 			if (hasRampage)
 				AddRampageStack(player);
+
+			if (hasOnslaught)
+				AddOnslaughtStack(player);
+
+			if (hasAdagio)
+				ActivateAdagio(player);
+
+			if (hasFeedingFrenzy)
+				AddFeedingFrenzyStack(player);
+		}
+
+		internal bool TryConsumeRightChoiceShot()
+		{
+			rightChoiceShotCount++;
+			if (rightChoiceShotCount < TheRightChoiceFramePerk.ShotsRequired)
+				return false;
+
+			rightChoiceShotCount = 0;
+			return true;
 		}
 
 		internal void NotifyPlayerHurt(Player player)
@@ -979,6 +1133,36 @@ namespace Destiny2.Common.Weapons
 			rampageTimer = RampagePerk.DurationTicks;
 		}
 
+		private void AddOnslaughtStack(Player player)
+		{
+			int nextStacks = Math.Min(onslaughtStacks + 1, OnslaughtPerk.MaxStacks);
+			if (nextStacks != onslaughtStacks)
+			{
+				onslaughtStacks = nextStacks;
+				SendPerkDebug(player, $"Onslaught x{onslaughtStacks}");
+			}
+
+			onslaughtTimer = OnslaughtPerk.DurationTicks;
+		}
+
+		private void AddFeedingFrenzyStack(Player player)
+		{
+			int nextStacks = Math.Min(feedingFrenzyStacks + 1, FeedingFrenzyPerk.MaxStacks);
+			if (nextStacks != feedingFrenzyStacks)
+			{
+				feedingFrenzyStacks = nextStacks;
+				SendPerkDebug(player, $"Feeding Frenzy x{feedingFrenzyStacks}");
+			}
+
+			feedingFrenzyTimer = FeedingFrenzyPerk.DurationTicks;
+		}
+
+		private void ActivateAdagio(Player player)
+		{
+			adagioTimer = AdagioPerk.DurationTicks;
+			SendPerkDebug(player, "Adagio activated");
+		}
+
 		private void ActivateKillClip(Player player)
 		{
 			killClipTimer = KillClipPerk.DurationTicks;
@@ -997,6 +1181,164 @@ namespace Destiny2.Common.Weapons
 			if (frenzyTimer > 0)
 				frenzyTimer = FrenzyPerk.DurationTicks;
 		}
+
+		private void RegisterDynamicSwayShot()
+		{
+			dynamicSwayTimer = DynamicSwayReductionPerk.HoldWindowTicks;
+			if (dynamicSwayStacks < DynamicSwayReductionPerk.MaxStacks)
+				dynamicSwayStacks++;
+		}
+
+		internal float RegisterTargetLockHit(NPC target)
+		{
+			if (target == null || !target.CanBeChasedBy())
+				return 0f;
+
+			if (targetLockHitTimer <= 0 || targetLockTargetId != target.whoAmI)
+				ResetTargetLockState();
+
+			targetLockTargetId = target.whoAmI;
+			targetLockHitCount++;
+			targetLockHitTimer = TargetLockPerk.HitWindowTicks;
+
+			int magazineSize = GetStats().Magazine;
+			if (magazineSize <= 0)
+				return 0f;
+
+			float ratio = targetLockHitCount / (float)magazineSize;
+			if (ratio < TargetLockPerk.MinHitsRatio)
+				return 0f;
+
+			float t = (ratio - TargetLockPerk.MinHitsRatio) / (TargetLockPerk.MaxHitsRatio - TargetLockPerk.MinHitsRatio);
+			t = MathHelper.Clamp(t, 0f, 1f);
+			return MathHelper.Lerp(TargetLockPerk.MinDamageBonus, TargetLockPerk.MaxDamageBonus, t);
+		}
+
+		private void ResetTargetLockState()
+		{
+			targetLockHitCount = 0;
+			targetLockHitTimer = 0;
+			targetLockTargetId = -1;
+		}
+
+		internal void RegisterKineticTremorsHit(Projectile projectile, NPC target, int damageDone)
+		{
+			if (projectile == null || target == null || !target.CanBeChasedBy())
+				return;
+
+			KineticTremorsGlobalNPC global = target.GetGlobalNPC<KineticTremorsGlobalNPC>();
+			if (global.KineticTremorsCooldown > 0)
+				return;
+
+			int hitsRequired = GetKineticTremorsHitsRequired();
+			if (hitsRequired <= 0)
+				return;
+
+			if (!kineticTremorsTargets.TryGetValue(target.whoAmI, out KineticTremorsTargetState state))
+				state = default;
+
+			if (state.CooldownTimer > 0)
+				return;
+
+			if (state.HitTimer <= 0)
+				state.HitCount = 0;
+
+			state.HitCount++;
+			state.HitTimer = KineticTremorsPerk.HitWindowTicks;
+
+			if (state.HitCount < hitsRequired)
+			{
+				kineticTremorsTargets[target.whoAmI] = state;
+				return;
+			}
+
+			state.HitCount = 0;
+			state.HitTimer = 0;
+
+			int initialDelay = IsBowWeapon() ? KineticTremorsPerk.BowInitialDelayTicks : KineticTremorsPerk.InitialDelayTicks;
+			int totalCooldown = initialDelay
+				+ (KineticTremorsPerk.PulseCount - 1) * KineticTremorsPerk.PulseIntervalTicks
+				+ KineticTremorsPerk.CooldownAfterLastPulseTicks;
+
+			state.CooldownTimer = totalCooldown;
+			kineticTremorsTargets[target.whoAmI] = state;
+
+			if (global != null)
+				global.KineticTremorsCooldown = totalCooldown;
+
+			SpawnKineticTremorsShockwave(projectile, target, damageDone, initialDelay);
+		}
+
+		private int GetKineticTremorsHitsRequired()
+		{
+			if (this is AutoRifleWeaponItem)
+				return KineticTremorsPerk.AutoRifleHitsRequired;
+			if (this is HandCannonWeaponItem)
+				return KineticTremorsPerk.HandCannonHitsRequired;
+
+			return KineticTremorsPerk.AutoRifleHitsRequired;
+		}
+
+		private bool IsBowWeapon()
+		{
+			return Item.useAmmo == AmmoID.Arrow;
+		}
+
+		private void SpawnKineticTremorsShockwave(Projectile projectile, NPC target, int damageDone, int initialDelay)
+		{
+			int shockwaveDamage = Math.Min(KineticTremorsPerk.MaxShockwaveDamage, damageDone);
+			if (shockwaveDamage <= 0)
+				return;
+
+			Vector2 center = target.Center;
+			int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), center, Vector2.Zero,
+				ModContent.ProjectileType<KineticTremorsShockwave>(), shockwaveDamage, 0f, projectile.owner);
+			if (projId < 0 || projId >= Main.maxProjectiles)
+				return;
+
+			Projectile shockwave = Main.projectile[projId];
+			shockwave.ai[0] = initialDelay;
+			shockwave.ai[1] = KineticTremorsPerk.PulseCount;
+			shockwave.localAI[0] = KineticTremorsPerk.PulseIntervalTicks;
+			shockwave.DamageType = WeaponElement.GetDamageClass();
+			shockwave.direction = projectile.direction != 0 ? projectile.direction : 1;
+			shockwave.timeLeft = Math.Max(shockwave.timeLeft, initialDelay + (KineticTremorsPerk.PulseCount - 1) * KineticTremorsPerk.PulseIntervalTicks + 30);
+			shockwave.netUpdate = true;
+		}
+
+		private void UpdateKineticTremorsTargets()
+		{
+			if (kineticTremorsTargets.Count == 0)
+				return;
+
+			List<int> keys = new List<int>(kineticTremorsTargets.Keys);
+			for (int i = 0; i < keys.Count; i++)
+			{
+				int npcId = keys[i];
+				if (npcId < 0 || npcId >= Main.maxNPCs || !Main.npc[npcId].active)
+				{
+					kineticTremorsTargets.Remove(npcId);
+					continue;
+				}
+
+				KineticTremorsTargetState state = kineticTremorsTargets[npcId];
+				if (state.HitTimer > 0)
+				{
+					state.HitTimer--;
+					if (state.HitTimer <= 0)
+						state.HitCount = 0;
+				}
+
+				if (state.CooldownTimer > 0)
+					state.CooldownTimer--;
+
+				if (state.HitTimer <= 0 && state.CooldownTimer <= 0 && state.HitCount <= 0)
+					kineticTremorsTargets.Remove(npcId);
+				else
+					kineticTremorsTargets[npcId] = state;
+			}
+		}
+
 
 		private bool HasPerk<TPerk>() where TPerk : Destiny2Perk
 		{

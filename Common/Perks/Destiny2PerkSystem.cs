@@ -43,16 +43,27 @@ namespace Destiny2.Common.Perks
 			Register(new AggressiveFramePerk());
 			Register(new AggressiveBurstFramePerk());
 			Register(new WaveFramePerk());
+			Register(new TheRightChoiceFramePerk());
 			Register(new HammerForgedRiflingPerk());
 			Register(new SmallborePerk());
 			Register(new ExtendedMagPerk());
 			Register(new TacticalMagPerk());
+			Register(new AlloyMagPerk());
+			Register(new CompositeStockPerk());
 			Register(new OutlawPerk());
 			Register(new RapidHitPerk());
 			Register(new KillClipPerk());
 			Register(new FrenzyPerk());
+			Register(new EyesUpGuardianPerk());
+			Register(new ShootToLootPerk());
 			Register(new FourthTimesTheCharmPerk());
 			Register(new RampagePerk());
+			Register(new OnslaughtPerk());
+			Register(new KineticTremorsPerk());
+			Register(new AdagioPerk());
+			Register(new TargetLockPerk());
+			Register(new DynamicSwayReductionPerk());
+			Register(new FeedingFrenzyPerk());
 			Register(new ExplosiveShadowPerk());
 			Register(new VorpalWeaponPerk());
 		}

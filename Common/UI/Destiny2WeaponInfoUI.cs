@@ -15,13 +15,13 @@ namespace Destiny2.Common.UI
 {
 	public sealed class Destiny2WeaponInfoUI : UIState
 	{
-		private const float PanelWidth = 860f;
-		private const float PanelHeight = 480f;
+		private const float PanelWidth = 920f;
+		private const float PanelHeight = 520f;
 		private const float LeftPadding = 18f;
 		private const float RightPadding = 18f;
 		private const float TopPadding = 12f;
 		private const float BottomPadding = 14f;
-		private const float PerkColumnTop = 72f;
+		private const float PanelGap = 12f;
 		private const float PerkPanelWidth = 240f;
 		private const float PerkPanelPadding = 8f;
 		private const float ImageWidth = 320f;
@@ -36,20 +36,26 @@ namespace Destiny2.Common.UI
 			"Magazine",
 			"Major Perk",
 			"Major Perk",
-			"Mod Slot"
+			"Catalyst"
 		};
 
 		private static readonly string[] StatRowLabels =
 		{
 			"Range",
+			"Effective Range",
 			"Stability",
 			"Reload",
+			"Reload Time",
 			"RPM",
 			"Magazine"
 		};
 
 		private UIText itemNameText;
 		private DamageStatRow damageRow;
+		private AmmoTypeStatRow ammoTypeRow;
+		private UIPanel perkPanel;
+		private float perkRowHeight;
+		private int visiblePerkRows;
 		private readonly List<UIText> statTexts = new List<UIText>();
 		private readonly List<PerkEntryElement> perkEntries = new List<PerkEntryElement>();
 		private WeaponPreviewElement previewElement;
@@ -79,14 +85,16 @@ namespace Destiny2.Common.UI
 			headerLine.Height.Set(2f, 0f);
 			panel.Append(headerLine);
 
-			float perkRowHeight = PerkEntryElement.GetPreferredHeight(PerkPanelWidth - (PerkPanelPadding * 2f));
+			float contentTop = TopPadding + 26f + 2f + PanelGap;
+
+			perkRowHeight = PerkEntryElement.GetPreferredHeight(PerkPanelWidth - (PerkPanelPadding * 2f));
 			float perkPanelHeight = (perkRowHeight * PerkRowLabels.Length) + (PerkPanelPadding * 2f);
-			UIPanel perkPanel = new UIPanel
+			perkPanel = new UIPanel
 			{
 				Width = { Pixels = PerkPanelWidth },
 				Height = { Pixels = perkPanelHeight },
 				Left = { Pixels = LeftPadding },
-				Top = { Pixels = PerkColumnTop },
+				Top = { Pixels = contentTop },
 				BackgroundColor = new Color(22, 22, 22) * 0.9f,
 				BorderColor = new Color(90, 80, 55)
 			};
@@ -103,16 +111,9 @@ namespace Destiny2.Common.UI
 				perkTop += perkRowHeight;
 			}
 
-			previewElement = new WeaponPreviewElement
-			{
-				Width = { Pixels = ImageWidth },
-				Height = { Pixels = ImageHeight }
-			};
-			previewElement.Left.Set((PanelWidth - ImageWidth) * 0.5f, 0f);
-			previewElement.Top.Set(PerkColumnTop, 0f);
-			panel.Append(previewElement);
+			UpdatePerkPanelRows(PerkRowLabels.Length - 1);
 
-			float statsPanelHeight = (StatRowLabels.Length * StatsRowHeight) + 50f;
+			float statsPanelHeight = ((StatRowLabels.Length + 1) * StatsRowHeight) + 60f;
 			float statsPanelTop = PanelHeight - BottomPadding - statsPanelHeight;
 			UIPanel statsPanel = new UIPanel
 			{
@@ -123,6 +124,24 @@ namespace Destiny2.Common.UI
 				BackgroundColor = new Color(22, 22, 22) * 0.9f,
 				BorderColor = new Color(90, 80, 55)
 			};
+
+			float previewAreaLeft = LeftPadding + PerkPanelWidth + PanelGap;
+			float previewAreaRight = PanelWidth - RightPadding - StatsPanelWidth - PanelGap;
+			float previewAreaWidth = Math.Max(0f, previewAreaRight - previewAreaLeft);
+			float previewWidth = Math.Min(ImageWidth, previewAreaWidth);
+			float previewLeft = previewAreaLeft + Math.Max(0f, (previewAreaWidth - previewWidth) * 0.5f);
+			float previewAreaHeight = Math.Max(0f, statsPanelTop - contentTop - PanelGap);
+			float previewHeight = Math.Min(ImageHeight, previewAreaHeight);
+
+			previewElement = new WeaponPreviewElement
+			{
+				Width = { Pixels = previewWidth },
+				Height = { Pixels = previewHeight }
+			};
+			previewElement.Left.Set(previewLeft, 0f);
+			previewElement.Top.Set(contentTop, 0f);
+			panel.Append(previewElement);
+
 			panel.Append(statsPanel);
 
 			UIText statsHeaderText = new UIText("Stats", 0.9f);
@@ -149,6 +168,15 @@ namespace Destiny2.Common.UI
 				statTexts.Add(statText);
 				statTop += StatsRowHeight;
 			}
+
+			ammoTypeRow = new AmmoTypeStatRow
+			{
+				Width = { Pixels = StatsPanelWidth - 20f },
+				Height = { Pixels = StatsRowHeight }
+			};
+			ammoTypeRow.Left.Set(10f, 0f);
+			ammoTypeRow.Top.Set(statTop, 0f);
+			statsPanel.Append(ammoTypeRow);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -158,32 +186,41 @@ namespace Destiny2.Common.UI
 			Item item = Main.LocalPlayer?.HeldItem;
 			if (item?.ModItem is Destiny2WeaponItem weapon)
 			{
+				bool showCatalyst = weapon.HasCatalystSlot;
+				UpdatePerkPanelRows(showCatalyst ? PerkRowLabels.Length : PerkRowLabels.Length - 1);
+
 				itemNameText.SetText(item.Name);
 				previewElement.SetItem(item);
 
-				Destiny2WeaponStats stats = weapon.BaseStats;
+				Destiny2WeaponStats stats = weapon.GetEditableStats();
 				string elementName = weapon.WeaponElement.ToString();
 				damageRow.SetValues($"{item.damage} {elementName} Damage", weapon.WeaponElement);
 				statTexts[0].SetText($"Range: {stats.Range:0}");
-				statTexts[1].SetText($"Stability: {stats.Stability:0}");
-				statTexts[2].SetText($"Reload: {stats.ReloadSpeed:0}");
-				statTexts[3].SetText($"RPM: {stats.RoundsPerMinute}");
-				statTexts[4].SetText($"Magazine: {stats.Magazine}");
+				statTexts[1].SetText($"Effective Range: {weapon.GetFalloffTiles():0} tiles");
+				statTexts[2].SetText($"Stability: {stats.Stability:0}");
+				statTexts[3].SetText($"Reload: {stats.ReloadSpeed:0}");
+				statTexts[4].SetText($"Reload Time: {weapon.GetReloadSeconds():0.0}s");
+				statTexts[5].SetText($"RPM: {stats.RoundsPerMinute}");
+				statTexts[6].SetText($"Magazine: {stats.Magazine}");
+				ammoTypeRow.SetValues(weapon.AmmoType);
 
 				SetPerkEntry(0, weapon.FramePerkKey);
 				SetPerkEntry(1, weapon.PerkKeys, 0);
 				SetPerkEntry(2, weapon.PerkKeys, 1);
 				SetPerkEntry(3, weapon.PerkKeys, 2);
 				SetPerkEntry(4, weapon.PerkKeys, 3);
-				perkEntries[5].SetEmpty();
+				if (showCatalyst)
+					SetPerkEntry(5, weapon.CatalystPerkKey);
 				return;
 			}
 
+			UpdatePerkPanelRows(PerkRowLabels.Length - 1);
 			itemNameText.SetText("Weapon: --");
 			previewElement.ClearItem();
 			damageRow.SetValues("-- Damage", Destiny2WeaponElement.Kinetic);
 			for (int i = 0; i < statTexts.Count; i++)
 				statTexts[i].SetText($"{StatRowLabels[i]}: --");
+			ammoTypeRow.SetValues(null);
 			for (int i = 0; i < perkEntries.Count; i++)
 				perkEntries[i].SetEmpty();
 		}
@@ -205,6 +242,31 @@ namespace Destiny2.Common.UI
 			SetPerkEntry(entryIndex, perkKey);
 		}
 
+		private void UpdatePerkPanelRows(int rowCount)
+		{
+			rowCount = Math.Clamp(rowCount, 0, perkEntries.Count);
+			if (rowCount == visiblePerkRows)
+				return;
+
+			visiblePerkRows = rowCount;
+			perkPanel.Height.Set((perkRowHeight * rowCount) + (PerkPanelPadding * 2f), 0f);
+
+			for (int i = 0; i < perkEntries.Count; i++)
+			{
+				bool isVisible = i < rowCount;
+				perkEntries[i].SetVisible(isVisible);
+				if (!isVisible)
+					continue;
+
+				perkEntries[i].Left.Set(PerkPanelPadding, 0f);
+				perkEntries[i].Top.Set(PerkPanelPadding + (perkRowHeight * i), 0f);
+				perkEntries[i].Width.Set(PerkPanelWidth - (PerkPanelPadding * 2f), 0f);
+				perkEntries[i].Height.Set(perkRowHeight, 0f);
+			}
+
+			perkPanel.Recalculate();
+		}
+
 		private static Color GetElementColor(Destiny2WeaponElement element)
 		{
 			return element switch
@@ -221,7 +283,7 @@ namespace Destiny2.Common.UI
 
 		private sealed class PerkEntryElement : UIElement
 		{
-			private const float IconSize = 22f;
+			private const float IconSize = 28f;
 			private const float IconPadding = 6f;
 			private const float NameScale = 0.78f;
 			private const float DescScale = 0.6f;
@@ -234,6 +296,7 @@ namespace Destiny2.Common.UI
 			private readonly UIText nameText;
 			private readonly UIText descText;
 			private Texture2D icon;
+			private bool isVisible = true;
 
 			public PerkEntryElement(string label, float rowWidth, float rowHeight)
 			{
@@ -255,7 +318,7 @@ namespace Destiny2.Common.UI
 				Append(nameText);
 
 				descText = new UIText(string.Empty, DescScale);
-				descText.Left.Set(textLeft, 0f);
+				descText.Left.Set(IconPadding, 0f);
 				descText.Top.Set(descTop, 0f);
 				Append(descText);
 			}
@@ -280,9 +343,10 @@ namespace Destiny2.Common.UI
 					return;
 				}
 
-				nameText.SetText($"{label}: {perk.DisplayName}");
+				float nameWidth = Math.Max(0f, rowWidth - textLeft - IconPadding);
+				nameText.SetText(TruncateText($"{label}: {perk.DisplayName}", nameWidth, NameScale));
 				string description = perk.Description ?? string.Empty;
-				float descWidth = Math.Max(0f, rowWidth - textLeft - IconPadding);
+				float descWidth = Math.Max(0f, rowWidth - (IconPadding * 2f));
 				descText.SetText(WrapText(description, descWidth, MaxDescLines, DescScale));
 				if (!string.IsNullOrWhiteSpace(perk.IconTexture))
 					icon = ModContent.Request<Texture2D>(perk.IconTexture).Value;
@@ -292,9 +356,23 @@ namespace Destiny2.Common.UI
 
 			public void SetEmpty()
 			{
-				nameText.SetText($"{label}: --");
+				float nameWidth = Math.Max(0f, rowWidth - textLeft - IconPadding);
+				nameText.SetText(TruncateText($"{label}: --", nameWidth, NameScale));
 				descText.SetText(string.Empty);
 				icon = null;
+			}
+
+			public void SetVisible(bool value)
+			{
+				isVisible = value;
+			}
+
+			public override void Draw(SpriteBatch spriteBatch)
+			{
+				if (!isVisible)
+					return;
+
+				base.Draw(spriteBatch);
 			}
 
 			protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -342,6 +420,61 @@ namespace Destiny2.Common.UI
 				if (icon != null)
 					spriteBatch.Draw(icon, iconRect, Color.White);
 			}
+		}
+
+		private sealed class AmmoTypeStatRow : UIElement
+		{
+			private const float IconSize = 18f;
+			private const float IconPadding = 6f;
+			private readonly UIText text;
+			private Texture2D icon;
+
+			public AmmoTypeStatRow()
+			{
+				text = new UIText("Ammo Type: --");
+				text.Left.Set(IconSize + (IconPadding * 2f), 0f);
+				text.Top.Set(0f, 0f);
+				Append(text);
+			}
+
+			public void SetValues(Destiny2AmmoType? ammoType)
+			{
+				if (!ammoType.HasValue)
+				{
+					text.SetText("Ammo Type: --");
+					text.TextColor = Color.White;
+					icon = null;
+					return;
+				}
+
+				Destiny2AmmoType value = ammoType.Value;
+				text.SetText($"Ammo Type: {value}");
+				text.TextColor = GetAmmoTypeColor(value);
+				string iconTexture = value.GetIconTexture();
+				icon = ModContent.Request<Texture2D>(iconTexture).Value;
+			}
+
+			protected override void DrawSelf(SpriteBatch spriteBatch)
+			{
+				base.DrawSelf(spriteBatch);
+
+				Rectangle bounds = GetDimensions().ToRectangle();
+				Rectangle iconRect = new Rectangle(bounds.X, bounds.Y, (int)IconSize, (int)IconSize);
+				spriteBatch.Draw(TextureAssets.MagicPixel.Value, iconRect, Color.Black * 0.35f);
+				if (icon != null)
+					spriteBatch.Draw(icon, iconRect, Color.White);
+			}
+		}
+
+		private static Color GetAmmoTypeColor(Destiny2AmmoType ammoType)
+		{
+			return ammoType switch
+			{
+				Destiny2AmmoType.Primary => Color.White,
+				Destiny2AmmoType.Special => new Color(90, 220, 120),
+				Destiny2AmmoType.Heavy => new Color(176, 110, 230),
+				_ => Color.White
+			};
 		}
 
 		private sealed class WeaponPreviewElement : UIElement
@@ -476,6 +609,25 @@ namespace Destiny2.Common.UI
 			}
 
 			return string.Join("\n", lines);
+		}
+
+		private static string TruncateText(string text, float maxWidth, float scale)
+		{
+			if (string.IsNullOrWhiteSpace(text))
+				return string.Empty;
+
+			DynamicSpriteFont font = FontAssets.MouseText.Value;
+			if (font.MeasureString(text).X * scale <= maxWidth)
+				return text;
+
+			string trimmed = text;
+			while (trimmed.Length > 0 && font.MeasureString(trimmed + "...").X * scale > maxWidth)
+				trimmed = trimmed.Substring(0, trimmed.Length - 1);
+
+			if (string.IsNullOrWhiteSpace(trimmed))
+				return string.Empty;
+
+			return trimmed.TrimEnd() + "...";
 		}
 	}
 }

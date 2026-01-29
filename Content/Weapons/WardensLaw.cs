@@ -10,7 +10,6 @@ namespace Destiny2.Content.Weapons
 {
 	public sealed class WardensLaw : HandCannonWeaponItem
 	{
-		public override string Texture => $"Terraria/Images/Item_{ItemID.FlintlockPistol}";
 
 		public override Destiny2WeaponStats BaseStats => new Destiny2WeaponStats(
 			range: 56f,
@@ -50,7 +49,7 @@ namespace Destiny2.Content.Weapons
 			Item.height = 64;
 			Item.noMelee = true;
 			Item.autoReuse = true;
-			Item.scale = 1f;
+			Item.scale = 0.25f;
 			Item.DamageType = WeaponElement.GetDamageClass();
 			Item.damage = 32;
 			Item.knockBack = 3f;

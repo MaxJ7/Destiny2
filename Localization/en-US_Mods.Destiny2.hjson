@@ -23,11 +23,27 @@ Items: {
 		DisplayName: Wardens Law
 		Tooltip: ""
 	}
+
+	PlaceholderAutoRifle: {
+		DisplayName: Placeholder Auto Rifle
+		Tooltip: ""
+	}
+
+	Khovostov7G0X: {
+		DisplayName: Khovostov7 G0 X
+		Tooltip: ""
+	}
+
+	Breakneck: {
+		DisplayName: Breakneck
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
 	ExplosiveShadowSlug.DisplayName: Explosive Shadow Slug
 	Bullet.DisplayName: Bullet
+	KineticTremorsShockwave.DisplayName: Kinetic Tremors Shockwave
 }
 
 Buffs: {
