@@ -12,7 +12,9 @@ namespace Destiny2
 		public static ModKeybind EditorKeybind;
 		public static ModKeybind InfoKeybind;
 		private static readonly object HitscanLogLock = new object();
+		private static readonly object DiagnosticLogLock = new object();
 		internal static string HitscanLogPath;
+		internal static string DiagnosticLogPath;
 
 		public override void Load()
 		{
@@ -20,6 +22,7 @@ namespace Destiny2
 			EditorKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Editor", "O");
 			InfoKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Info", "I");
 			InitializeHitscanLog();
+			InitializeDiagnosticLog();
 		}
 
 		public override void Unload()
@@ -28,6 +31,7 @@ namespace Destiny2
 			EditorKeybind = null;
 			InfoKeybind = null;
 			HitscanLogPath = null;
+			DiagnosticLogPath = null;
 		}
 
 		internal static void LogHitscan(string message)
@@ -39,6 +43,18 @@ namespace Destiny2
 			lock (HitscanLogLock)
 			{
 				File.AppendAllText(HitscanLogPath, line);
+			}
+		}
+
+		internal static void LogDiagnostic(string message)
+		{
+			if (Main.dedServ || string.IsNullOrWhiteSpace(message) || string.IsNullOrWhiteSpace(DiagnosticLogPath))
+				return;
+
+			string line = $"[{DateTime.Now:HH:mm:ss.fff}] {message}{Environment.NewLine}";
+			lock (DiagnosticLogLock)
+			{
+				File.AppendAllText(DiagnosticLogPath, line);
 			}
 		}
 
@@ -61,6 +77,28 @@ namespace Destiny2
 			catch
 			{
 				HitscanLogPath = null;
+			}
+		}
+
+		private void InitializeDiagnosticLog()
+		{
+			if (Main.dedServ)
+				return;
+
+			try
+			{
+				string modDir = Path.Combine(Main.SavePath, "ModSources", Name);
+				Directory.CreateDirectory(modDir);
+				DiagnosticLogPath = Path.Combine(modDir, "Destiny2_diagnostic.log");
+				string header = $"---- Diagnostic Log Start {DateTime.Now:yyyy-MM-dd HH:mm:ss} ----{Environment.NewLine}";
+				lock (DiagnosticLogLock)
+				{
+					File.AppendAllText(DiagnosticLogPath, header);
+				}
+			}
+			catch
+			{
+				DiagnosticLogPath = null;
 			}
 		}
 	}

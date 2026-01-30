@@ -62,15 +62,14 @@ namespace Destiny2.Content.Projectiles
 
 		private void Pulse()
 		{
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+				return;
+
 			Vector2 center = Projectile.Center;
 			float radiusSq = ShockwaveRadius * ShockwaveRadius;
 			int damage = Projectile.damage;
 
-			if (Main.netMode != NetmodeID.Server)
-				SpawnPulseDust(center);
-
-			if (Main.netMode == NetmodeID.MultiplayerClient)
-				return;
+			SpawnPulseDust(center);
 
 			for (int i = 0; i < Main.maxNPCs; i++)
 			{

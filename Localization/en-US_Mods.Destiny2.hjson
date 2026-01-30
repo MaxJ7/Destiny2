@@ -44,6 +44,7 @@ Projectiles: {
 	ExplosiveShadowSlug.DisplayName: Explosive Shadow Slug
 	Bullet.DisplayName: Bullet
 	KineticTremorsShockwave.DisplayName: Kinetic Tremors Shockwave
+	KineticTremorsDustAnchor.DisplayName: Kinetic Tremors Dust Anchor
 }
 
 Buffs: {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using Destiny2.Common.Items;
@@ -449,6 +449,11 @@ namespace Destiny2.Common.Weapons
 				damage *= 1.05f;
 		}
 
+		public override void ModifyHitNPC(Player player, NPC target, ref NPC.HitModifiers modifiers)
+		{
+			modifiers.DamageVariationScale *= 0f;
+		}
+
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
 			int magazineSize = GetStats().Magazine;
@@ -527,6 +532,9 @@ namespace Destiny2.Common.Weapons
 
 		public override void UpdateInventory(Player player)
 		{
+			if (player?.HeldItem?.ModItem == this)
+				return;
+
 			MarkPickedUp();
 			EnsurePerksRolled();
 			UpdatePerkTimers(player);
@@ -1041,6 +1049,7 @@ namespace Destiny2.Common.Weapons
 
 			UpdateKineticTremorsTargets();
 
+
 			if (player?.HeldItem?.ModItem == this)
 			{
 				Destiny2Player modPlayer = player.GetModPlayer<Destiny2Player>();
@@ -1375,7 +1384,6 @@ namespace Destiny2.Common.Weapons
 			}
 		}
 
-
 		private bool HasPerk<TPerk>() where TPerk : Destiny2Perk
 		{
 			foreach (Destiny2Perk perk in GetPerks())
@@ -1561,3 +1569,5 @@ namespace Destiny2.Common.Weapons
 		}
 	}
 }
+
+

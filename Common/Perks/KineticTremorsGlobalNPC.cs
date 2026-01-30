@@ -5,13 +5,14 @@ namespace Destiny2.Common.Perks
 {
 	public sealed class KineticTremorsGlobalNPC : GlobalNPC
 	{
-		public override bool InstancePerEntity => true;
-
 		public int KineticTremorsCooldown;
 
-		public override void SetDefaults(NPC npc)
+		public override bool InstancePerEntity => true;
+
+		public override void ResetEffects(NPC npc)
 		{
-			KineticTremorsCooldown = 0;
+			if (KineticTremorsCooldown < 0)
+				KineticTremorsCooldown = 0;
 		}
 
 		public override void PostAI(NPC npc)

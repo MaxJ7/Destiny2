@@ -1,0 +1,1031 @@
+---- Diagnostic Log Start 2026-01-29 01:57:31 ----
+[01:57:55.567] Slug spawn: owner=0 pos=(32621.1,4121.4) vel=(-0.99,-0.14) aimRot=-3.00 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:57:55.571] Slug scan: start=(32621.1,4121.4) dir=(-0.99,-0.14) aimRot=-3.00 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:57:55.575] Slug hit: target=105 dmg=30 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:57:55.889] Slug spawn: owner=0 pos=(32621.0,4123.0) vel=(-1.00,-0.00) aimRot=-3.14 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:57:55.892] Slug scan: start=(32621.0,4123.0) dir=(-1.00,-0.00) aimRot=-3.14 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:57:55.893] Slug hit: target=105 dmg=30 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:57:56.226] Slug spawn: owner=0 pos=(32621.0,4123.1) vel=(-1.00,0.01) aimRot=3.14 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:57:56.229] Slug scan: start=(32621.0,4123.1) dir=(-1.00,0.01) aimRot=3.14 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:57:56.230] Slug hit: target=105 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:00.423] Slug spawn: owner=0 pos=(32645.7,4123.0) vel=(-1.00,0.00) aimRot=3.14 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:00.426] Slug scan: start=(32645.7,4123.0) dir=(-1.00,0.00) aimRot=3.14 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:00.426] Slug hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:00.757] Slug spawn: owner=0 pos=(32645.7,4122.7) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:00.760] Slug scan: start=(32645.7,4122.7) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:00.760] Slug hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:01.088] Slug spawn: owner=0 pos=(32645.7,4122.7) vel=(-1.00,-0.02) aimRot=-3.12 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:01.091] Slug scan: start=(32645.7,4122.7) dir=(-1.00,-0.02) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:01.091] Slug hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:01.843] Bullet spawn: owner=0 pos=(32648.7,4123.2) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:01.846] Bullet scan: start=(32648.7,4123.2) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=148.0 tile=148.0 npc=79.6 dist=79.6 npcHits=1 closestNpc=105
+[01:58:01.977] Bullet spawn: owner=0 pos=(32648.7,4123.1) vel=(-1.00,0.01) aimRot=3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:01.980] Bullet scan: start=(32648.7,4123.1) dir=(-1.00,0.01) aimRot=3.13 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.7 dist=79.7 npcHits=8 closestNpc=105
+[01:58:02.109] Bullet spawn: owner=0 pos=(32648.7,4123.1) vel=(-1.00,0.02) aimRot=3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.111] Bullet scan: start=(32648.7,4123.1) dir=(-1.00,0.02) aimRot=3.12 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=8 closestNpc=105
+[01:58:02.243] Bullet spawn: owner=0 pos=(32648.7,4122.7) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.245] Bullet scan: start=(32648.7,4122.7) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=7 closestNpc=105
+[01:58:02.245] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:02.372] Bullet spawn: owner=0 pos=(32648.8,4121.9) vel=(-0.99,-0.13) aimRot=-3.01 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.377] Bullet scan: start=(32648.8,4121.9) dir=(-0.99,-0.13) aimRot=-3.01 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.8 dist=79.8 npcHits=1 closestNpc=105
+[01:58:02.511] Bullet spawn: owner=0 pos=(32648.8,4121.7) vel=(-0.99,-0.16) aimRot=-2.98 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.513] Bullet scan: start=(32648.8,4121.7) dir=(-0.99,-0.16) aimRot=-2.98 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=80.1 dist=80.1 npcHits=1 closestNpc=105
+[01:58:02.641] Bullet spawn: owner=0 pos=(32648.9,4121.4) vel=(-0.98,-0.20) aimRot=-2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.643] Bullet scan: start=(32648.9,4121.4) dir=(-0.98,-0.20) aimRot=-2.94 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=80.6 dist=80.6 npcHits=1 closestNpc=105
+[01:58:02.644] Bullet hit: target=105 dmg=40 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:02.776] Bullet spawn: owner=0 pos=(32649.2,4120.3) vel=(-0.94,-0.34) aimRot=-2.80 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.782] Bullet scan: start=(32649.2,4120.3) dir=(-0.94,-0.34) aimRot=-2.80 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:02.910] Bullet spawn: owner=0 pos=(32648.7,4122.6) vel=(-1.00,-0.05) aimRot=-3.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:02.912] Bullet scan: start=(32648.7,4122.6) dir=(-1.00,-0.05) aimRot=-3.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=4 closestNpc=105
+[01:58:02.913] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:03.040] Bullet spawn: owner=0 pos=(32648.7,4123.1) vel=(-1.00,0.01) aimRot=3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.043] Bullet scan: start=(32648.7,4123.1) dir=(-1.00,0.01) aimRot=3.13 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.7 dist=79.7 npcHits=8 closestNpc=105
+[01:58:03.176] Bullet spawn: owner=0 pos=(32648.9,4124.6) vel=(-0.98,0.20) aimRot=2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.179] Bullet scan: start=(32648.9,4124.6) dir=(-0.98,0.20) aimRot=2.94 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=80.5 dist=80.5 npcHits=1 closestNpc=105
+[01:58:03.306] Bullet spawn: owner=0 pos=(32648.8,4124.2) vel=(-0.99,0.15) aimRot=2.99 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.309] Bullet scan: start=(32648.8,4124.2) dir=(-0.99,0.15) aimRot=2.99 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=80.0 dist=80.0 npcHits=1 closestNpc=105
+[01:58:03.441] Bullet spawn: owner=0 pos=(32648.7,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.443] Bullet scan: start=(32648.7,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=3 closestNpc=105
+[01:58:03.576] Bullet spawn: owner=0 pos=(32649.0,4121.1) vel=(-0.97,-0.24) aimRot=-2.90 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.579] Bullet scan: start=(32649.0,4121.1) dir=(-0.97,-0.24) aimRot=-2.90 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=81.1 dist=81.1 npcHits=1 closestNpc=105
+[01:58:03.580] Bullet hit: target=105 dmg=21 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:03.708] Bullet spawn: owner=0 pos=(32648.8,4123.8) vel=(-0.99,0.10) aimRot=3.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.710] Bullet scan: start=(32648.8,4123.8) dir=(-0.99,0.10) aimRot=3.04 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=79.7 dist=79.7 npcHits=1 closestNpc=105
+[01:58:03.840] Bullet spawn: owner=0 pos=(32648.7,4122.7) vel=(-1.00,-0.04) aimRot=-3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.842] Bullet scan: start=(32648.7,4122.7) dir=(-1.00,-0.04) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=6 closestNpc=105
+[01:58:03.974] Bullet spawn: owner=0 pos=(32648.8,4123.6) vel=(-1.00,0.08) aimRot=3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:03.976] Bullet scan: start=(32648.8,4123.6) dir=(-1.00,0.08) aimRot=3.06 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=79.6 dist=79.6 npcHits=1 closestNpc=105
+[01:58:04.108] Bullet spawn: owner=0 pos=(32648.7,4122.4) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:04.110] Bullet scan: start=(32648.7,4122.4) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=3 closestNpc=105
+[01:58:04.110] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:04.245] Bullet spawn: owner=0 pos=(32648.8,4122.1) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:04.247] Bullet scan: start=(32648.8,4122.1) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.7 dist=79.7 npcHits=2 closestNpc=105
+[01:58:04.247] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:12.182] Bullet spawn: owner=0 pos=(32648.9,4108.5) vel=(-0.98,0.19) aimRot=2.95 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:12.184] Bullet scan: start=(32648.9,4108.5) dir=(-0.98,0.19) aimRot=2.95 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.4 dist=80.4 npcHits=1 closestNpc=105
+[01:58:12.184] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:12.528] Bullet spawn: owner=0 pos=(32648.9,4108.5) vel=(-0.98,0.18) aimRot=2.96 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:12.530] Bullet scan: start=(32648.9,4108.5) dir=(-0.98,0.18) aimRot=2.96 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.3 dist=80.3 npcHits=1 closestNpc=105
+[01:58:12.661] Bullet spawn: owner=0 pos=(32648.8,4108.2) vel=(-0.99,0.15) aimRot=2.99 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:12.663] Bullet scan: start=(32648.8,4108.2) dir=(-0.99,0.15) aimRot=2.99 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=79.9 dist=79.9 npcHits=1 closestNpc=105
+[01:58:12.795] Bullet spawn: owner=0 pos=(32648.7,4107.3) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:12.797] Bullet scan: start=(32648.7,4107.3) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=8 closestNpc=105
+[01:58:12.932] Bullet spawn: owner=0 pos=(32648.7,4107.5) vel=(-1.00,0.06) aimRot=3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:12.934] Bullet scan: start=(32648.7,4107.5) dir=(-1.00,0.06) aimRot=3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=7 closestNpc=105
+[01:58:13.063] Bullet spawn: owner=0 pos=(32648.8,4107.8) vel=(-1.00,0.10) aimRot=3.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.066] Bullet scan: start=(32648.8,4107.8) dir=(-1.00,0.10) aimRot=3.04 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.7 dist=79.7 npcHits=3 closestNpc=105
+[01:58:13.200] Bullet spawn: owner=0 pos=(32648.7,4107.5) vel=(-1.00,0.07) aimRot=3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.202] Bullet scan: start=(32648.7,4107.5) dir=(-1.00,0.07) aimRot=3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=6 closestNpc=105
+[01:58:13.326] Bullet spawn: owner=0 pos=(32648.7,4106.7) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.330] Bullet scan: start=(32648.7,4106.7) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=1 closestNpc=105
+[01:58:13.331] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:13.459] Bullet spawn: owner=0 pos=(32648.8,4108.0) vel=(-0.99,0.13) aimRot=3.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.462] Bullet scan: start=(32648.8,4108.0) dir=(-0.99,0.13) aimRot=3.02 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=79.8 dist=79.8 npcHits=1 closestNpc=105
+[01:58:13.462] Bullet hit: target=105 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:13.595] Bullet spawn: owner=0 pos=(32648.7,4107.1) vel=(-1.00,0.02) aimRot=3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.597] Bullet scan: start=(32648.7,4107.1) dir=(-1.00,0.02) aimRot=3.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.7 dist=79.7 npcHits=9 closestNpc=105
+[01:58:13.727] Bullet spawn: owner=0 pos=(32648.7,4107.5) vel=(-1.00,0.06) aimRot=3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.730] Bullet scan: start=(32648.7,4107.5) dir=(-1.00,0.06) aimRot=3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=7 closestNpc=105
+[01:58:13.730] Bullet hit: target=105 dmg=21 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:13.861] Bullet spawn: owner=0 pos=(32648.7,4106.8) vel=(-1.00,-0.03) aimRot=-3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.863] Bullet scan: start=(32648.7,4106.8) dir=(-1.00,-0.03) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=2 closestNpc=105
+[01:58:13.864] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:13.996] Bullet spawn: owner=0 pos=(32648.9,4108.9) vel=(-0.97,0.23) aimRot=2.91 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:13.999] Bullet scan: start=(32648.9,4108.9) dir=(-0.97,0.23) aimRot=2.91 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=81.0 dist=81.0 npcHits=1 closestNpc=105
+[01:58:13.999] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:14.129] Bullet spawn: owner=0 pos=(32648.8,4108.0) vel=(-0.99,0.12) aimRot=3.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.131] Bullet scan: start=(32648.8,4108.0) dir=(-0.99,0.12) aimRot=3.02 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=156.0 tile=156.0 npc=79.8 dist=79.8 npcHits=1 closestNpc=105
+[01:58:14.132] Bullet hit: target=105 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:14.261] Bullet spawn: owner=0 pos=(32648.7,4106.9) vel=(-1.00,-0.01) aimRot=-3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.264] Bullet scan: start=(32648.7,4106.9) dir=(-1.00,-0.01) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.7 dist=79.7 npcHits=7 closestNpc=105
+[01:58:14.264] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:14.399] Bullet spawn: owner=0 pos=(32648.7,4106.5) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.401] Bullet scan: start=(32648.7,4106.5) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=1 closestNpc=105
+[01:58:14.526] Bullet spawn: owner=0 pos=(32648.9,4108.6) vel=(-0.98,0.20) aimRot=2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.529] Bullet scan: start=(32648.9,4108.6) dir=(-0.98,0.20) aimRot=2.94 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.5 dist=80.5 npcHits=1 closestNpc=105
+[01:58:14.659] Bullet spawn: owner=0 pos=(32649.0,4109.2) vel=(-0.96,0.28) aimRot=2.86 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.662] Bullet scan: start=(32649.0,4109.2) dir=(-0.96,0.28) aimRot=2.86 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=81.8 dist=81.8 npcHits=1 closestNpc=105
+[01:58:14.662] Bullet hit: target=105 dmg=32 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:14.798] Bullet spawn: owner=0 pos=(32649.0,4109.2) vel=(-0.96,0.27) aimRot=2.87 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.801] Bullet scan: start=(32649.0,4109.2) dir=(-0.96,0.27) aimRot=2.87 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=81.7 dist=81.7 npcHits=1 closestNpc=105
+[01:58:14.801] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:14.933] Bullet spawn: owner=0 pos=(32648.8,4108.4) vel=(-0.99,0.17) aimRot=2.97 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:14.936] Bullet scan: start=(32648.8,4108.4) dir=(-0.99,0.17) aimRot=2.97 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.2 dist=80.2 npcHits=1 closestNpc=105
+[01:58:14.937] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:15.064] Bullet spawn: owner=0 pos=(32649.0,4109.1) vel=(-0.96,0.27) aimRot=2.87 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.067] Bullet scan: start=(32649.0,4109.1) dir=(-0.96,0.27) aimRot=2.87 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=81.7 dist=81.7 npcHits=1 closestNpc=105
+[01:58:15.195] Bullet spawn: owner=0 pos=(32648.9,4108.6) vel=(-0.98,0.21) aimRot=2.93 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.197] Bullet scan: start=(32648.9,4108.6) dir=(-0.98,0.21) aimRot=2.93 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.6 dist=80.6 npcHits=1 closestNpc=105
+[01:58:15.328] Bullet spawn: owner=0 pos=(32649.0,4109.1) vel=(-0.96,0.26) aimRot=2.87 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.330] Bullet scan: start=(32649.0,4109.1) dir=(-0.96,0.26) aimRot=2.87 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=81.6 dist=81.6 npcHits=1 closestNpc=105
+[01:58:15.463] Bullet spawn: owner=0 pos=(32648.9,4108.6) vel=(-0.98,0.20) aimRot=2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.465] Bullet scan: start=(32648.9,4108.6) dir=(-0.98,0.20) aimRot=2.94 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.5 dist=80.5 npcHits=1 closestNpc=105
+[01:58:15.593] Bullet spawn: owner=0 pos=(32649.4,4110.1) vel=(-0.92,0.39) aimRot=2.74 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.595] Bullet scan: start=(32649.4,4110.1) dir=(-0.92,0.39) aimRot=2.74 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=85.2 dist=85.2 npcHits=1 closestNpc=105
+[01:58:15.726] Bullet spawn: owner=0 pos=(32648.9,4108.5) vel=(-0.98,0.18) aimRot=2.96 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.728] Bullet scan: start=(32648.9,4108.5) dir=(-0.98,0.18) aimRot=2.96 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=152.0 tile=152.0 npc=80.3 dist=80.3 npcHits=1 closestNpc=105
+[01:58:15.865] Bullet spawn: owner=0 pos=(32649.1,4109.3) vel=(-0.96,0.29) aimRot=2.85 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.869] Bullet scan: start=(32649.1,4109.3) dir=(-0.96,0.29) aimRot=2.85 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=82.1 dist=82.1 npcHits=1 closestNpc=105
+[01:58:15.870] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:15.994] Bullet spawn: owner=0 pos=(32648.7,4107.5) vel=(-1.00,0.06) aimRot=3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:15.996] Bullet scan: start=(32648.7,4107.5) dir=(-1.00,0.06) aimRot=3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=79.6 dist=79.6 npcHits=7 closestNpc=105
+[01:58:15.996] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:16.125] Bullet spawn: owner=0 pos=(32649.4,4110.2) vel=(-0.92,0.40) aimRot=2.73 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:16.127] Bullet scan: start=(32649.4,4110.2) dir=(-0.92,0.40) aimRot=2.73 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=85.6 dist=85.6 npcHits=1 closestNpc=105
+[01:58:16.128] Bullet hit: target=105 dmg=15 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:16.263] Bullet spawn: owner=0 pos=(32648.8,4107.9) vel=(-0.99,0.12) aimRot=3.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:16.265] Bullet scan: start=(32648.8,4107.9) dir=(-0.99,0.12) aimRot=3.02 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=160.0 tile=160.0 npc=79.7 dist=79.7 npcHits=1 closestNpc=105
+[01:58:16.392] Bullet spawn: owner=0 pos=(32649.2,4109.6) vel=(-0.95,0.33) aimRot=2.81 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:16.394] Bullet scan: start=(32649.2,4109.6) dir=(-0.95,0.33) aimRot=2.81 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=83.1 dist=83.1 npcHits=1 closestNpc=105
+[01:58:16.395] Bullet hit: target=105 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:16.527] Bullet spawn: owner=0 pos=(32649.1,4109.3) vel=(-0.96,0.29) aimRot=2.84 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:16.530] Bullet scan: start=(32649.1,4109.3) dir=(-0.96,0.29) aimRot=2.84 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=82.2 dist=82.2 npcHits=1 closestNpc=105
+[01:58:16.531] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:18.329] Bullet spawn: owner=0 pos=(32733.7,4123.4) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:18.331] Bullet scan: start=(32733.7,4123.4) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=236.0 tile=236.0 npc=164.6 dist=164.6 npcHits=1 closestNpc=105
+[01:58:18.332] Bullet hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:18.763] Bullet spawn: owner=0 pos=(32733.7,4122.6) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:18.766] Bullet scan: start=(32733.7,4122.6) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=164.6 dist=164.6 npcHits=6 closestNpc=105
+[01:58:18.766] Bullet hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:19.194] Bullet spawn: owner=0 pos=(32733.8,4121.9) vel=(-0.99,-0.10) aimRot=-3.04 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:19.196] Bullet scan: start=(32733.8,4121.9) dir=(-0.99,-0.10) aimRot=-3.04 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=165.1 dist=165.1 npcHits=1 closestNpc=105
+[01:58:19.197] Bullet hit: target=105 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:19.631] Bullet spawn: owner=0 pos=(32733.8,4121.8) vel=(-0.99,-0.11) aimRot=-3.04 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:19.634] Bullet scan: start=(32733.8,4121.8) dir=(-0.99,-0.11) aimRot=-3.04 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=165.2 dist=165.2 npcHits=1 closestNpc=105
+[01:58:20.062] Bullet spawn: owner=0 pos=(32733.8,4121.7) vel=(-0.99,-0.12) aimRot=-3.02 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:20.065] Bullet scan: start=(32733.8,4121.7) dir=(-0.99,-0.12) aimRot=-3.02 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=165.4 dist=165.4 npcHits=1 closestNpc=105
+[01:58:20.065] Bullet hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:22.526] Bullet spawn: owner=0 pos=(32733.8,4124.1) vel=(-1.00,0.10) aimRot=3.04 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:22.529] Bullet scan: start=(32733.8,4124.1) dir=(-1.00,0.10) aimRot=3.04 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=165.1 dist=165.1 npcHits=1 closestNpc=105
+[01:58:22.964] Bullet spawn: owner=0 pos=(32733.7,4122.6) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:22.967] Bullet scan: start=(32733.7,4122.6) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=164.6 dist=164.6 npcHits=6 closestNpc=105
+[01:58:23.397] Bullet spawn: owner=0 pos=(32733.7,4122.2) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:23.400] Bullet scan: start=(32733.7,4122.2) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=164.8 dist=164.8 npcHits=1 closestNpc=105
+[01:58:23.834] Bullet spawn: owner=0 pos=(32733.8,4121.5) vel=(-0.99,-0.14) aimRot=-3.00 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:23.839] Bullet scan: start=(32733.8,4121.5) dir=(-0.99,-0.14) aimRot=-3.00 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:58:24.260] Bullet spawn: owner=0 pos=(32733.8,4121.5) vel=(-0.99,-0.14) aimRot=-3.00 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:24.265] Bullet scan: start=(32733.8,4121.5) dir=(-0.99,-0.14) aimRot=-3.00 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:58:24.694] Bullet spawn: owner=0 pos=(32721.5,4122.3) vel=(-1.00,-0.07) aimRot=-3.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:24.697] Bullet scan: start=(32721.5,4122.3) dir=(-1.00,-0.07) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=152.5 dist=152.5 npcHits=3 closestNpc=105
+[01:58:24.697] Bullet hit: target=105 dmg=36 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:25.126] Bullet spawn: owner=0 pos=(32713.5,4122.7) vel=(-1.00,-0.03) aimRot=-3.12 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:25.128] Bullet scan: start=(32713.5,4122.7) dir=(-1.00,-0.03) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=144.4 dist=144.4 npcHits=8 closestNpc=105
+[01:58:25.843] Bullet spawn: owner=0 pos=(32713.5,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:25.846] Bullet scan: start=(32713.5,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=216.0 tile=216.0 npc=144.4 dist=144.4 npcHits=1 closestNpc=105
+[01:58:25.846] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:26.413] Bullet spawn: owner=0 pos=(32713.5,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:26.416] Bullet scan: start=(32713.5,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=216.0 tile=216.0 npc=144.4 dist=144.4 npcHits=1 closestNpc=105
+[01:58:26.416] Bullet hit: target=105 dmg=27 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:26.980] Bullet spawn: owner=0 pos=(32713.5,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:26.983] Bullet scan: start=(32713.5,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=216.0 tile=216.0 npc=144.4 dist=144.4 npcHits=1 closestNpc=105
+[01:58:26.983] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:27.582] Bullet spawn: owner=0 pos=(32699.1,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:27.585] Bullet scan: start=(32699.1,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=200.0 tile=200.0 npc=116.1 dist=116.1 npcHits=2 closestNpc=3
+[01:58:28.129] Bullet spawn: owner=0 pos=(32697.3,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:28.132] Bullet scan: start=(32697.3,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=200.0 tile=200.0 npc=102.7 dist=102.7 npcHits=2 closestNpc=3
+[01:58:28.715] Bullet spawn: owner=0 pos=(32697.3,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:28.719] Bullet scan: start=(32697.3,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=200.0 tile=200.0 npc=102.7 dist=102.7 npcHits=2 closestNpc=3
+[01:58:31.529] Bullet spawn: owner=0 pos=(32878.9,4124.2) vel=(-0.99,0.11) aimRot=3.03 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:31.532] Bullet scan: start=(32878.9,4124.2) dir=(-0.99,0.11) aimRot=3.03 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=110.8 dist=110.8 npcHits=2 closestNpc=3
+[01:58:31.996] Bullet spawn: owner=0 pos=(32878.8,4122.9) vel=(-1.00,-0.01) aimRot=-3.13 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:31.999] Bullet scan: start=(32878.8,4122.9) dir=(-1.00,-0.01) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=110.6 dist=110.6 npcHits=9 closestNpc=3
+[01:58:32.427] Bullet spawn: owner=0 pos=(32878.8,4122.5) vel=(-1.00,-0.05) aimRot=-3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:32.429] Bullet scan: start=(32878.8,4122.5) dir=(-1.00,-0.05) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=309.9 dist=309.9 npcHits=2 closestNpc=105
+[01:58:32.863] Bullet spawn: owner=0 pos=(32878.9,4121.7) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:32.867] Bullet scan: start=(32878.9,4121.7) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:58:33.329] Bullet spawn: owner=0 pos=(32878.8,4123.6) vel=(-1.00,0.05) aimRot=3.09 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:33.332] Bullet scan: start=(32878.8,4123.6) dir=(-1.00,0.05) aimRot=3.09 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=380.0 tile=380.0 npc=110.6 dist=110.6 npcHits=2 closestNpc=3
+[01:58:33.759] Bullet spawn: owner=0 pos=(32878.8,4122.5) vel=(-1.00,-0.05) aimRot=-3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:33.762] Bullet scan: start=(32878.8,4122.5) dir=(-1.00,-0.05) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=308.4 dist=308.4 npcHits=3 closestNpc=2
+[01:58:34.279] Bullet spawn: owner=0 pos=(32881.6,4117.3) vel=(-0.85,-0.52) aimRot=-2.60 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:34.283] Bullet scan: start=(32881.6,4117.3) dir=(-0.85,-0.52) aimRot=-2.60 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=29.7 dist=29.7 npcHits=1 closestNpc=3
+[01:58:34.712] Bullet spawn: owner=0 pos=(32913.0,4125.9) vel=(-0.97,0.26) aimRot=2.88 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:34.714] Bullet scan: start=(32913.0,4125.9) dir=(-0.97,0.26) aimRot=2.88 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=15.7 dist=15.7 npcHits=1 closestNpc=3
+[01:58:35.147] Bullet spawn: owner=0 pos=(32914.1,4125.5) vel=(-0.97,0.23) aimRot=2.91 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:35.150] Bullet scan: start=(32914.1,4125.5) dir=(-0.97,0.23) aimRot=2.91 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=17.0 dist=17.0 npcHits=1 closestNpc=3
+[01:58:37.128] Slug spawn: owner=0 pos=(33051.7,4125.1) vel=(-0.98,0.19) aimRot=2.95 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:37.131] Slug scan: start=(33051.7,4125.1) dir=(-0.98,0.19) aimRot=2.95 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:37.133] Slug hit: target=3 dmg=36 crit=False kb=2.70 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:37.461] Slug spawn: owner=0 pos=(33051.7,4125.3) vel=(-0.98,0.21) aimRot=2.93 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:37.464] Slug scan: start=(33051.7,4125.3) dir=(-0.98,0.21) aimRot=2.93 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:37.892] Slug spawn: owner=0 pos=(33065.3,4134.0) vel=(-0.05,1.00) aimRot=1.62 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:37.895] Slug scan: start=(33065.3,4134.0) dir=(-0.05,1.00) aimRot=1.62 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=696.0 dist=696.0
+[01:58:37.898] Slug hit: target=3 dmg=32 crit=False kb=2.70 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:38.389] Slug spawn: owner=0 pos=(33005.7,4123.6) vel=(-1.00,0.05) aimRot=3.09 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:38.392] Slug scan: start=(33005.7,4123.6) dir=(-1.00,0.05) aimRot=3.09 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:38.393] Slug hit: target=4 dmg=35 crit=False kb=3.24 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:38.719] Slug spawn: owner=0 pos=(32940.2,4123.3) vel=(-1.00,0.03) aimRot=3.12 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:38.723] Slug scan: start=(32940.2,4123.3) dir=(-1.00,0.03) aimRot=3.12 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=440.0 dist=440.0
+[01:58:38.723] Slug hit: target=5 dmg=29 crit=False kb=2.70 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:39.061] Slug spawn: owner=0 pos=(32861.8,4122.7) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:39.064] Slug scan: start=(32861.8,4122.7) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:39.065] Slug hit: target=105 dmg=29 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:39.388] Slug spawn: owner=0 pos=(32791.7,4122.6) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:39.391] Slug scan: start=(32791.7,4122.6) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:39.391] Slug hit: target=105 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:39.727] Slug spawn: owner=0 pos=(32784.1,4122.4) vel=(-1.00,-0.05) aimRot=-3.09 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:39.730] Slug scan: start=(32784.1,4122.4) dir=(-1.00,-0.05) aimRot=-3.09 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:39.730] Slug hit: target=105 dmg=29 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:40.057] Slug spawn: owner=0 pos=(32786.4,4122.2) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:40.060] Slug scan: start=(32786.4,4122.2) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:40.060] Slug hit: target=5 dmg=32 crit=False kb=2.70 dir=1 timeLeft=2 friendly=True pen=-1
+[01:58:40.393] Slug spawn: owner=0 pos=(32792.9,4121.8) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[01:58:40.396] Slug scan: start=(32792.9,4121.8) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[01:58:42.438] Bullet spawn: owner=0 pos=(32986.7,4122.8) vel=(1.00,-0.03) aimRot=-0.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:42.441] Bullet scan: start=(32986.7,4122.8) dir=(1.00,-0.03) aimRot=-0.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=156.3 dist=156.3 npcHits=1 closestNpc=3
+[01:58:44.258] Bullet spawn: owner=0 pos=(32987.1,4123.0) vel=(1.00,-0.00) aimRot=-0.00 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.262] Bullet scan: start=(32987.1,4123.0) dir=(1.00,-0.00) aimRot=-0.00 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=155.9 dist=155.9 npcHits=1 closestNpc=3
+[01:58:44.262] Bullet hit: target=3 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:44.355] Bullet spawn: owner=0 pos=(32990.2,4122.5) vel=(1.00,-0.07) aimRot=-0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.358] Bullet scan: start=(32990.2,4122.5) dir=(1.00,-0.07) aimRot=-0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=152.8 dist=152.8 npcHits=1 closestNpc=3
+[01:58:44.359] Bullet hit: target=3 dmg=15 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:44.457] Bullet spawn: owner=0 pos=(32996.3,4122.9) vel=(1.00,-0.02) aimRot=-0.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.459] Bullet scan: start=(32996.3,4122.9) dir=(1.00,-0.02) aimRot=-0.02 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=146.7 dist=146.7 npcHits=1 closestNpc=3
+[01:58:44.561] Bullet spawn: owner=0 pos=(33003.4,4122.1) vel=(0.99,-0.11) aimRot=-0.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.564] Bullet scan: start=(33003.4,4122.1) dir=(0.99,-0.11) aimRot=-0.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.9 dist=139.9 npcHits=1 closestNpc=3
+[01:58:44.565] Bullet hit: target=3 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:44.657] Bullet spawn: owner=0 pos=(33004.8,4122.9) vel=(1.00,-0.01) aimRot=-0.01 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.659] Bullet scan: start=(33004.8,4122.9) dir=(1.00,-0.01) aimRot=-0.01 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.2 dist=138.2 npcHits=1 closestNpc=3
+[01:58:44.659] Bullet hit: target=3 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:44.759] Bullet spawn: owner=0 pos=(33004.7,4121.5) vel=(0.98,-0.18) aimRot=-0.18 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.762] Bullet scan: start=(33004.7,4121.5) dir=(0.98,-0.18) aimRot=-0.18 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.7 dist=139.7 npcHits=1 closestNpc=3
+[01:58:44.857] Bullet spawn: owner=0 pos=(33004.8,4122.5) vel=(1.00,-0.06) aimRot=-0.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.859] Bullet scan: start=(33004.8,4122.5) dir=(1.00,-0.06) aimRot=-0.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.1 dist=138.1 npcHits=1 closestNpc=3
+[01:58:44.956] Bullet spawn: owner=0 pos=(33004.7,4121.9) vel=(0.99,-0.14) aimRot=-0.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:44.958] Bullet scan: start=(33004.7,4121.9) dir=(0.99,-0.14) aimRot=-0.14 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.9 dist=138.9 npcHits=1 closestNpc=3
+[01:58:44.959] Bullet hit: target=3 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:45.057] Bullet spawn: owner=0 pos=(33004.7,4121.7) vel=(0.99,-0.17) aimRot=-0.17 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.059] Bullet scan: start=(33004.7,4121.7) dir=(0.99,-0.17) aimRot=-0.17 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.4 dist=139.4 npcHits=1 closestNpc=3
+[01:58:45.159] Bullet spawn: owner=0 pos=(33004.5,4120.9) vel=(0.96,-0.27) aimRot=-0.27 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.164] Bullet scan: start=(33004.5,4120.9) dir=(0.96,-0.27) aimRot=-0.27 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:45.256] Bullet spawn: owner=0 pos=(33004.4,4120.4) vel=(0.94,-0.33) aimRot=-0.34 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.263] Bullet scan: start=(33004.4,4120.4) dir=(0.94,-0.33) aimRot=-0.34 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:45.356] Bullet spawn: owner=0 pos=(33004.3,4120.3) vel=(0.94,-0.34) aimRot=-0.35 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.363] Bullet scan: start=(33004.3,4120.3) dir=(0.94,-0.34) aimRot=-0.35 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:45.458] Bullet spawn: owner=0 pos=(33004.8,4122.1) vel=(0.99,-0.11) aimRot=-0.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.462] Bullet scan: start=(33004.8,4122.1) dir=(0.99,-0.11) aimRot=-0.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.5 dist=138.5 npcHits=1 closestNpc=3
+[01:58:45.463] Bullet hit: target=3 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:45.554] Bullet spawn: owner=0 pos=(33004.7,4121.7) vel=(0.99,-0.16) aimRot=-0.16 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.557] Bullet scan: start=(33004.7,4121.7) dir=(0.99,-0.16) aimRot=-0.16 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.3 dist=139.3 npcHits=1 closestNpc=3
+[01:58:45.657] Bullet spawn: owner=0 pos=(33004.6,4121.3) vel=(0.98,-0.22) aimRot=-0.22 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.659] Bullet scan: start=(33004.6,4121.3) dir=(0.98,-0.22) aimRot=-0.22 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=140.7 dist=140.7 npcHits=1 closestNpc=3
+[01:58:45.660] Bullet hit: target=3 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:45.759] Bullet spawn: owner=0 pos=(33004.7,4121.8) vel=(0.99,-0.15) aimRot=-0.15 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.762] Bullet scan: start=(33004.7,4121.8) dir=(0.99,-0.15) aimRot=-0.15 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.1 dist=139.1 npcHits=1 closestNpc=3
+[01:58:45.763] Bullet hit: target=3 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:45.857] Bullet spawn: owner=0 pos=(33004.8,4123.1) vel=(1.00,0.01) aimRot=0.01 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.860] Bullet scan: start=(33004.8,4123.1) dir=(1.00,0.01) aimRot=0.01 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.1 dist=138.1 npcHits=1 closestNpc=3
+[01:58:45.960] Bullet spawn: owner=0 pos=(33004.7,4124.2) vel=(0.99,0.14) aimRot=0.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:45.962] Bullet scan: start=(33004.7,4124.2) dir=(0.99,0.14) aimRot=0.14 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.0 dist=139.0 npcHits=1 closestNpc=3
+[01:58:45.962] Bullet hit: target=3 dmg=21 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:46.056] Bullet spawn: owner=0 pos=(33004.8,4122.8) vel=(1.00,-0.03) aimRot=-0.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.059] Bullet scan: start=(33004.8,4122.8) dir=(1.00,-0.03) aimRot=-0.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.1 dist=138.1 npcHits=1 closestNpc=3
+[01:58:46.059] Bullet hit: target=3 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:46.159] Bullet spawn: owner=0 pos=(33004.8,4124.0) vel=(0.99,0.12) aimRot=0.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.162] Bullet scan: start=(33004.8,4124.0) dir=(0.99,0.12) aimRot=0.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.7 dist=138.7 npcHits=1 closestNpc=3
+[01:58:46.256] Bullet spawn: owner=0 pos=(33004.8,4122.5) vel=(1.00,-0.06) aimRot=-0.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.259] Bullet scan: start=(33004.8,4122.5) dir=(1.00,-0.06) aimRot=-0.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.2 dist=138.2 npcHits=1 closestNpc=3
+[01:58:46.259] Bullet hit: target=3 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:46.360] Bullet spawn: owner=0 pos=(33004.7,4124.4) vel=(0.98,0.18) aimRot=0.18 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.364] Bullet scan: start=(33004.7,4124.4) dir=(0.98,0.18) aimRot=0.18 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:46.454] Bullet spawn: owner=0 pos=(33004.8,4122.2) vel=(0.99,-0.10) aimRot=-0.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.457] Bullet scan: start=(33004.8,4122.2) dir=(0.99,-0.10) aimRot=-0.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.4 dist=138.4 npcHits=1 closestNpc=3
+[01:58:46.561] Bullet spawn: owner=0 pos=(33004.8,4122.7) vel=(1.00,-0.04) aimRot=-0.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.563] Bullet scan: start=(33004.8,4122.7) dir=(1.00,-0.04) aimRot=-0.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.1 dist=138.1 npcHits=1 closestNpc=3
+[01:58:46.563] Bullet hit: target=3 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:46.658] Bullet spawn: owner=0 pos=(33004.8,4122.6) vel=(1.00,-0.05) aimRot=-0.05 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.660] Bullet scan: start=(33004.8,4122.6) dir=(1.00,-0.05) aimRot=-0.05 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.1 dist=138.1 npcHits=1 closestNpc=3
+[01:58:46.660] Bullet hit: target=3 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:46.759] Bullet spawn: owner=0 pos=(33004.8,4123.6) vel=(1.00,0.07) aimRot=0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.762] Bullet scan: start=(33004.8,4123.6) dir=(1.00,0.07) aimRot=0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.2 dist=138.2 npcHits=1 closestNpc=3
+[01:58:46.856] Bullet spawn: owner=0 pos=(33004.7,4121.8) vel=(0.99,-0.14) aimRot=-0.15 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.859] Bullet scan: start=(33004.7,4121.8) dir=(0.99,-0.14) aimRot=-0.15 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=139.0 dist=139.0 npcHits=1 closestNpc=3
+[01:58:46.859] Bullet hit: target=3 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:46.959] Bullet spawn: owner=0 pos=(33004.8,4123.7) vel=(1.00,0.09) aimRot=0.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:46.962] Bullet scan: start=(33004.8,4123.7) dir=(1.00,0.09) aimRot=0.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=138.3 dist=138.3 npcHits=1 closestNpc=3
+[01:58:47.056] Bullet spawn: owner=0 pos=(33004.6,4124.7) vel=(0.98,0.21) aimRot=0.21 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.061] Bullet scan: start=(33004.6,4124.7) dir=(0.98,0.21) aimRot=0.21 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:47.257] Bullet spawn: owner=0 pos=(33008.8,4125.5) vel=(0.95,0.31) aimRot=0.31 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.262] Bullet scan: start=(33008.8,4125.5) dir=(0.95,0.31) aimRot=0.31 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1208.0 tile=1208.0 npc=1208.0 dist=1208.0 npcHits=0 closestNpc=-1
+[01:58:47.356] Bullet spawn: owner=0 pos=(33014.4,4125.6) vel=(0.94,0.33) aimRot=0.34 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.361] Bullet scan: start=(33014.4,4125.6) dir=(0.94,0.33) aimRot=0.34 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1260.0 tile=1260.0 npc=1260.0 dist=1260.0 npcHits=0 closestNpc=-1
+[01:58:47.606] Bullet spawn: owner=0 pos=(33015.7,4124.2) vel=(0.99,0.15) aimRot=0.15 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.608] Bullet scan: start=(33015.7,4124.2) dir=(0.99,0.15) aimRot=0.15 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=128.0 dist=128.0 npcHits=1 closestNpc=3
+[01:58:47.709] Bullet spawn: owner=0 pos=(33015.7,4124.1) vel=(0.99,0.14) aimRot=0.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.713] Bullet scan: start=(33015.7,4124.1) dir=(0.99,0.14) aimRot=0.14 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.8 dist=127.8 npcHits=1 closestNpc=3
+[01:58:47.807] Bullet spawn: owner=0 pos=(33015.8,4123.4) vel=(1.00,0.04) aimRot=0.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.810] Bullet scan: start=(33015.8,4123.4) dir=(1.00,0.04) aimRot=0.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.1 dist=127.1 npcHits=1 closestNpc=3
+[01:58:47.907] Bullet spawn: owner=0 pos=(33015.8,4122.4) vel=(1.00,-0.07) aimRot=-0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:47.910] Bullet scan: start=(33015.8,4122.4) dir=(1.00,-0.07) aimRot=-0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.2 dist=127.2 npcHits=1 closestNpc=3
+[01:58:48.009] Bullet spawn: owner=0 pos=(33015.8,4123.3) vel=(1.00,0.04) aimRot=0.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.011] Bullet scan: start=(33015.8,4123.3) dir=(1.00,0.04) aimRot=0.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.1 dist=127.1 npcHits=1 closestNpc=3
+[01:58:48.012] Bullet hit: target=3 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:48.105] Bullet spawn: owner=0 pos=(33015.8,4122.0) vel=(0.99,-0.13) aimRot=-0.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.107] Bullet scan: start=(33015.8,4122.0) dir=(0.99,-0.13) aimRot=-0.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.7 dist=127.7 npcHits=1 closestNpc=3
+[01:58:48.208] Bullet spawn: owner=0 pos=(33015.8,4122.3) vel=(1.00,-0.09) aimRot=-0.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.210] Bullet scan: start=(33015.8,4122.3) dir=(1.00,-0.09) aimRot=-0.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.3 dist=127.3 npcHits=1 closestNpc=3
+[01:58:48.210] Bullet hit: target=3 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:48.307] Bullet spawn: owner=0 pos=(33015.8,4122.4) vel=(1.00,-0.07) aimRot=-0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.310] Bullet scan: start=(33015.8,4122.4) dir=(1.00,-0.07) aimRot=-0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.2 dist=127.2 npcHits=1 closestNpc=3
+[01:58:48.409] Bullet spawn: owner=0 pos=(33015.8,4122.7) vel=(1.00,-0.03) aimRot=-0.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.412] Bullet scan: start=(33015.8,4122.7) dir=(1.00,-0.03) aimRot=-0.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.1 dist=127.1 npcHits=1 closestNpc=3
+[01:58:48.508] Bullet spawn: owner=0 pos=(33015.5,4120.7) vel=(0.96,-0.28) aimRot=-0.29 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.512] Bullet scan: start=(33015.5,4120.7) dir=(0.96,-0.28) aimRot=-0.29 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:48.606] Bullet spawn: owner=0 pos=(33015.3,4120.3) vel=(0.94,-0.34) aimRot=-0.34 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.614] Bullet scan: start=(33015.3,4120.3) dir=(0.94,-0.34) aimRot=-0.34 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[01:58:48.705] Bullet spawn: owner=0 pos=(33015.8,4122.2) vel=(1.00,-0.10) aimRot=-0.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[01:58:48.708] Bullet scan: start=(33015.8,4122.2) dir=(1.00,-0.10) aimRot=-0.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=127.3 dist=127.3 npcHits=1 closestNpc=3
+[01:58:48.708] Bullet hit: target=3 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:49.741] Bullet spawn: owner=0 pos=(33018.8,4123.5) vel=(1.00,0.05) aimRot=0.05 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:49.744] Bullet scan: start=(33018.8,4123.5) dir=(1.00,0.05) aimRot=0.05 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=124.1 dist=124.1 npcHits=1 closestNpc=3
+[01:58:49.744] Bullet hit: target=3 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:50.177] Bullet spawn: owner=0 pos=(33018.8,4122.8) vel=(1.00,-0.02) aimRot=-0.02 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:50.180] Bullet scan: start=(33018.8,4122.8) dir=(1.00,-0.02) aimRot=-0.02 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=124.1 dist=124.1 npcHits=1 closestNpc=3
+[01:58:50.180] Bullet hit: target=3 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:50.605] Bullet spawn: owner=0 pos=(33018.8,4121.9) vel=(0.99,-0.10) aimRot=-0.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:50.608] Bullet scan: start=(33018.8,4121.9) dir=(0.99,-0.10) aimRot=-0.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=124.4 dist=124.4 npcHits=1 closestNpc=3
+[01:58:51.041] Bullet spawn: owner=0 pos=(33018.7,4121.1) vel=(0.98,-0.18) aimRot=-0.18 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:51.045] Bullet scan: start=(33018.7,4121.1) dir=(0.98,-0.18) aimRot=-0.18 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=125.4 dist=125.4 npcHits=1 closestNpc=3
+[01:58:53.622] Bullet spawn: owner=0 pos=(33087.4,4122.8) vel=(1.00,-0.02) aimRot=-0.02 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:53.624] Bullet scan: start=(33087.4,4122.8) dir=(1.00,-0.02) aimRot=-0.02 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=55.5 dist=55.5 npcHits=1 closestNpc=3
+[01:58:54.056] Bullet spawn: owner=0 pos=(33087.4,4122.5) vel=(1.00,-0.05) aimRot=-0.05 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:54.059] Bullet scan: start=(33087.4,4122.5) dir=(1.00,-0.05) aimRot=-0.05 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=55.4 dist=55.4 npcHits=1 closestNpc=3
+[01:58:54.488] Bullet spawn: owner=0 pos=(33087.4,4121.8) vel=(0.99,-0.11) aimRot=-0.11 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:54.490] Bullet scan: start=(33087.4,4121.8) dir=(0.99,-0.11) aimRot=-0.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=55.4 dist=55.4 npcHits=1 closestNpc=3
+[01:58:54.491] Bullet hit: target=3 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:54.921] Bullet spawn: owner=0 pos=(33087.3,4121.0) vel=(0.98,-0.18) aimRot=-0.18 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:54.924] Bullet scan: start=(33087.3,4121.0) dir=(0.98,-0.18) aimRot=-0.18 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=55.7 dist=55.7 npcHits=1 closestNpc=3
+[01:58:55.358] Bullet spawn: owner=0 pos=(33087.1,4120.3) vel=(0.97,-0.24) aimRot=-0.25 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:55.361] Bullet scan: start=(33087.1,4120.3) dir=(0.97,-0.24) aimRot=-0.25 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=56.4 dist=56.4 npcHits=1 closestNpc=3
+[01:58:55.362] Bullet hit: target=3 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:55.788] Bullet spawn: owner=0 pos=(33086.9,4119.6) vel=(0.95,-0.30) aimRot=-0.31 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:55.792] Bullet scan: start=(33086.9,4119.6) dir=(0.95,-0.30) aimRot=-0.31 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=57.3 dist=57.3 npcHits=1 closestNpc=3
+[01:58:55.792] Bullet hit: target=3 dmg=36 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:58:56.227] Bullet spawn: owner=0 pos=(33086.9,4119.5) vel=(0.95,-0.31) aimRot=-0.32 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:56.230] Bullet scan: start=(33086.9,4119.5) dir=(0.95,-0.31) aimRot=-0.32 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=57.5 dist=57.5 npcHits=1 closestNpc=3
+[01:58:56.656] Bullet spawn: owner=0 pos=(33086.7,4119.0) vel=(0.93,-0.36) aimRot=-0.37 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:56.659] Bullet scan: start=(33086.7,4119.0) dir=(0.93,-0.36) aimRot=-0.37 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=58.5 dist=58.5 npcHits=1 closestNpc=3
+[01:58:57.090] Bullet spawn: owner=0 pos=(33086.7,4119.0) vel=(0.93,-0.36) aimRot=-0.37 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:57.093] Bullet scan: start=(33086.7,4119.0) dir=(0.93,-0.36) aimRot=-0.37 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=58.5 dist=58.5 npcHits=1 closestNpc=3
+[01:58:57.522] Bullet spawn: owner=0 pos=(33086.7,4119.0) vel=(0.93,-0.36) aimRot=-0.37 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:57.525] Bullet scan: start=(33086.7,4119.0) dir=(0.93,-0.36) aimRot=-0.37 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=58.5 dist=58.5 npcHits=1 closestNpc=3
+[01:58:57.959] Bullet spawn: owner=0 pos=(33086.7,4119.0) vel=(0.93,-0.36) aimRot=-0.37 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:57.962] Bullet scan: start=(33086.7,4119.0) dir=(0.93,-0.36) aimRot=-0.37 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=58.5 dist=58.5 npcHits=1 closestNpc=3
+[01:58:59.623] Bullet spawn: owner=0 pos=(32979.9,4110.4) vel=(0.95,0.31) aimRot=0.31 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:58:59.625] Bullet scan: start=(32979.9,4110.4) dir=(0.95,0.31) aimRot=0.31 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=1236.0 tile=1236.0 npc=51.7 dist=51.7 npcHits=1 closestNpc=6
+[01:58:59.626] Bullet hit: target=6 dmg=29 crit=False kb=2.43 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:00.060] Bullet spawn: owner=0 pos=(32980.4,4108.6) vel=(0.99,0.15) aimRot=0.15 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:00.063] Bullet scan: start=(32980.4,4108.6) dir=(0.99,0.15) aimRot=0.15 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=101.1 dist=101.1 npcHits=2 closestNpc=6
+[01:59:00.063] Bullet hit: target=6 dmg=29 crit=False kb=2.43 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:00.493] Bullet spawn: owner=0 pos=(32994.7,4107.3) vel=(1.00,0.03) aimRot=0.03 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:00.496] Bullet scan: start=(32994.7,4107.3) dir=(1.00,0.03) aimRot=0.03 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=148.2 dist=148.2 npcHits=2 closestNpc=3
+[01:59:00.497] Bullet hit: target=3 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:00.923] Bullet spawn: owner=0 pos=(33029.4,4122.0) vel=(1.00,-0.09) aimRot=-0.09 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:00.926] Bullet scan: start=(33029.4,4122.0) dir=(1.00,-0.09) aimRot=-0.09 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=113.7 dist=113.7 npcHits=1 closestNpc=3
+[01:59:01.361] Bullet spawn: owner=0 pos=(33030.9,4122.9) vel=(1.00,-0.01) aimRot=-0.01 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:01.363] Bullet scan: start=(33030.9,4122.9) dir=(1.00,-0.01) aimRot=-0.01 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=100.0 dist=100.0 npcHits=2 closestNpc=6
+[01:59:01.364] Bullet hit: target=6 dmg=30 crit=False kb=2.43 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:01.793] Bullet spawn: owner=0 pos=(33030.8,4121.5) vel=(0.99,-0.14) aimRot=-0.14 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:01.795] Bullet scan: start=(33030.8,4121.5) dir=(0.99,-0.14) aimRot=-0.14 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=112.5 dist=112.5 npcHits=1 closestNpc=3
+[01:59:02.226] Bullet spawn: owner=0 pos=(33030.6,4120.3) vel=(0.97,-0.25) aimRot=-0.25 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:02.229] Bullet scan: start=(33030.6,4120.3) dir=(0.97,-0.25) aimRot=-0.25 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=114.7 dist=114.7 npcHits=1 closestNpc=3
+[01:59:02.229] Bullet hit: target=3 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:02.658] Bullet spawn: owner=0 pos=(33030.6,4120.1) vel=(0.96,-0.26) aimRot=-0.27 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:02.661] Bullet scan: start=(33030.6,4120.1) dir=(0.96,-0.26) aimRot=-0.27 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=115.2 dist=115.2 npcHits=1 closestNpc=3
+[01:59:02.661] Bullet hit: target=3 dmg=37 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:03.093] Bullet spawn: owner=0 pos=(33030.7,4120.8) vel=(0.98,-0.20) aimRot=-0.20 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:03.096] Bullet scan: start=(33030.7,4120.8) dir=(0.98,-0.20) aimRot=-0.20 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=113.5 dist=113.5 npcHits=1 closestNpc=3
+[01:59:03.096] Bullet hit: target=3 dmg=29 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:03.523] Bullet spawn: owner=0 pos=(33030.8,4121.0) vel=(0.98,-0.18) aimRot=-0.18 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:03.526] Bullet scan: start=(33030.8,4121.0) dir=(0.98,-0.18) aimRot=-0.18 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=113.2 dist=113.2 npcHits=1 closestNpc=3
+[01:59:03.526] Bullet hit: target=3 dmg=31 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:03.967] Bullet spawn: owner=0 pos=(33030.9,4122.1) vel=(1.00,-0.08) aimRot=-0.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:03.970] Bullet scan: start=(33030.9,4122.1) dir=(1.00,-0.08) aimRot=-0.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=112.0 dist=112.0 npcHits=1 closestNpc=3
+[01:59:03.971] Bullet hit: target=3 dmg=30 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:04.395] Bullet spawn: owner=0 pos=(33030.9,4122.1) vel=(1.00,-0.08) aimRot=-0.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:04.398] Bullet scan: start=(33030.9,4122.1) dir=(1.00,-0.08) aimRot=-0.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=112.0 dist=112.0 npcHits=1 closestNpc=3
+[01:59:04.398] Bullet hit: target=3 dmg=30 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:04.827] Bullet spawn: owner=0 pos=(33030.9,4122.1) vel=(1.00,-0.08) aimRot=-0.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:04.829] Bullet scan: start=(33030.9,4122.1) dir=(1.00,-0.08) aimRot=-0.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=112.0 dist=112.0 npcHits=1 closestNpc=3
+[01:59:04.830] Bullet hit: target=3 dmg=30 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:07.440] Bullet spawn: owner=0 pos=(33055.3,4123.8) vel=(1.00,0.07) aimRot=0.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:07.443] Bullet scan: start=(33055.3,4123.8) dir=(1.00,0.07) aimRot=0.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=87.5 dist=87.5 npcHits=2 closestNpc=3
+[01:59:07.876] Bullet spawn: owner=0 pos=(33055.4,4122.8) vel=(1.00,-0.02) aimRot=-0.02 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:07.879] Bullet scan: start=(33055.4,4122.8) dir=(1.00,-0.02) aimRot=-0.02 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=87.6 dist=87.6 npcHits=1 closestNpc=3
+[01:59:07.879] Bullet hit: target=3 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:08.305] Bullet spawn: owner=0 pos=(33055.3,4122.0) vel=(1.00,-0.09) aimRot=-0.09 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:08.307] Bullet scan: start=(33055.3,4122.0) dir=(1.00,-0.09) aimRot=-0.09 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=87.6 dist=87.6 npcHits=1 closestNpc=3
+[01:59:08.741] Bullet spawn: owner=0 pos=(33055.2,4121.2) vel=(0.99,-0.16) aimRot=-0.16 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:08.744] Bullet scan: start=(33055.2,4121.2) dir=(0.99,-0.16) aimRot=-0.16 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=88.1 dist=88.1 npcHits=1 closestNpc=3
+[01:59:09.173] Bullet spawn: owner=0 pos=(33055.1,4120.5) vel=(0.97,-0.23) aimRot=-0.23 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:09.176] Bullet scan: start=(33055.1,4120.5) dir=(0.97,-0.23) aimRot=-0.23 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=89.2 dist=89.2 npcHits=1 closestNpc=3
+[01:59:09.177] Bullet hit: target=3 dmg=40 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:09.605] Bullet spawn: owner=0 pos=(33054.9,4119.7) vel=(0.96,-0.30) aimRot=-0.30 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:09.608] Bullet scan: start=(33054.9,4119.7) dir=(0.96,-0.30) aimRot=-0.30 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=90.7 dist=90.7 npcHits=2 closestNpc=3
+[01:59:10.041] Bullet spawn: owner=0 pos=(33054.8,4119.4) vel=(0.95,-0.33) aimRot=-0.33 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:10.045] Bullet scan: start=(33054.8,4119.4) dir=(0.95,-0.33) aimRot=-0.33 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=91.6 dist=91.6 npcHits=1 closestNpc=3
+[01:59:10.506] Bullet spawn: owner=0 pos=(33055.4,4123.3) vel=(1.00,0.02) aimRot=0.02 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:10.509] Bullet scan: start=(33055.4,4123.3) dir=(1.00,0.02) aimRot=0.02 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=14.1 dist=14.1 npcHits=2 closestNpc=4
+[01:59:10.510] Bullet hit: target=4 dmg=66 crit=True kb=2.70 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:11.060] Bullet spawn: owner=0 pos=(33044.5,4124.5) vel=(0.99,0.13) aimRot=0.13 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:11.063] Bullet scan: start=(33044.5,4124.5) dir=(0.99,0.13) aimRot=0.13 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=98.7 dist=98.7 npcHits=1 closestNpc=3
+[01:59:11.063] Bullet hit: target=3 dmg=42 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:11.539] Bullet spawn: owner=0 pos=(33065.7,4123.8) vel=(1.00,0.07) aimRot=0.07 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:11.542] Bullet scan: start=(33065.7,4123.8) dir=(1.00,0.07) aimRot=0.07 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=77.1 dist=77.1 npcHits=1 closestNpc=3
+[01:59:13.362] Bullet spawn: owner=0 pos=(32967.0,4123.2) vel=(-1.00,0.02) aimRot=3.12 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:13.364] Bullet scan: start=(32967.0,4123.2) dir=(-1.00,0.02) aimRot=3.12 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=468.0 tile=468.0 npc=114.3 dist=114.3 npcHits=2 closestNpc=5
+[01:59:13.796] Bullet spawn: owner=0 pos=(32957.7,4122.4) vel=(-1.00,-0.05) aimRot=-3.09 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:13.799] Bullet scan: start=(32957.7,4122.4) dir=(-1.00,-0.05) aimRot=-3.09 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=389.0 dist=389.0 npcHits=1 closestNpc=105
+[01:59:13.799] Bullet hit: target=105 dmg=39 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:14.226] Bullet spawn: owner=0 pos=(32956.1,4121.9) vel=(-0.99,-0.10) aimRot=-3.04 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:14.231] Bullet scan: start=(32956.1,4121.9) dir=(-0.99,-0.10) aimRot=-3.04 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:59:14.864] Bullet spawn: owner=0 pos=(32901.3,4041.9) vel=(-0.96,0.29) aimRot=2.85 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:14.867] Bullet scan: start=(32901.3,4041.9) dir=(-0.96,0.29) aimRot=2.85 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=345.5 dist=345.5 npcHits=1 closestNpc=105
+[01:59:15.294] Bullet spawn: owner=0 pos=(32756.5,4057.2) vel=(-0.96,0.29) aimRot=2.85 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:15.297] Bullet scan: start=(32756.5,4057.2) dir=(-0.96,0.29) aimRot=2.85 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=268.0 tile=268.0 npc=194.1 dist=194.1 npcHits=1 closestNpc=105
+[01:59:15.298] Bullet hit: target=105 dmg=41 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:15.729] Bullet spawn: owner=0 pos=(32752.3,4122.0) vel=(-1.00,-0.09) aimRot=-3.05 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:15.731] Bullet scan: start=(32752.3,4122.0) dir=(-1.00,-0.09) aimRot=-3.05 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=183.5 dist=183.5 npcHits=1 closestNpc=105
+[01:59:15.732] Bullet hit: target=105 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[01:59:16.159] Bullet spawn: owner=0 pos=(32752.3,4121.5) vel=(-0.99,-0.13) aimRot=-3.01 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:16.163] Bullet scan: start=(32752.3,4121.5) dir=(-0.99,-0.13) aimRot=-3.01 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:59:16.596] Bullet spawn: owner=0 pos=(32752.3,4121.5) vel=(-0.99,-0.14) aimRot=-3.01 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:16.600] Bullet scan: start=(32752.3,4121.5) dir=(-0.99,-0.14) aimRot=-3.01 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:59:17.075] Bullet spawn: owner=0 pos=(32752.6,4125.9) vel=(-0.96,0.26) aimRot=2.87 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:17.079] Bullet scan: start=(32752.6,4125.9) dir=(-0.96,0.26) aimRot=2.87 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[01:59:17.548] Bullet spawn: owner=0 pos=(32752.2,4122.7) vel=(-1.00,-0.02) aimRot=-3.12 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:17.551] Bullet scan: start=(32752.2,4122.7) dir=(-1.00,-0.02) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=183.1 dist=183.1 npcHits=7 closestNpc=105
+[01:59:17.978] Bullet spawn: owner=0 pos=(32752.2,4122.3) vel=(-1.00,-0.07) aimRot=-3.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[01:59:17.980] Bullet scan: start=(32752.2,4122.3) dir=(-1.00,-0.07) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=183.3 dist=183.3 npcHits=1 closestNpc=105
+[02:00:30.939] Bullet spawn: owner=0 pos=(32613.2,4106.1) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:30.941] Bullet scan: start=(32613.2,4106.1) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=43.9 dist=43.9 npcHits=1 closestNpc=105
+[02:00:30.942] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:31.039] Bullet spawn: owner=0 pos=(32613.3,4105.7) vel=(-0.99,-0.16) aimRot=-2.98 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.044] Bullet scan: start=(32613.3,4105.7) dir=(-0.99,-0.16) aimRot=-2.98 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[02:00:31.142] Bullet spawn: owner=0 pos=(32613.2,4106.4) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.144] Bullet scan: start=(32613.2,4106.4) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=43.9 dist=43.9 npcHits=1 closestNpc=105
+[02:00:31.145] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:31.238] Bullet spawn: owner=0 pos=(32613.2,4107.1) vel=(-1.00,0.01) aimRot=3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.240] Bullet scan: start=(32613.2,4107.1) dir=(-1.00,0.01) aimRot=3.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=44.1 dist=44.1 npcHits=7 closestNpc=105
+[02:00:31.348] Bullet spawn: owner=0 pos=(32613.2,4108.1) vel=(-0.99,0.14) aimRot=3.00 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.354] Bullet scan: start=(32613.2,4108.1) dir=(-0.99,0.14) aimRot=3.00 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=44.0 dist=44.0 npcHits=2 closestNpc=105
+[02:00:31.355] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:31.446] Bullet spawn: owner=0 pos=(32613.2,4107.9) vel=(-0.99,0.12) aimRot=3.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.452] Bullet scan: start=(32613.2,4107.9) dir=(-0.99,0.12) aimRot=3.02 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=43.9 dist=43.9 npcHits=3 closestNpc=105
+[02:00:31.540] Bullet spawn: owner=0 pos=(32613.2,4106.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.542] Bullet scan: start=(32613.2,4106.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=44.0 dist=44.0 npcHits=1 closestNpc=105
+[02:00:31.542] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:31.643] Bullet spawn: owner=0 pos=(32613.2,4107.3) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.645] Bullet scan: start=(32613.2,4107.3) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=44.0 dist=44.0 npcHits=7 closestNpc=105
+[02:00:31.645] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:31.741] Bullet spawn: owner=0 pos=(32613.3,4108.3) vel=(-0.99,0.17) aimRot=2.97 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.744] Bullet scan: start=(32613.3,4108.3) dir=(-0.99,0.17) aimRot=2.97 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=116.0 tile=116.0 npc=44.1 dist=44.1 npcHits=1 closestNpc=105
+[02:00:31.744] Bullet hit: target=105 dmg=21 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:31.844] Bullet spawn: owner=0 pos=(32613.2,4107.0) vel=(-1.00,-0.00) aimRot=-3.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.847] Bullet scan: start=(32613.2,4107.0) dir=(-1.00,-0.00) aimRot=-3.14 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=44.2 dist=44.2 npcHits=7 closestNpc=105
+[02:00:31.941] Bullet spawn: owner=0 pos=(32613.2,4106.2) vel=(-1.00,-0.09) aimRot=-3.05 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:31.943] Bullet scan: start=(32613.2,4106.2) dir=(-1.00,-0.09) aimRot=-3.05 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=43.9 dist=43.9 npcHits=1 closestNpc=105
+[02:00:32.044] Bullet spawn: owner=0 pos=(32613.5,4109.2) vel=(-0.96,0.27) aimRot=2.87 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.046] Bullet scan: start=(32613.5,4109.2) dir=(-0.96,0.27) aimRot=2.87 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=120.0 tile=120.0 npc=44.8 dist=44.8 npcHits=1 closestNpc=105
+[02:00:32.142] Bullet spawn: owner=0 pos=(32613.3,4108.3) vel=(-0.99,0.16) aimRot=2.98 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.144] Bullet scan: start=(32613.3,4108.3) dir=(-0.99,0.16) aimRot=2.98 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=116.0 tile=116.0 npc=44.0 dist=44.0 npcHits=1 closestNpc=105
+[02:00:32.244] Bullet spawn: owner=0 pos=(32613.6,4109.5) vel=(-0.95,0.32) aimRot=2.82 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.247] Bullet scan: start=(32613.6,4109.5) dir=(-0.95,0.32) aimRot=2.82 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=45.3 dist=45.3 npcHits=1 closestNpc=105
+[02:00:32.341] Bullet spawn: owner=0 pos=(32613.4,4108.7) vel=(-0.98,0.21) aimRot=2.93 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.343] Bullet scan: start=(32613.4,4108.7) dir=(-0.98,0.21) aimRot=2.93 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=116.0 tile=116.0 npc=44.3 dist=44.3 npcHits=1 closestNpc=105
+[02:00:32.343] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:32.444] Bullet spawn: owner=0 pos=(32613.2,4107.9) vel=(-0.99,0.11) aimRot=3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.446] Bullet scan: start=(32613.2,4107.9) dir=(-0.99,0.11) aimRot=3.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=43.9 dist=43.9 npcHits=3 closestNpc=105
+[02:00:32.446] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:32.541] Bullet spawn: owner=0 pos=(32613.2,4108.0) vel=(-0.99,0.12) aimRot=3.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.543] Bullet scan: start=(32613.2,4108.0) dir=(-0.99,0.12) aimRot=3.02 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=43.9 dist=43.9 npcHits=2 closestNpc=105
+[02:00:32.644] Bullet spawn: owner=0 pos=(32613.5,4109.3) vel=(-0.96,0.29) aimRot=2.85 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.646] Bullet scan: start=(32613.5,4109.3) dir=(-0.96,0.29) aimRot=2.85 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=120.0 tile=120.0 npc=45.0 dist=45.0 npcHits=1 closestNpc=105
+[02:00:32.741] Bullet spawn: owner=0 pos=(32613.6,4109.6) vel=(-0.95,0.32) aimRot=2.81 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.744] Bullet scan: start=(32613.6,4109.6) dir=(-0.95,0.32) aimRot=2.81 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=45.4 dist=45.4 npcHits=1 closestNpc=105
+[02:00:32.844] Bullet spawn: owner=0 pos=(32613.8,4110.0) vel=(-0.93,0.37) aimRot=2.76 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.846] Bullet scan: start=(32613.8,4110.0) dir=(-0.93,0.37) aimRot=2.76 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=46.2 dist=46.2 npcHits=1 closestNpc=105
+[02:00:32.846] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:32.941] Bullet spawn: owner=0 pos=(32613.8,4110.2) vel=(-0.92,0.39) aimRot=2.74 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:32.943] Bullet scan: start=(32613.8,4110.2) dir=(-0.92,0.39) aimRot=2.74 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=46.6 dist=46.6 npcHits=1 closestNpc=105
+[02:00:32.943] Bullet hit: target=105 dmg=30 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:33.045] Bullet spawn: owner=0 pos=(32613.2,4107.4) vel=(-1.00,0.05) aimRot=3.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.047] Bullet scan: start=(32613.2,4107.4) dir=(-1.00,0.05) aimRot=3.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=44.0 dist=44.0 npcHits=7 closestNpc=105
+[02:00:33.141] Bullet spawn: owner=0 pos=(32613.5,4109.2) vel=(-0.96,0.27) aimRot=2.87 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.143] Bullet scan: start=(32613.5,4109.2) dir=(-0.96,0.27) aimRot=2.87 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=120.0 tile=120.0 npc=44.8 dist=44.8 npcHits=1 closestNpc=105
+[02:00:33.244] Bullet spawn: owner=0 pos=(32613.3,4108.6) vel=(-0.98,0.20) aimRot=2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.248] Bullet scan: start=(32613.3,4108.6) dir=(-0.98,0.20) aimRot=2.94 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=116.0 tile=116.0 npc=44.2 dist=44.2 npcHits=1 closestNpc=105
+[02:00:33.341] Bullet spawn: owner=0 pos=(32613.9,4110.3) vel=(-0.91,0.41) aimRot=2.72 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.343] Bullet scan: start=(32613.9,4110.3) dir=(-0.91,0.41) aimRot=2.72 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=46.9 dist=46.9 npcHits=1 closestNpc=105
+[02:00:33.344] Bullet hit: target=105 dmg=15 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:33.444] Bullet spawn: owner=0 pos=(32613.6,4109.5) vel=(-0.95,0.32) aimRot=2.82 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.446] Bullet scan: start=(32613.6,4109.5) dir=(-0.95,0.32) aimRot=2.82 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=45.4 dist=45.4 npcHits=1 closestNpc=105
+[02:00:33.541] Bullet spawn: owner=0 pos=(32613.3,4108.3) vel=(-0.99,0.16) aimRot=2.98 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.543] Bullet scan: start=(32613.3,4108.3) dir=(-0.99,0.16) aimRot=2.98 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=116.0 tile=116.0 npc=44.0 dist=44.0 npcHits=1 closestNpc=105
+[02:00:33.644] Bullet spawn: owner=0 pos=(32613.5,4109.2) vel=(-0.96,0.28) aimRot=2.86 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.646] Bullet scan: start=(32613.5,4109.2) dir=(-0.96,0.28) aimRot=2.86 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=120.0 tile=120.0 npc=44.9 dist=44.9 npcHits=1 closestNpc=105
+[02:00:33.741] Bullet spawn: owner=0 pos=(32613.5,4109.4) vel=(-0.95,0.30) aimRot=2.83 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.743] Bullet scan: start=(32613.5,4109.4) dir=(-0.95,0.30) aimRot=2.83 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=45.1 dist=45.1 npcHits=1 closestNpc=105
+[02:00:33.844] Bullet spawn: owner=0 pos=(32613.8,4110.1) vel=(-0.92,0.39) aimRot=2.74 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.846] Bullet scan: start=(32613.8,4110.1) dir=(-0.92,0.39) aimRot=2.74 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=46.6 dist=46.6 npcHits=1 closestNpc=105
+[02:00:33.941] Bullet spawn: owner=0 pos=(32613.3,4108.6) vel=(-0.98,0.20) aimRot=2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:33.943] Bullet scan: start=(32613.3,4108.6) dir=(-0.98,0.20) aimRot=2.94 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=116.0 tile=116.0 npc=44.3 dist=44.3 npcHits=1 closestNpc=105
+[02:00:34.044] Bullet spawn: owner=0 pos=(32613.8,4110.0) vel=(-0.93,0.38) aimRot=2.75 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:34.046] Bullet scan: start=(32613.8,4110.0) dir=(-0.93,0.38) aimRot=2.75 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=46.3 dist=46.3 npcHits=1 closestNpc=105
+[02:00:34.047] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:34.141] Bullet spawn: owner=0 pos=(32613.7,4109.7) vel=(-0.94,0.34) aimRot=2.79 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:34.144] Bullet scan: start=(32613.7,4109.7) dir=(-0.94,0.34) aimRot=2.79 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=45.7 dist=45.7 npcHits=1 closestNpc=105
+[02:00:34.144] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:35.274] Bullet spawn: owner=0 pos=(32640.3,4123.3) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.277] Bullet scan: start=(32640.3,4123.3) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.1 dist=71.1 npcHits=1 closestNpc=105
+[02:00:35.377] Bullet spawn: owner=0 pos=(32640.3,4123.1) vel=(-1.00,0.02) aimRot=3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.379] Bullet scan: start=(32640.3,4123.1) dir=(-1.00,0.02) aimRot=3.13 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:35.482] Bullet spawn: owner=0 pos=(32640.3,4123.2) vel=(-1.00,0.02) aimRot=3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.484] Bullet scan: start=(32640.3,4123.2) dir=(-1.00,0.02) aimRot=3.12 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:35.577] Bullet spawn: owner=0 pos=(32640.3,4123.0) vel=(-1.00,-0.00) aimRot=-3.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.579] Bullet scan: start=(32640.3,4123.0) dir=(-1.00,-0.00) aimRot=-3.14 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.3 dist=71.3 npcHits=7 closestNpc=105
+[02:00:35.674] Bullet spawn: owner=0 pos=(32640.3,4123.3) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.676] Bullet scan: start=(32640.3,4123.3) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:35.677] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:35.778] Bullet spawn: owner=0 pos=(32640.3,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.780] Bullet scan: start=(32640.3,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=3 closestNpc=105
+[02:00:35.780] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:35.874] Bullet spawn: owner=0 pos=(32640.3,4122.7) vel=(-1.00,-0.04) aimRot=-3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.876] Bullet scan: start=(32640.3,4122.7) dir=(-1.00,-0.04) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=6 closestNpc=105
+[02:00:35.977] Bullet spawn: owner=0 pos=(32640.3,4122.7) vel=(-1.00,-0.04) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:35.979] Bullet scan: start=(32640.3,4122.7) dir=(-1.00,-0.04) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:36.074] Bullet spawn: owner=0 pos=(32640.3,4123.3) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.077] Bullet scan: start=(32640.3,4123.3) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:36.077] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:36.177] Bullet spawn: owner=0 pos=(32640.3,4122.8) vel=(-1.00,-0.02) aimRot=-3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.179] Bullet scan: start=(32640.3,4122.8) dir=(-1.00,-0.02) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:36.274] Bullet spawn: owner=0 pos=(32640.4,4121.9) vel=(-0.99,-0.14) aimRot=-3.00 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.277] Bullet scan: start=(32640.4,4121.9) dir=(-0.99,-0.14) aimRot=-3.00 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.4 dist=71.4 npcHits=1 closestNpc=105
+[02:00:36.277] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:36.377] Bullet spawn: owner=0 pos=(32640.5,4121.3) vel=(-0.98,-0.22) aimRot=-2.92 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.380] Bullet scan: start=(32640.5,4121.3) dir=(-0.98,-0.22) aimRot=-2.92 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=72.1 dist=72.1 npcHits=1 closestNpc=105
+[02:00:36.474] Bullet spawn: owner=0 pos=(32640.4,4121.8) vel=(-0.99,-0.16) aimRot=-2.99 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.476] Bullet scan: start=(32640.4,4121.8) dir=(-0.99,-0.16) aimRot=-2.99 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.5 dist=71.5 npcHits=1 closestNpc=105
+[02:00:36.476] Bullet hit: target=105 dmg=36 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:36.577] Bullet spawn: owner=0 pos=(32640.3,4122.4) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.580] Bullet scan: start=(32640.3,4122.4) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=2 closestNpc=105
+[02:00:36.674] Bullet spawn: owner=0 pos=(32640.6,4120.8) vel=(-0.96,-0.28) aimRot=-2.86 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.676] Bullet scan: start=(32640.6,4120.8) dir=(-0.96,-0.28) aimRot=-2.86 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=73.1 dist=73.1 npcHits=1 closestNpc=105
+[02:00:36.777] Bullet spawn: owner=0 pos=(32640.3,4122.3) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.779] Bullet scan: start=(32640.3,4122.3) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=2 closestNpc=105
+[02:00:36.780] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:36.875] Bullet spawn: owner=0 pos=(32640.3,4122.5) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.877] Bullet scan: start=(32640.3,4122.5) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=2 closestNpc=105
+[02:00:36.877] Bullet hit: target=105 dmg=40 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:36.977] Bullet spawn: owner=0 pos=(32640.3,4123.3) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:36.980] Bullet scan: start=(32640.3,4123.3) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:37.074] Bullet spawn: owner=0 pos=(32640.3,4122.6) vel=(-1.00,-0.04) aimRot=-3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.077] Bullet scan: start=(32640.3,4122.6) dir=(-1.00,-0.04) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=6 closestNpc=105
+[02:00:37.177] Bullet spawn: owner=0 pos=(32640.5,4121.4) vel=(-0.98,-0.20) aimRot=-2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.179] Bullet scan: start=(32640.5,4121.4) dir=(-0.98,-0.20) aimRot=-2.94 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.9 dist=71.9 npcHits=1 closestNpc=105
+[02:00:37.274] Bullet spawn: owner=0 pos=(32640.3,4123.5) vel=(-1.00,0.07) aimRot=3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.277] Bullet scan: start=(32640.3,4123.5) dir=(-1.00,0.07) aimRot=3.08 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.1 dist=71.1 npcHits=1 closestNpc=105
+[02:00:37.377] Bullet spawn: owner=0 pos=(32640.3,4122.9) vel=(-1.00,-0.01) aimRot=-3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.379] Bullet scan: start=(32640.3,4122.9) dir=(-1.00,-0.01) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:37.474] Bullet spawn: owner=0 pos=(32640.5,4121.3) vel=(-0.98,-0.22) aimRot=-2.92 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.477] Bullet scan: start=(32640.5,4121.3) dir=(-0.98,-0.22) aimRot=-2.92 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=72.1 dist=72.1 npcHits=1 closestNpc=105
+[02:00:37.477] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:37.577] Bullet spawn: owner=0 pos=(32640.5,4121.2) vel=(-0.98,-0.22) aimRot=-2.92 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.580] Bullet scan: start=(32640.5,4121.2) dir=(-0.98,-0.22) aimRot=-2.92 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=72.1 dist=72.1 npcHits=1 closestNpc=105
+[02:00:37.674] Bullet spawn: owner=0 pos=(32640.3,4123.4) vel=(-1.00,0.05) aimRot=3.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.677] Bullet scan: start=(32640.3,4123.4) dir=(-1.00,0.05) aimRot=3.09 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.1 dist=71.1 npcHits=1 closestNpc=105
+[02:00:37.677] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:37.777] Bullet spawn: owner=0 pos=(32640.3,4122.4) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.779] Bullet scan: start=(32640.3,4122.4) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=2 closestNpc=105
+[02:00:37.874] Bullet spawn: owner=0 pos=(32640.3,4122.9) vel=(-1.00,-0.01) aimRot=-3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.876] Bullet scan: start=(32640.3,4122.9) dir=(-1.00,-0.01) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:37.877] Bullet hit: target=105 dmg=15 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:37.977] Bullet spawn: owner=0 pos=(32640.3,4123.4) vel=(-1.00,0.04) aimRot=3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:37.979] Bullet scan: start=(32640.3,4123.4) dir=(-1.00,0.04) aimRot=3.10 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.1 dist=71.1 npcHits=1 closestNpc=105
+[02:00:38.074] Bullet spawn: owner=0 pos=(32640.3,4122.8) vel=(-1.00,-0.03) aimRot=-3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.076] Bullet scan: start=(32640.3,4122.8) dir=(-1.00,-0.03) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:38.077] Bullet hit: target=105 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:38.177] Bullet spawn: owner=0 pos=(32640.3,4123.4) vel=(-1.00,0.06) aimRot=3.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.180] Bullet scan: start=(32640.3,4123.4) dir=(-1.00,0.06) aimRot=3.09 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.1 dist=71.1 npcHits=1 closestNpc=105
+[02:00:38.274] Bullet spawn: owner=0 pos=(32640.3,4122.1) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.277] Bullet scan: start=(32640.3,4122.1) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:38.377] Bullet spawn: owner=0 pos=(32640.3,4123.7) vel=(-1.00,0.09) aimRot=3.05 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.380] Bullet scan: start=(32640.3,4123.7) dir=(-1.00,0.09) aimRot=3.05 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:38.380] Bullet hit: target=105 dmg=21 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:38.474] Bullet spawn: owner=0 pos=(32640.3,4123.9) vel=(-0.99,0.12) aimRot=3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.476] Bullet scan: start=(32640.3,4123.9) dir=(-0.99,0.12) aimRot=3.03 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=144.0 tile=144.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:38.577] Bullet spawn: owner=0 pos=(32640.3,4122.8) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.579] Bullet scan: start=(32640.3,4122.8) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:38.580] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:38.675] Bullet spawn: owner=0 pos=(32640.4,4124.2) vel=(-0.99,0.15) aimRot=2.99 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.678] Bullet scan: start=(32640.4,4124.2) dir=(-0.99,0.15) aimRot=2.99 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.5 dist=71.5 npcHits=1 closestNpc=105
+[02:00:38.678] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:38.777] Bullet spawn: owner=0 pos=(32640.4,4121.6) vel=(-0.99,-0.17) aimRot=-2.97 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.779] Bullet scan: start=(32640.4,4121.6) dir=(-0.99,-0.17) aimRot=-2.97 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.6 dist=71.6 npcHits=1 closestNpc=105
+[02:00:38.779] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:38.874] Bullet spawn: owner=0 pos=(32640.3,4122.1) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.877] Bullet scan: start=(32640.3,4122.1) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=1 closestNpc=105
+[02:00:38.877] Bullet hit: target=105 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:38.977] Bullet spawn: owner=0 pos=(32640.3,4123.5) vel=(-1.00,0.06) aimRot=3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:38.979] Bullet scan: start=(32640.3,4123.5) dir=(-1.00,0.06) aimRot=3.08 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=140.0 tile=140.0 npc=71.1 dist=71.1 npcHits=1 closestNpc=105
+[02:00:38.979] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:39.074] Bullet spawn: owner=0 pos=(32640.3,4123.0) vel=(-1.00,0.00) aimRot=3.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:39.077] Bullet scan: start=(32640.3,4123.0) dir=(-1.00,0.00) aimRot=3.14 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.3 dist=71.3 npcHits=7 closestNpc=105
+[02:00:39.177] Bullet spawn: owner=0 pos=(32640.4,4124.2) vel=(-0.99,0.14) aimRot=3.00 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:39.181] Bullet scan: start=(32640.4,4124.2) dir=(-0.99,0.14) aimRot=3.00 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.4 dist=71.4 npcHits=1 closestNpc=105
+[02:00:39.181] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:39.274] Bullet spawn: owner=0 pos=(32640.3,4122.8) vel=(-1.00,-0.02) aimRot=-3.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:39.277] Bullet scan: start=(32640.3,4122.8) dir=(-1.00,-0.02) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.2 dist=71.2 npcHits=7 closestNpc=105
+[02:00:39.377] Bullet spawn: owner=0 pos=(32640.3,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:39.379] Bullet scan: start=(32640.3,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=3 closestNpc=105
+[02:00:39.474] Bullet spawn: owner=0 pos=(32640.3,4122.4) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[02:00:39.476] Bullet scan: start=(32640.3,4122.4) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.1 dist=71.1 npcHits=2 closestNpc=105
+[02:00:40.711] Bullet spawn: owner=0 pos=(32637.3,4123.9) vel=(-1.00,0.08) aimRot=3.06 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:40.713] Bullet scan: start=(32637.3,4123.9) dir=(-1.00,0.08) aimRot=3.06 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=140.0 tile=140.0 npc=68.1 dist=68.1 npcHits=1 closestNpc=105
+[02:00:41.141] Bullet spawn: owner=0 pos=(32637.3,4123.6) vel=(-1.00,0.05) aimRot=3.09 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:41.144] Bullet scan: start=(32637.3,4123.6) dir=(-1.00,0.05) aimRot=3.09 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=140.0 tile=140.0 npc=68.1 dist=68.1 npcHits=1 closestNpc=105
+[02:00:43.110] Bullet spawn: owner=0 pos=(32637.3,4123.9) vel=(-1.00,0.08) aimRot=3.06 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:43.112] Bullet scan: start=(32637.3,4123.9) dir=(-1.00,0.08) aimRot=3.06 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=140.0 tile=140.0 npc=68.1 dist=68.1 npcHits=1 closestNpc=105
+[02:00:43.113] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:43.541] Bullet spawn: owner=0 pos=(32637.3,4123.1) vel=(-1.00,0.01) aimRot=3.13 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:43.543] Bullet scan: start=(32637.3,4123.1) dir=(-1.00,0.01) aimRot=3.13 ignoreTiles=False blocked=True usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=68.2 dist=68.2 npcHits=7 closestNpc=105
+[02:00:43.544] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:43.977] Bullet spawn: owner=0 pos=(32637.3,4122.4) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:43.979] Bullet scan: start=(32637.3,4122.4) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=68.1 dist=68.1 npcHits=4 closestNpc=105
+[02:00:44.408] Bullet spawn: owner=0 pos=(32637.4,4121.6) vel=(-0.99,-0.13) aimRot=-3.02 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:44.410] Bullet scan: start=(32637.4,4121.6) dir=(-0.99,-0.13) aimRot=-3.02 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=68.3 dist=68.3 npcHits=1 closestNpc=105
+[02:00:44.410] Bullet hit: target=105 dmg=29 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:44.844] Bullet spawn: owner=0 pos=(32637.4,4121.4) vel=(-0.99,-0.15) aimRot=-2.99 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:44.847] Bullet scan: start=(32637.4,4121.4) dir=(-0.99,-0.15) aimRot=-2.99 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=68.4 dist=68.4 npcHits=1 closestNpc=105
+[02:00:45.275] Bullet spawn: owner=0 pos=(32637.5,4120.7) vel=(-0.98,-0.21) aimRot=-2.93 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:45.277] Bullet scan: start=(32637.5,4120.7) dir=(-0.98,-0.21) aimRot=-2.93 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=69.0 dist=69.0 npcHits=1 closestNpc=105
+[02:00:45.710] Bullet spawn: owner=0 pos=(32637.5,4121.0) vel=(-0.98,-0.18) aimRot=-2.96 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:45.712] Bullet scan: start=(32637.5,4121.0) dir=(-0.98,-0.18) aimRot=-2.96 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=68.7 dist=68.7 npcHits=1 closestNpc=105
+[02:00:45.713] Bullet hit: target=105 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:46.141] Bullet spawn: owner=0 pos=(32637.6,4120.5) vel=(-0.97,-0.23) aimRot=-2.91 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:46.144] Bullet scan: start=(32637.6,4120.5) dir=(-0.97,-0.23) aimRot=-2.91 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=69.3 dist=69.3 npcHits=1 closestNpc=105
+[02:00:46.144] Bullet hit: target=105 dmg=29 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:46.577] Bullet spawn: owner=0 pos=(32637.5,4120.7) vel=(-0.98,-0.21) aimRot=-2.93 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:46.579] Bullet scan: start=(32637.5,4120.7) dir=(-0.98,-0.21) aimRot=-2.93 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=69.0 dist=69.0 npcHits=1 closestNpc=105
+[02:00:46.580] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:48.959] Bullet spawn: owner=0 pos=(32593.4,4123.9) vel=(-1.00,0.08) aimRot=3.06 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:48.962] Bullet scan: start=(32593.4,4123.9) dir=(-1.00,0.08) aimRot=3.06 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=96.0 tile=96.0 npc=24.1 dist=24.1 npcHits=1 closestNpc=105
+[02:00:48.962] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:49.389] Bullet spawn: owner=0 pos=(32593.4,4123.6) vel=(-1.00,0.05) aimRot=3.09 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:49.391] Bullet scan: start=(32593.4,4123.6) dir=(-1.00,0.05) aimRot=3.09 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=96.0 tile=96.0 npc=24.1 dist=24.1 npcHits=1 closestNpc=105
+[02:00:49.392] Bullet hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[02:00:49.825] Bullet spawn: owner=0 pos=(32593.4,4122.8) vel=(-1.00,-0.02) aimRot=-3.13 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:49.827] Bullet scan: start=(32593.4,4122.8) dir=(-1.00,-0.02) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=24.3 dist=24.3 npcHits=7 closestNpc=105
+[02:00:50.256] Bullet spawn: owner=0 pos=(32593.4,4122.1) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[02:00:50.258] Bullet scan: start=(32593.4,4122.1) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=24.0 dist=24.0 npcHits=2 closestNpc=105
+[02:00:50.258] Bullet hit: target=105 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+---- Diagnostic Log Start 2026-01-29 15:49:44 ----
+[15:50:05.066] Slug spawn: owner=0 pos=(32621.0,4122.1) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:05.070] Slug scan: start=(32621.0,4122.1) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:05.083] Slug hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:07.797] Slug spawn: owner=0 pos=(32671.4,4122.7) vel=(-1.00,-0.02) aimRot=-3.12 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:07.799] Slug scan: start=(32671.4,4122.7) dir=(-1.00,-0.02) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:07.809] Slug hit: target=105 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:08.127] Slug spawn: owner=0 pos=(32671.4,4122.7) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:08.130] Slug scan: start=(32671.4,4122.7) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:08.131] Slug hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:08.464] Slug spawn: owner=0 pos=(32671.4,4122.3) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:08.468] Slug scan: start=(32671.4,4122.3) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:08.477] Slug hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:08.813] Slug spawn: owner=0 pos=(32671.4,4122.3) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:08.816] Slug scan: start=(32671.4,4122.3) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:08.817] Slug hit: target=105 dmg=36 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:09.145] Slug spawn: owner=0 pos=(32671.4,4122.6) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:09.148] Slug scan: start=(32671.4,4122.6) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:09.149] Slug hit: target=105 dmg=37 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:09.487] Slug spawn: owner=0 pos=(32671.4,4122.5) vel=(-1.00,-0.04) aimRot=-3.10 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:09.489] Slug scan: start=(32671.4,4122.5) dir=(-1.00,-0.04) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:09.490] Slug hit: target=105 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:09.813] Slug spawn: owner=0 pos=(32671.4,4122.2) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:09.816] Slug scan: start=(32671.4,4122.2) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:09.816] Slug hit: target=105 dmg=32 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:12.042] Slug spawn: owner=0 pos=(32908.4,4122.7) vel=(1.00,-0.03) aimRot=-0.03 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:12.046] Slug scan: start=(32908.4,4122.7) dir=(1.00,-0.03) aimRot=-0.03 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:12.046] Slug hit: target=4 dmg=30 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:12.374] Slug spawn: owner=0 pos=(32902.5,4122.4) vel=(1.00,-0.06) aimRot=-0.06 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:12.377] Slug scan: start=(32902.5,4122.4) dir=(1.00,-0.06) aimRot=-0.06 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:12.377] Slug hit: target=4 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:12.705] Slug spawn: owner=0 pos=(32864.8,4122.0) vel=(1.00,-0.09) aimRot=-0.09 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:12.711] Slug scan: start=(32864.8,4122.0) dir=(1.00,-0.09) aimRot=-0.09 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:12.712] Slug hit: target=4 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:13.040] Slug spawn: owner=0 pos=(32825.4,4121.9) vel=(0.99,-0.10) aimRot=-0.10 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:13.042] Slug scan: start=(32825.4,4121.9) dir=(0.99,-0.10) aimRot=-0.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:13.043] Slug hit: target=4 dmg=38 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:13.373] Slug spawn: owner=0 pos=(32825.2,4121.5) vel=(0.99,-0.14) aimRot=-0.14 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:13.378] Slug scan: start=(32825.2,4121.5) dir=(0.99,-0.14) aimRot=-0.14 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:13.378] Slug hit: target=4 dmg=33 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:13.706] Slug spawn: owner=0 pos=(32825.3,4121.8) vel=(0.99,-0.11) aimRot=-0.11 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:13.708] Slug scan: start=(32825.3,4121.8) dir=(0.99,-0.11) aimRot=-0.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:13.709] Slug hit: target=4 dmg=37 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:14.038] Slug spawn: owner=0 pos=(32825.3,4121.9) vel=(0.99,-0.10) aimRot=-0.10 aimSource=ai dmg=33 kb=3.00 friendly=True penetrate=-1
+[15:50:14.040] Slug scan: start=(32825.3,4121.9) dir=(0.99,-0.10) aimRot=-0.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 dist=1920.0
+[15:50:14.041] Slug hit: target=4 dmg=38 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=-1
+[15:50:15.206] Bullet spawn: owner=0 pos=(32822.3,4123.6) vel=(1.00,0.07) aimRot=0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:15.209] Bullet scan: start=(32822.3,4123.6) dir=(1.00,0.07) aimRot=0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.5 dist=67.5 npcHits=1 closestNpc=4
+[15:50:15.209] Bullet hit: target=4 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:15.343] Bullet spawn: owner=0 pos=(32822.3,4122.9) vel=(1.00,-0.02) aimRot=-0.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:15.347] Bullet scan: start=(32822.3,4122.9) dir=(1.00,-0.02) aimRot=-0.02 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.6 dist=67.6 npcHits=1 closestNpc=4
+[15:50:15.471] Bullet spawn: owner=0 pos=(32822.3,4122.6) vel=(1.00,-0.05) aimRot=-0.05 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:15.474] Bullet scan: start=(32822.3,4122.6) dir=(1.00,-0.05) aimRot=-0.05 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.5 dist=67.5 npcHits=1 closestNpc=4
+[15:50:15.607] Bullet spawn: owner=0 pos=(32822.3,4122.0) vel=(0.99,-0.13) aimRot=-0.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:15.611] Bullet scan: start=(32822.3,4122.0) dir=(0.99,-0.13) aimRot=-0.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.7 dist=67.7 npcHits=1 closestNpc=4
+[15:50:15.611] Bullet hit: target=4 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:15.740] Bullet spawn: owner=0 pos=(32822.0,4120.9) vel=(0.96,-0.27) aimRot=-0.27 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:15.743] Bullet scan: start=(32822.0,4120.9) dir=(0.96,-0.27) aimRot=-0.27 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=69.1 dist=69.1 npcHits=1 closestNpc=4
+[15:50:15.743] Bullet hit: target=4 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:15.873] Bullet spawn: owner=0 pos=(32822.2,4121.4) vel=(0.98,-0.20) aimRot=-0.20 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:15.876] Bullet scan: start=(32822.2,4121.4) dir=(0.98,-0.20) aimRot=-0.20 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=68.2 dist=68.2 npcHits=1 closestNpc=4
+[15:50:15.877] Bullet hit: target=4 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:16.005] Bullet spawn: owner=0 pos=(32821.8,4120.2) vel=(0.94,-0.35) aimRot=-0.36 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.007] Bullet scan: start=(32821.8,4120.2) dir=(0.94,-0.35) aimRot=-0.36 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=70.9 dist=70.9 npcHits=1 closestNpc=4
+[15:50:16.008] Bullet hit: target=4 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:16.138] Bullet spawn: owner=0 pos=(32822.0,4120.8) vel=(0.96,-0.27) aimRot=-0.28 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.140] Bullet scan: start=(32822.0,4120.8) dir=(0.96,-0.27) aimRot=-0.28 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=69.2 dist=69.2 npcHits=1 closestNpc=4
+[15:50:16.275] Bullet spawn: owner=0 pos=(32822.1,4121.2) vel=(0.97,-0.23) aimRot=-0.23 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.278] Bullet scan: start=(32822.1,4121.2) dir=(0.97,-0.23) aimRot=-0.23 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=68.5 dist=68.5 npcHits=1 closestNpc=4
+[15:50:16.278] Bullet hit: target=4 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:16.408] Bullet spawn: owner=0 pos=(32822.3,4122.0) vel=(0.99,-0.12) aimRot=-0.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.410] Bullet scan: start=(32822.3,4122.0) dir=(0.99,-0.12) aimRot=-0.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.6 dist=67.6 npcHits=1 closestNpc=4
+[15:50:16.411] Bullet hit: target=4 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:16.538] Bullet spawn: owner=0 pos=(32822.2,4121.7) vel=(0.99,-0.16) aimRot=-0.16 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.541] Bullet scan: start=(32822.2,4121.7) dir=(0.99,-0.16) aimRot=-0.16 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.9 dist=67.9 npcHits=1 closestNpc=4
+[15:50:16.672] Bullet spawn: owner=0 pos=(32822.0,4120.7) vel=(0.96,-0.29) aimRot=-0.29 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.675] Bullet scan: start=(32822.0,4120.7) dir=(0.96,-0.29) aimRot=-0.29 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=69.5 dist=69.5 npcHits=1 closestNpc=4
+[15:50:16.675] Bullet hit: target=4 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:16.804] Bullet spawn: owner=0 pos=(32822.0,4120.6) vel=(0.95,-0.30) aimRot=-0.31 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.807] Bullet scan: start=(32822.0,4120.6) dir=(0.95,-0.30) aimRot=-0.31 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=69.8 dist=69.8 npcHits=1 closestNpc=4
+[15:50:16.942] Bullet spawn: owner=0 pos=(32821.8,4120.0) vel=(0.93,-0.37) aimRot=-0.38 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:16.945] Bullet scan: start=(32821.8,4120.0) dir=(0.93,-0.37) aimRot=-0.38 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=71.5 dist=71.5 npcHits=1 closestNpc=4
+[15:50:16.945] Bullet hit: target=4 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:50:17.075] Bullet spawn: owner=0 pos=(32821.9,4120.4) vel=(0.94,-0.33) aimRot=-0.33 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:17.077] Bullet scan: start=(32821.9,4120.4) dir=(0.94,-0.33) aimRot=-0.33 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=70.4 dist=70.4 npcHits=1 closestNpc=4
+[15:50:17.206] Bullet spawn: owner=0 pos=(32822.2,4121.4) vel=(0.98,-0.20) aimRot=-0.20 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:50:17.209] Bullet scan: start=(32822.2,4121.4) dir=(0.98,-0.20) aimRot=-0.20 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=68.2 dist=68.2 npcHits=1 closestNpc=4
+---- Diagnostic Log Start 2026-01-29 15:52:29 ----
+---- Diagnostic Log Start 2026-01-29 15:52:43 ----
+[15:53:02.333] Bullet spawn: owner=0 pos=(32625.2,4122.6) vel=(-1.00,-0.05) aimRot=-3.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:02.336] Bullet scan: start=(32625.2,4122.6) dir=(-1.00,-0.05) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=56.0 dist=56.0 npcHits=6 closestNpc=105
+[15:53:02.336] Bullet hit: target=105 dmg=21 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:02.467] Bullet spawn: owner=0 pos=(32631.3,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:02.469] Bullet scan: start=(32631.3,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=62.1 dist=62.1 npcHits=3 closestNpc=105
+[15:53:02.469] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:02.600] Bullet spawn: owner=0 pos=(32642.6,4121.8) vel=(-0.99,-0.15) aimRot=-2.99 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:02.603] Bullet scan: start=(32642.6,4121.8) dir=(-0.99,-0.15) aimRot=-2.99 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=73.6 dist=73.6 npcHits=1 closestNpc=105
+[15:53:02.603] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:02.735] Bullet spawn: owner=0 pos=(32659.0,4121.2) vel=(-0.97,-0.22) aimRot=-2.92 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:02.739] Bullet scan: start=(32659.0,4121.2) dir=(-0.97,-0.22) aimRot=-2.92 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=91.2 dist=91.2 npcHits=1 closestNpc=105
+[15:53:02.740] Bullet hit: target=105 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:02.868] Bullet spawn: owner=0 pos=(32670.2,4122.6) vel=(-1.00,-0.05) aimRot=-3.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:02.870] Bullet scan: start=(32670.2,4122.6) dir=(-1.00,-0.05) aimRot=-3.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=101.0 dist=101.0 npcHits=4 closestNpc=105
+[15:53:02.870] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:03.000] Bullet spawn: owner=0 pos=(32671.2,4121.9) vel=(-0.99,-0.13) aimRot=-3.01 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.002] Bullet scan: start=(32671.2,4121.9) dir=(-0.99,-0.13) aimRot=-3.01 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=102.4 dist=102.4 npcHits=1 closestNpc=105
+[15:53:03.003] Bullet hit: target=105 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:03.134] Bullet spawn: owner=0 pos=(32671.3,4121.2) vel=(-0.97,-0.23) aimRot=-2.91 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.138] Bullet scan: start=(32671.3,4121.2) dir=(-0.97,-0.23) aimRot=-2.91 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:03.264] Bullet spawn: owner=0 pos=(32671.2,4121.7) vel=(-0.99,-0.16) aimRot=-2.98 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.267] Bullet scan: start=(32671.2,4121.7) dir=(-0.99,-0.16) aimRot=-2.98 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=102.7 dist=102.7 npcHits=1 closestNpc=105
+[15:53:03.397] Bullet spawn: owner=0 pos=(32671.5,4120.6) vel=(-0.95,-0.31) aimRot=-2.83 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.401] Bullet scan: start=(32671.5,4120.6) dir=(-0.95,-0.31) aimRot=-2.83 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:03.532] Bullet spawn: owner=0 pos=(32671.2,4122.2) vel=(-0.99,-0.10) aimRot=-3.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.535] Bullet scan: start=(32671.2,4122.2) dir=(-0.99,-0.10) aimRot=-3.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=102.2 dist=102.2 npcHits=1 closestNpc=105
+[15:53:03.664] Bullet spawn: owner=0 pos=(32671.7,4126.0) vel=(-0.93,0.37) aimRot=2.76 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.669] Bullet scan: start=(32671.7,4126.0) dir=(-0.93,0.37) aimRot=2.76 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:03.802] Bullet spawn: owner=0 pos=(32671.4,4125.2) vel=(-0.96,0.28) aimRot=2.86 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.808] Bullet scan: start=(32671.4,4125.2) dir=(-0.96,0.28) aimRot=2.86 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:03.934] Bullet spawn: owner=0 pos=(32667.6,4121.8) vel=(-0.99,-0.14) aimRot=-3.00 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:03.937] Bullet scan: start=(32667.6,4121.8) dir=(-0.99,-0.14) aimRot=-3.00 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=98.9 dist=98.9 npcHits=1 closestNpc=105
+[15:53:04.066] Bullet spawn: owner=0 pos=(32658.9,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:04.068] Bullet scan: start=(32658.9,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=89.8 dist=89.8 npcHits=2 closestNpc=105
+[15:53:04.068] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:04.200] Bullet spawn: owner=0 pos=(32645.3,4121.4) vel=(-0.98,-0.20) aimRot=-2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:04.203] Bullet scan: start=(32645.3,4121.4) dir=(-0.98,-0.20) aimRot=-2.94 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=76.9 dist=76.9 npcHits=1 closestNpc=105
+[15:53:04.334] Bullet spawn: owner=0 pos=(32636.3,4122.4) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:04.336] Bullet scan: start=(32636.3,4122.4) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.2 dist=67.2 npcHits=2 closestNpc=105
+[15:53:04.467] Bullet spawn: owner=0 pos=(32636.2,4124.3) vel=(-0.99,0.17) aimRot=2.97 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:04.470] Bullet scan: start=(32636.2,4124.3) dir=(-0.99,0.17) aimRot=2.97 ignoreTiles=False blocked=True usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.3 dist=67.3 npcHits=1 closestNpc=105
+[15:53:04.470] Bullet hit: target=105 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:04.600] Bullet spawn: owner=0 pos=(32636.2,4122.1) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:04.602] Bullet scan: start=(32636.2,4122.1) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=67.0 dist=67.0 npcHits=1 closestNpc=105
+[15:53:04.734] Bullet spawn: owner=0 pos=(32636.1,4123.2) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:04.736] Bullet scan: start=(32636.1,4123.2) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=136.0 tile=136.0 npc=67.0 dist=67.0 npcHits=1 closestNpc=105
+[15:53:04.736] Bullet hit: target=105 dmg=15 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:05.316] Bullet spawn: owner=0 pos=(32666.5,4107.0) vel=(-0.54,-0.84) aimRot=-2.14 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.320] Bullet scan: start=(32666.5,4107.0) dir=(-0.54,-0.84) aimRot=-2.14 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:05.417] Bullet spawn: owner=0 pos=(32682.6,4106.4) vel=(-0.48,-0.88) aimRot=-2.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.422] Bullet scan: start=(32682.6,4106.4) dir=(-0.48,-0.88) aimRot=-2.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:05.516] Bullet spawn: owner=0 pos=(32695.8,4110.0) vel=(-0.73,-0.69) aimRot=-2.38 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.522] Bullet scan: start=(32695.8,4110.0) dir=(-0.73,-0.69) aimRot=-2.38 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:05.614] Bullet spawn: owner=0 pos=(32711.2,4116.3) vel=(-0.93,-0.36) aimRot=-2.78 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.620] Bullet scan: start=(32711.2,4116.3) dir=(-0.93,-0.36) aimRot=-2.78 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:05.717] Bullet spawn: owner=0 pos=(32731.0,4118.4) vel=(-0.97,-0.24) aimRot=-2.90 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.723] Bullet scan: start=(32731.0,4118.4) dir=(-0.97,-0.24) aimRot=-2.90 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:05.816] Bullet spawn: owner=0 pos=(32751.5,4114.9) vel=(-0.90,-0.43) aimRot=-2.70 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.823] Bullet scan: start=(32751.5,4114.9) dir=(-0.90,-0.43) aimRot=-2.70 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:05.914] Bullet spawn: owner=0 pos=(32765.0,4112.8) vel=(-0.84,-0.54) aimRot=-2.57 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:05.921] Bullet scan: start=(32765.0,4112.8) dir=(-0.84,-0.54) aimRot=-2.57 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:06.016] Bullet spawn: owner=0 pos=(32768.7,4115.5) vel=(-0.92,-0.40) aimRot=-2.73 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:06.023] Bullet scan: start=(32768.7,4115.5) dir=(-0.92,-0.40) aimRot=-2.73 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:06.118] Bullet spawn: owner=0 pos=(32768.7,4115.7) vel=(-0.92,-0.39) aimRot=-2.75 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:06.124] Bullet scan: start=(32768.7,4115.7) dir=(-0.92,-0.39) aimRot=-2.75 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:06.216] Bullet spawn: owner=0 pos=(32767.6,4119.7) vel=(-0.98,-0.18) aimRot=-2.96 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:06.222] Bullet scan: start=(32767.6,4119.7) dir=(-0.98,-0.18) aimRot=-2.96 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:06.314] Bullet spawn: owner=0 pos=(32769.2,4114.8) vel=(-0.90,-0.43) aimRot=-2.69 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:06.321] Bullet scan: start=(32769.2,4114.8) dir=(-0.90,-0.43) aimRot=-2.69 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:07.250] Bullet spawn: owner=0 pos=(32775.2,4123.3) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:07.254] Bullet scan: start=(32775.2,4123.3) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=276.0 tile=276.0 npc=206.1 dist=206.1 npcHits=1 closestNpc=105
+[15:53:07.685] Bullet spawn: owner=0 pos=(32775.2,4122.6) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:07.688] Bullet scan: start=(32775.2,4122.6) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=206.1 dist=206.1 npcHits=6 closestNpc=105
+[15:53:08.116] Bullet spawn: owner=0 pos=(32775.2,4121.8) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:08.118] Bullet scan: start=(32775.2,4121.8) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=206.9 dist=206.9 npcHits=1 closestNpc=105
+[15:53:08.553] Bullet spawn: owner=0 pos=(32775.3,4121.5) vel=(-0.99,-0.14) aimRot=-3.00 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:08.557] Bullet scan: start=(32775.3,4121.5) dir=(-0.99,-0.14) aimRot=-3.00 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[15:53:08.984] Bullet spawn: owner=0 pos=(32775.3,4121.5) vel=(-0.99,-0.13) aimRot=-3.01 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:08.989] Bullet scan: start=(32775.3,4121.5) dir=(-0.99,-0.13) aimRot=-3.01 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=1920.0 dist=1920.0 npcHits=0 closestNpc=-1
+[15:53:09.415] Bullet spawn: owner=0 pos=(32775.2,4122.9) vel=(-1.00,-0.01) aimRot=-3.13 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:09.418] Bullet scan: start=(32775.2,4122.9) dir=(-1.00,-0.01) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=206.1 dist=206.1 npcHits=7 closestNpc=105
+[15:53:09.419] Bullet hit: target=105 dmg=34 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:09.849] Bullet spawn: owner=0 pos=(32775.2,4122.1) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:09.851] Bullet scan: start=(32775.2,4122.1) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=206.5 dist=206.5 npcHits=1 closestNpc=105
+[15:53:10.285] Bullet spawn: owner=0 pos=(32775.2,4122.2) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:10.287] Bullet scan: start=(32775.2,4122.2) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=206.3 dist=206.3 npcHits=1 closestNpc=105
+[15:53:10.716] Bullet spawn: owner=0 pos=(32775.2,4122.8) vel=(-1.00,-0.02) aimRot=-3.13 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:10.718] Bullet scan: start=(32775.2,4122.8) dir=(-1.00,-0.02) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=206.1 dist=206.1 npcHits=7 closestNpc=105
+[15:53:10.718] Bullet hit: target=105 dmg=36 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:13.182] Bullet spawn: owner=0 pos=(32699.4,4123.8) vel=(-1.00,0.07) aimRot=3.07 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:13.184] Bullet scan: start=(32699.4,4123.8) dir=(-1.00,0.07) aimRot=3.07 ignoreTiles=False blocked=True usedFallback=True laser=1920.0 fallback=200.0 tile=200.0 npc=130.4 dist=130.4 npcHits=1 closestNpc=105
+[15:53:13.618] Bullet spawn: owner=0 pos=(32692.7,4122.8) vel=(-1.00,-0.02) aimRot=-3.12 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:13.621] Bullet scan: start=(32692.7,4122.8) dir=(-1.00,-0.02) aimRot=-3.12 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=123.6 dist=123.6 npcHits=7 closestNpc=105
+[15:53:13.621] Bullet hit: target=105 dmg=36 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:14.049] Bullet spawn: owner=0 pos=(32692.7,4122.5) vel=(-1.00,-0.04) aimRot=-3.10 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:14.051] Bullet scan: start=(32692.7,4122.5) dir=(-1.00,-0.04) aimRot=-3.10 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=123.6 dist=123.6 npcHits=5 closestNpc=105
+[15:53:14.485] Bullet spawn: owner=0 pos=(32692.8,4121.8) vel=(-0.99,-0.11) aimRot=-3.03 aimSource=ai dmg=32 kb=3.00 friendly=True penetrate=1
+[15:53:14.488] Bullet scan: start=(32692.8,4121.8) dir=(-0.99,-0.11) aimRot=-3.03 ignoreTiles=False blocked=False usedFallback=False laser=1920.0 fallback=1920.0 tile=1920.0 npc=124.0 dist=124.0 npcHits=1 closestNpc=105
+[15:53:14.489] Bullet hit: target=105 dmg=28 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:28.032] Bullet spawn: owner=0 pos=(32817.9,4122.0) vel=(-0.99,-0.13) aimRot=-3.01 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:28.035] Bullet scan: start=(32817.9,4122.0) dir=(-0.99,-0.13) aimRot=-3.01 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=115.1 dist=115.1 npcHits=1 closestNpc=7
+[15:53:28.163] Bullet spawn: owner=0 pos=(32811.8,4121.7) vel=(-0.99,-0.17) aimRot=-2.97 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:28.166] Bullet scan: start=(32811.8,4121.7) dir=(-0.99,-0.17) aimRot=-2.97 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=109.5 dist=109.5 npcHits=1 closestNpc=7
+[15:53:28.298] Bullet spawn: owner=0 pos=(32806.5,4121.4) vel=(-0.98,-0.20) aimRot=-2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:28.300] Bullet scan: start=(32806.5,4121.4) dir=(-0.98,-0.20) aimRot=-2.94 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=104.6 dist=104.6 npcHits=1 closestNpc=7
+[15:53:31.467] Bullet spawn: owner=0 pos=(32668.0,4122.2) vel=(0.99,-0.10) aimRot=-0.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:31.469] Bullet scan: start=(32668.0,4122.2) dir=(0.99,-0.10) aimRot=-0.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=2.5 dist=2.5 npcHits=1 closestNpc=7
+[15:53:31.600] Bullet spawn: owner=0 pos=(32667.9,4122.1) vel=(0.99,-0.11) aimRot=-0.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:31.603] Bullet scan: start=(32667.9,4122.1) dir=(0.99,-0.11) aimRot=-0.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=2.5 dist=2.5 npcHits=1 closestNpc=7
+[15:53:31.734] Bullet spawn: owner=0 pos=(32667.8,4121.4) vel=(0.98,-0.20) aimRot=-0.20 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:31.737] Bullet scan: start=(32667.8,4121.4) dir=(0.98,-0.20) aimRot=-0.20 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=2.2 dist=2.2 npcHits=1 closestNpc=7
+[15:53:31.737] Bullet hit: target=7 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:31.867] Bullet spawn: owner=0 pos=(32667.8,4121.1) vel=(0.97,-0.24) aimRot=-0.24 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:31.870] Bullet scan: start=(32667.8,4121.1) dir=(0.97,-0.24) aimRot=-0.24 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=2.1 dist=2.1 npcHits=1 closestNpc=7
+[15:53:31.871] Bullet hit: target=7 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:32.000] Bullet spawn: owner=0 pos=(32665.0,4121.4) vel=(0.98,-0.19) aimRot=-0.20 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.002] Bullet scan: start=(32665.0,4121.4) dir=(0.98,-0.19) aimRot=-0.20 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=5.2 dist=5.2 npcHits=1 closestNpc=7
+[15:53:32.134] Bullet spawn: owner=0 pos=(32656.7,4120.4) vel=(0.94,-0.33) aimRot=-0.33 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.136] Bullet scan: start=(32656.7,4120.4) dir=(0.94,-0.33) aimRot=-0.33 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=13.4 dist=13.4 npcHits=1 closestNpc=7
+[15:53:32.137] Bullet hit: target=7 dmg=38 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:32.267] Bullet spawn: owner=0 pos=(32653.5,4121.4) vel=(0.98,-0.21) aimRot=-0.21 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.270] Bullet scan: start=(32653.5,4121.4) dir=(0.98,-0.21) aimRot=-0.21 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:32.401] Bullet spawn: owner=0 pos=(32653.5,4121.4) vel=(0.98,-0.20) aimRot=-0.20 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.404] Bullet scan: start=(32653.5,4121.4) dir=(0.98,-0.20) aimRot=-0.20 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:32.404] Bullet hit: target=7 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:32.530] Bullet spawn: owner=0 pos=(32652.9,4119.7) vel=(0.91,-0.42) aimRot=-0.43 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.534] Bullet scan: start=(32652.9,4119.7) dir=(0.91,-0.42) aimRot=-0.43 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.6 dist=17.6 npcHits=1 closestNpc=7
+[15:53:32.667] Bullet spawn: owner=0 pos=(32653.1,4120.2) vel=(0.94,-0.35) aimRot=-0.36 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.669] Bullet scan: start=(32653.1,4120.2) dir=(0.94,-0.35) aimRot=-0.36 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.2 dist=17.2 npcHits=1 closestNpc=7
+[15:53:32.670] Bullet hit: target=7 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:32.800] Bullet spawn: owner=0 pos=(32653.2,4120.4) vel=(0.95,-0.32) aimRot=-0.33 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.803] Bullet scan: start=(32653.2,4120.4) dir=(0.95,-0.32) aimRot=-0.33 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.1 dist=17.1 npcHits=1 closestNpc=7
+[15:53:32.934] Bullet spawn: owner=0 pos=(32653.6,4122.7) vel=(1.00,-0.04) aimRot=-0.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:32.936] Bullet scan: start=(32653.6,4122.7) dir=(1.00,-0.04) aimRot=-0.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.2 dist=17.2 npcHits=1 closestNpc=7
+[15:53:33.067] Bullet spawn: owner=0 pos=(32653.4,4124.8) vel=(0.98,0.22) aimRot=0.22 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.069] Bullet scan: start=(32653.4,4124.8) dir=(0.98,0.22) aimRot=0.22 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1540.0 tile=1540.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:33.201] Bullet spawn: owner=0 pos=(32653.6,4123.3) vel=(1.00,0.04) aimRot=0.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.203] Bullet scan: start=(32653.6,4123.3) dir=(1.00,0.04) aimRot=0.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.2 dist=17.2 npcHits=1 closestNpc=7
+[15:53:33.204] Bullet hit: target=7 dmg=20 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:33.333] Bullet spawn: owner=0 pos=(32653.6,4122.0) vel=(0.99,-0.13) aimRot=-0.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.336] Bullet scan: start=(32653.6,4122.0) dir=(0.99,-0.13) aimRot=-0.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:33.467] Bullet spawn: owner=0 pos=(32653.5,4121.7) vel=(0.99,-0.16) aimRot=-0.16 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.470] Bullet scan: start=(32653.5,4121.7) dir=(0.99,-0.16) aimRot=-0.16 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:33.470] Bullet hit: target=7 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:33.603] Bullet spawn: owner=0 pos=(32653.6,4124.0) vel=(0.99,0.12) aimRot=0.12 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.606] Bullet scan: start=(32653.6,4124.0) dir=(0.99,0.12) aimRot=0.12 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.0 dist=17.0 npcHits=1 closestNpc=7
+[15:53:33.735] Bullet spawn: owner=0 pos=(32653.6,4123.7) vel=(1.00,0.09) aimRot=0.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.738] Bullet scan: start=(32653.6,4123.7) dir=(1.00,0.09) aimRot=0.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.0 dist=17.0 npcHits=1 closestNpc=7
+[15:53:33.865] Bullet spawn: owner=0 pos=(32653.6,4123.5) vel=(1.00,0.07) aimRot=0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:33.869] Bullet scan: start=(32653.6,4123.5) dir=(1.00,0.07) aimRot=0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.1 dist=17.1 npcHits=1 closestNpc=7
+[15:53:33.869] Bullet hit: target=7 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:33.997] Bullet spawn: owner=0 pos=(32653.6,4123.1) vel=(1.00,0.02) aimRot=0.02 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.000] Bullet scan: start=(32653.6,4123.1) dir=(1.00,0.02) aimRot=0.02 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.3 dist=17.3 npcHits=2 closestNpc=7
+[15:53:34.130] Bullet spawn: owner=0 pos=(32653.6,4123.6) vel=(1.00,0.07) aimRot=0.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.133] Bullet scan: start=(32653.6,4123.6) dir=(1.00,0.07) aimRot=0.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.1 dist=17.1 npcHits=1 closestNpc=7
+[15:53:34.267] Bullet spawn: owner=0 pos=(32653.6,4124.0) vel=(0.99,0.13) aimRot=0.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.269] Bullet scan: start=(32653.6,4124.0) dir=(0.99,0.13) aimRot=0.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:34.269] Bullet hit: target=7 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:34.401] Bullet spawn: owner=0 pos=(32653.6,4123.6) vel=(1.00,0.08) aimRot=0.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.403] Bullet scan: start=(32653.6,4123.6) dir=(1.00,0.08) aimRot=0.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.1 dist=17.1 npcHits=1 closestNpc=7
+[15:53:34.533] Bullet spawn: owner=0 pos=(32653.4,4124.9) vel=(0.97,0.24) aimRot=0.24 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.536] Bullet scan: start=(32653.4,4124.9) dir=(0.97,0.24) aimRot=0.24 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1548.0 tile=1548.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:34.667] Bullet spawn: owner=0 pos=(32653.6,4123.8) vel=(1.00,0.10) aimRot=0.10 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.670] Bullet scan: start=(32653.6,4123.8) dir=(1.00,0.10) aimRot=0.10 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.0 dist=17.0 npcHits=1 closestNpc=7
+[15:53:34.670] Bullet hit: target=7 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:34.800] Bullet spawn: owner=0 pos=(32653.6,4122.1) vel=(0.99,-0.11) aimRot=-0.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.802] Bullet scan: start=(32653.6,4122.1) dir=(0.99,-0.11) aimRot=-0.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.0 dist=17.0 npcHits=1 closestNpc=7
+[15:53:34.934] Bullet spawn: owner=0 pos=(32653.6,4122.3) vel=(1.00,-0.09) aimRot=-0.09 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:34.936] Bullet scan: start=(32653.6,4122.3) dir=(1.00,-0.09) aimRot=-0.09 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.0 dist=17.0 npcHits=1 closestNpc=7
+[15:53:35.067] Bullet spawn: owner=0 pos=(32653.6,4123.1) vel=(1.00,0.01) aimRot=0.01 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:35.069] Bullet scan: start=(32653.6,4123.1) dir=(1.00,0.01) aimRot=0.01 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.3 dist=17.3 npcHits=2 closestNpc=7
+[15:53:35.069] Bullet hit: target=7 dmg=17 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:35.201] Bullet spawn: owner=0 pos=(32653.4,4124.7) vel=(0.98,0.22) aimRot=0.22 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:35.204] Bullet scan: start=(32653.4,4124.7) dir=(0.98,0.22) aimRot=0.22 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1552.0 tile=1552.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:35.204] Bullet hit: target=7 dmg=38 crit=True kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:35.333] Bullet spawn: owner=0 pos=(32653.6,4122.7) vel=(1.00,-0.04) aimRot=-0.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:35.336] Bullet scan: start=(32653.6,4122.7) dir=(1.00,-0.04) aimRot=-0.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=17.2 dist=17.2 npcHits=1 closestNpc=7
+[15:53:35.467] Bullet spawn: owner=0 pos=(32653.4,4124.7) vel=(0.98,0.21) aimRot=0.21 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:35.470] Bullet scan: start=(32653.4,4124.7) dir=(0.98,0.21) aimRot=0.21 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1588.0 tile=1588.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:35.470] Bullet hit: target=7 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:35.600] Bullet spawn: owner=0 pos=(32653.5,4124.5) vel=(0.98,0.19) aimRot=0.19 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:35.603] Bullet scan: start=(32653.5,4124.5) dir=(0.98,0.19) aimRot=0.19 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=1676.0 tile=1676.0 npc=16.9 dist=16.9 npcHits=1 closestNpc=7
+[15:53:35.603] Bullet hit: target=7 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:43.382] Bullet spawn: owner=0 pos=(32768.8,4122.9) vel=(-1.00,-0.02) aimRot=-3.13 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:43.384] Bullet scan: start=(32768.8,4122.9) dir=(-1.00,-0.02) aimRot=-3.13 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=65.8 dist=65.8 npcHits=9 closestNpc=7
+[15:53:43.516] Bullet spawn: owner=0 pos=(32758.2,4122.8) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:43.518] Bullet scan: start=(32758.2,4122.8) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=55.0 dist=55.0 npcHits=8 closestNpc=7
+[15:53:43.649] Bullet spawn: owner=0 pos=(32742.4,4122.2) vel=(-1.00,-0.10) aimRot=-3.05 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:43.651] Bullet scan: start=(32742.4,4122.2) dir=(-1.00,-0.10) aimRot=-3.05 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=39.1 dist=39.1 npcHits=2 closestNpc=7
+[15:53:43.782] Bullet spawn: owner=0 pos=(32721.7,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:43.784] Bullet scan: start=(32721.7,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=18.4 dist=18.4 npcHits=3 closestNpc=7
+[15:53:43.784] Bullet hit: target=7 dmg=19 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:43.915] Bullet spawn: owner=0 pos=(32708.1,4121.6) vel=(-0.98,-0.17) aimRot=-2.97 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:43.917] Bullet scan: start=(32708.1,4121.6) dir=(-0.98,-0.17) aimRot=-2.97 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=4.3 dist=4.3 npcHits=1 closestNpc=7
+[15:53:44.049] Bullet spawn: owner=0 pos=(32706.0,4121.4) vel=(-0.98,-0.20) aimRot=-2.94 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:44.052] Bullet scan: start=(32706.0,4121.4) dir=(-0.98,-0.20) aimRot=-2.94 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=2.1 dist=2.1 npcHits=1 closestNpc=7
+[15:53:46.130] Bullet spawn: owner=0 pos=(33065.5,4122.8) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.133] Bullet scan: start=(33065.5,4122.8) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=362.5 dist=362.5 npcHits=6 closestNpc=7
+[15:53:46.266] Bullet spawn: owner=0 pos=(33069.9,4121.3) vel=(-0.98,-0.21) aimRot=-2.93 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.269] Bullet scan: start=(33069.9,4121.3) dir=(-0.98,-0.21) aimRot=-2.93 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=112.2 dist=112.2 npcHits=1 closestNpc=4
+[15:53:46.294] Bullet hit: target=4 dmg=17 crit=False kb=2.70 dir=1 timeLeft=1 friendly=True pen=1
+[15:53:46.401] Bullet spawn: owner=0 pos=(33065.9,4122.8) vel=(-1.00,-0.03) aimRot=-3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.403] Bullet scan: start=(33065.9,4122.8) dir=(-1.00,-0.03) aimRot=-3.11 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=362.9 dist=362.9 npcHits=4 closestNpc=7
+[15:53:46.404] Bullet hit: target=7 dmg=16 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:46.535] Bullet spawn: owner=0 pos=(33057.0,4122.5) vel=(-1.00,-0.07) aimRot=-3.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.538] Bullet scan: start=(33057.0,4122.5) dir=(-1.00,-0.07) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=354.4 dist=354.4 npcHits=1 closestNpc=7
+[15:53:46.667] Bullet spawn: owner=0 pos=(33050.7,4122.4) vel=(-1.00,-0.08) aimRot=-3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.670] Bullet scan: start=(33050.7,4122.4) dir=(-1.00,-0.08) aimRot=-3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=348.4 dist=348.4 npcHits=1 closestNpc=7
+[15:53:46.670] Bullet hit: target=7 dmg=18 crit=False kb=0.00 dir=1 timeLeft=2 friendly=True pen=1
+[15:53:46.797] Bullet spawn: owner=0 pos=(33050.7,4123.8) vel=(-1.00,0.10) aimRot=3.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.801] Bullet scan: start=(33050.7,4123.8) dir=(-1.00,0.10) aimRot=3.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=28.1 dist=28.1 npcHits=1 closestNpc=4
+[15:53:46.933] Bullet spawn: owner=0 pos=(33050.9,4124.8) vel=(-0.97,0.22) aimRot=2.92 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:46.936] Bullet scan: start=(33050.9,4124.8) dir=(-0.97,0.22) aimRot=2.92 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=27.9 dist=27.9 npcHits=1 closestNpc=4
+[15:53:47.066] Bullet spawn: owner=0 pos=(33050.7,4123.7) vel=(-1.00,0.08) aimRot=3.06 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.069] Bullet scan: start=(33050.7,4123.7) dir=(-1.00,0.08) aimRot=3.06 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=28.1 dist=28.1 npcHits=1 closestNpc=4
+[15:53:47.200] Bullet spawn: owner=0 pos=(33050.7,4122.4) vel=(-1.00,-0.08) aimRot=-3.07 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.202] Bullet scan: start=(33050.7,4122.4) dir=(-1.00,-0.08) aimRot=-3.07 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=348.3 dist=348.3 npcHits=1 closestNpc=7
+[15:53:47.333] Bullet spawn: owner=0 pos=(33050.8,4124.3) vel=(-0.99,0.16) aimRot=2.98 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.336] Bullet scan: start=(33050.8,4124.3) dir=(-0.99,0.16) aimRot=2.98 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=28.1 dist=28.1 npcHits=1 closestNpc=4
+[15:53:47.467] Bullet spawn: owner=0 pos=(33050.9,4124.9) vel=(-0.97,0.24) aimRot=2.90 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.470] Bullet scan: start=(33050.9,4124.9) dir=(-0.97,0.24) aimRot=2.90 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=27.8 dist=27.8 npcHits=1 closestNpc=4
+[15:53:47.600] Bullet spawn: owner=0 pos=(33050.7,4123.8) vel=(-1.00,0.10) aimRot=3.05 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.602] Bullet scan: start=(33050.7,4123.8) dir=(-1.00,0.10) aimRot=3.05 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=18.4 dist=18.4 npcHits=1 closestNpc=4
+[15:53:47.733] Bullet spawn: owner=0 pos=(33050.0,4124.1) vel=(-0.99,0.14) aimRot=3.00 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.738] Bullet scan: start=(33050.0,4124.1) dir=(-0.99,0.14) aimRot=3.00 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:47.867] Bullet spawn: owner=0 pos=(33044.7,4124.9) vel=(-0.97,0.24) aimRot=2.90 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:47.872] Bullet scan: start=(33044.7,4124.9) dir=(-0.97,0.24) aimRot=2.90 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:47.997] Bullet spawn: owner=0 pos=(33034.2,4125.1) vel=(-0.97,0.26) aimRot=2.88 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:48.002] Bullet scan: start=(33034.2,4125.1) dir=(-0.97,0.26) aimRot=2.88 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:48.131] Bullet spawn: owner=0 pos=(33018.2,4123.3) vel=(-1.00,0.03) aimRot=3.11 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:48.134] Bullet scan: start=(33018.2,4123.3) dir=(-1.00,0.03) aimRot=3.11 ignoreTiles=False blocked=True usedFallback=True laser=1728.0 fallback=520.0 tile=520.0 npc=299.1 dist=299.1 npcHits=4 closestNpc=6
+[15:53:48.266] Bullet spawn: owner=0 pos=(32997.5,4122.2) vel=(-1.00,-0.10) aimRot=-3.04 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:48.269] Bullet scan: start=(32997.5,4122.2) dir=(-1.00,-0.10) aimRot=-3.04 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=295.4 dist=295.4 npcHits=1 closestNpc=7
+[15:53:48.397] Bullet spawn: owner=0 pos=(32973.5,4119.2) vel=(-0.88,-0.47) aimRot=-2.65 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:48.402] Bullet scan: start=(32973.5,4119.2) dir=(-0.88,-0.47) aimRot=-2.65 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:48.530] Bullet spawn: owner=0 pos=(32946.1,4120.0) vel=(-0.92,-0.38) aimRot=-2.75 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:48.536] Bullet scan: start=(32946.1,4120.0) dir=(-0.92,-0.38) aimRot=-2.75 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=1728.0 dist=1728.0 npcHits=0 closestNpc=-1
+[15:53:48.667] Bullet spawn: owner=0 pos=(32921.3,4122.5) vel=(-1.00,-0.06) aimRot=-3.08 aimSource=ai dmg=18 kb=2.50 friendly=True penetrate=1
+[15:53:48.669] Bullet scan: start=(32921.3,4122.5) dir=(-1.00,-0.06) aimRot=-3.08 ignoreTiles=False blocked=False usedFallback=False laser=1728.0 fallback=1728.0 tile=1728.0 npc=218.5 dist=218.5 npcHits=2 closestNpc=7
+---- Diagnostic Log Start 2026-01-29 16:08:25 ----
+---- Diagnostic Log Start 2026-01-29 16:15:19 ----
+---- Diagnostic Log Start 2026-01-29 16:23:43 ----
+---- Diagnostic Log Start 2026-01-29 16:28:50 ----
+---- Diagnostic Log Start 2026-01-29 16:33:02 ----
+---- Diagnostic Log Start 2026-01-29 16:35:55 ----
+---- Diagnostic Log Start 2026-01-29 16:43:00 ----
+---- Diagnostic Log Start 2026-01-29 16:57:02 ----
+---- Diagnostic Log Start 2026-01-29 17:02:42 ----
+---- Diagnostic Log Start 2026-01-29 17:10:58 ----
+---- Diagnostic Log Start 2026-01-29 17:16:39 ----
+---- Diagnostic Log Start 2026-01-29 17:22:33 ----
+---- Diagnostic Log Start 2026-01-29 17:24:00 ----
+---- Diagnostic Log Start 2026-01-29 18:27:24 ----
+---- Diagnostic Log Start 2026-01-29 18:35:03 ----
+---- Diagnostic Log Start 2026-01-29 18:38:58 ----
+---- Diagnostic Log Start 2026-01-29 18:44:13 ----
+---- Diagnostic Log Start 2026-01-29 19:18:42 ----
+---- Diagnostic Log Start 2026-01-29 19:21:14 ----
+---- Diagnostic Log Start 2026-01-29 19:25:06 ----
+---- Diagnostic Log Start 2026-01-29 19:34:40 ----
+---- Diagnostic Log Start 2026-01-29 19:57:15 ----

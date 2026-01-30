@@ -12,20 +12,18 @@ namespace Destiny2.Content.Projectiles
 	public sealed class ExplosiveShadowSlug : ModProjectile
 	{
 		private const float MaxDistance = 1200f;
-		private const float DustSpacing = 6f;
+		private const float DustSpacing = 2.5f;
 		private const float SwirlAmplitude = 6f;
 		private const float SwirlCycles = 6f;
 		private const int StickTime = 60 * 10;
 		private const float StickyDustRadius = 6f;
-		private const float CollisionWidth = 8f;
-		private const int LaserSampleCount = 3;
-		private const bool EnableScanDebug = true;
-		private static ulong lastScanDebugTick;
+		private const float Speed = 28f; 
+		private const int ExtraUpdates = 3;
 
-		private Vector2 hitStart;
-		private Vector2 hitEnd;
-		private bool lineReady;
+		private Vector2 spawnPosition;
+		private bool initialized;
 		private float maxDistance = MaxDistance;
+		private float totalTraveledDistance;
 
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
 
@@ -36,18 +34,18 @@ namespace Destiny2.Content.Projectiles
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
 			Projectile.DamageType = DamageClass.Ranged;
-			Projectile.timeLeft = 2;
+			Projectile.timeLeft = 60;
 			Projectile.aiStyle = -1;
-			Projectile.extraUpdates = 0;
-			Projectile.tileCollide = false;
+			Projectile.extraUpdates = ExtraUpdates;
+			Projectile.tileCollide = true;
 			Projectile.hide = true;
+			
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = -1;
 		}
 
 		public override void OnSpawn(IEntitySource source)
 		{
-			if (float.IsNaN(Projectile.ai[1]) || float.IsInfinity(Projectile.ai[1]))
-				Projectile.ai[1] = 0f;
-
 			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
 			{
 				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
@@ -55,23 +53,13 @@ namespace Destiny2.Content.Projectiles
 					maxDistance = Math.Max(16f, maxFalloffTiles * 3f * 16f);
 			}
 
-			string aimSource = "ai";
-			if (Projectile.ai[1] == 0f)
-			{
-				if (Projectile.velocity.LengthSquared() > 0.0001f)
-				{
-					Projectile.ai[1] = Projectile.velocity.ToRotation();
-					aimSource = "vel";
-				}
-				else
-				{
-					Projectile.ai[1] = GetFallbackAimRotation();
-					aimSource = "fallback";
-				}
-			}
+			spawnPosition = Projectile.Center;
+			totalTraveledDistance = 0f;
 
-			if (EnableScanDebug && Main.netMode != NetmodeID.Server && aimSource == "fallback")
-				LogSpawnDebug(Projectile, aimSource);
+			if (Projectile.velocity != Vector2.Zero)
+				Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+
+			initialized = true;
 		}
 
 		public bool IsStickingToTarget
@@ -88,8 +76,8 @@ namespace Destiny2.Content.Projectiles
 
 		private float StickTimer
 		{
-			get => Projectile.localAI[1];
-			set => Projectile.localAI[1] = value;
+			get => Projectile.localAI[0]; // Use [0] for timer now that we don't need it for position
+			set => Projectile.localAI[0] = value;
 		}
 
 		public override void AI()
@@ -100,32 +88,23 @@ namespace Destiny2.Content.Projectiles
 				return;
 			}
 
-			if (Projectile.localAI[0] != 0f)
+			if (!initialized)
 				return;
 
-			Projectile.localAI[0] = 1f;
-			Vector2 start = Projectile.Center;
-			float aimRot = Projectile.ai[1];
-			Vector2 direction = aimRot.ToRotationVector2();
-			if (!IsFinite(direction))
-				direction = GetFallbackAimDirection();
+			// oldPos[0] is the position from the previous frame (before movement)
+			Vector2 lastPosition = Projectile.oldPos[0] == Vector2.Zero ? Projectile.Center : Projectile.oldPos[0];
+			float segmentLength = Vector2.Distance(lastPosition, Projectile.Center);
+			
+			if (segmentLength > 0.1f)
+			{
+				SpawnEnergyDustSegment(lastPosition, Projectile.Center, totalTraveledDistance);
+				totalTraveledDistance += segmentLength;
+			}
 
-			bool ignoreTiles = Projectile.ai[2] != 0f;
-			float distance = ignoreTiles ? maxDistance : GetTileCollisionDistance(start, direction, maxDistance);
-			Vector2 end = start + direction * distance;
-			end = TruncateToNpcHit(start, end);
-
-			if (EnableScanDebug && Main.netMode != NetmodeID.Server)
-				LogScanDebug(Projectile, start, direction, maxDistance, distance, aimRot, ignoreTiles);
-
-			hitStart = start;
-			hitEnd = end;
-			lineReady = true;
-
-			SpawnEnergyDust(start, end);
-
-			Projectile.velocity = Vector2.Zero;
-			Projectile.timeLeft = 1;
+			if (totalTraveledDistance >= maxDistance)
+			{
+				Projectile.Kill();
+			}
 		}
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -146,30 +125,26 @@ namespace Destiny2.Content.Projectiles
 			Projectile.friendly = false;
 			Projectile.timeLeft = StickTime;
 			Projectile.damage = 0;
+			
+			// Velocity now stores the offset from target center to impact point
+			// This allows StickyAI to maintain the relative position as the target moves
+			Projectile.velocity = Projectile.Center - target.Center;
+			
 			Projectile.netUpdate = true;
-
-			if (lineReady)
-				Projectile.Center = hitEnd;
-
-			Projectile.velocity = target.Center - Projectile.Center;
 		}
 
-		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+		public override void Kill(int timeLeft)
 		{
-			if (IsStickingToTarget)
-				return false;
-
-			if (!lineReady)
-				return false;
-
-			float collisionPoint = 0f;
-			return Collision.CheckAABBvLineCollision(
-				targetHitbox.TopLeft(),
-				targetHitbox.Size(),
-				hitStart,
-				hitEnd,
-				CollisionWidth,
-				ref collisionPoint);
+			// Only spawn end-cap dust if we didn't stick (if we stuck, the projectile continues living)
+			if (!IsStickingToTarget)
+			{
+				Vector2 lastPosition = Projectile.oldPos[0] == Vector2.Zero ? Projectile.Center : Projectile.oldPos[0];
+				if (lastPosition != Projectile.Center)
+				{
+					SpawnEnergyDustSegment(lastPosition, Projectile.Center, totalTraveledDistance);
+				}
+			}
+			base.OnKill(timeLeft);
 		}
 
 		private void StickyAI()
@@ -177,6 +152,7 @@ namespace Destiny2.Content.Projectiles
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
 			Projectile.friendly = false;
+			
 			StickTimer += 1f;
 
 			int npcTarget = TargetWhoAmI;
@@ -193,8 +169,10 @@ namespace Destiny2.Content.Projectiles
 				return;
 			}
 
-			Projectile.Center = target.Center - Projectile.velocity;
+			// Maintain the same relative position to the target's center
+			Projectile.Center = target.Center + Projectile.velocity;
 			Projectile.gfxOffY = target.gfxOffY;
+			
 			SpawnStickyDust(Projectile.Center);
 		}
 
@@ -220,145 +198,35 @@ namespace Destiny2.Content.Projectiles
 				Lighting.AddLight(center, 0.08f, 0.08f, 0.08f);
 		}
 
-		private static float GetTileCollisionDistance(Vector2 start, Vector2 direction, float maxDistance)
+		private static void SpawnEnergyDustSegment(Vector2 start, Vector2 end, float distanceTraveled)
 		{
-			return ScanDistance(start, direction, maxDistance);
-		}
-
-		private static void LogScanDebug(Projectile projectile, Vector2 start, Vector2 direction, float maxDistance, float distance,
-			float aimRot, bool ignoreTiles)
-		{
-			ulong tick = Main.GameUpdateCount;
-			if (tick == lastScanDebugTick)
+			float segmentLength = Vector2.Distance(start, end);
+			if (segmentLength <= 0f)
 				return;
 
-			lastScanDebugTick = tick;
-			int owner = projectile?.owner ?? -1;
-			bool ownerOnGround = false;
-			if (owner >= 0 && owner < Main.maxPlayers)
-				ownerOnGround = Main.player[owner].velocity.Y == 0f;
-
-			float velLen = projectile?.velocity.Length() ?? 0f;
-			Destiny2.LogHitscan(
-				$"Slug scan: owner={owner} onGround={ownerOnGround} start=({start.X:0.0},{start.Y:0.0}) velLen={velLen:0.00} aimRot={aimRot:0.00} dir=({direction.X:0.00},{direction.Y:0.00}) ignoreTiles={ignoreTiles} max={maxDistance:0} dist={distance:0.0}");
-		}
-
-		private static void LogSpawnDebug(Projectile projectile, string aimSource)
-		{
-			ulong tick = Main.GameUpdateCount;
-			if (tick == lastScanDebugTick)
-				return;
-
-			lastScanDebugTick = tick;
-			int owner = projectile?.owner ?? -1;
-			float velLen = projectile?.velocity.Length() ?? 0f;
-			float aimRot = projectile?.ai[1] ?? 0f;
-			Vector2 dir = aimRot.ToRotationVector2();
-			Destiny2.LogHitscan(
-				$"Slug spawn: owner={owner} velLen={velLen:0.00} aimSource={aimSource} aimRot={aimRot:0.00} dir=({dir.X:0.00},{dir.Y:0.00}) pos=({projectile?.Center.X:0.0},{projectile?.Center.Y:0.0})");
-		}
-
-		private Vector2 GetFallbackAimDirection()
-		{
-			int owner = Projectile.owner;
-			if (owner >= 0 && owner < Main.maxPlayers)
-			{
-				Player player = Main.player[owner];
-				if (player != null)
-				{
-					if (Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer)
-					{
-						Vector2 aim = Main.MouseWorld - player.MountedCenter;
-						if (aim.LengthSquared() > 0.0001f)
-							return aim.SafeNormalize(Vector2.UnitX);
-					}
-
-					return new Vector2(player.direction, 0f);
-				}
-			}
-
-			return Vector2.UnitX;
-		}
-
-		private float GetFallbackAimRotation()
-		{
-			Vector2 direction = GetFallbackAimDirection();
-			return direction.ToRotation();
-		}
-
-		private static bool IsFinite(Vector2 value)
-		{
-			return !float.IsNaN(value.X) && !float.IsNaN(value.Y) && !float.IsInfinity(value.X) && !float.IsInfinity(value.Y);
-		}
-
-		private static float ScanDistance(Vector2 start, Vector2 direction, float maxDistance)
-		{
-			float[] samples = new float[LaserSampleCount];
-			Vector2 end = start + direction * maxDistance;
-			Collision.LaserScan(start, end, 1f, LaserSampleCount, samples);
-
-			float distance = 0f;
-			for (int i = 0; i < LaserSampleCount; i++)
-				distance += samples[i];
-
-			distance /= LaserSampleCount;
-			return MathHelper.Clamp(distance, 0f, maxDistance);
-		}
-
-		private static Vector2 TruncateToNpcHit(Vector2 start, Vector2 end)
-		{
-			float closest = Vector2.Distance(start, end);
-			bool found = false;
-
-			for (int i = 0; i < Main.maxNPCs; i++)
-			{
-				NPC npc = Main.npc[i];
-				if (!npc.active || npc.friendly || npc.dontTakeDamage)
-					continue;
-
-				float collisionPoint = 0f;
-				if (Collision.CheckAABBvLineCollision(npc.Hitbox.TopLeft(), npc.Hitbox.Size(), start, end, 2f, ref collisionPoint))
-				{
-					if (collisionPoint < closest)
-					{
-						closest = collisionPoint;
-						found = true;
-					}
-				}
-			}
-
-			if (!found)
-				return end;
-
-			Vector2 direction = (end - start).SafeNormalize(Vector2.UnitX);
-			return start + direction * closest;
-		}
-
-		private static void SpawnEnergyDust(Vector2 start, Vector2 end)
-		{
-			float length = Vector2.Distance(start, end);
-			if (length <= 1f)
-				return;
-
-			Vector2 direction = (end - start) / length;
+			Vector2 direction = (end - start) / segmentLength;
 			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
-			int count = Math.Max(2, (int)(length / DustSpacing));
-			float cycles = Math.Max(1f, SwirlCycles * (length / 240f));
+			
+			int count = Math.Max(1, (int)(segmentLength / DustSpacing));
+			float phasePerPixel = (SwirlCycles * MathHelper.TwoPi) / 240f;
 
 			for (int i = 0; i < count; i++)
 			{
-				float t = i / (float)(count - 1);
-				float phase = t * MathHelper.TwoPi * cycles;
+				float localT = (i + 0.5f) / count;
+				Vector2 pos = Vector2.Lerp(start, end, localT);
+				float globalDist = distanceTraveled + (localT * segmentLength);
+				float phase = globalDist * phasePerPixel;
+				
 				float amplitude = SwirlAmplitude * (0.6f + 0.4f * (float)Math.Sin(phase * 0.5f));
 				Vector2 swirlOffset = perpendicular * (float)Math.Sin(phase) * amplitude;
-				Vector2 pos = Vector2.Lerp(start, end, t) + swirlOffset;
+				Vector2 dustPos = pos + swirlOffset;
 
-				Dust light = Dust.NewDustPerfect(pos, DustID.WhiteTorch, Vector2.Zero, 100, default, 1.2f);
+				Dust light = Dust.NewDustPerfect(dustPos, DustID.WhiteTorch, Vector2.Zero, 100, default, 1.2f);
 				light.noGravity = true;
 				light.fadeIn = 1.1f;
 				light.velocity = perpendicular * (float)Math.Cos(phase) * 0.4f + direction * 0.2f;
 
-				Vector2 darkPos = pos - swirlOffset * 0.4f;
+				Vector2 darkPos = dustPos - swirlOffset * 0.4f;
 				Dust dark = Dust.NewDustPerfect(darkPos, DustID.Wraith, Vector2.Zero, 200, new Color(0,177,255), 1.4f);
 				dark.noGravity = true;
 				dark.fadeIn = 0.9f;
