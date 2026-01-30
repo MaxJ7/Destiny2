@@ -144,21 +144,7 @@ namespace Destiny2.Content.Projectiles
 		private static void GetDustStyle(Destiny2WeaponElement element, out int dustType, out Color dustColor)
 		{
 			dustType = DustID.WhiteTorch;
-			dustColor = GetElementColor(element);
-		}
-
-		private static Color GetElementColor(Destiny2WeaponElement element)
-		{
-			return element switch
-			{
-				Destiny2WeaponElement.Void => new Color(196, 0, 240),
-				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
-				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
-				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
-				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
-				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
-				_ => new Color(255, 248, 163)
-			};
+			dustColor = element.GetElementColor();
 		}
 
 		private static Color ShiftHue(Color color, float shift)

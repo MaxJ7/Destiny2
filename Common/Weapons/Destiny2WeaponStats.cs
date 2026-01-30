@@ -42,14 +42,6 @@ namespace Destiny2.Common.Weapons
 		private const string ElementTooltipPrefix = "Destiny2Element_";
 		private const string PerkIconsTooltipName = "Destiny2PerkIcons";
 		private const int TicksPerSecond = 60;
-		private static readonly string[] PerkSlotNames = new[]
-		{
-			"Barrel",
-			"Magazine",
-			"Major Perk",
-			"Major Perk"
-		};
-
 		private struct KineticTremorsTargetState
 		{
 			public int HitCount;
@@ -95,6 +87,7 @@ namespace Destiny2.Common.Weapons
 		private int dynamicSwayStacks;
 		private int rightChoiceShotCount;
 		private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
+		private readonly List<int> kineticTremorsTargetKeys = new List<int>();
 		private bool hasElementOverride;
 		private Destiny2WeaponElement elementOverride;
 
@@ -521,13 +514,7 @@ namespace Destiny2.Common.Weapons
 
 		public override void HoldItem(Player player)
 		{
-			MarkPickedUp();
-			EnsurePerksRolled();
-			UpdatePerkTimers(player);
-			UpdateReload(player);
-			UpdateReloadAnimation(player);
-			UpdateUseTimeFromStats();
-			SyncDamageTypeToElement();
+			UpdateWeaponState(player);
 		}
 
 		public override void UpdateInventory(Player player)
@@ -535,13 +522,7 @@ namespace Destiny2.Common.Weapons
 			if (player?.HeldItem?.ModItem == this)
 				return;
 
-			MarkPickedUp();
-			EnsurePerksRolled();
-			UpdatePerkTimers(player);
-			UpdateReload(player);
-			UpdateReloadAnimation(player);
-			UpdateUseTimeFromStats();
-			SyncDamageTypeToElement();
+			UpdateWeaponState(player);
 		}
 
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
@@ -1356,10 +1337,13 @@ namespace Destiny2.Common.Weapons
 			if (kineticTremorsTargets.Count == 0)
 				return;
 
-			List<int> keys = new List<int>(kineticTremorsTargets.Keys);
-			for (int i = 0; i < keys.Count; i++)
+			kineticTremorsTargetKeys.Clear();
+			foreach (int key in kineticTremorsTargets.Keys)
+				kineticTremorsTargetKeys.Add(key);
+
+			for (int i = 0; i < kineticTremorsTargetKeys.Count; i++)
 			{
-				int npcId = keys[i];
+				int npcId = kineticTremorsTargetKeys[i];
 				if (npcId < 0 || npcId >= Main.maxNPCs || !Main.npc[npcId].active)
 				{
 					kineticTremorsTargets.Remove(npcId);
@@ -1382,6 +1366,17 @@ namespace Destiny2.Common.Weapons
 				else
 					kineticTremorsTargets[npcId] = state;
 			}
+		}
+
+		private void UpdateWeaponState(Player player)
+		{
+			MarkPickedUp();
+			EnsurePerksRolled();
+			UpdatePerkTimers(player);
+			UpdateReload(player);
+			UpdateReloadAnimation(player);
+			UpdateUseTimeFromStats();
+			SyncDamageTypeToElement();
 		}
 
 		private bool HasPerk<TPerk>() where TPerk : Destiny2Perk
@@ -1421,7 +1416,9 @@ namespace Destiny2.Common.Weapons
 
 		private void SyncDamageTypeToElement()
 		{
-			Item.DamageType = WeaponElement.GetDamageClass();
+			DamageClass damageClass = WeaponElement.GetDamageClass();
+			if (Item.DamageType != damageClass)
+				Item.DamageType = damageClass;
 		}
 
 		public IEnumerable<Destiny2Perk> GetPerks()
@@ -1495,6 +1492,15 @@ namespace Destiny2.Common.Weapons
 				perkKeys.Add(pool[index].Key);
 				pool.RemoveAt(index);
 			}
+		}
+
+		protected static string RollFrom(params string[] keys)
+		{
+			if (keys == null || keys.Length == 0)
+				return null;
+
+			int index = Main.rand.Next(keys.Length);
+			return keys[index];
 		}
 
 		protected void SetPerks(params string[] keys)

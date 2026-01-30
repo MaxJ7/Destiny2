@@ -59,6 +59,10 @@ namespace Destiny2.Common.UI
 		private readonly List<UIText> statTexts = new List<UIText>();
 		private readonly List<PerkEntryElement> perkEntries = new List<PerkEntryElement>();
 		private WeaponPreviewElement previewElement;
+		private readonly string[] lastPerkEntryKeys = new string[PerkRowLabels.Length];
+		private int lastPreviewItemType = -1;
+		private int lastPreviewItemPrefix = -1;
+		private bool hadWeapon;
 
 		public override void OnInitialize()
 		{
@@ -190,7 +194,7 @@ namespace Destiny2.Common.UI
 				UpdatePerkPanelRows(showCatalyst ? PerkRowLabels.Length : PerkRowLabels.Length - 1);
 
 				itemNameText.SetText(item.Name);
-				previewElement.SetItem(item);
+				UpdatePreviewItem(item);
 
 				Destiny2WeaponStats stats = weapon.GetEditableStats();
 				string elementName = weapon.WeaponElement.ToString();
@@ -204,25 +208,34 @@ namespace Destiny2.Common.UI
 				statTexts[6].SetText($"Magazine: {stats.Magazine}");
 				ammoTypeRow.SetValues(weapon.AmmoType);
 
-				SetPerkEntry(0, weapon.FramePerkKey);
-				SetPerkEntry(1, weapon.PerkKeys, 0);
-				SetPerkEntry(2, weapon.PerkKeys, 1);
-				SetPerkEntry(3, weapon.PerkKeys, 2);
-				SetPerkEntry(4, weapon.PerkKeys, 3);
+				SetPerkEntryCached(0, weapon.FramePerkKey);
+				SetPerkEntryCached(1, weapon.PerkKeys, 0);
+				SetPerkEntryCached(2, weapon.PerkKeys, 1);
+				SetPerkEntryCached(3, weapon.PerkKeys, 2);
+				SetPerkEntryCached(4, weapon.PerkKeys, 3);
 				if (showCatalyst)
-					SetPerkEntry(5, weapon.CatalystPerkKey);
+					SetPerkEntryCached(5, weapon.CatalystPerkKey);
+
+				hadWeapon = true;
 				return;
 			}
 
-			UpdatePerkPanelRows(PerkRowLabels.Length - 1);
-			itemNameText.SetText("Weapon: --");
-			previewElement.ClearItem();
-			damageRow.SetValues("-- Damage", Destiny2WeaponElement.Kinetic);
-			for (int i = 0; i < statTexts.Count; i++)
-				statTexts[i].SetText($"{StatRowLabels[i]}: --");
-			ammoTypeRow.SetValues(null);
-			for (int i = 0; i < perkEntries.Count; i++)
-				perkEntries[i].SetEmpty();
+			if (hadWeapon)
+			{
+				UpdatePerkPanelRows(PerkRowLabels.Length - 1);
+				itemNameText.SetText("Weapon: --");
+				previewElement.ClearItem();
+				lastPreviewItemType = -1;
+				lastPreviewItemPrefix = -1;
+				damageRow.SetValues("-- Damage", Destiny2WeaponElement.Kinetic);
+				for (int i = 0; i < statTexts.Count; i++)
+					statTexts[i].SetText($"{StatRowLabels[i]}: --");
+				ammoTypeRow.SetValues(null);
+				for (int i = 0; i < perkEntries.Count; i++)
+					perkEntries[i].SetEmpty();
+				ClearPerkCache();
+				hadWeapon = false;
+			}
 		}
 
 		private void SetPerkEntry(int entryIndex, string perkKey)
@@ -236,10 +249,53 @@ namespace Destiny2.Common.UI
 				perkEntries[entryIndex].SetEmpty();
 		}
 
+		private void SetPerkEntryCached(int entryIndex, string perkKey)
+		{
+			if (entryIndex < 0 || entryIndex >= perkEntries.Count)
+				return;
+
+			string cached = lastPerkEntryKeys[entryIndex];
+			if (string.Equals(cached, perkKey, StringComparison.Ordinal))
+				return;
+
+			lastPerkEntryKeys[entryIndex] = perkKey;
+			SetPerkEntry(entryIndex, perkKey);
+		}
+
 		private void SetPerkEntry(int entryIndex, IReadOnlyList<string> perkKeys, int slotIndex)
 		{
 			string perkKey = perkKeys.Count > slotIndex ? perkKeys[slotIndex] : null;
 			SetPerkEntry(entryIndex, perkKey);
+		}
+
+		private void SetPerkEntryCached(int entryIndex, IReadOnlyList<string> perkKeys, int slotIndex)
+		{
+			string perkKey = perkKeys.Count > slotIndex ? perkKeys[slotIndex] : null;
+			SetPerkEntryCached(entryIndex, perkKey);
+		}
+
+		private void ClearPerkCache()
+		{
+			for (int i = 0; i < lastPerkEntryKeys.Length; i++)
+				lastPerkEntryKeys[i] = null;
+		}
+
+		private void UpdatePreviewItem(Item item)
+		{
+			if (item == null || item.IsAir)
+			{
+				previewElement.ClearItem();
+				lastPreviewItemType = -1;
+				lastPreviewItemPrefix = -1;
+				return;
+			}
+
+			if (item.type == lastPreviewItemType && item.prefix == lastPreviewItemPrefix)
+				return;
+
+			lastPreviewItemType = item.type;
+			lastPreviewItemPrefix = item.prefix;
+			previewElement.SetItem(item);
 		}
 
 		private void UpdatePerkPanelRows(int rowCount)
@@ -265,20 +321,6 @@ namespace Destiny2.Common.UI
 			}
 
 			perkPanel.Recalculate();
-		}
-
-		private static Color GetElementColor(Destiny2WeaponElement element)
-		{
-			return element switch
-			{
-				Destiny2WeaponElement.Void => new Color(196, 0, 240),
-				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
-				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
-				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
-				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
-				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
-				_ => new Color(255, 248, 163)
-			};
 		}
 
 		private sealed class PerkEntryElement : UIElement
@@ -405,7 +447,7 @@ namespace Destiny2.Common.UI
 			public void SetValues(string value, Destiny2WeaponElement element)
 			{
 				text.SetText(value);
-				text.TextColor = GetElementColor(element);
+				text.TextColor = element.GetElementColor();
 				string iconTexture = element.GetIconTexture();
 				icon = ModContent.Request<Texture2D>(iconTexture).Value;
 			}

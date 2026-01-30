@@ -25,6 +25,9 @@ namespace Destiny2.Content.Projectiles
 		private float maxDistance = MaxDistance;
 		private float totalTraveledDistance;
 
+		// localAI[0] and localAI[1] now used for previous position X/Y
+		// timeLeft is used for sticky timer instead of localAI
+
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
 
 		public override void SetDefaults()
@@ -55,6 +58,10 @@ namespace Destiny2.Content.Projectiles
 
 			spawnPosition = Projectile.Center;
 			totalTraveledDistance = 0f;
+			
+			// Initialize previous position to current (so first frame spawns no dust)
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
 
 			if (Projectile.velocity != Vector2.Zero)
 				Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
@@ -74,12 +81,6 @@ namespace Destiny2.Content.Projectiles
 			set => Projectile.ai[1] = value;
 		}
 
-		private float StickTimer
-		{
-			get => Projectile.localAI[0]; // Use [0] for timer now that we don't need it for position
-			set => Projectile.localAI[0] = value;
-		}
-
 		public override void AI()
 		{
 			if (IsStickingToTarget)
@@ -91,8 +92,8 @@ namespace Destiny2.Content.Projectiles
 			if (!initialized)
 				return;
 
-			// oldPos[0] is the position from the previous frame (before movement)
-			Vector2 lastPosition = Projectile.oldPos[0] == Vector2.Zero ? Projectile.Center : Projectile.oldPos[0];
+			// Read previous position from localAI (works correctly across extraUpdates)
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
 			float segmentLength = Vector2.Distance(lastPosition, Projectile.Center);
 			
 			if (segmentLength > 0.1f)
@@ -100,6 +101,10 @@ namespace Destiny2.Content.Projectiles
 				SpawnEnergyDustSegment(lastPosition, Projectile.Center, totalTraveledDistance);
 				totalTraveledDistance += segmentLength;
 			}
+
+			// Store current position for next frame/sub-update
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
 
 			if (totalTraveledDistance >= maxDistance)
 			{
@@ -123,11 +128,10 @@ namespace Destiny2.Content.Projectiles
 			TargetWhoAmI = target.whoAmI;
 			Projectile.tileCollide = false;
 			Projectile.friendly = false;
-			Projectile.timeLeft = StickTime;
+			Projectile.timeLeft = StickTime; // Use timeLeft as timer
 			Projectile.damage = 0;
 			
-			// Velocity now stores the offset from target center to impact point
-			// This allows StickyAI to maintain the relative position as the target moves
+			// Store offset from target center so we can stick to the exact hit location
 			Projectile.velocity = Projectile.Center - target.Center;
 			
 			Projectile.netUpdate = true;
@@ -135,10 +139,10 @@ namespace Destiny2.Content.Projectiles
 
 		public override void Kill(int timeLeft)
 		{
-			// Only spawn end-cap dust if we didn't stick (if we stuck, the projectile continues living)
+			// Only spawn end dust if we didn't stick (if we stuck, projectile keeps living)
 			if (!IsStickingToTarget)
 			{
-				Vector2 lastPosition = Projectile.oldPos[0] == Vector2.Zero ? Projectile.Center : Projectile.oldPos[0];
+				Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
 				if (lastPosition != Projectile.Center)
 				{
 					SpawnEnergyDustSegment(lastPosition, Projectile.Center, totalTraveledDistance);
@@ -152,11 +156,11 @@ namespace Destiny2.Content.Projectiles
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
 			Projectile.friendly = false;
-			
-			StickTimer += 1f;
 
 			int npcTarget = TargetWhoAmI;
-			if (StickTimer >= StickTime || npcTarget < 0 || npcTarget >= Main.maxNPCs)
+			
+			// Check if time expired (timeLeft counts down automatically)
+			if (Projectile.timeLeft <= 0 || npcTarget < 0 || npcTarget >= Main.maxNPCs)
 			{
 				Projectile.Kill();
 				return;
@@ -169,7 +173,7 @@ namespace Destiny2.Content.Projectiles
 				return;
 			}
 
-			// Maintain the same relative position to the target's center
+			// Maintain relative offset to target (velocity stores the offset vector)
 			Projectile.Center = target.Center + Projectile.velocity;
 			Projectile.gfxOffY = target.gfxOffY;
 			

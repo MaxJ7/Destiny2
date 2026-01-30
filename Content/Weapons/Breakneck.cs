@@ -39,15 +39,6 @@ namespace Destiny2.Content.Weapons
 			SetPerks(barrel, magazine, majorOne, majorTwo);
 		}
 
-		private static string RollFrom(params string[] keys)
-		{
-			if (keys == null || keys.Length == 0)
-				return null;
-
-			int index = Main.rand.Next(keys.Length);
-			return keys[index];
-		}
-
 		public override void SetDefaults()
 		{
 			Item.width = 54;

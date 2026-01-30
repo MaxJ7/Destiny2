@@ -59,6 +59,7 @@ namespace Destiny2.Common.UI
 			Destiny2WeaponElement.Arc,
 			Destiny2WeaponElement.Void
 		};
+		private static readonly Dictionary<PerkSlotType, List<Destiny2Perk>> PerksBySlotType = new Dictionary<PerkSlotType, List<Destiny2Perk>>();
 		private UIText itemText;
 		private UIText statsSourceText;
 		private UIText frameText;
@@ -513,6 +514,9 @@ namespace Destiny2.Common.UI
 		private static List<Destiny2Perk> GetPerksForSlot(int slotIndex)
 		{
 			PerkSlotType slotType = slotIndex < PerkSlotTypes.Length ? PerkSlotTypes[slotIndex] : PerkSlotType.Major;
+			if (PerksBySlotType.TryGetValue(slotType, out List<Destiny2Perk> cached))
+				return cached;
+
 			List<Destiny2Perk> perks = new List<Destiny2Perk>();
 			foreach (Destiny2Perk perk in Destiny2PerkSystem.Perks)
 			{
@@ -520,6 +524,7 @@ namespace Destiny2.Common.UI
 					perks.Add(perk);
 			}
 
+			PerksBySlotType[slotType] = perks;
 			return perks;
 		}
 	}
