@@ -1,3 +1,4 @@
+// ExplosiveShadowSlug.cs - Updated Sticky Visuals
 using System;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Weapons;
@@ -11,12 +12,18 @@ namespace Destiny2.Content.Projectiles
 {
 	public sealed class ExplosiveShadowSlug : ModProjectile
 	{
+		// Constants remain the same...
 		private const float MaxDistance = 1200f;
 		private const float DustSpacing = 2.5f;
 		private const float SwirlAmplitude = 6f;
 		private const float SwirlCycles = 6f;
 		private const int StickTime = 60 * 10;
-		private const float StickyDustRadius = 6f;
+		
+		// New constant for the sticky flare appearance
+		private const float FlareLength = 24f;        // How long the stuck tail is (pixels)
+		private const float FlareThickness = 3f;      // How "fat" the flare rod is
+		private const int FlareDustCount = 6;         // Number of dust pairs along the line
+		
 		private const float Speed = 28f; 
 		private const int ExtraUpdates = 3;
 
@@ -24,9 +31,6 @@ namespace Destiny2.Content.Projectiles
 		private bool initialized;
 		private float maxDistance = MaxDistance;
 		private float totalTraveledDistance;
-
-		// localAI[0] and localAI[1] now used for previous position X/Y
-		// timeLeft is used for sticky timer instead of localAI
 
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
 
@@ -42,14 +46,19 @@ namespace Destiny2.Content.Projectiles
 			Projectile.extraUpdates = ExtraUpdates;
 			Projectile.tileCollide = true;
 			Projectile.hide = true;
-			
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = -1;
 		}
 
 		public override void OnSpawn(IEntitySource source)
 		{
-			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
+			Item sourceItem = null;
+			if (source is EntitySource_ItemUse itemUse)
+				sourceItem = itemUse.Item;
+			else if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
+				sourceItem = itemUseWithAmmo.Item;
+
+			if (sourceItem?.ModItem is Destiny2WeaponItem weaponItem)
 			{
 				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
 				if (maxFalloffTiles > 0f)
@@ -58,8 +67,6 @@ namespace Destiny2.Content.Projectiles
 
 			spawnPosition = Projectile.Center;
 			totalTraveledDistance = 0f;
-			
-			// Initialize previous position to current (so first frame spawns no dust)
 			Projectile.localAI[0] = Projectile.Center.X;
 			Projectile.localAI[1] = Projectile.Center.Y;
 
@@ -92,17 +99,28 @@ namespace Destiny2.Content.Projectiles
 			if (!initialized)
 				return;
 
-			// Read previous position from localAI (works correctly across extraUpdates)
 			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
-			float segmentLength = Vector2.Distance(lastPosition, Projectile.Center);
 			
+			if (CheckNPCCollision(lastPosition, Projectile.Center, out NPC hitNPC, out float collisionDist))
+			{
+				Vector2 direction = (Projectile.Center - lastPosition).SafeNormalize(Vector2.UnitX);
+				Vector2 hitPoint = lastPosition + direction * collisionDist;
+				Projectile.Center = hitPoint;
+				
+				if (TryStickToNPC(hitNPC))
+				{
+					SpawnEnergyDustSegment(lastPosition, hitPoint, totalTraveledDistance);
+					return;
+				}
+			}
+			
+			float segmentLength = Vector2.Distance(lastPosition, Projectile.Center);
 			if (segmentLength > 0.1f)
 			{
 				SpawnEnergyDustSegment(lastPosition, Projectile.Center, totalTraveledDistance);
 				totalTraveledDistance += segmentLength;
 			}
 
-			// Store current position for next frame/sub-update
 			Projectile.localAI[0] = Projectile.Center.X;
 			Projectile.localAI[1] = Projectile.Center.Y;
 
@@ -112,34 +130,40 @@ namespace Destiny2.Content.Projectiles
 			}
 		}
 
-		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		private bool TryStickToNPC(NPC target)
 		{
-			if (IsStickingToTarget)
-				return;
-
 			ExplosiveShadowGlobalNPC data = target.GetGlobalNPC<ExplosiveShadowGlobalNPC>();
 			if (data.IsExplosionActive || data.IsExplosionCoolingDown)
 			{
 				Projectile.Kill();
-				return;
+				return false;
 			}
 
 			IsStickingToTarget = true;
 			TargetWhoAmI = target.whoAmI;
 			Projectile.tileCollide = false;
 			Projectile.friendly = false;
-			Projectile.timeLeft = StickTime; // Use timeLeft as timer
+			Projectile.timeLeft = StickTime;
 			Projectile.damage = 0;
 			
-			// Store offset from target center so we can stick to the exact hit location
+			// Store the offset from target center to impact point.
+			// This vector points outward from the enemy's center toward the surface where we hit.
+			// Since we hit the surface from the outside, this points BACK toward where we came from.
 			Projectile.velocity = Projectile.Center - target.Center;
 			
 			Projectile.netUpdate = true;
+			return true;
 		}
 
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			if (IsStickingToTarget) return;
+			TryStickToNPC(target);
+		}
+
+		[Obsolete]
 		public override void Kill(int timeLeft)
 		{
-			// Only spawn end dust if we didn't stick (if we stuck, projectile keeps living)
 			if (!IsStickingToTarget)
 			{
 				Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
@@ -158,8 +182,6 @@ namespace Destiny2.Content.Projectiles
 			Projectile.friendly = false;
 
 			int npcTarget = TargetWhoAmI;
-			
-			// Check if time expired (timeLeft counts down automatically)
 			if (Projectile.timeLeft <= 0 || npcTarget < 0 || npcTarget >= Main.maxNPCs)
 			{
 				Projectile.Kill();
@@ -173,33 +195,137 @@ namespace Destiny2.Content.Projectiles
 				return;
 			}
 
-			// Maintain relative offset to target (velocity stores the offset vector)
+			// Update position to stick to the moving enemy
 			Projectile.Center = target.Center + Projectile.velocity;
 			Projectile.gfxOffY = target.gfxOffY;
 			
-			SpawnStickyDust(Projectile.Center);
+			// -------------------------------------------------------------------------
+			// FLARE VISUALS SETUP
+			// -------------------------------------------------------------------------
+			// The stored Projectile.velocity is actually the offset vector (center -> surface).
+			// Normalizing it gives us the direction pointing OUT of the enemy toward the shooter.
+			Vector2 flareDirection = Projectile.velocity.SafeNormalize(Vector2.UnitX);
+			
+			// Spawn the line of dust forming the "flare rod"
+			SpawnStickyFlare(Projectile.Center, flareDirection);
 		}
 
-		private static void SpawnStickyDust(Vector2 center)
+		// -------------------------------------------------------------------------
+		// NEW METHOD: The Stuck Flare Appearance
+		// -------------------------------------------------------------------------
+		/// <summary>
+		/// Spawns a line of dust particles resembling a vanilla flare bolt stuck in the target.
+		/// The line extends from the hitPoint backward toward the shooter along the direction vector.
+		/// </summary>
+		/// <param name="hitPoint">Where the slug impacted the enemy (start of the line)</param>
+		/// <param name="direction">Unit vector pointing back toward the shooter (along the line)</param>
+		private void SpawnStickyFlare(Vector2 hitPoint, Vector2 direction)
 		{
-			for (int i = 0; i < 3; i++)
+			// Create a perpendicular vector for thickness (rotated 90 degrees / Pi/2 radians)
+			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
+			
+			// Only spawn every 2nd frame to prevent dust spam, but keep it visually dense
+			// "Projectile.timeLeft % 2" alternates between 0 and 1 each tick
+			if (Projectile.timeLeft % 2 != 0) return;
+			
+			// Loop along the length of the flare to place dust particles
+			for (int i = 0; i < FlareDustCount; i++)
 			{
-				float angle = Main.rand.NextFloat(MathHelper.TwoPi);
-				float radius = Main.rand.NextFloat(1f, StickyDustRadius);
-				Vector2 offset = new Vector2(radius, 0f).RotatedBy(angle);
-				Vector2 swirl = offset.RotatedBy(MathHelper.PiOver2).SafeNormalize(Vector2.UnitY);
-
-				Dust light = Dust.NewDustPerfect(center + offset, DustID.WhiteTorch, swirl * 0.6f, 120, default, 1.2f);
-				light.noGravity = true;
-				light.fadeIn = 1.1f;
-
-				Dust dark = Dust.NewDustPerfect(center - offset * 0.3f, DustID.Wraith, -swirl * 0.5f, 200, new Color(0,177,255), 1.2f);
+				// "t" goes from 0.0 (at surface) to 1.0 (at tip of flare)
+				// We calculate this to evenly space dust along the line
+				float t = i / (float)(FlareDustCount - 1);
+				
+				// Position along the center line of the flare rod
+				// hitPoint + (direction * distance)
+				Vector2 linePos = hitPoint + direction * (t * FlareLength);
+				
+				// Add randomness perpendicular to the line to give the rod "volume" (thickness)
+				// This makes it look like a cylinder rather than a laser-thin line
+				float randomOffset = Main.rand.NextFloat(-FlareThickness, FlareThickness);
+				Vector2 finalPos = linePos + perpendicular * randomOffset;
+				
+				// Add slight upward drift to simulate heat/fire rising
+				Vector2 driftVelocity = new Vector2(
+					Main.rand.NextFloat(-0.1f, 0.1f), // Tiny horizontal jitter
+					Main.rand.NextFloat(-0.3f, -0.05f) // Slow upward drift (negative Y is up)
+				);
+				
+				// Scale fades slightly toward the tip (t=1) to make it look like it's burning away
+				float scaleMult = 1f - (t * 0.25f); // 100% size at base, 75% at tip
+				
+				// -----------------------------------------------------------------
+				// LIGHT DUST: The "Core" of the flare (white-hot center)
+				// -----------------------------------------------------------------
+				Dust light = Dust.NewDustPerfect(
+					finalPos,
+					DustID.WhiteTorch,      // Bright white glowing dust
+					driftVelocity,          // Slight upward movement
+					100,                    // Transparency (lower = more transparent)
+					Color.White,            // Override to pure white for intensity
+					1.3f * scaleMult        // Scale with taper
+				);
+				light.noGravity = true;     // Floats in air (burning)
+				light.fadeIn = 1.1f;        // Briefly gets brighter when spawned
+				light.shader = null;        // No special shader effects needed
+				
+				// -----------------------------------------------------------------
+				// DARK DUST: The "Aura" (cyan energy wrapping the core)
+				// Spawned slightly behind (-direction) and offset for volume
+				// -----------------------------------------------------------------
+				Vector2 darkPos = finalPos - direction * 2f + perpendicular * Main.rand.NextFloat(-1.5f, 1.5f);
+				
+				Dust dark = Dust.NewDustPerfect(
+					darkPos,
+					DustID.Wraith,          // Darker, shadowy dust type
+					driftVelocity * 0.8f,   // Slightly slower drift than core
+					180,                    // More transparent than core
+					new Color(0, 177, 255), // Destiny 2 "Void/Arc" cyan-blue tint
+					1.1f * scaleMult        // Slightly smaller than core
+				);
 				dark.noGravity = true;
 				dark.fadeIn = 0.9f;
+				dark.noLight = false;       // This dust emits a tiny bit of light
 			}
+			
+			// Add a pulsing glow at the impact point where the flare enters the flesh/armor
+			// The intensity flickers using Sine wave based on time
+			float pulse = (float)Math.Sin(Main.GameUpdateCount * 0.2f) * 0.03f + 0.08f;
+			Lighting.AddLight(hitPoint, pulse, pulse, pulse * 1.2f); // Slightly blue-tinted light
+		}
 
-			if (Main.rand.NextBool(3))
-				Lighting.AddLight(center, 0.08f, 0.08f, 0.08f);
+		private bool CheckNPCCollision(Vector2 start, Vector2 end, out NPC hitNPC, out float closestDist)
+		{
+			hitNPC = null;
+			closestDist = float.MaxValue;
+			bool found = false;
+
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+				if (!npc.active || npc.dontTakeDamage)
+					continue;
+				
+				if (npc.friendly && npc.type != NPCID.TargetDummy)
+					continue;
+
+				float collisionPoint = 0f;
+				if (Collision.CheckAABBvLineCollision(
+					npc.Hitbox.TopLeft(), 
+					npc.Hitbox.Size(), 
+					start, 
+					end, 
+					Projectile.width, 
+					ref collisionPoint))
+				{
+					if (collisionPoint < closestDist)
+					{
+						closestDist = collisionPoint;
+						hitNPC = npc;
+						found = true;
+					}
+				}
+			}
+			return found;
 		}
 
 		private static void SpawnEnergyDustSegment(Vector2 start, Vector2 end, float distanceTraveled)

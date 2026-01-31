@@ -20,6 +20,9 @@ namespace Destiny2.Content.Projectiles
 		private float maxDistance = MaxDistance;
 		private Destiny2WeaponElement weaponElement = Destiny2WeaponElement.Kinetic;
 
+		// Safety flag to prevent double-hit handling in edge cases.
+		private bool hasDealtDamage;
+
 		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
 
 		public override void SetDefaults()
@@ -35,17 +38,27 @@ namespace Destiny2.Content.Projectiles
 			Projectile.hide = true;
 			Projectile.extraUpdates = ExtraUpdates;
 			
-			// CRITICAL: Ensures rapid fire doesn't cause immunity frame sharing
 			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = -1; // -1 allows hit, then projectile dies (penetrate=1)
+			Projectile.localNPCHitCooldown = -1;
 		}
 
 		public override void OnSpawn(IEntitySource source)
 		{
 			weaponElement = Destiny2WeaponElement.Kinetic;
+			hasDealtDamage = false; // Initialize as not having hit yet
 			Projectile.ai[0] = (int)weaponElement;
 
-			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
+			Item sourceItem = null;
+			if (source is EntitySource_ItemUse itemUse)
+			{
+				sourceItem = itemUse.Item;
+			}
+			else if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
+			{
+				sourceItem = itemUseWithAmmo.Item;
+			}
+
+			if (sourceItem?.ModItem is Destiny2WeaponItem weaponItem)
 			{
 				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
 				if (maxFalloffTiles > 0f)
@@ -54,11 +67,10 @@ namespace Destiny2.Content.Projectiles
 				weaponElement = weaponItem.WeaponElement;
 				Projectile.ai[0] = (int)weaponElement;
 				Projectile.DamageType = weaponElement.GetDamageClass();
+
 			}
 
 			spawnPosition = Projectile.Center;
-			
-			// Initialize "last position" to current so first frame spawns no dust
 			Projectile.localAI[0] = Projectile.Center.X;
 			Projectile.localAI[1] = Projectile.Center.Y;
 
@@ -74,33 +86,53 @@ namespace Destiny2.Content.Projectiles
 			if (!initialized)
 				return;
 
-			// Read last position from localAI (persisted across extraUpdates)
 			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
-			
-			// Spawn dust for the segment traveled this frame
+
 			SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
-			
-			// Update last position for next frame
+
 			Projectile.localAI[0] = Projectile.Center.X;
 			Projectile.localAI[1] = Projectile.Center.Y;
 
-			// Kill if exceeded max range
 			if (Vector2.Distance(spawnPosition, Projectile.Center) >= maxDistance)
 			{
 				Projectile.Kill();
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
-			// Ensures dust is spawned for the final segment if the projectile 
-			// collided and died mid-frame (during extraUpdates)
 			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
 			if (lastPosition != Projectile.Center)
 			{
 				SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
 			}
 			base.OnKill(timeLeft);
+		}
+
+		/// <summary>
+		/// Fallback vanilla hit handler. Prevents double-handling in edge cases.
+		/// </summary>
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			if (hasDealtDamage)
+				return;
+
+			hasDealtDamage = true;
+			global::Destiny2.Destiny2.LogDiagnostic($"Bullet OnHitNPC. projId={Projectile.identity} target={target?.FullName} damage={damageDone}");
+		}
+
+		public override bool? Colliding(Rectangle projHitbox, Rectangle targetHitbox)
+		{
+			Vector2 start = Projectile.Center - Projectile.velocity;
+			Vector2 end = Projectile.Center;
+			float collisionPoint = 0f;
+			return Collision.CheckAABBvLineCollision(
+				targetHitbox.TopLeft(),
+				targetHitbox.Size(),
+				start,
+				end,
+				Projectile.width,
+				ref collisionPoint);
 		}
 
 		private static void SpawnDustSegment(Vector2 start, Vector2 end, Destiny2WeaponElement element)
@@ -113,7 +145,6 @@ namespace Destiny2.Content.Projectiles
 			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
 			float length = Vector2.Distance(start, end);
 			
-			// If no movement (e.g., first frame or stuck), don't spawn
 			if (length < 0.1f) 
 				return;
 				
@@ -144,7 +175,21 @@ namespace Destiny2.Content.Projectiles
 		private static void GetDustStyle(Destiny2WeaponElement element, out int dustType, out Color dustColor)
 		{
 			dustType = DustID.WhiteTorch;
-			dustColor = element.GetElementColor();
+			dustColor = GetElementColor(element);
+		}
+
+		private static Color GetElementColor(Destiny2WeaponElement element)
+		{
+			return element switch
+			{
+				Destiny2WeaponElement.Void => new Color(196, 0, 240),
+				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
+				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
+				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
+				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
+				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
+				_ => new Color(255, 248, 163)
+			};
 		}
 
 		private static Color ShiftHue(Color color, float shift)

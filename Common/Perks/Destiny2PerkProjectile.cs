@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Destiny2.Common.NPCs;
 using Destiny2.Common.Players;
 using Destiny2.Common.Weapons;
+using Destiny2.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -28,19 +30,71 @@ namespace Destiny2.Common.Perks
 		private bool hasKineticTremors;
 		private bool hasAdagio;
 		private bool hasTargetLock;
+		private bool targetLockShotRegistered;
+		private bool targetLockShotHit;
+		private bool hasIncandescent;
 		private bool hasFeedingFrenzy;
 		private bool hasRightChoice;
 		private bool isRightChoiceShot;
 		private bool hasEyesUpGuardian;
 		private bool isEyesUpGuardianRicochet;
+		private bool isEyesUpGuardianShot;
 		private int eyesUpRicochetRemaining;
 		private int eyesUpChainId;
 		private Destiny2WeaponElement eyesUpElement = Destiny2WeaponElement.Kinetic;
+		private bool hasArmorPiercingRounds;
 		private Destiny2WeaponItem sourceWeaponItem;
 		private Destiny2AmmoType ammoType = Destiny2AmmoType.Primary;
 		private Destiny2WeaponElement rightChoiceElement = Destiny2WeaponElement.Kinetic;
 
 		public override bool InstancePerEntity => true;
+
+		private static bool DiagnosticsEnabled => global::Destiny2.Destiny2.DiagnosticsEnabled;
+
+		private static bool IsTrackedProjectile(Projectile projectile)
+		{
+			if (projectile?.ModProjectile?.Mod?.Name != "Destiny2")
+				return false;
+
+			int bulletType = ModContent.ProjectileType<Bullet>();
+			int slugType = ModContent.ProjectileType<ExplosiveShadowSlug>();
+			return projectile.type == bulletType || projectile.type == slugType;
+		}
+
+		private static void LogDiagnostic(string message)
+		{
+			if (!DiagnosticsEnabled)
+				return;
+
+			global::Destiny2.Destiny2.LogDiagnostic(message);
+		}
+
+		/// <summary>
+		/// Always logs regardless of DiagnosticsEnabled - use sparingly for critical debug info.
+		/// </summary>
+		private static void LogAlways(string message)
+		{
+			global::Destiny2.Destiny2.LogDiagnostic(message);
+		}
+
+		/// <summary>
+		/// Shows in-game text feedback for perk activation.
+		/// </summary>
+		private static void ShowPerkFeedback(Player player, string message, Color color)
+		{
+			if (Main.netMode == NetmodeID.Server)
+				return;
+
+			if (player == null || player.whoAmI != Main.myPlayer)
+				return;
+
+			Main.NewText(message, color.R, color.G, color.B);
+		}
+
+		private static bool IsChildProjectile(IEntitySource source)
+		{
+			return source is EntitySource_Parent parent && parent.Entity is Projectile;
+		}
 
 		public override void OnSpawn(Projectile projectile, IEntitySource source)
 		{
@@ -56,19 +110,38 @@ namespace Destiny2.Common.Perks
 			hasKineticTremors = false;
 			hasAdagio = false;
 			hasTargetLock = false;
+			targetLockShotRegistered = false;
+			targetLockShotHit = false;
+			hasIncandescent = false;
 			hasFeedingFrenzy = false;
 			hasRightChoice = false;
 			isRightChoiceShot = false;
 			hasEyesUpGuardian = false;
 			isEyesUpGuardianRicochet = false;
+			isEyesUpGuardianShot = false;
 			eyesUpRicochetRemaining = 0;
 			eyesUpChainId = 0;
 			sourceWeaponItem = null;
 			ammoType = Destiny2AmmoType.Primary;
 			rightChoiceElement = Destiny2WeaponElement.Kinetic;
+			hasArmorPiercingRounds = false;
 
-			Item sourceItem = GetSourceItem(source);
-			if (sourceItem?.ModItem is Destiny2WeaponItem weaponItem)
+			bool isChild = IsChildProjectile(source);
+			Destiny2PerkProjectile parentData = null;
+			if (isChild && source is EntitySource_Parent parent && parent.Entity is Projectile parentProjectile)
+				parentData = parentProjectile.GetGlobalProjectile<Destiny2PerkProjectile>();
+
+			Destiny2WeaponItem weaponItem = GetSourceWeaponItem(source);
+			if (weaponItem == null && IsTrackedProjectile(projectile))
+			{
+				Player owner = GetOwner(projectile.owner);
+				if (owner?.HeldItem?.ModItem is Destiny2WeaponItem heldWeapon)
+				{
+					weaponItem = heldWeapon;
+					LogDiagnostic($"PerkProj.OnSpawn fallback weapon from held item: {heldWeapon.Item?.Name ?? heldWeapon.GetType().Name}");
+				}
+			}
+			if (weaponItem != null)
 			{
 				sourceWeaponItem = weaponItem;
 				ammoType = weaponItem.AmmoType;
@@ -99,20 +172,92 @@ namespace Destiny2.Common.Perks
 						hasTargetLock = true;
 					else if (perk is FeedingFrenzyPerk)
 						hasFeedingFrenzy = true;
+					else if (perk is IncandescentPerk)
+						hasIncandescent = true;
 					else if (perk is TheRightChoiceFramePerk)
 						hasRightChoice = true;
 					else if (perk is EyesUpGuardianPerk)
 						hasEyesUpGuardian = true;
+					else if (perk is ArmorPiercingRoundsPerk)
+						hasArmorPiercingRounds = true;
 				}
 
-				if (hasRightChoice && weaponItem is AutoRifleWeaponItem && weaponItem.TryConsumeRightChoiceShot())
+				// THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
+				// Child projectiles (ricochets) don't increment the counter
+				if (hasRightChoice && !isChild)
 				{
-					isRightChoiceShot = true;
-					rightChoiceElement = weaponItem.WeaponElement;
+					bool isAutoRifle = weaponItem is AutoRifleWeaponItem;
+					LogDiagnostic($"RightChoice check: hasRightChoice={hasRightChoice} isAutoRifle={isAutoRifle} isChild={isChild}");
+
+					if (isAutoRifle)
+					{
+						bool consumed = weaponItem.TryConsumeRightChoiceShot();
+						if (consumed)
+						{
+							isRightChoiceShot = true;
+							rightChoiceElement = weaponItem.WeaponElement;
+							Player owner = GetOwner(projectile.owner);
+							ShowPerkFeedback(owner, "The Right Choice - Ricochet!", new Color(255, 200, 100));
+							LogDiagnostic($"RightChoice ARMED! projId={projectile.identity}");
+						}
+					}
 				}
 
-				if (hasEyesUpGuardian)
-					eyesUpElement = weaponItem.WeaponElement;
+			if (hasEyesUpGuardian)
+				eyesUpElement = weaponItem.WeaponElement;
+			}
+
+			// EYES UP GUARDIAN: inherit chain state for ricochet projectiles spawned from an existing chain
+			if (parentData != null && (parentData.isEyesUpGuardianRicochet || parentData.eyesUpChainId != 0))
+			{
+				hasEyesUpGuardian = true;
+				isEyesUpGuardianRicochet = true;
+				eyesUpChainId = parentData.eyesUpChainId;
+				eyesUpRicochetRemaining = parentData.eyesUpRicochetRemaining;
+				eyesUpElement = parentData.eyesUpElement;
+				LogDiagnostic($"EyesUp chain inherited. projId={projectile.identity} chainId={eyesUpChainId} remaining={eyesUpRicochetRemaining}");
+			}
+
+			// EYES UP GUARDIAN: Consume one stack per player-fired shot to arm the chain for that shot.
+			if (hasEyesUpGuardian && !isChild)
+			{
+				Player owner = GetOwner(projectile.owner);
+				Destiny2Player modPlayer = owner?.GetModPlayer<Destiny2Player>();
+
+				if (modPlayer != null && modPlayer.TryConsumeEyesUpGuardianStack())
+				{
+					isEyesUpGuardianShot = true;
+					int remaining = modPlayer.GetEyesUpGuardianStacks();
+					ShowPerkFeedback(owner, $"Eyes Up, Guardian! ({remaining} remaining)", new Color(100, 200, 255));
+					LogDiagnostic($"EyesUp shot armed. projId={projectile.identity} remaining={remaining}");
+				}
+				else if (IsTrackedProjectile(projectile))
+				{
+					int stacks = modPlayer?.GetEyesUpGuardianStacks() ?? -1;
+					LogDiagnostic($"EyesUp shot not armed. projId={projectile.identity} stacks={stacks} isRightChoiceShot={isRightChoiceShot}");
+				}
+			}
+
+			// Armor-Piercing Rounds: Allow piercing through one enemy
+			if (hasArmorPiercingRounds)
+			{
+				projectile.penetrate = 2;
+				LogDiagnostic($"Armor-Piercing Rounds applied. projId={projectile.identity} penetrate={projectile.penetrate}");
+			}
+
+			if (hasTargetLock && !isChild && sourceWeaponItem != null)
+			{
+				targetLockShotRegistered = true;
+				targetLockShotHit = false;
+			}
+
+			if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
+			{
+				string sourceName = source?.GetType().Name ?? "null";
+				string weaponName = weaponItem?.Item?.Name ?? weaponItem?.GetType().Name ?? "null";
+				LogDiagnostic($"PerkProj.OnSpawn projId={projectile.identity} type={projectile.type} source={sourceName} weapon={weaponName} " +
+					$"hasRightChoice={hasRightChoice} isRightChoiceShot={isRightChoiceShot} hasEyesUp={hasEyesUpGuardian} " +
+					$"isEyesUpShot={isEyesUpGuardianShot} isEyesUpRicochet={isEyesUpGuardianRicochet} chainId={eyesUpChainId} remaining={eyesUpRicochetRemaining}");
 			}
 		}
 
@@ -124,6 +269,17 @@ namespace Destiny2.Common.Perks
 
 			if (sourceWeaponItem != null)
 			{
+				float precisionMultiplier = sourceWeaponItem.GetPrecisionMultiplier();
+				if (precisionMultiplier > 1f)
+				{
+					Destiny2CritSpotGlobalNPC critSpot = target.GetGlobalNPC<Destiny2CritSpotGlobalNPC>();
+					if (critSpot != null && critSpot.IsHitInCritSpot(target, projectile.Center))
+					{
+						multiplier *= precisionMultiplier;
+						critSpot.RegisterPrecisionHit();
+					}
+				}
+
 				if (hasKillClip && sourceWeaponItem.IsKillClipActive)
 					multiplier *= KillClipPerk.DamageMultiplier;
 
@@ -154,19 +310,53 @@ namespace Destiny2.Common.Perks
 
 		public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
 		{
+			ProcessHit(projectile, target, hit, damageDone);
+		}
+
+		private void ProcessHit(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			// Always log ProcessHit entry for debugging
+			string targetName = target?.FullName ?? target?.TypeName ?? "null";
+			LogAlways($"ProcessHit called. projId={projectile.identity} target={targetName} damage={damageDone} " +
+				$"isRightChoiceShot={isRightChoiceShot} isEyesUpShot={isEyesUpGuardianShot}");
+
 			if (perks.Count > 0)
 			{
 				for (int i = 0; i < perks.Count; i++)
 					perks[i].OnProjectileHitNPC(projectile, target, hit, damageDone);
 			}
 
-			if (isRightChoiceShot)
-				TryRicochet(projectile, target, damageDone, rightChoiceElement);
+			if (hasTargetLock && targetLockShotRegistered)
+				targetLockShotHit = true;
 
-			if (isEyesUpGuardianRicochet)
+			// Handle ricochet logic - The Right Choice and Eyes Up Guardian can work independently or together
+			// Priority: Eyes Up Guardian chain > The Right Choice basic ricochet
+			bool handledRicochet = false;
+
+			// Check if this is part of an existing Eyes Up Guardian chain
+			if (isEyesUpGuardianRicochet || eyesUpChainId != 0)
+			{
+				LogAlways($"ProcessHit: handling EyesUp chain ricochet");
 				HandleEyesUpGuardianRicochet(projectile, target, damageDone);
-			else if (hasEyesUpGuardian)
+				handledRicochet = true;
+			}
+			// Check if this shot should start an Eyes Up Guardian chain (enhanced ricochet)
+			else if (isEyesUpGuardianShot)
+			{
+				LogAlways($"ProcessHit: starting EyesUp chain");
 				TryStartEyesUpGuardianChain(projectile, target, damageDone);
+				handledRicochet = true;
+			}
+			// Basic The Right Choice ricochet (when not enhanced by Eyes Up Guardian)
+			else if (isRightChoiceShot)
+			{
+				LogAlways($"ProcessHit: triggering RightChoice ricochet! projId={projectile.identity}");
+				TryRicochet(projectile, target, damageDone, rightChoiceElement);
+				handledRicochet = true;
+			}
+
+			if (!handledRicochet && (hasRightChoice || hasEyesUpGuardian))
+				LogAlways($"ProcessHit: no ricochet triggered. isRightChoiceShot={isRightChoiceShot} isEyesUpShot={isEyesUpGuardianShot}");
 
 			if (sourceWeaponItem == null)
 				return;
@@ -175,18 +365,48 @@ namespace Destiny2.Common.Perks
 				sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, damageDone);
 
 			if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage
-				&& !hasOnslaught && !hasAdagio && !hasFeedingFrenzy)
+				&& !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasIncandescent)
 				return;
 
 			Player owner = GetOwner(projectile.owner);
 			sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
-				hasOnslaught, hasAdagio, hasFeedingFrenzy);
+				hasOnslaught, hasAdagio, hasFeedingFrenzy, hasIncandescent);
+		}
+
+		public override void OnKill(Projectile projectile, int timeLeft)
+		{
+			if (hasTargetLock && targetLockShotRegistered && !targetLockShotHit && sourceWeaponItem != null)
+				sourceWeaponItem.NotifyTargetLockMiss();
 		}
 
 		private static Item GetSourceItem(IEntitySource source)
 		{
 			if (source is EntitySource_ItemUse itemUse)
 				return itemUse.Item;
+			if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
+				return itemUseWithAmmo.Item;
+
+			return null;
+		}
+
+		private static Destiny2WeaponItem GetSourceWeaponItem(IEntitySource source)
+		{
+			Item sourceItem = GetSourceItem(source);
+			if (sourceItem?.ModItem is Destiny2WeaponItem weaponItem)
+				return weaponItem;
+
+			if (source is EntitySource_Parent parent)
+			{
+				if (parent.Entity is Item parentItem && parentItem.ModItem is Destiny2WeaponItem parentWeapon)
+					return parentWeapon;
+
+				if (parent.Entity is Projectile parentProjectile)
+				{
+					Destiny2PerkProjectile data = parentProjectile.GetGlobalProjectile<Destiny2PerkProjectile>();
+					if (data?.sourceWeaponItem != null)
+						return data.sourceWeaponItem;
+				}
+			}
 
 			return null;
 		}
@@ -218,12 +438,26 @@ namespace Destiny2.Common.Perks
 
 		private static void TryRicochet(Projectile projectile, NPC target, int damageDone, Destiny2WeaponElement element)
 		{
+			LogAlways($"TryRicochet ENTER. proj={projectile?.identity} target={target?.whoAmI}");
+
 			if (projectile == null || target == null)
+			{
+				LogAlways("TryRicochet aborted: null projectile or target");
 				return;
+			}
+
+			LogAlways($"TryRicochet searching for target. fromNpc={target.whoAmI} ({target.FullName}) range={RightChoiceRicochetRange} targetCenter={target.Center}");
 
 			NPC ricochetTarget = FindRicochetTarget(target, target.Center, RightChoiceRicochetRange);
 			if (ricochetTarget == null)
+			{
+				LogAlways("TryRicochet: NO TARGET FOUND within range!");
+				Player owner = GetOwner(projectile.owner);
+				ShowPerkFeedback(owner, "The Right Choice - No target in range!", new Color(255, 150, 100));
 				return;
+			}
+
+			LogAlways($"TryRicochet: Found target! npc={ricochetTarget.whoAmI} ({ricochetTarget.FullName})");
 
 			Vector2 direction = (ricochetTarget.Center - target.Center).SafeNormalize(Vector2.UnitX);
 			float offsetDistance = Math.Max(target.width, target.height) * 0.5f + 6f;
@@ -233,12 +467,19 @@ namespace Destiny2.Common.Perks
 			float aimRotation = direction.ToRotation();
 			int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, direction, projectile.type, ricochetDamage, projectile.knockBack, projectile.owner, 0f, aimRotation);
 			if (projId < 0 || projId >= Main.maxProjectiles)
+			{
+				LogAlways($"TryRicochet: FAILED to spawn projectile! projId={projId}");
 				return;
+			}
 
 			Projectile ricochet = Main.projectile[projId];
 			ricochet.ai[0] = (int)element;
 			ricochet.DamageType = element.GetDamageClass();
 			ricochet.netUpdate = true;
+
+			LogAlways($"TryRicochet: SUCCESS! Ricochet spawned projId={projId} -> targetNpc={ricochetTarget.whoAmI} ({ricochetTarget.FullName}) damage={ricochetDamage}");
+			Player owner2 = GetOwner(projectile.owner);
+			ShowPerkFeedback(owner2, $"Ricochet -> {ricochetTarget.FullName}!", new Color(255, 200, 100));
 		}
 
 		private static NPC FindRicochetTarget(NPC current, Vector2 origin, float maxRange)
@@ -268,36 +509,52 @@ namespace Destiny2.Common.Perks
 		private void TryStartEyesUpGuardianChain(Projectile projectile, NPC target, int damageDone)
 		{
 			if (sourceWeaponItem == null)
+			{
+				LogDiagnostic("EyesUp.TryStartChain aborted: sourceWeaponItem null.");
 				return;
+			}
 
-			Player owner = GetOwner(projectile.owner);
-			if (owner == null)
-				return;
-
-			Destiny2Player modPlayer = owner.GetModPlayer<Destiny2Player>();
-			if (modPlayer == null || !modPlayer.TryConsumeEyesUpGuardianStack())
-				return;
+			LogDiagnostic($"EyesUp.TryStartChain starting. projId={projectile.identity} target={target.whoAmI} ricochetCount={EyesUpGuardianPerk.RicochetCount}");
 
 			eyesUpChainId = CreateEyesUpChain();
 			RegisterEyesUpHit(eyesUpChainId, target.whoAmI);
 			if (!SpawnEyesUpRicochet(projectile, target, damageDone, EyesUpGuardianPerk.RicochetCount))
+			{
 				RemoveEyesUpChain(eyesUpChainId);
+				LogDiagnostic($"EyesUp chain failed to start (no valid target). chainId={eyesUpChainId}");
+				Player owner = GetOwner(projectile.owner);
+				ShowPerkFeedback(owner, "Eyes Up, Guardian - No target in range!", new Color(100, 150, 255));
+			}
+			else
+			{
+				LogDiagnostic($"EyesUp chain STARTED! chainId={eyesUpChainId} remaining={EyesUpGuardianPerk.RicochetCount}");
+			}
+
+			isEyesUpGuardianShot = false;
 		}
 
 		private void HandleEyesUpGuardianRicochet(Projectile projectile, NPC target, int damageDone)
 		{
 			if (eyesUpChainId == 0)
+			{
+				if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
+					LogDiagnostic("EyesUp.HandleRicochet aborted: chainId=0.");
 				return;
+			}
 
 			RegisterEyesUpHit(eyesUpChainId, target.whoAmI);
 			if (eyesUpRicochetRemaining <= 1)
 			{
 				RemoveEyesUpChain(eyesUpChainId);
+				if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
+					LogDiagnostic($"EyesUp chain ended id={eyesUpChainId} remaining={eyesUpRicochetRemaining}");
 				return;
 			}
 
 			if (!SpawnEyesUpRicochet(projectile, target, damageDone, eyesUpRicochetRemaining - 1))
 				RemoveEyesUpChain(eyesUpChainId);
+			else if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
+				LogDiagnostic($"EyesUp ricochet continue id={eyesUpChainId} remaining={eyesUpRicochetRemaining - 1}");
 		}
 
 		private bool SpawnEyesUpRicochet(Projectile projectile, NPC target, int damageDone, int remainingRicochets)
@@ -307,7 +564,11 @@ namespace Destiny2.Common.Perks
 
 			NPC ricochetTarget = FindEyesUpTarget(target, target.Center, EyesUpGuardianRicochetRange, eyesUpChainId);
 			if (ricochetTarget == null)
+			{
+				if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
+					LogDiagnostic($"EyesUp ricochet target not found. chainId={eyesUpChainId}");
 				return false;
+			}
 
 			Vector2 direction = (ricochetTarget.Center - target.Center).SafeNormalize(Vector2.UnitX);
 			float offsetDistance = Math.Max(target.width, target.height) * 0.5f + 6f;
@@ -328,6 +589,9 @@ namespace Destiny2.Common.Perks
 			data.eyesUpRicochetRemaining = remainingRicochets;
 			data.eyesUpChainId = eyesUpChainId;
 			data.eyesUpElement = eyesUpElement;
+
+			if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
+				LogDiagnostic($"EyesUp ricochet spawned projId={projId} targetNpc={ricochetTarget.whoAmI} remaining={remainingRicochets}");
 
 			return true;
 		}

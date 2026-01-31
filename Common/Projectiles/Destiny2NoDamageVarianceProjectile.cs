@@ -26,6 +26,8 @@ namespace Destiny2.Common.Projectiles
 		{
 			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem)
 				return true;
+			if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo && itemUseWithAmmo.Item?.ModItem is Destiny2WeaponItem)
+				return true;
 
 			if (source is EntitySource_Parent parent)
 			{

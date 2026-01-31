@@ -66,6 +66,7 @@ namespace Destiny2.Common.Perks
 			Register(new FeedingFrenzyPerk());
 			Register(new ExplosiveShadowPerk());
 			Register(new VorpalWeaponPerk());
+			Register(new IncandescentPerk());
 		}
 
 		public static void Register(Destiny2Perk perk)

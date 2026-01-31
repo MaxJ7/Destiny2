@@ -9,7 +9,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -20,7 +20,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -31,7 +31,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -42,7 +42,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -53,7 +53,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -64,7 +64,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -75,7 +75,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -86,7 +86,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}
@@ -97,7 +97,7 @@ namespace Destiny2.Content.Buffs
 
 		public override void SetStaticDefaults()
 		{
-			Main.buffNoTimeDisplay[Type] = false;
+			Main.buffNoTimeDisplay[Type] = true;
 			Main.buffNoSave[Type] = true;
 		}
 	}

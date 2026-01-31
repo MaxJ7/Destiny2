@@ -75,6 +75,8 @@ namespace Destiny2.Common.Projectiles
 		{
 			if (source is EntitySource_ItemUse itemUse)
 				return itemUse.Item;
+			if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
+				return itemUseWithAmmo.Item;
 
 			return null;
 		}

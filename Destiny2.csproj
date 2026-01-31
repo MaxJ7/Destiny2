@@ -5,7 +5,10 @@
 
 	<!-- General -->
 	<PropertyGroup>
-		
+		<ProjectDir>$([System.IO.Path]::GetFullPath('$(MSBuildProjectDirectory)'))</ProjectDir>
+		<tMLSteamPath>C:\Program Files (x86)\Steam\steamapps\common\tModLoader\</tMLSteamPath>
+		<TerrariaSteamPath>C:\Program Files (x86)\Steam\steamapps\common\tModLoader\</TerrariaSteamPath>
+		<tMLServerPath>"$(tMLSteamPath)tModLoader.dll" -server</tMLServerPath>
 	</PropertyGroup>
 
 	<!-- References -->

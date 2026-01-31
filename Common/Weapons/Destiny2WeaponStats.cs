@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Destiny2.Common.Items;
+using Destiny2.Common.NPCs;
 using Destiny2.Common.Players;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Rarities;
@@ -47,6 +48,23 @@ namespace Destiny2.Common.Weapons
 			public int HitCount;
 			public int HitTimer;
 			public int CooldownTimer;
+		}
+		internal readonly struct PerkHudEntry
+		{
+			public readonly string IconTexture;
+			public readonly int Timer;
+			public readonly int MaxTimer;
+			public readonly int Stacks;
+			public readonly bool ShowStacks;
+
+			public PerkHudEntry(string iconTexture, int timer, int maxTimer, int stacks, bool showStacks)
+			{
+				IconTexture = iconTexture;
+				Timer = timer;
+				MaxTimer = maxTimer;
+				Stacks = stacks;
+				ShowStacks = showStacks;
+			}
 		}
 
 		private List<string> perkKeys = new List<string>();
@@ -347,10 +365,21 @@ namespace Destiny2.Common.Weapons
 		public string FramePerkKey => framePerkKey;
 		public string CatalystPerkKey => catalystPerkKey;
 		public bool HasElementOverride => hasElementOverride;
-
+		public virtual float GetPrecisionMultiplier() => 1f;
 		protected virtual Destiny2WeaponElement GetDefaultWeaponElement()
 		{
 			return Destiny2WeaponElement.Kinetic;
+		}
+
+		protected bool TryGetFramePerk(out Destiny2Perk framePerk)
+		{
+			if (string.IsNullOrWhiteSpace(framePerkKey))
+			{
+				framePerk = null;
+				return false;
+			}
+
+			return Destiny2PerkSystem.TryGet(framePerkKey, out framePerk);
 		}
 
 		protected virtual int GetFrameRoundsPerMinute(Destiny2Perk framePerk, int currentRpm)
@@ -870,6 +899,92 @@ namespace Destiny2.Common.Weapons
 				stats.Stability += dynamicSwayStacks * DynamicSwayReductionPerk.StabilityPerStack;
 		}
 
+		internal void AppendPerkHudEntries(List<PerkHudEntry> entries)
+		{
+			if (entries == null)
+				return;
+
+			if (frenzyTimer > 0)
+				AddPerkHudEntry(entries, nameof(FrenzyPerk), frenzyTimer, FrenzyPerk.DurationTicks, 1, false);
+
+			if (outlawTimer > 0)
+				AddPerkHudEntry(entries, nameof(OutlawPerk), outlawTimer, OutlawPerk.DurationTicks, 1, false);
+
+			if (rapidHitTimer > 0 && rapidHitStacks > 0)
+				AddPerkHudEntry(entries, nameof(RapidHitPerk), rapidHitTimer, RapidHitPerk.DurationTicks, rapidHitStacks, true);
+
+			if (killClipTimer > 0)
+				AddPerkHudEntry(entries, nameof(KillClipPerk), killClipTimer, KillClipPerk.DurationTicks, 1, false);
+
+			if (rampageTimer > 0 && rampageStacks > 0)
+				AddPerkHudEntry(entries, nameof(RampagePerk), rampageTimer, RampagePerk.DurationTicks, rampageStacks, true);
+
+			if (onslaughtTimer > 0 && onslaughtStacks > 0)
+				AddPerkHudEntry(entries, nameof(OnslaughtPerk), onslaughtTimer, OnslaughtPerk.DurationTicks, onslaughtStacks, true);
+
+			if (feedingFrenzyTimer > 0 && feedingFrenzyStacks > 0)
+				AddPerkHudEntry(entries, nameof(FeedingFrenzyPerk), feedingFrenzyTimer, FeedingFrenzyPerk.DurationTicks, feedingFrenzyStacks, true);
+
+			if (adagioTimer > 0)
+				AddPerkHudEntry(entries, nameof(AdagioPerk), adagioTimer, AdagioPerk.DurationTicks, 1, false);
+
+			if (targetLockHitTimer > 0 && targetLockHitCount > 0)
+			{
+				int stacks = GetTargetLockStacks();
+				if (stacks <= 0)
+					stacks = 1;
+				AddPerkHudEntry(entries, nameof(TargetLockPerk), targetLockHitTimer, TargetLockPerk.HitWindowTicks, stacks, true);
+			}
+
+			if (dynamicSwayTimer > 0 && dynamicSwayStacks > 0)
+				AddPerkHudEntry(entries, nameof(DynamicSwayReductionPerk), dynamicSwayTimer, DynamicSwayReductionPerk.HoldWindowTicks, dynamicSwayStacks, true);
+
+			if (fourthTimesHitTimer > 0 && fourthTimesHitCount > 0)
+				AddPerkHudEntry(entries, nameof(FourthTimesTheCharmPerk), fourthTimesHitTimer, FourthTimesTheCharmPerk.WindowTicks, fourthTimesHitCount, true);
+		}
+
+		private static void AddPerkHudEntry(List<PerkHudEntry> entries, string perkKey, int timer, int maxTimer, int stacks, bool showStacks)
+		{
+			if (timer <= 0)
+				return;
+
+			string iconTexture = GetPerkIconTexture(perkKey);
+			if (string.IsNullOrWhiteSpace(iconTexture))
+				return;
+
+			entries.Add(new PerkHudEntry(iconTexture, timer, maxTimer, stacks, showStacks));
+		}
+
+		private static string GetPerkIconTexture(string perkKey)
+		{
+			if (string.IsNullOrWhiteSpace(perkKey))
+				return null;
+
+			if (!Destiny2PerkSystem.TryGet(perkKey, out Destiny2Perk perk))
+				return null;
+
+			return perk.IconTexture;
+		}
+
+		private int GetTargetLockStacks()
+		{
+			int magazineSize = GetStats().Magazine;
+			if (magazineSize <= 0 || targetLockHitCount <= 0)
+				return 0;
+
+			float ratio = targetLockHitCount / (float)magazineSize;
+			int stacks = 0;
+			for (int i = 0; i < TargetLockPerk.VisualStackThresholds.Length; i++)
+			{
+				if (ratio >= TargetLockPerk.VisualStackThresholds[i])
+					stacks = i + 1;
+				else
+					break;
+			}
+
+			return stacks;
+		}
+
 		protected float GetReloadSpeedTimeScalar()
 		{
 			float scalar = 1f;
@@ -1014,19 +1129,15 @@ namespace Destiny2.Common.Weapons
 					fourthTimesHitCount = 0;
 			}
 
-			if (targetLockHitTimer > 0)
-			{
-				targetLockHitTimer--;
-				if (targetLockHitTimer <= 0)
-					ResetTargetLockState();
-			}
-
 			if (dynamicSwayTimer > 0)
 			{
 				dynamicSwayTimer--;
 				if (dynamicSwayTimer <= 0)
 					dynamicSwayStacks = 0;
 			}
+
+			if (targetLockHitCount > 0 && !IsPlayerFiring(player))
+				ResetTargetLockState();
 
 			UpdateKineticTremorsTargets();
 
@@ -1048,7 +1159,7 @@ namespace Destiny2.Common.Weapons
 			}
 		}
 
-		internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy)
+		internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool hasIncandescent)
 		{
 			if (hasRapidHit && hit.Crit)
 				AddRapidHitStack(player);
@@ -1079,15 +1190,39 @@ namespace Destiny2.Common.Weapons
 
 			if (hasFeedingFrenzy)
 				AddFeedingFrenzyStack(player);
+
+			if (hasIncandescent)
+				TriggerIncandescent(target);
+		}
+
+		private static void TriggerIncandescent(NPC target)
+		{
+			if (Main.netMode == NetmodeID.MultiplayerClient)
+				return;
+
+			if (target == null || !target.CanBeChasedBy())
+				return;
+
+			Vector2 center = target.Center;
+			ScorchGlobalNPC.SpawnIncandescentExplosionDust(center);
+			ScorchGlobalNPC.ApplyScorchExplosion(center, IncandescentPerk.ExplosionDamage, IncandescentPerk.ExplosionRadius,
+				IncandescentPerk.ScorchStacksApplied, damageExcludeNpcId: target.whoAmI, scorchExcludeNpcId: -1);
 		}
 
 		internal bool TryConsumeRightChoiceShot()
 		{
 			rightChoiceShotCount++;
+
+			// Always log shot counter for debugging
+			global::Destiny2.Destiny2.LogDiagnostic($"RightChoice shot count={rightChoiceShotCount}/{TheRightChoiceFramePerk.ShotsRequired}");
+
 			if (rightChoiceShotCount < TheRightChoiceFramePerk.ShotsRequired)
+			{
 				return false;
+			}
 
 			rightChoiceShotCount = 0;
+			global::Destiny2.Destiny2.LogDiagnostic("RightChoice: 7th shot reached! Ricochet ARMED!");
 			return true;
 		}
 
@@ -1220,7 +1355,7 @@ namespace Destiny2.Common.Weapons
 			if (target == null || !target.CanBeChasedBy())
 				return 0f;
 
-			if (targetLockHitTimer <= 0 || targetLockTargetId != target.whoAmI)
+			if (targetLockTargetId != target.whoAmI)
 				ResetTargetLockState();
 
 			targetLockTargetId = target.whoAmI;
@@ -1245,6 +1380,25 @@ namespace Destiny2.Common.Weapons
 			targetLockHitCount = 0;
 			targetLockHitTimer = 0;
 			targetLockTargetId = -1;
+		}
+
+		private static bool IsPlayerFiring(Player player)
+		{
+			if (player == null)
+				return false;
+
+			if (player.controlUseItem || player.channel)
+				return true;
+
+			return player.itemAnimation > 0 || player.itemTime > 0;
+		}
+
+		internal void NotifyTargetLockMiss()
+		{
+			if (targetLockHitCount <= 0)
+				return;
+
+			ResetTargetLockState();
 		}
 
 		internal void RegisterKineticTremorsHit(Projectile projectile, NPC target, int damageDone)
@@ -1423,6 +1577,7 @@ namespace Destiny2.Common.Weapons
 
 		public IEnumerable<Destiny2Perk> GetPerks()
 		{
+			MarkPickedUp();
 			EnsurePerksRolled();
 			bool hasCatalystPerk = false;
 
@@ -1575,5 +1730,3 @@ namespace Destiny2.Common.Weapons
 		}
 	}
 }
-
-

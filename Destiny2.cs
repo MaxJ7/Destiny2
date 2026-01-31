@@ -11,6 +11,8 @@ namespace Destiny2
 		public static ModKeybind ReloadKeybind;
 		public static ModKeybind EditorKeybind;
 		public static ModKeybind InfoKeybind;
+		public static ModKeybind DiagnosticsKeybind;
+		internal static bool DiagnosticsEnabled;
 		private static readonly object HitscanLogLock = new object();
 		private static readonly object DiagnosticLogLock = new object();
 		internal static string HitscanLogPath;
@@ -21,6 +23,8 @@ namespace Destiny2
 			ReloadKeybind = KeybindLoader.RegisterKeybind(this, "Reload Weapon", "R");
 			EditorKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Editor", "O");
 			InfoKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Info", "I");
+			DiagnosticsKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Perk Diagnostics", "P");
+			DiagnosticsEnabled = false;
 			InitializeHitscanLog();
 			InitializeDiagnosticLog();
 		}
@@ -30,6 +34,8 @@ namespace Destiny2
 			ReloadKeybind = null;
 			EditorKeybind = null;
 			InfoKeybind = null;
+			DiagnosticsKeybind = null;
+			DiagnosticsEnabled = false;
 			HitscanLogPath = null;
 			DiagnosticLogPath = null;
 		}

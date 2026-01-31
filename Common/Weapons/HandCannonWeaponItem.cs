@@ -22,6 +22,21 @@ namespace Destiny2.Common.Weapons
 
 		public override Destiny2AmmoType AmmoType => Destiny2AmmoType.Primary;
 
+		public override float GetPrecisionMultiplier()
+		{
+			if (!TryGetFramePerk(out Destiny2Perk framePerk))
+				return 1f;
+
+			if (framePerk is HeavyBurstFramePerk)
+				return 2.2f;
+			if (framePerk is AdaptiveFramePerk)
+				return 1.79f;
+			if (framePerk is PrecisionFramePerk || framePerk is ExplosiveShadowPerk)
+				return 1.55f;
+
+			return 1f;
+		}
+
 		protected virtual float BaseRecoil => 1.25f;
 		protected virtual float MinFalloffTiles => 24f;
 		protected virtual float MaxFalloffTiles => 40f;
@@ -172,15 +187,5 @@ namespace Destiny2.Common.Weapons
 			Item.useAnimation = baseUseTime;
 		}
 
-		private bool TryGetFramePerk(out Destiny2Perk framePerk)
-		{
-			if (string.IsNullOrWhiteSpace(FramePerkKey))
-			{
-				framePerk = null;
-				return false;
-			}
-
-			return Destiny2PerkSystem.TryGet(FramePerkKey, out framePerk);
-		}
 	}
 }

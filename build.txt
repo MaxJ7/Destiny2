@@ -1,3 +1,6 @@
 displayName = Destinium
 author = Gayde 7
 version = 0.1
+hideResources = false
+includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, Old\*

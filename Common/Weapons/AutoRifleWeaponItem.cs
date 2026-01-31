@@ -22,6 +22,17 @@ namespace Destiny2.Common.Weapons
 
 		public override Destiny2AmmoType AmmoType => Destiny2AmmoType.Primary;
 
+		public override float GetPrecisionMultiplier()
+		{
+			if (!TryGetFramePerk(out Destiny2Perk framePerk))
+				return 1f;
+
+			if (framePerk is PrecisionFramePerk || framePerk is AdaptiveFramePerk || framePerk is TheRightChoiceFramePerk)
+				return 1.75f;
+
+			return 1f;
+		}
+
 		protected virtual float BaseRecoil => 1.1f;
 		protected virtual float MinFalloffTiles => 23f;
 		protected virtual float MaxFalloffTiles => 36f;

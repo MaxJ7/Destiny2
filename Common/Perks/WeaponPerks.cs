@@ -148,7 +148,7 @@ namespace Destiny2.Common.Perks
 		internal const int MaxHitsPerTarget = 2;
 		public override string DisplayName => "Eye's Up Guardian";
 		public override string Description =>
-			"Consuming a potion grants 7 ricochet stacks. Each hit consumes 1 stack to ricochet up to 7 times within 12 tiles.";
+			"Consuming a potion grants 7 stacks of 'Eyes Up, Guardian'. Each shot consumes 1 stack and ricochets up to 7 targets within 12 tiles. Enemies can only be damaged by the same ricochet chain twice.";
 		public override string IconTexture => "Destiny2/Assets/Perks/EyesUpGuardian";
 		public override PerkSlotType SlotType => PerkSlotType.Major;
 	}
@@ -217,6 +217,19 @@ namespace Destiny2.Common.Perks
 		public override PerkSlotType SlotType => PerkSlotType.Major;
 	}
 
+	public sealed class IncandescentPerk : Destiny2Perk
+	{
+		internal const int ScorchStacksApplied = 40;
+		internal const int ExplosionDamage = 30;
+		internal const float ExplosionRadiusTiles = 4f;
+		internal const float ExplosionRadius = ExplosionRadiusTiles * 16f;
+
+		public override string IconTexture => "Destiny2/Assets/Perks/Incandescent";
+		public override string DisplayName => "Incandescent";
+		public override string Description => "Weapon kills trigger a Solar explosion that applies 40 Scorch stacks and deals damage to nearby enemies.";
+		public override PerkSlotType SlotType => PerkSlotType.Major;
+	}
+
 	public sealed class AdagioPerk : Destiny2Perk
 	{
 		internal const int DurationTicks = 420;
@@ -269,5 +282,18 @@ namespace Destiny2.Common.Perks
 			"Weapon kills grant Feeding Frenzy for 3.5s (max 5). 1/2/3/4/5 stacks: +8/+50/+60/+75/+100 reload speed "
 			+ "and -2.5/-10/-13/-16/-20% reload duration.";
 		public override PerkSlotType SlotType => PerkSlotType.Major;
+	}
+
+	public sealed class ArmorPiercingRoundsPerk : Destiny2Perk
+	{
+		public override string IconTexture => "Destiny2/Assets/Perks/ArmorPiercingRounds";
+		public override string DisplayName => "Armor-Piercing Rounds";
+		public override string Description => "Rounds pierce through one enemy. Slightly increases range.";
+		public override PerkSlotType SlotType => PerkSlotType.Magazine;
+
+		public override void ModifyStats(ref Destiny2WeaponStats stats)
+		{
+			stats.Range += 5f;
+		}
 	}
 }

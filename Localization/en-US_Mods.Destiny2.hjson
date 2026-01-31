@@ -38,6 +38,11 @@ Items: {
 		DisplayName: Breakneck
 		Tooltip: ""
 	}
+
+	Trustee: {
+		DisplayName: Trustee
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -45,6 +50,7 @@ Projectiles: {
 	Bullet.DisplayName: Bullet
 	KineticTremorsShockwave.DisplayName: Kinetic Tremors Shockwave
 	KineticTremorsDustAnchor.DisplayName: Kinetic Tremors Dust Anchor
+	BeamBurst.DisplayName: Beam Burst
 }
 
 Buffs: {
@@ -108,6 +114,7 @@ Keybinds: {
 	"Reload Weapon.DisplayName": Reload  Weapon
 	"Toggle Weapon Editor.DisplayName": Toggle  Weapon  Editor
 	"Toggle Weapon Info.DisplayName": Toggle  Weapon  Info
+	"Toggle Perk Diagnostics.DisplayName": Toggle  Perk  Diagnostics
 }
 
 Tiles.ModificationStation.MapEntry: Modification Station
