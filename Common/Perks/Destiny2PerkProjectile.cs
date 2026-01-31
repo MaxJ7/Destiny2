@@ -33,6 +33,9 @@ namespace Destiny2.Common.Perks
 		private bool targetLockShotRegistered;
 		private bool targetLockShotHit;
 		private bool hasIncandescent;
+		private int lastPreHitLife;
+		private int lastHitTargetId = -1;
+		private bool hasPreHitLife;
 		private bool hasFeedingFrenzy;
 		private bool hasRightChoice;
 		private bool isRightChoiceShot;
@@ -48,6 +51,7 @@ namespace Destiny2.Common.Perks
 		private Destiny2WeaponElement rightChoiceElement = Destiny2WeaponElement.Kinetic;
 
 		public override bool InstancePerEntity => true;
+		internal bool HasIncandescentPerk => hasIncandescent;
 
 		private static bool DiagnosticsEnabled => global::Destiny2.Destiny2.DiagnosticsEnabled;
 
@@ -113,6 +117,9 @@ namespace Destiny2.Common.Perks
 			targetLockShotRegistered = false;
 			targetLockShotHit = false;
 			hasIncandescent = false;
+			lastPreHitLife = 0;
+			lastHitTargetId = -1;
+			hasPreHitLife = false;
 			hasFeedingFrenzy = false;
 			hasRightChoice = false;
 			isRightChoiceShot = false;
@@ -263,6 +270,13 @@ namespace Destiny2.Common.Perks
 
 		public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
 		{
+			if (target != null)
+			{
+				lastPreHitLife = target.life;
+				lastHitTargetId = target.whoAmI;
+				hasPreHitLife = true;
+			}
+
 			float multiplier = 1f;
 			if (hasVorpal && IsBossTarget(target))
 				multiplier *= GetVorpalMultiplier(ammoType);
@@ -315,10 +329,29 @@ namespace Destiny2.Common.Perks
 
 		private void ProcessHit(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			// Always log ProcessHit entry for debugging
-			string targetName = target?.FullName ?? target?.TypeName ?? "null";
-			LogAlways($"ProcessHit called. projId={projectile.identity} target={targetName} damage={damageDone} " +
-				$"isRightChoiceShot={isRightChoiceShot} isEyesUpShot={isEyesUpGuardianShot}");
+			bool isKill = false;
+			if (target != null)
+			{
+				if (hasPreHitLife && lastHitTargetId == target.whoAmI && lastPreHitLife > 0)
+					isKill = lastPreHitLife - damageDone <= 0;
+				else
+					isKill = target.life <= 0;
+			}
+			hasPreHitLife = false;
+
+			if (DiagnosticsEnabled && perks.Count > 0)
+			{
+				string targetName = target?.FullName ?? target?.TypeName ?? "null";
+				LogDiagnostic($"ProcessHit projId={projectile.identity} target={targetName} damage={damageDone} " +
+					$"isKill={isKill} hasIncandescent={hasIncandescent}");
+			}
+
+			// Incandescent: kills trigger explosion (1/4 weapon damage, 4 tiles, 40 scorch stacks)
+			if (hasIncandescent && isKill && target != null && Main.netMode != NetmodeID.MultiplayerClient)
+			{
+				int explosionDamage = Math.Max(1, (int)(damageDone * 0.25f));
+				ScorchGlobalNPC.TriggerIncandescentExplosion(target.Center, explosionDamage, target.whoAmI);
+			}
 
 			if (perks.Count > 0)
 			{
@@ -336,27 +369,30 @@ namespace Destiny2.Common.Perks
 			// Check if this is part of an existing Eyes Up Guardian chain
 			if (isEyesUpGuardianRicochet || eyesUpChainId != 0)
 			{
-				LogAlways($"ProcessHit: handling EyesUp chain ricochet");
+				if (DiagnosticsEnabled)
+					LogDiagnostic("ProcessHit: handling EyesUp chain ricochet");
 				HandleEyesUpGuardianRicochet(projectile, target, damageDone);
 				handledRicochet = true;
 			}
 			// Check if this shot should start an Eyes Up Guardian chain (enhanced ricochet)
 			else if (isEyesUpGuardianShot)
 			{
-				LogAlways($"ProcessHit: starting EyesUp chain");
+				if (DiagnosticsEnabled)
+					LogDiagnostic("ProcessHit: starting EyesUp chain");
 				TryStartEyesUpGuardianChain(projectile, target, damageDone);
 				handledRicochet = true;
 			}
 			// Basic The Right Choice ricochet (when not enhanced by Eyes Up Guardian)
 			else if (isRightChoiceShot)
 			{
-				LogAlways($"ProcessHit: triggering RightChoice ricochet! projId={projectile.identity}");
+				if (DiagnosticsEnabled)
+					LogDiagnostic($"ProcessHit: triggering RightChoice ricochet projId={projectile.identity}");
 				TryRicochet(projectile, target, damageDone, rightChoiceElement);
 				handledRicochet = true;
 			}
 
-			if (!handledRicochet && (hasRightChoice || hasEyesUpGuardian))
-				LogAlways($"ProcessHit: no ricochet triggered. isRightChoiceShot={isRightChoiceShot} isEyesUpShot={isEyesUpGuardianShot}");
+			if (DiagnosticsEnabled && !handledRicochet && (hasRightChoice || hasEyesUpGuardian))
+				LogDiagnostic($"ProcessHit: no ricochet triggered. isRightChoiceShot={isRightChoiceShot} isEyesUpShot={isEyesUpGuardianShot}");
 
 			if (sourceWeaponItem == null)
 				return;
@@ -365,12 +401,12 @@ namespace Destiny2.Common.Perks
 				sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, damageDone);
 
 			if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage
-				&& !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasIncandescent)
+				&& !hasOnslaught && !hasAdagio && !hasFeedingFrenzy)
 				return;
 
 			Player owner = GetOwner(projectile.owner);
 			sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
-				hasOnslaught, hasAdagio, hasFeedingFrenzy, hasIncandescent);
+				hasOnslaught, hasAdagio, hasFeedingFrenzy, isKill);
 		}
 
 		public override void OnKill(Projectile projectile, int timeLeft)

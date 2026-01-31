@@ -220,13 +220,14 @@ namespace Destiny2.Common.Perks
 	public sealed class IncandescentPerk : Destiny2Perk
 	{
 		internal const int ScorchStacksApplied = 40;
-		internal const int ExplosionDamage = 30;
 		internal const float ExplosionRadiusTiles = 4f;
-		internal const float ExplosionRadius = ExplosionRadiusTiles * 16f;
+		internal static readonly float ExplosionRadius = ExplosionRadiusTiles * 16f;
 
 		public override string IconTexture => "Destiny2/Assets/Perks/Incandescent";
 		public override string DisplayName => "Incandescent";
-		public override string Description => "Weapon kills trigger a Solar explosion that applies 40 Scorch stacks and deals damage to nearby enemies.";
+		public override string Description =>
+			"Kills cause a Solar explosion dealing 1/4 weapon damage in a 4-tile radius. "
+			+ "Targets hit receive 40 Scorch stacks; DoT ramps to 1/10 weapon damage at 100 stacks. At 100 stacks, the target ignites after ~1s.";
 		public override PerkSlotType SlotType => PerkSlotType.Major;
 	}
 

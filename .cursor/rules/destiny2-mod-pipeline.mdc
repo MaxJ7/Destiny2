@@ -1,0 +1,185 @@
+---
+description: Destiny2 tModLoader mod development pipeline—architecture, conventions, anti-patterns, and data flow
+alwaysApply: true
+---
+
+# Destiny2 Mod Development Pipeline
+
+## 1. Architecture & File Layout
+
+| Path | Namespace | Purpose |
+|------|-----------|---------|
+| `Common/` | `Destiny2.Common.*` | Base classes, global systems, shared logic |
+| `Content/` | `Destiny2.Content.*` | Concrete weapons, projectiles, tiles, buffs |
+| `Assets/Perks/` | — | Perk icon PNGs (key = perk class name without "Perk") |
+| `Assets/Elements/` | — | Element icons |
+| `Assets/Ammo/` | — | Primary, Special, Heavy icons |
+
+**Weapon base:** `Destiny2WeaponStats.cs` + `Destiny2WeaponItem.Perks.cs` (partial classes)
+**Frames:** `ScoutRifleWeaponItem`, `HandCannonWeaponItem`, `AutoRifleWeaponItem` (in Common/Weapons/)
+
+---
+
+## 2. Weapon System
+
+### Base class: Destiny2WeaponItem
+
+- `BaseStats` (abstract) → `Destiny2WeaponStats` struct (Range, Stability, ReloadSpeed, RoundsPerMinute, Magazine)
+- `WeaponElement` → `Destiny2WeaponElement` (Kinetic, Arc, Solar, Void, Stasis, Strand) via `GetDamageClass()`
+- `AmmoType` → `Destiny2AmmoType` (Primary, Special, Heavy)
+
+### Perk flow for concrete weapons
+
+```csharp
+// In Content/Weapons/SomeWeapon.cs
+protected override void RollFramePerk()
+{
+    SetFramePerk(nameof(RapidFireFramePerk));  // or AdaptiveFramePerk, etc.
+}
+
+protected override void RollPerks()
+{
+    string barrel = RollFrom(nameof(HammerForgedRiflingPerk), nameof(SmallborePerk));
+    string magazine = RollFrom(nameof(AlloyMagPerk), nameof(ExtendedMagPerk));
+    string majorOne = RollFrom(nameof(RapidHitPerk));
+    string majorTwo = RollFrom(nameof(RampagePerk), nameof(IncandescentPerk));
+    SetPerks(barrel, magazine, majorOne, majorTwo);
+}
+```
+
+- **SetFramePerk(string)** — sets frame perk key
+- **SetPerks(params string[])** — replaces perkKeys list; keys = `nameof(SomePerk)`
+- **RollFrom(params string[])** — returns one random key
+- **GetPerks()** — returns `IEnumerable<Destiny2Perk>` from Destiny2PerkSystem by perkKeys
+
+### Data persistence
+
+- `SaveData(TagCompound)` / `LoadData(TagCompound)` — perkKeys, currentMagazine, reload state, customStats, framePerkKey, catalystPerkKey, elementOverride
+- `NetSend(BinaryWriter)` / `NetReceive(BinaryReader)` — same data for multiplayer
+- `Clone(Item)` — must copy all perk timers and state (outlawTimer, rampageTimer, etc.)
+
+### Perk stat application
+
+- `ApplyActivePerkStats(ref Destiny2WeaponStats)` — modifies stats based on active timers (Outlaw, RapidHit, Frenzy, Onslaught, FeedingFrenzy, Adagio, DynamicSway)
+
+---
+
+## 3. Projectile System
+
+### Bullet (Content/Projectiles/Bullet.cs)
+
+- **Hitscan via vanilla Colliding:** Uses `Colliding()` with `CheckAABBvLineCollision` (start = Center - velocity, end = Center)
+- **No CCD in AI:** Bullet no longer does manual CCD; vanilla handles collision
+- **localAI[0]/[1]** — last position (for dust trail)
+- **OnSpawn:** Get `sourceItem` from `EntitySource_ItemUse` or `EntitySource_ItemUse_WithAmmo` → `sourceItem?.ModItem is Destiny2WeaponItem`
+- **Weapon data:** maxFalloffTiles, weaponElement, DamageType from weaponItem
+- **ai[0]** — element ID
+- **hasDealtDamage** — prevents double-handling in OnHitNPC (vanilla may fire alongside Colliding)
+- **Trail:** `SpawnDustSegment(lastPosition, Center, element)` — dust-based; do NOT reintroduce shader trail (was reverted, caused crashes)
+- **Constants:** MaxDistance 1200f, DustSpacing 4f, Speed 32f, ExtraUpdates 3
+
+### ExplosiveShadowSlug (Content/Projectiles/ExplosiveShadowSlug.cs)
+
+- Malfeasance projectile; sticks to target, detonates
+- Same OnSpawn pattern; same maxFalloffTiles
+- Uses `IsStickingToTarget`, different AI for stick/detonate
+
+### Destiny2PerkProjectile (GlobalProjectile)
+
+- **OnSpawn:** Resolves source via `GetSourceWeaponItem(source)` or fallback to `owner.HeldItem`
+- **Perk attachment:** `weaponItem.GetPerks()` → iterates, adds to `perks` list, sets bools (hasVorpal, hasIncandescent, etc.)
+- **IsTrackedProjectile:** type == Bullet or ExplosiveShadowSlug, and Mod.Name == "Destiny2"
+- Perks that need projectile logic: Vorpal, Outlaw, RapidHit, KillClip, Frenzy, FourthTimes, Rampage, Onslaught, KineticTremors, Adagio, TargetLock, FeedingFrenzy, Incandescent, TheRightChoice, EyesUpGuardian, ArmorPiercingRounds
+
+---
+
+## 4. Perk System
+
+### Destiny2Perk (abstract)
+
+- `Key` (default: GetType().Name), `IsFrame`, `SlotType`
+- `ModifyStats(ref Destiny2WeaponStats)`, `OnProjectileHitNPC(...)` — optional overrides
+
+### Registration (Destiny2PerkSystem.OnModLoad)
+
+```csharp
+Register(new RapidHitPerk());
+Register(new IncandescentPerk());
+// Frame perks go to FramePerks list; others to Perks
+```
+
+### Perk logic locations
+
+- **GlobalProjectile:** Destiny2PerkProjectile — hit detection, damage mods, spawning child projectiles (Eyes Up Guardian, Kinetic Tremors)
+- **GlobalNPC:** ScorchGlobalNPC (Scorch DoT, ignite at 100 stacks, Incandescent explosion), KineticTremorsGlobalNPC
+- **Weapon item partial:** Destiny2WeaponItem.Perks.cs — timers (outlawTimer, rampageTimer, etc.), `AppendPerkHudEntries`
+- **ModProjectile:** ExplosiveShadowSlug — stick/detonate logic for Explosive Shadow
+
+### Perk HUD
+
+- `Destiny2WeaponItem.AppendPerkHudEntries(List<PerkHudEntry>)` — builds list of (IconTexture, Timer, MaxTimer, Stacks, ShowStacks)
+- Icon path: `Assets/Perks/{perkKey}.png` (e.g. RampagePerk → Rampage.png)
+- Destiny2HudSystem.PostDrawInterface — draws magazine, reload bar, perk buff panel
+
+---
+
+## 5. Damage & tML API
+
+### No damage variance
+
+- `Destiny2NoDamageVarianceProjectile` (GlobalProjectile)
+- `ModifyHitNPC` → `modifiers.DamageVariationScale *= 0f`
+- **Do NOT** use `MultipliableFloat` or raw float assignment for damage/knockback — tML changed; use HitModifiers
+
+### Damage type
+
+- `weaponElement.GetDamageClass()` → `Destiny2ElementDamageClass` (custom damage classes)
+- Projectile.DamageType set in OnSpawn from weapon
+
+### Obsolete members
+
+- `ModProjectile.Kill(int)` and `OnKill(int)` — if overriding, add `[Obsolete]` to match base when tML warns
+
+---
+
+## 6. Anti-Patterns (Do NOT)
+
+- **MultipliableFloat:** Old API; use `modifiers.DamageVariationScale *= 0f` (HitModifiers)
+- **StarlightRiver shader loader:** `Mod.File`, `FileEntry` do not exist in tML
+- **Vanilla asset path for effects:** `Assets/Effects/BeamTrail` loads from vanilla; mod effects need mod-scoped path and .xnb in mod
+- **Shader-based bullet trail:** Was attempted, caused BeamTrail asset not found; reverted to dust
+- **Crit spot system:** Removed; if ever reintroduced: Precision AR 1.75, Adaptive AR 1.75, Adaptive HC 1.79, Precision HC 1.55, Heavy Burst HC 2.2
+- **ExplosiveShadowGlobalItem:** Deleted; Explosive Shadow lives in Destiny2PerkProjectile + ExplosiveShadowSlug
+
+---
+
+## 7. Conventions
+
+- `sealed class` for leaf types (Trustee, Bullet, ScorchGlobalNPC)
+- XML `<summary>` on public/important methods
+- `if (Main.dedServ) return;` for client-only (dust, draw)
+- `if (Main.netMode == NetmodeID.MultiplayerClient) return;` for server-only (spawning, state changes)
+- Constants at top of class
+- Element colors: Void (196,0,240), Strand (55,218,100), Stasis (51,91,196), Solar (236,85,0), Arc (7,208,255), Kinetic (255,248,163)
+
+---
+
+## 8. Precision Multipliers (Reference)
+
+Used by frames via `GetPrecisionMultiplier()`; crit system removed but values preserved for future use:
+
+| Frame | Multiplier |
+|-------|------------|
+| Precision Auto Rifle | 1.75 |
+| Khvostov / Adaptive Auto Rifle | 1.75 |
+| Adaptive Hand Cannon | 1.79 |
+| Precision Hand Cannon, Malfeasance | 1.55 |
+| Heavy Burst Hand Cannon | 2.2 |
+
+---
+
+## 9. Build / Errors
+
+- **MSB3073 / exit -2147450730:** tML build step crashed; check mod code for runtime exceptions during load
+- **NETSDK1127:** .NET targeting pack missing → dotnet restore or SDK install
+- **Asset not found:** Use mod-scoped paths; .xnb must be built and included in mod output

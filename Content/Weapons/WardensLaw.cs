@@ -10,6 +10,10 @@ namespace Destiny2.Content.Weapons
 {
 	public sealed class WardensLaw : HandCannonWeaponItem
 	{
+		protected override Destiny2WeaponElement GetDefaultWeaponElement()
+		{
+			return Destiny2WeaponElement.Kinetic;
+		}
 
 		public override Destiny2WeaponStats BaseStats => new Destiny2WeaponStats(
 			range: 56f,

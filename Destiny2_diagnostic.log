@@ -16188,3 +16188,2410 @@
 [00:54:12.155] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Trustee hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
 [00:54:12.156] Bullet OnHitNPC. projId=0 target=Super Dummy damage=37
 [00:54:12.156] ProcessHit called. projId=0 target=Super Dummy damage=37 isRightChoiceShot=False isEyesUpShot=False
+---- Diagnostic Log Start 2026-01-31 00:58:01 ----
+[01:00:39.283] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:00:39.283] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:00:39.515] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=54
+[01:00:39.515] ProcessHit called. projId=0 target=Yellow Slime damage=54 isRightChoiceShot=False isEyesUpShot=False
+[01:00:39.749] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=40
+[01:00:39.749] ProcessHit called. projId=0 target=Yellow Slime damage=40 isRightChoiceShot=False isEyesUpShot=False
+[01:00:40.298] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:00:40.298] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:00:40.535] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:00:40.535] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:00:40.769] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=40
+[01:00:40.770] ProcessHit called. projId=0 target=Yellow Slime damage=40 isRightChoiceShot=False isEyesUpShot=False
+[01:00:45.127] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:00:45.127] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:00:45.355] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:00:45.355] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:00:45.569] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:00:45.570] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:00:45.822] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:00:45.822] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:00:46.040] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:00:46.041] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:00:46.606] Bullet OnHitNPC. projId=1 target=Target Dummy damage=56
+[01:00:46.606] ProcessHit called. projId=1 target=Target Dummy damage=56 isRightChoiceShot=False isEyesUpShot=False
+[01:00:46.836] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:00:46.837] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:00:48.775] RightChoice shot count=1/7
+[01:00:48.775] EyesUp TryConsume failed: stacks=0
+[01:00:48.776] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:48.776] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:48.777] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.071] RightChoice shot count=2/7
+[01:00:51.071] EyesUp TryConsume failed: stacks=0
+[01:00:51.072] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:51.073] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.073] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.170] RightChoice shot count=3/7
+[01:00:51.171] EyesUp TryConsume failed: stacks=0
+[01:00:51.172] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:51.172] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.172] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.272] RightChoice shot count=4/7
+[01:00:51.272] EyesUp TryConsume failed: stacks=0
+[01:00:51.273] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:51.273] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.273] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.371] RightChoice shot count=5/7
+[01:00:51.371] EyesUp TryConsume failed: stacks=0
+[01:00:51.372] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=34
+[01:00:51.373] ProcessHit called. projId=0 target=Yellow Slime damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.373] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.476] RightChoice shot count=6/7
+[01:00:51.476] EyesUp TryConsume failed: stacks=0
+[01:00:51.478] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=29
+[01:00:51.478] ProcessHit called. projId=0 target=Yellow Slime damage=29 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.478] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.570] RightChoice shot count=7/7
+[01:00:51.570] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:00:51.571] EyesUp TryConsume failed: stacks=0
+[01:00:51.590] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=29
+[01:00:51.591] ProcessHit called. projId=0 target=Yellow Slime damage=29 isRightChoiceShot=True isEyesUpShot=False
+[01:00:51.591] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:00:51.592] TryRicochet ENTER. proj=0 target=5
+[01:00:51.593] TryRicochet searching for target. fromNpc=5 (Yellow Slime) range=480 targetCenter={X:31964.7 Y:4133}
+[01:00:51.593] TryRicochet: Found target! npc=8 (Yellow Slime)
+[01:00:51.593] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=8 (Yellow Slime) damage=72
+[01:00:51.594] Bullet OnHitNPC. projId=1 target=Yellow Slime damage=71
+[01:00:51.595] ProcessHit called. projId=1 target=Yellow Slime damage=71 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.595] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.669] RightChoice shot count=1/7
+[01:00:51.670] EyesUp TryConsume failed: stacks=0
+[01:00:51.690] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:51.691] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.691] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:51.774] RightChoice shot count=2/7
+[01:00:51.774] EyesUp TryConsume failed: stacks=0
+[01:00:51.873] RightChoice shot count=3/7
+[01:00:51.874] EyesUp TryConsume failed: stacks=0
+[01:00:51.968] RightChoice shot count=4/7
+[01:00:51.968] EyesUp TryConsume failed: stacks=0
+[01:00:52.075] RightChoice shot count=5/7
+[01:00:52.075] EyesUp TryConsume failed: stacks=0
+[01:00:52.172] RightChoice shot count=6/7
+[01:00:52.173] EyesUp TryConsume failed: stacks=0
+[01:00:52.196] Bullet OnHitNPC. projId=1 target=Yellow Slime damage=29
+[01:00:52.197] ProcessHit called. projId=1 target=Yellow Slime damage=29 isRightChoiceShot=False isEyesUpShot=False
+[01:00:52.197] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:52.273] RightChoice shot count=7/7
+[01:00:52.273] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:00:52.274] EyesUp TryConsume failed: stacks=0
+[01:00:52.692] RightChoice shot count=1/7
+[01:00:52.692] EyesUp TryConsume failed: stacks=0
+[01:00:52.786] RightChoice shot count=2/7
+[01:00:52.787] EyesUp TryConsume failed: stacks=0
+[01:00:52.788] Bullet OnHitNPC. projId=1 target=Yellow Slime damage=34
+[01:00:52.789] ProcessHit called. projId=1 target=Yellow Slime damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:00:52.789] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:52.890] RightChoice shot count=3/7
+[01:00:52.890] EyesUp TryConsume failed: stacks=0
+[01:00:52.891] Bullet OnHitNPC. projId=1 target=Yellow Slime damage=29
+[01:00:52.892] ProcessHit called. projId=1 target=Yellow Slime damage=29 isRightChoiceShot=False isEyesUpShot=False
+[01:00:52.892] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.340] RightChoice shot count=4/7
+[01:00:53.341] EyesUp TryConsume failed: stacks=0
+[01:00:53.358] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:53.358] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.358] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.437] RightChoice shot count=5/7
+[01:00:53.438] EyesUp TryConsume failed: stacks=0
+[01:00:53.439] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=29
+[01:00:53.439] ProcessHit called. projId=0 target=Yellow Slime damage=29 isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.439] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.539] RightChoice shot count=6/7
+[01:00:53.540] EyesUp TryConsume failed: stacks=0
+[01:00:53.558] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=17
+[01:00:53.559] ProcessHit called. projId=0 target=Yellow Slime damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.559] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:53.636] RightChoice shot count=7/7
+[01:00:53.637] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:00:53.637] EyesUp TryConsume failed: stacks=0
+[01:00:53.658] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=29
+[01:00:53.658] ProcessHit called. projId=0 target=Yellow Slime damage=29 isRightChoiceShot=True isEyesUpShot=False
+[01:00:53.658] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:00:53.659] TryRicochet ENTER. proj=0 target=7
+[01:00:53.659] TryRicochet searching for target. fromNpc=7 (Yellow Slime) range=480 targetCenter={X:31964.846 Y:4129.175}
+[01:00:53.659] TryRicochet: NO TARGET FOUND within range!
+[01:00:58.175] RightChoice shot count=1/7
+[01:00:58.175] EyesUp TryConsume failed: stacks=0
+[01:00:58.207] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:00:58.208] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:00:58.208] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:58.271] RightChoice shot count=2/7
+[01:00:58.271] EyesUp TryConsume failed: stacks=0
+[01:00:58.307] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:00:58.308] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:00:58.308] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:58.371] RightChoice shot count=3/7
+[01:00:58.371] EyesUp TryConsume failed: stacks=0
+[01:00:58.406] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:00:58.406] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:00:58.406] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:58.477] RightChoice shot count=4/7
+[01:00:58.477] EyesUp TryConsume failed: stacks=0
+[01:00:58.579] RightChoice shot count=5/7
+[01:00:58.580] EyesUp TryConsume failed: stacks=0
+[01:00:58.673] RightChoice shot count=6/7
+[01:00:58.674] EyesUp TryConsume failed: stacks=0
+[01:00:58.971] RightChoice shot count=7/7
+[01:00:58.971] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:00:58.972] EyesUp TryConsume failed: stacks=0
+[01:00:59.008] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.008] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:00:59.008] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:00:59.009] TryRicochet ENTER. proj=0 target=2
+[01:00:59.009] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:31306 Y:4119}
+[01:00:59.009] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:00:59.009] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[01:00:59.074] RightChoice shot count=1/7
+[01:00:59.075] EyesUp TryConsume failed: stacks=0
+[01:00:59.107] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:00:59.108] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.108] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.109] Bullet OnHitNPC. projId=1 target=Target Dummy damage=45
+[01:00:59.109] ProcessHit called. projId=1 target=Target Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.110] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.178] RightChoice shot count=2/7
+[01:00:59.178] EyesUp TryConsume failed: stacks=0
+[01:00:59.215] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.215] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.216] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.271] RightChoice shot count=3/7
+[01:00:59.272] EyesUp TryConsume failed: stacks=0
+[01:00:59.309] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.310] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.310] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.544] RightChoice shot count=4/7
+[01:00:59.545] EyesUp TryConsume failed: stacks=0
+[01:00:59.576] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.576] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.577] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.640] RightChoice shot count=5/7
+[01:00:59.640] EyesUp TryConsume failed: stacks=0
+[01:00:59.673] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:00:59.673] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.674] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.740] RightChoice shot count=6/7
+[01:00:59.741] EyesUp TryConsume failed: stacks=0
+[01:00:59.776] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.776] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.777] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.844] RightChoice shot count=7/7
+[01:00:59.845] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:00:59.845] EyesUp TryConsume failed: stacks=0
+[01:00:59.879] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.880] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:00:59.880] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:00:59.880] TryRicochet ENTER. proj=0 target=2
+[01:00:59.880] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:31306 Y:4119}
+[01:00:59.881] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:00:59.881] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[01:00:59.938] RightChoice shot count=1/7
+[01:00:59.938] EyesUp TryConsume failed: stacks=0
+[01:00:59.974] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:00:59.975] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.975] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.975] Bullet OnHitNPC. projId=1 target=Target Dummy damage=90
+[01:00:59.976] ProcessHit called. projId=1 target=Target Dummy damage=90 isRightChoiceShot=False isEyesUpShot=False
+[01:00:59.976] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:00.042] RightChoice shot count=2/7
+[01:01:00.042] EyesUp TryConsume failed: stacks=0
+[01:01:00.141] RightChoice shot count=3/7
+[01:01:00.142] EyesUp TryConsume failed: stacks=0
+[01:01:00.239] RightChoice shot count=4/7
+[01:01:00.240] EyesUp TryConsume failed: stacks=0
+[01:01:00.341] RightChoice shot count=5/7
+[01:01:00.342] EyesUp TryConsume failed: stacks=0
+[01:01:00.375] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:01:00.376] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:00.376] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:00.437] RightChoice shot count=6/7
+[01:01:00.438] EyesUp TryConsume failed: stacks=0
+[01:01:00.478] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:00.479] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:00.479] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:00.543] RightChoice shot count=7/7
+[01:01:00.543] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:00.543] EyesUp TryConsume failed: stacks=0
+[01:01:00.922] RightChoice shot count=1/7
+[01:01:00.923] EyesUp TryConsume failed: stacks=0
+[01:01:01.023] RightChoice shot count=2/7
+[01:01:01.023] EyesUp TryConsume failed: stacks=0
+[01:01:01.060] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:01:01.061] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:01.061] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.242] RightChoice shot count=3/7
+[01:01:05.243] EyesUp TryConsume failed: stacks=0
+[01:01:05.244] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.244] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.244] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.338] RightChoice shot count=4/7
+[01:01:05.338] EyesUp TryConsume failed: stacks=0
+[01:01:05.339] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.339] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.339] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.446] RightChoice shot count=5/7
+[01:01:05.447] EyesUp TryConsume failed: stacks=0
+[01:01:05.447] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.448] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.448] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.539] RightChoice shot count=6/7
+[01:01:05.539] EyesUp TryConsume failed: stacks=0
+[01:01:05.540] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.540] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.540] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.639] RightChoice shot count=7/7
+[01:01:05.640] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:05.640] EyesUp TryConsume failed: stacks=0
+[01:01:05.641] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.641] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:05.641] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:05.642] TryRicochet ENTER. proj=0 target=3
+[01:01:05.642] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:05.642] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:05.642] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:05.643] Bullet OnHitNPC. projId=1 target=Super Dummy damage=90
+[01:01:05.643] ProcessHit called. projId=1 target=Super Dummy damage=90 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.643] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.742] RightChoice shot count=1/7
+[01:01:05.743] EyesUp TryConsume failed: stacks=0
+[01:01:05.744] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.744] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.744] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.839] RightChoice shot count=2/7
+[01:01:05.839] EyesUp TryConsume failed: stacks=0
+[01:01:05.840] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.840] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.841] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.937] RightChoice shot count=3/7
+[01:01:05.938] EyesUp TryConsume failed: stacks=0
+[01:01:05.938] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:05.939] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:05.939] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.037] RightChoice shot count=4/7
+[01:01:06.038] EyesUp TryConsume failed: stacks=0
+[01:01:06.039] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.039] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.039] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.147] RightChoice shot count=5/7
+[01:01:06.148] EyesUp TryConsume failed: stacks=0
+[01:01:06.148] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:01:06.149] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.149] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.238] RightChoice shot count=6/7
+[01:01:06.239] EyesUp TryConsume failed: stacks=0
+[01:01:06.240] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.240] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.240] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.347] RightChoice shot count=7/7
+[01:01:06.347] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:06.348] EyesUp TryConsume failed: stacks=0
+[01:01:06.348] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:01:06.349] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=True isEyesUpShot=False
+[01:01:06.349] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:06.349] TryRicochet ENTER. proj=0 target=3
+[01:01:06.349] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:06.349] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:06.350] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=78
+[01:01:06.350] Bullet OnHitNPC. projId=1 target=Super Dummy damage=78
+[01:01:06.350] ProcessHit called. projId=1 target=Super Dummy damage=78 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.350] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.437] RightChoice shot count=1/7
+[01:01:06.437] EyesUp TryConsume failed: stacks=0
+[01:01:06.438] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.439] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.439] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.543] RightChoice shot count=2/7
+[01:01:06.543] EyesUp TryConsume failed: stacks=0
+[01:01:06.544] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.545] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.545] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.640] RightChoice shot count=3/7
+[01:01:06.641] EyesUp TryConsume failed: stacks=0
+[01:01:06.642] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.642] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.642] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.744] RightChoice shot count=4/7
+[01:01:06.744] EyesUp TryConsume failed: stacks=0
+[01:01:06.745] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.745] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.745] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.842] RightChoice shot count=5/7
+[01:01:06.843] EyesUp TryConsume failed: stacks=0
+[01:01:06.844] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.844] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.844] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.941] RightChoice shot count=6/7
+[01:01:06.942] EyesUp TryConsume failed: stacks=0
+[01:01:06.943] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:06.943] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:06.943] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.044] RightChoice shot count=7/7
+[01:01:07.045] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:07.045] EyesUp TryConsume failed: stacks=0
+[01:01:07.046] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.046] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:07.046] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:07.046] TryRicochet ENTER. proj=0 target=3
+[01:01:07.047] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:07.047] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:07.047] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:07.048] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:07.048] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.048] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.139] RightChoice shot count=1/7
+[01:01:07.139] EyesUp TryConsume failed: stacks=0
+[01:01:07.140] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.140] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.140] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.239] RightChoice shot count=2/7
+[01:01:07.240] EyesUp TryConsume failed: stacks=0
+[01:01:07.240] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.241] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.241] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.340] RightChoice shot count=3/7
+[01:01:07.340] EyesUp TryConsume failed: stacks=0
+[01:01:07.341] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.341] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.341] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.438] RightChoice shot count=4/7
+[01:01:07.438] EyesUp TryConsume failed: stacks=0
+[01:01:07.439] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.439] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.439] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.542] RightChoice shot count=5/7
+[01:01:07.542] EyesUp TryConsume failed: stacks=0
+[01:01:07.543] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:01:07.543] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.544] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.645] RightChoice shot count=6/7
+[01:01:07.646] EyesUp TryConsume failed: stacks=0
+[01:01:07.647] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.647] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.647] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.746] RightChoice shot count=7/7
+[01:01:07.747] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:07.747] EyesUp TryConsume failed: stacks=0
+[01:01:07.748] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:01:07.748] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=True isEyesUpShot=False
+[01:01:07.748] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:07.748] TryRicochet ENTER. proj=0 target=3
+[01:01:07.748] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:07.749] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:07.749] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=78
+[01:01:07.749] Bullet OnHitNPC. projId=1 target=Super Dummy damage=78
+[01:01:07.750] ProcessHit called. projId=1 target=Super Dummy damage=78 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.750] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.838] RightChoice shot count=1/7
+[01:01:07.839] EyesUp TryConsume failed: stacks=0
+[01:01:07.840] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:01:07.840] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.840] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.939] RightChoice shot count=2/7
+[01:01:07.939] EyesUp TryConsume failed: stacks=0
+[01:01:07.940] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:07.941] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:07.941] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.042] RightChoice shot count=3/7
+[01:01:08.042] EyesUp TryConsume failed: stacks=0
+[01:01:08.043] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:01:08.043] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.043] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.144] RightChoice shot count=4/7
+[01:01:08.144] EyesUp TryConsume failed: stacks=0
+[01:01:08.145] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.145] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.145] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.239] RightChoice shot count=5/7
+[01:01:08.239] EyesUp TryConsume failed: stacks=0
+[01:01:08.240] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.240] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.241] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.343] RightChoice shot count=6/7
+[01:01:08.344] EyesUp TryConsume failed: stacks=0
+[01:01:08.344] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.345] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.345] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.443] RightChoice shot count=7/7
+[01:01:08.443] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:08.443] EyesUp TryConsume failed: stacks=0
+[01:01:08.444] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.444] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:08.445] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:08.445] TryRicochet ENTER. proj=0 target=3
+[01:01:08.445] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:08.445] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:08.446] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:08.446] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:08.447] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.447] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.541] RightChoice shot count=1/7
+[01:01:08.541] EyesUp TryConsume failed: stacks=0
+[01:01:08.543] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.543] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.543] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.648] RightChoice shot count=2/7
+[01:01:08.649] EyesUp TryConsume failed: stacks=0
+[01:01:08.650] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.650] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.650] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.739] RightChoice shot count=3/7
+[01:01:08.740] EyesUp TryConsume failed: stacks=0
+[01:01:08.740] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.741] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.741] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.843] RightChoice shot count=4/7
+[01:01:08.843] EyesUp TryConsume failed: stacks=0
+[01:01:08.844] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.844] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.845] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.937] RightChoice shot count=5/7
+[01:01:08.938] EyesUp TryConsume failed: stacks=0
+[01:01:08.939] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:08.939] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:08.939] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.039] RightChoice shot count=6/7
+[01:01:09.039] EyesUp TryConsume failed: stacks=0
+[01:01:09.040] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:09.040] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.040] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.138] RightChoice shot count=7/7
+[01:01:09.138] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:09.138] EyesUp TryConsume failed: stacks=0
+[01:01:09.139] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:09.139] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:09.139] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:09.140] TryRicochet ENTER. proj=0 target=3
+[01:01:09.140] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:09.140] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:09.140] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:09.141] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:09.141] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.141] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.239] RightChoice shot count=1/7
+[01:01:09.239] EyesUp TryConsume failed: stacks=0
+[01:01:09.240] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:09.240] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.241] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.341] RightChoice shot count=2/7
+[01:01:09.341] EyesUp TryConsume failed: stacks=0
+[01:01:09.342] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:09.342] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.343] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.442] RightChoice shot count=3/7
+[01:01:09.443] EyesUp TryConsume failed: stacks=0
+[01:01:09.443] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:09.444] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:09.444] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.213] RightChoice shot count=4/7
+[01:01:15.214] EyesUp TryConsume failed: stacks=0
+[01:01:15.215] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.215] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.215] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.313] RightChoice shot count=5/7
+[01:01:15.313] EyesUp TryConsume failed: stacks=0
+[01:01:15.314] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.314] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.315] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.411] RightChoice shot count=6/7
+[01:01:15.412] EyesUp TryConsume failed: stacks=0
+[01:01:15.413] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.413] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.414] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.504] RightChoice shot count=7/7
+[01:01:15.504] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:15.504] EyesUp TryConsume failed: stacks=0
+[01:01:15.505] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.506] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:15.506] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:15.506] TryRicochet ENTER. proj=0 target=3
+[01:01:15.506] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:15.507] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:15.507] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:15.507] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:15.507] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.508] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.607] RightChoice shot count=1/7
+[01:01:15.608] EyesUp TryConsume failed: stacks=0
+[01:01:15.609] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.609] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.609] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.704] RightChoice shot count=2/7
+[01:01:15.705] EyesUp TryConsume failed: stacks=0
+[01:01:15.706] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.706] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.707] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.809] RightChoice shot count=3/7
+[01:01:15.809] EyesUp TryConsume failed: stacks=0
+[01:01:15.810] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.811] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.811] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.904] RightChoice shot count=4/7
+[01:01:15.904] EyesUp TryConsume failed: stacks=0
+[01:01:15.905] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:15.905] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:15.906] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.006] RightChoice shot count=5/7
+[01:01:16.006] EyesUp TryConsume failed: stacks=0
+[01:01:16.007] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.007] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.008] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.104] RightChoice shot count=6/7
+[01:01:16.104] EyesUp TryConsume failed: stacks=0
+[01:01:16.105] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.105] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.106] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.207] RightChoice shot count=7/7
+[01:01:16.208] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:16.209] EyesUp TryConsume failed: stacks=0
+[01:01:16.209] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.210] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:16.210] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:16.210] TryRicochet ENTER. proj=0 target=3
+[01:01:16.210] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:16.210] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:16.211] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:16.211] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:16.212] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.212] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.308] RightChoice shot count=1/7
+[01:01:16.309] EyesUp TryConsume failed: stacks=0
+[01:01:16.309] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.310] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.310] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.405] RightChoice shot count=2/7
+[01:01:16.405] EyesUp TryConsume failed: stacks=0
+[01:01:16.406] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.406] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.406] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.508] RightChoice shot count=3/7
+[01:01:16.508] EyesUp TryConsume failed: stacks=0
+[01:01:16.509] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.509] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.509] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.613] RightChoice shot count=4/7
+[01:01:16.613] EyesUp TryConsume failed: stacks=0
+[01:01:16.614] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.614] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.615] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.710] RightChoice shot count=5/7
+[01:01:16.710] EyesUp TryConsume failed: stacks=0
+[01:01:16.711] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.711] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.711] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.806] RightChoice shot count=6/7
+[01:01:16.807] EyesUp TryConsume failed: stacks=0
+[01:01:16.808] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.808] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.808] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.909] RightChoice shot count=7/7
+[01:01:16.910] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:16.910] EyesUp TryConsume failed: stacks=0
+[01:01:16.911] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:16.911] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:16.911] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:16.911] TryRicochet ENTER. proj=0 target=3
+[01:01:16.912] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:16.913] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:16.915] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:16.916] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:16.916] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:16.916] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.006] RightChoice shot count=1/7
+[01:01:17.006] EyesUp TryConsume failed: stacks=0
+[01:01:17.007] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.007] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.008] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.107] RightChoice shot count=2/7
+[01:01:17.108] EyesUp TryConsume failed: stacks=0
+[01:01:17.109] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.109] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.110] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.212] RightChoice shot count=3/7
+[01:01:17.212] EyesUp TryConsume failed: stacks=0
+[01:01:17.213] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.213] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.213] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.310] RightChoice shot count=4/7
+[01:01:17.310] EyesUp TryConsume failed: stacks=0
+[01:01:17.311] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.312] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.312] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.403] RightChoice shot count=5/7
+[01:01:17.404] EyesUp TryConsume failed: stacks=0
+[01:01:17.405] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.405] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.405] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.508] RightChoice shot count=6/7
+[01:01:17.508] EyesUp TryConsume failed: stacks=0
+[01:01:17.509] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.509] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.509] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.604] RightChoice shot count=7/7
+[01:01:17.604] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:17.605] EyesUp TryConsume failed: stacks=0
+[01:01:17.606] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:01:17.606] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=True isEyesUpShot=False
+[01:01:17.606] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:17.606] TryRicochet ENTER. proj=0 target=3
+[01:01:17.606] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:17.607] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:17.607] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=78
+[01:01:17.607] Bullet OnHitNPC. projId=1 target=Super Dummy damage=156
+[01:01:17.608] ProcessHit called. projId=1 target=Super Dummy damage=156 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.608] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.705] RightChoice shot count=1/7
+[01:01:17.705] EyesUp TryConsume failed: stacks=0
+[01:01:17.706] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.706] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.706] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.805] RightChoice shot count=2/7
+[01:01:17.805] EyesUp TryConsume failed: stacks=0
+[01:01:17.806] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.806] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.806] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.904] RightChoice shot count=3/7
+[01:01:17.905] EyesUp TryConsume failed: stacks=0
+[01:01:17.906] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:17.906] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:17.906] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.004] RightChoice shot count=4/7
+[01:01:18.005] EyesUp TryConsume failed: stacks=0
+[01:01:18.006] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.006] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.006] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.103] RightChoice shot count=5/7
+[01:01:18.104] EyesUp TryConsume failed: stacks=0
+[01:01:18.105] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.105] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.105] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.204] RightChoice shot count=6/7
+[01:01:18.204] EyesUp TryConsume failed: stacks=0
+[01:01:18.205] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.206] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.206] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.305] RightChoice shot count=7/7
+[01:01:18.306] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:18.306] EyesUp TryConsume failed: stacks=0
+[01:01:18.307] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.307] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:18.307] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:18.307] TryRicochet ENTER. proj=0 target=3
+[01:01:18.308] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:18.308] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:18.308] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:18.308] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:18.309] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.309] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.404] RightChoice shot count=1/7
+[01:01:18.405] EyesUp TryConsume failed: stacks=0
+[01:01:18.406] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.406] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.406] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.508] RightChoice shot count=2/7
+[01:01:18.508] EyesUp TryConsume failed: stacks=0
+[01:01:18.509] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.509] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.509] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.606] RightChoice shot count=3/7
+[01:01:18.607] EyesUp TryConsume failed: stacks=0
+[01:01:18.608] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.608] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.608] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.710] RightChoice shot count=4/7
+[01:01:18.711] EyesUp TryConsume failed: stacks=0
+[01:01:18.713] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.713] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.713] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.810] RightChoice shot count=5/7
+[01:01:18.811] EyesUp TryConsume failed: stacks=0
+[01:01:18.812] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.812] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.812] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.911] RightChoice shot count=6/7
+[01:01:18.912] EyesUp TryConsume failed: stacks=0
+[01:01:18.913] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:18.913] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:18.913] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.003] RightChoice shot count=7/7
+[01:01:19.003] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:01:19.004] EyesUp TryConsume failed: stacks=0
+[01:01:19.005] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:19.005] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:01:19.005] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:01:19.005] TryRicochet ENTER. proj=0 target=3
+[01:01:19.005] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:31241 Y:4119}
+[01:01:19.006] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:01:19.006] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:01:19.006] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:01:19.006] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.007] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.105] RightChoice shot count=1/7
+[01:01:19.105] EyesUp TryConsume failed: stacks=0
+[01:01:19.106] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:19.106] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.106] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.203] RightChoice shot count=2/7
+[01:01:19.204] EyesUp TryConsume failed: stacks=0
+[01:01:19.205] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:19.205] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.205] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.306] RightChoice shot count=3/7
+[01:01:19.306] EyesUp TryConsume failed: stacks=0
+[01:01:19.307] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:19.307] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.308] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.406] RightChoice shot count=4/7
+[01:01:19.406] EyesUp TryConsume failed: stacks=0
+[01:01:19.407] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:01:19.407] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:01:19.408] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:04.331] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:02:04.331] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:04.560] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:02:04.561] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:04.794] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:02:04.794] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:06.301] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:06.302] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:06.526] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:06.527] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:06.760] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:06.760] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:06.992] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:06.992] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:07.226] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:02:07.226] ProcessHit called. projId=0 target=Super Dummy damage=42 isRightChoiceShot=False isEyesUpShot=False
+[01:02:07.462] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:07.462] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:07.702] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:07.702] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:08.129] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:08.129] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:08.480] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:08.480] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:08.758] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:08.759] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:09.094] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:09.094] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:11.428] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:11.428] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:11.784] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:11.784] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:12.166] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:12.167] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:14.767] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:14.768] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:15.212] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:15.213] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:15.714] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:15.714] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:19.859] Bullet OnHitNPC. projId=0 target=Super Dummy damage=57
+[01:02:19.860] ProcessHit called. projId=0 target=Super Dummy damage=57 isRightChoiceShot=False isEyesUpShot=False
+[01:02:20.326] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:20.326] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:20.781] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:20.782] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:21.262] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:21.262] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:21.726] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:21.726] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:22.962] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:22.962] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:23.445] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:23.446] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:23.931] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:23.931] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:24.380] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:24.381] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:24.809] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:24.809] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:25.262] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:25.263] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:29.327] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:29.328] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:30.908] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:30.909] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:31.496] Bullet OnHitNPC. projId=0 target=Super Dummy damage=57
+[01:02:31.496] ProcessHit called. projId=0 target=Super Dummy damage=57 isRightChoiceShot=False isEyesUpShot=False
+[01:02:32.030] Bullet OnHitNPC. projId=0 target=Super Dummy damage=57
+[01:02:32.031] ProcessHit called. projId=0 target=Super Dummy damage=57 isRightChoiceShot=False isEyesUpShot=False
+[01:02:32.627] Bullet OnHitNPC. projId=0 target=Super Dummy damage=57
+[01:02:32.627] ProcessHit called. projId=0 target=Super Dummy damage=57 isRightChoiceShot=False isEyesUpShot=False
+[01:02:33.175] Bullet OnHitNPC. projId=0 target=Super Dummy damage=57
+[01:02:33.176] ProcessHit called. projId=0 target=Super Dummy damage=57 isRightChoiceShot=False isEyesUpShot=False
+[01:02:37.858] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:02:37.859] ProcessHit called. projId=0 target=Super Dummy damage=42 isRightChoiceShot=False isEyesUpShot=False
+[01:02:38.342] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:02:38.343] ProcessHit called. projId=0 target=Super Dummy damage=42 isRightChoiceShot=False isEyesUpShot=False
+[01:02:38.827] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:02:38.828] ProcessHit called. projId=0 target=Super Dummy damage=42 isRightChoiceShot=False isEyesUpShot=False
+[01:02:40.847] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:40.848] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:41.292] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:02:41.292] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:02:45.676] ProcessHit called. projId=1 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:02:46.013] ProcessHit called. projId=2 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:02:46.345] ProcessHit called. projId=3 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:02:46.680] ProcessHit called. projId=4 target=Super Dummy damage=51 isRightChoiceShot=False isEyesUpShot=False
+[01:02:47.010] ProcessHit called. projId=5 target=Super Dummy damage=51 isRightChoiceShot=False isEyesUpShot=False
+[01:02:47.350] ProcessHit called. projId=1 target=Super Dummy damage=51 isRightChoiceShot=False isEyesUpShot=False
+[01:02:53.095] ProcessHit called. projId=0 target=Super Dummy damage=66 isRightChoiceShot=False isEyesUpShot=False
+[01:02:53.428] ProcessHit called. projId=1 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:02:55.277] Bullet OnHitNPC. projId=2 target=Super Dummy damage=32
+[01:02:55.278] ProcessHit called. projId=2 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:55.711] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:02:55.712] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.627] RightChoice shot count=1/7
+[01:02:58.627] EyesUp TryConsume failed: stacks=0
+[01:02:58.628] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:58.628] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.629] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.726] RightChoice shot count=2/7
+[01:02:58.726] EyesUp TryConsume failed: stacks=0
+[01:02:58.727] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:58.727] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.727] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.829] RightChoice shot count=3/7
+[01:02:58.829] EyesUp TryConsume failed: stacks=0
+[01:02:58.830] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:58.830] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.830] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.931] RightChoice shot count=4/7
+[01:02:58.931] EyesUp TryConsume failed: stacks=0
+[01:02:58.932] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:58.932] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:58.933] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.026] RightChoice shot count=5/7
+[01:02:59.026] EyesUp TryConsume failed: stacks=0
+[01:02:59.027] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.027] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.027] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.127] RightChoice shot count=6/7
+[01:02:59.127] EyesUp TryConsume failed: stacks=0
+[01:02:59.128] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.128] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.129] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.224] RightChoice shot count=7/7
+[01:02:59.225] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:02:59.225] EyesUp TryConsume failed: stacks=0
+[01:02:59.226] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.226] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:02:59.227] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:02:59.227] TryRicochet ENTER. proj=0 target=2
+[01:02:59.227] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:32663 Y:4119}
+[01:02:59.227] TryRicochet: NO TARGET FOUND within range!
+[01:02:59.332] RightChoice shot count=1/7
+[01:02:59.333] EyesUp TryConsume failed: stacks=0
+[01:02:59.334] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.335] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.335] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.428] RightChoice shot count=2/7
+[01:02:59.428] EyesUp TryConsume failed: stacks=0
+[01:02:59.429] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.429] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.429] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.525] RightChoice shot count=3/7
+[01:02:59.525] EyesUp TryConsume failed: stacks=0
+[01:02:59.526] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.527] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.527] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.626] RightChoice shot count=4/7
+[01:02:59.626] EyesUp TryConsume failed: stacks=0
+[01:02:59.627] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.628] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.628] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.737] RightChoice shot count=5/7
+[01:02:59.738] EyesUp TryConsume failed: stacks=0
+[01:02:59.739] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.739] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.739] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.837] RightChoice shot count=6/7
+[01:02:59.838] EyesUp TryConsume failed: stacks=0
+[01:02:59.839] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:02:59.839] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.839] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:02:59.926] RightChoice shot count=7/7
+[01:02:59.926] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:02:59.926] EyesUp TryConsume failed: stacks=0
+[01:03:00.031] RightChoice shot count=1/7
+[01:03:00.031] EyesUp TryConsume failed: stacks=0
+[01:03:00.033] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:00.033] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.033] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.126] RightChoice shot count=2/7
+[01:03:00.126] EyesUp TryConsume failed: stacks=0
+[01:03:00.127] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:00.127] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.128] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.225] RightChoice shot count=3/7
+[01:03:00.226] EyesUp TryConsume failed: stacks=0
+[01:03:00.227] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.227] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.227] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.329] RightChoice shot count=4/7
+[01:03:00.329] EyesUp TryConsume failed: stacks=0
+[01:03:00.330] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.331] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.331] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.428] RightChoice shot count=5/7
+[01:03:00.429] EyesUp TryConsume failed: stacks=0
+[01:03:00.430] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.430] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.430] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.530] RightChoice shot count=6/7
+[01:03:00.530] EyesUp TryConsume failed: stacks=0
+[01:03:00.531] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.531] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.532] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.625] RightChoice shot count=7/7
+[01:03:00.626] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:00.626] EyesUp TryConsume failed: stacks=0
+[01:03:00.627] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.628] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:00.628] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:00.628] TryRicochet ENTER. proj=0 target=2
+[01:03:00.628] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:32663 Y:4119}
+[01:03:00.629] TryRicochet: NO TARGET FOUND within range!
+[01:03:00.734] RightChoice shot count=1/7
+[01:03:00.734] EyesUp TryConsume failed: stacks=0
+[01:03:00.735] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.735] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.736] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.827] RightChoice shot count=2/7
+[01:03:00.827] EyesUp TryConsume failed: stacks=0
+[01:03:00.828] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:00.829] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:00.829] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.092] RightChoice shot count=3/7
+[01:03:03.092] EyesUp TryConsume failed: stacks=0
+[01:03:03.117] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.118] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.118] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.192] RightChoice shot count=4/7
+[01:03:03.192] EyesUp TryConsume failed: stacks=0
+[01:03:03.208] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.209] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.209] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.298] RightChoice shot count=5/7
+[01:03:03.298] EyesUp TryConsume failed: stacks=0
+[01:03:03.309] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.309] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.310] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.394] RightChoice shot count=6/7
+[01:03:03.395] EyesUp TryConsume failed: stacks=0
+[01:03:03.413] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.414] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.414] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.496] RightChoice shot count=7/7
+[01:03:03.497] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:03.497] EyesUp TryConsume failed: stacks=0
+[01:03:03.514] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.514] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:03.515] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:03.515] TryRicochet ENTER. proj=0 target=100
+[01:03:03.515] TryRicochet searching for target. fromNpc=100 (Target Dummy) range=480 targetCenter={X:32272 Y:4124}
+[01:03:03.515] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:03:03.515] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:03:03.542] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:03:03.542] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.542] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.598] RightChoice shot count=1/7
+[01:03:03.599] EyesUp TryConsume failed: stacks=0
+[01:03:03.699] RightChoice shot count=2/7
+[01:03:03.699] EyesUp TryConsume failed: stacks=0
+[01:03:03.700] Bullet OnHitNPC. projId=1 target=Target Dummy damage=18
+[01:03:03.701] ProcessHit called. projId=1 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.701] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.798] RightChoice shot count=3/7
+[01:03:03.799] EyesUp TryConsume failed: stacks=0
+[01:03:03.800] Bullet OnHitNPC. projId=1 target=Target Dummy damage=18
+[01:03:03.800] ProcessHit called. projId=1 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.801] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.899] RightChoice shot count=4/7
+[01:03:03.899] EyesUp TryConsume failed: stacks=0
+[01:03:03.900] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.901] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.901] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.996] RightChoice shot count=5/7
+[01:03:03.997] EyesUp TryConsume failed: stacks=0
+[01:03:03.997] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:03.998] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:03.998] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.095] RightChoice shot count=6/7
+[01:03:04.096] EyesUp TryConsume failed: stacks=0
+[01:03:04.192] RightChoice shot count=7/7
+[01:03:04.192] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:04.193] EyesUp TryConsume failed: stacks=0
+[01:03:04.194] Bullet OnHitNPC. projId=1 target=Target Dummy damage=18
+[01:03:04.194] ProcessHit called. projId=1 target=Target Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:04.195] ProcessHit: triggering RightChoice ricochet! projId=1
+[01:03:04.195] TryRicochet ENTER. proj=1 target=100
+[01:03:04.195] TryRicochet searching for target. fromNpc=100 (Target Dummy) range=480 targetCenter={X:32272 Y:4124}
+[01:03:04.195] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:03:04.195] TryRicochet: SUCCESS! Ricochet spawned projId=2 -> targetNpc=2 (Super Dummy) damage=45
+[01:03:04.232] Bullet OnHitNPC. projId=2 target=Super Dummy damage=45
+[01:03:04.232] ProcessHit called. projId=2 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.233] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.295] RightChoice shot count=1/7
+[01:03:04.295] EyesUp TryConsume failed: stacks=0
+[01:03:04.296] Bullet OnHitNPC. projId=1 target=Target Dummy damage=18
+[01:03:04.296] ProcessHit called. projId=1 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.297] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.401] RightChoice shot count=2/7
+[01:03:04.402] EyesUp TryConsume failed: stacks=0
+[01:03:04.403] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:04.403] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.403] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.493] RightChoice shot count=3/7
+[01:03:04.493] EyesUp TryConsume failed: stacks=0
+[01:03:04.494] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:04.494] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.495] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.599] RightChoice shot count=4/7
+[01:03:04.600] EyesUp TryConsume failed: stacks=0
+[01:03:04.698] RightChoice shot count=5/7
+[01:03:04.698] EyesUp TryConsume failed: stacks=0
+[01:03:04.700] Bullet OnHitNPC. projId=1 target=Target Dummy damage=18
+[01:03:04.700] ProcessHit called. projId=1 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.700] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.801] RightChoice shot count=6/7
+[01:03:04.801] EyesUp TryConsume failed: stacks=0
+[01:03:04.894] RightChoice shot count=7/7
+[01:03:04.895] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:04.895] EyesUp TryConsume failed: stacks=0
+[01:03:04.993] RightChoice shot count=1/7
+[01:03:04.993] EyesUp TryConsume failed: stacks=0
+[01:03:04.994] Bullet OnHitNPC. projId=2 target=Target Dummy damage=18
+[01:03:04.995] ProcessHit called. projId=2 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:04.995] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:05.881] RightChoice shot count=2/7
+[01:03:05.882] EyesUp TryConsume failed: stacks=0
+[01:03:05.883] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:05.883] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:05.883] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:05.978] RightChoice shot count=3/7
+[01:03:05.979] EyesUp TryConsume failed: stacks=0
+[01:03:05.979] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:05.980] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:05.980] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.079] RightChoice shot count=4/7
+[01:03:06.079] EyesUp TryConsume failed: stacks=0
+[01:03:06.080] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.080] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.081] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.176] RightChoice shot count=5/7
+[01:03:06.176] EyesUp TryConsume failed: stacks=0
+[01:03:06.177] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.177] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.178] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.276] RightChoice shot count=6/7
+[01:03:06.276] EyesUp TryConsume failed: stacks=0
+[01:03:06.277] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.277] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.277] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.376] RightChoice shot count=7/7
+[01:03:06.376] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:06.377] EyesUp TryConsume failed: stacks=0
+[01:03:06.377] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.378] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:06.378] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:06.378] TryRicochet ENTER. proj=0 target=100
+[01:03:06.378] TryRicochet searching for target. fromNpc=100 (Target Dummy) range=480 targetCenter={X:32272 Y:4124}
+[01:03:06.378] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:03:06.379] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:03:06.408] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:03:06.408] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.409] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.474] RightChoice shot count=1/7
+[01:03:06.475] EyesUp TryConsume failed: stacks=0
+[01:03:06.476] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.477] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.477] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.576] RightChoice shot count=2/7
+[01:03:06.577] EyesUp TryConsume failed: stacks=0
+[01:03:06.578] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.578] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.578] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.675] RightChoice shot count=3/7
+[01:03:06.675] EyesUp TryConsume failed: stacks=0
+[01:03:06.676] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:06.677] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.677] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.780] RightChoice shot count=4/7
+[01:03:06.780] EyesUp TryConsume failed: stacks=0
+[01:03:06.881] RightChoice shot count=5/7
+[01:03:06.882] EyesUp TryConsume failed: stacks=0
+[01:03:06.883] Bullet OnHitNPC. projId=1 target=Target Dummy damage=18
+[01:03:06.883] ProcessHit called. projId=1 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.883] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:06.984] RightChoice shot count=6/7
+[01:03:06.984] EyesUp TryConsume failed: stacks=0
+[01:03:07.079] RightChoice shot count=7/7
+[01:03:07.079] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:07.080] EyesUp TryConsume failed: stacks=0
+[01:03:07.177] RightChoice shot count=1/7
+[01:03:07.178] EyesUp TryConsume failed: stacks=0
+[01:03:07.179] Bullet OnHitNPC. projId=2 target=Target Dummy damage=18
+[01:03:07.179] ProcessHit called. projId=2 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.179] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.284] RightChoice shot count=2/7
+[01:03:07.284] EyesUp TryConsume failed: stacks=0
+[01:03:07.383] RightChoice shot count=3/7
+[01:03:07.383] EyesUp TryConsume failed: stacks=0
+[01:03:07.384] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.385] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.385] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.476] RightChoice shot count=4/7
+[01:03:07.477] EyesUp TryConsume failed: stacks=0
+[01:03:07.478] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.478] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.478] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.577] RightChoice shot count=5/7
+[01:03:07.578] EyesUp TryConsume failed: stacks=0
+[01:03:07.579] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.579] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.579] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.679] RightChoice shot count=6/7
+[01:03:07.679] EyesUp TryConsume failed: stacks=0
+[01:03:07.680] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.681] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.681] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.777] RightChoice shot count=7/7
+[01:03:07.778] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:07.778] EyesUp TryConsume failed: stacks=0
+[01:03:07.779] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.779] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:07.779] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:07.780] TryRicochet ENTER. proj=0 target=100
+[01:03:07.780] TryRicochet searching for target. fromNpc=100 (Target Dummy) range=480 targetCenter={X:32272 Y:4124}
+[01:03:07.780] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:03:07.780] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:03:07.814] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:03:07.814] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.814] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.879] RightChoice shot count=1/7
+[01:03:07.879] EyesUp TryConsume failed: stacks=0
+[01:03:07.880] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.880] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.881] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.976] RightChoice shot count=2/7
+[01:03:07.976] EyesUp TryConsume failed: stacks=0
+[01:03:07.977] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:07.977] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:07.977] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:08.080] RightChoice shot count=3/7
+[01:03:08.080] EyesUp TryConsume failed: stacks=0
+[01:03:08.081] Bullet OnHitNPC. projId=0 target=Target Dummy damage=36
+[01:03:08.082] ProcessHit called. projId=0 target=Target Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:03:08.082] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:10.326] EyesUp hook triggered: OnConsumeItem Player=0
+[01:03:10.327] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=4683
+[01:03:11.133] RightChoice shot count=4/7
+[01:03:11.134] EyesUp stacks consumed. Remaining=6
+[01:03:11.134] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:11.135] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:11.135] ProcessHit: starting EyesUp chain
+[01:03:11.477] RightChoice shot count=5/7
+[01:03:11.477] EyesUp stacks consumed. Remaining=5
+[01:03:11.478] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:11.478] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:11.479] ProcessHit: starting EyesUp chain
+[01:03:11.778] RightChoice shot count=6/7
+[01:03:11.779] EyesUp stacks consumed. Remaining=4
+[01:03:11.780] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:11.780] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:11.780] ProcessHit: starting EyesUp chain
+[01:03:11.997] RightChoice shot count=7/7
+[01:03:11.998] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:11.998] EyesUp stacks consumed. Remaining=3
+[01:03:11.999] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:11.999] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=True isEyesUpShot=True
+[01:03:11.999] ProcessHit: starting EyesUp chain
+[01:03:12.198] RightChoice shot count=1/7
+[01:03:12.198] EyesUp stacks consumed. Remaining=2
+[01:03:12.199] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:12.200] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:12.200] ProcessHit: starting EyesUp chain
+[01:03:12.460] RightChoice shot count=2/7
+[01:03:12.460] EyesUp stacks consumed. Remaining=1
+[01:03:12.462] Bullet OnHitNPC. projId=0 target=Target Dummy damage=36
+[01:03:12.462] ProcessHit called. projId=0 target=Target Dummy damage=36 isRightChoiceShot=False isEyesUpShot=True
+[01:03:12.462] ProcessHit: starting EyesUp chain
+[01:03:12.693] RightChoice shot count=3/7
+[01:03:12.694] EyesUp stacks consumed. Remaining=0
+[01:03:12.695] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:12.695] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:12.695] ProcessHit: starting EyesUp chain
+[01:03:12.915] RightChoice shot count=4/7
+[01:03:12.915] EyesUp TryConsume failed: stacks=0
+[01:03:12.916] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:12.916] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:12.916] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:13.229] RightChoice shot count=5/7
+[01:03:13.230] EyesUp TryConsume failed: stacks=0
+[01:03:13.231] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:03:13.231] ProcessHit called. projId=0 target=Target Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:13.232] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.391] RightChoice shot count=6/7
+[01:03:15.391] EyesUp TryConsume failed: stacks=0
+[01:03:15.392] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.393] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.393] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.494] RightChoice shot count=7/7
+[01:03:15.495] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:15.495] EyesUp TryConsume failed: stacks=0
+[01:03:15.496] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.496] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:15.496] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:15.497] TryRicochet ENTER. proj=0 target=2
+[01:03:15.497] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:32663 Y:4119}
+[01:03:15.497] TryRicochet: NO TARGET FOUND within range!
+[01:03:15.595] RightChoice shot count=1/7
+[01:03:15.595] EyesUp TryConsume failed: stacks=0
+[01:03:15.596] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.596] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.597] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.695] RightChoice shot count=2/7
+[01:03:15.695] EyesUp TryConsume failed: stacks=0
+[01:03:15.696] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.696] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.696] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.797] RightChoice shot count=3/7
+[01:03:15.797] EyesUp TryConsume failed: stacks=0
+[01:03:15.798] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.799] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.799] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.897] RightChoice shot count=4/7
+[01:03:15.898] EyesUp TryConsume failed: stacks=0
+[01:03:15.899] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.899] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.899] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.992] RightChoice shot count=5/7
+[01:03:15.992] EyesUp TryConsume failed: stacks=0
+[01:03:15.993] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:15.993] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:15.994] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:16.093] RightChoice shot count=6/7
+[01:03:16.094] EyesUp TryConsume failed: stacks=0
+[01:03:16.095] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:16.095] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:16.095] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:16.192] RightChoice shot count=7/7
+[01:03:16.193] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:16.193] EyesUp TryConsume failed: stacks=0
+[01:03:16.194] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:16.194] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:16.194] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:16.194] TryRicochet ENTER. proj=0 target=2
+[01:03:16.195] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:32663 Y:4119}
+[01:03:16.195] TryRicochet: NO TARGET FOUND within range!
+[01:03:16.296] RightChoice shot count=1/7
+[01:03:16.297] EyesUp TryConsume failed: stacks=0
+[01:03:16.298] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:16.298] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:16.299] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:16.393] RightChoice shot count=2/7
+[01:03:16.393] EyesUp TryConsume failed: stacks=0
+[01:03:16.394] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:16.395] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:16.395] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:19.509] EyesUp hook triggered: OnConsumeItem Player=0
+[01:03:19.509] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=5234
+[01:03:20.325] RightChoice shot count=3/7
+[01:03:20.326] EyesUp stacks consumed. Remaining=6
+[01:03:20.326] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.327] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:20.327] ProcessHit: starting EyesUp chain
+[01:03:20.327] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.328] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.328] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.350] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:03:20.350] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.351] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.351] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[01:03:20.352] ProcessHit called. projId=1 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.352] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.425] RightChoice shot count=4/7
+[01:03:20.426] EyesUp stacks consumed. Remaining=5
+[01:03:20.427] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.427] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:20.427] ProcessHit: starting EyesUp chain
+[01:03:20.428] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.428] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.428] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.448] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.448] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.448] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.449] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.449] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.449] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.525] RightChoice shot count=5/7
+[01:03:20.526] EyesUp stacks consumed. Remaining=4
+[01:03:20.526] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.526] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:20.527] ProcessHit: starting EyesUp chain
+[01:03:20.527] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.527] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.528] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.543] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.544] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.544] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.544] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.545] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.545] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.627] RightChoice shot count=6/7
+[01:03:20.628] EyesUp stacks consumed. Remaining=3
+[01:03:20.628] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.629] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:20.629] ProcessHit: starting EyesUp chain
+[01:03:20.630] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.630] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.630] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.648] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.649] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.649] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.650] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.650] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.650] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.724] RightChoice shot count=7/7
+[01:03:20.725] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:20.725] EyesUp stacks consumed. Remaining=2
+[01:03:20.726] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.726] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=True
+[01:03:20.727] ProcessHit: starting EyesUp chain
+[01:03:20.727] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.728] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.728] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.748] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.749] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.749] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.750] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.750] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.750] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.828] RightChoice shot count=1/7
+[01:03:20.829] EyesUp stacks consumed. Remaining=1
+[01:03:20.830] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:03:20.830] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=True
+[01:03:20.830] ProcessHit: starting EyesUp chain
+[01:03:20.831] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[01:03:20.831] ProcessHit called. projId=1 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.831] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.852] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:03:20.853] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.853] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.854] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[01:03:20.854] ProcessHit called. projId=1 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.854] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.927] RightChoice shot count=2/7
+[01:03:20.927] EyesUp stacks consumed. Remaining=0
+[01:03:20.928] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.928] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:03:20.928] ProcessHit: starting EyesUp chain
+[01:03:20.929] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.929] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.929] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.949] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:20.950] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.950] ProcessHit: handling EyesUp chain ricochet
+[01:03:20.951] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:03:20.952] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:20.952] ProcessHit: handling EyesUp chain ricochet
+[01:03:21.031] RightChoice shot count=3/7
+[01:03:21.032] EyesUp TryConsume failed: stacks=0
+[01:03:21.033] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.033] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.034] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.131] RightChoice shot count=4/7
+[01:03:21.131] EyesUp TryConsume failed: stacks=0
+[01:03:21.132] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.132] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.132] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.225] RightChoice shot count=5/7
+[01:03:21.225] EyesUp TryConsume failed: stacks=0
+[01:03:21.226] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.226] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.227] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.333] RightChoice shot count=6/7
+[01:03:21.334] EyesUp TryConsume failed: stacks=0
+[01:03:21.335] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.335] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.335] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.427] RightChoice shot count=7/7
+[01:03:21.428] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:21.428] EyesUp TryConsume failed: stacks=0
+[01:03:21.429] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.429] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:21.429] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:21.429] TryRicochet ENTER. proj=0 target=3
+[01:03:21.429] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:32543 Y:4119}
+[01:03:21.430] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:03:21.430] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:03:21.430] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:03:21.431] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.431] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.525] RightChoice shot count=1/7
+[01:03:21.526] EyesUp TryConsume failed: stacks=0
+[01:03:21.527] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.527] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.527] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.625] RightChoice shot count=2/7
+[01:03:21.625] EyesUp TryConsume failed: stacks=0
+[01:03:21.626] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.626] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.627] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.727] RightChoice shot count=3/7
+[01:03:21.727] EyesUp TryConsume failed: stacks=0
+[01:03:21.728] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.729] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.729] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.831] RightChoice shot count=4/7
+[01:03:21.832] EyesUp TryConsume failed: stacks=0
+[01:03:21.833] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.834] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.834] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.925] RightChoice shot count=5/7
+[01:03:21.926] EyesUp TryConsume failed: stacks=0
+[01:03:21.927] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:21.927] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:21.927] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:22.024] RightChoice shot count=6/7
+[01:03:22.025] EyesUp TryConsume failed: stacks=0
+[01:03:22.025] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:22.026] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:22.026] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:22.126] RightChoice shot count=7/7
+[01:03:22.127] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:03:22.127] EyesUp TryConsume failed: stacks=0
+[01:03:22.128] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:22.128] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:03:22.128] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:03:22.128] TryRicochet ENTER. proj=0 target=3
+[01:03:22.129] TryRicochet searching for target. fromNpc=3 (Super Dummy) range=480 targetCenter={X:32543 Y:4119}
+[01:03:22.129] TryRicochet: Found target! npc=2 (Super Dummy)
+[01:03:22.129] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=2 (Super Dummy) damage=45
+[01:03:22.130] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:03:22.130] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:03:22.130] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:03:22.230] RightChoice shot count=1/7
+[01:03:22.231] EyesUp TryConsume failed: stacks=0
+[01:03:22.232] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:03:22.232] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:03:22.232] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+---- Diagnostic Log Start 2026-01-31 01:11:39 ----
+[01:12:04.148] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:12:04.149] ProcessHit called. projId=0 target=Target Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:16.553] Bullet OnHitNPC. projId=0 target=Target Dummy damage=32
+[01:12:16.554] ProcessHit called. projId=0 target=Target Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:12:19.054] Bullet OnHitNPC. projId=0 target=Super Dummy damage=56
+[01:12:19.055] ProcessHit called. projId=0 target=Super Dummy damage=56 isRightChoiceShot=False isEyesUpShot=False
+[01:12:19.292] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:12:19.292] ProcessHit called. projId=0 target=Super Dummy damage=42 isRightChoiceShot=False isEyesUpShot=False
+[01:12:19.508] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:19.508] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:19.743] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:19.743] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:19.977] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:19.977] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:20.203] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:20.203] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:20.435] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:20.436] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:20.675] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:20.675] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:20.908] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:20.908] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:21.140] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:21.141] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:21.373] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:21.374] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:21.603] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:12:21.603] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.110] RightChoice shot count=1/7
+[01:12:23.110] EyesUp TryConsume failed: stacks=0
+[01:12:23.111] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.111] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.111] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.201] RightChoice shot count=2/7
+[01:12:23.202] EyesUp TryConsume failed: stacks=0
+[01:12:23.202] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:12:23.203] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.203] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.306] RightChoice shot count=3/7
+[01:12:23.307] EyesUp TryConsume failed: stacks=0
+[01:12:23.308] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.308] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.308] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.405] RightChoice shot count=4/7
+[01:12:23.406] EyesUp TryConsume failed: stacks=0
+[01:12:23.406] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.407] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.407] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.507] RightChoice shot count=5/7
+[01:12:23.507] EyesUp TryConsume failed: stacks=0
+[01:12:23.508] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.508] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.508] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.606] RightChoice shot count=6/7
+[01:12:23.606] EyesUp TryConsume failed: stacks=0
+[01:12:23.607] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.608] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.608] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.708] RightChoice shot count=7/7
+[01:12:23.709] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:12:23.709] EyesUp TryConsume failed: stacks=0
+[01:12:23.710] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.710] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:12:23.710] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:12:23.711] TryRicochet ENTER. proj=0 target=2
+[01:12:23.711] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:32303 Y:4119}
+[01:12:23.712] TryRicochet: NO TARGET FOUND within range!
+[01:12:23.810] RightChoice shot count=1/7
+[01:12:23.810] EyesUp TryConsume failed: stacks=0
+[01:12:23.811] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.812] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.812] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.911] RightChoice shot count=2/7
+[01:12:23.911] EyesUp TryConsume failed: stacks=0
+[01:12:23.912] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:23.912] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:23.912] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:24.009] RightChoice shot count=3/7
+[01:12:24.010] EyesUp TryConsume failed: stacks=0
+[01:12:24.011] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:24.011] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:24.011] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:24.106] RightChoice shot count=4/7
+[01:12:24.107] EyesUp TryConsume failed: stacks=0
+[01:12:24.107] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:24.108] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:24.108] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:24.206] RightChoice shot count=5/7
+[01:12:24.206] EyesUp TryConsume failed: stacks=0
+[01:12:24.207] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:24.208] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:24.208] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:12:29.002] ProcessHit called. projId=0 target=Super Dummy damage=66 isRightChoiceShot=False isEyesUpShot=False
+[01:12:29.335] ProcessHit called. projId=1 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:12:29.666] ProcessHit called. projId=2 target=Super Dummy damage=51 isRightChoiceShot=False isEyesUpShot=False
+[01:12:30.000] ProcessHit called. projId=3 target=Super Dummy damage=51 isRightChoiceShot=False isEyesUpShot=False
+[01:12:33.407] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:12:33.733] ProcessHit called. projId=1 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:12:34.073] ProcessHit called. projId=2 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:12:34.405] ProcessHit called. projId=3 target=Super Dummy damage=51 isRightChoiceShot=False isEyesUpShot=False
+[01:12:34.733] ProcessHit called. projId=4 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:12:35.885] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:35.885] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:36.019] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:36.020] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:36.149] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:36.150] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:36.282] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:36.282] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:36.415] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:36.415] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:36.552] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:36.553] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:36.685] Bullet OnHitNPC. projId=0 target=Super Dummy damage=19
+[01:12:36.686] ProcessHit called. projId=0 target=Super Dummy damage=19 isRightChoiceShot=False isEyesUpShot=False
+[01:12:42.799] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:42.799] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:42.935] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:42.935] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:43.064] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:43.065] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:43.201] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:43.201] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:43.332] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:43.333] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:43.469] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:43.469] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:43.604] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:43.605] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:43.736] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:43.736] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.004] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:12:44.005] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.137] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.138] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.265] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.266] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.400] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.400] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.536] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.536] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.673] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.674] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.799] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.800] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:44.931] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:12:44.932] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:12:47.091] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:12:47.092] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:12:47.215] Bullet OnHitNPC. projId=0 target=Super Dummy damage=16
+[01:12:47.215] ProcessHit called. projId=0 target=Super Dummy damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:47.351] Bullet OnHitNPC. projId=0 target=Super Dummy damage=16
+[01:12:47.351] ProcessHit called. projId=0 target=Super Dummy damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:47.485] Bullet OnHitNPC. projId=0 target=Super Dummy damage=16
+[01:12:47.485] ProcessHit called. projId=0 target=Super Dummy damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:47.619] Bullet OnHitNPC. projId=0 target=Super Dummy damage=16
+[01:12:47.620] ProcessHit called. projId=0 target=Super Dummy damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:47.754] Bullet OnHitNPC. projId=0 target=Super Dummy damage=16
+[01:12:47.755] ProcessHit called. projId=0 target=Super Dummy damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:56.022] Bullet OnHitNPC. projId=0 target=Blue Slime damage=16
+[01:12:56.023] ProcessHit called. projId=0 target=Blue Slime damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:56.155] Bullet OnHitNPC. projId=0 target=Blue Slime damage=16
+[01:12:56.156] ProcessHit called. projId=0 target=Blue Slime damage=16 isRightChoiceShot=False isEyesUpShot=False
+[01:12:56.286] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:12:56.287] ProcessHit called. projId=0 target=Blue Slime damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:12:56.493] Bullet OnHitNPC. projId=0 target=Super Dummy damage=30
+[01:12:56.493] ProcessHit called. projId=0 target=Super Dummy damage=30 isRightChoiceShot=False isEyesUpShot=False
+[01:12:56.823] Bullet OnHitNPC. projId=1 target=Super Dummy damage=17
+[01:12:56.823] ProcessHit called. projId=1 target=Super Dummy damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:12:56.930] Bullet OnHitNPC. projId=0 target=Blue Slime damage=20
+[01:12:56.931] ProcessHit called. projId=0 target=Blue Slime damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:12:57.087] Bullet OnHitNPC. projId=0 target=Blue Slime damage=20
+[01:12:57.087] ProcessHit called. projId=0 target=Blue Slime damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:12:57.321] Bullet OnHitNPC. projId=0 target=Super Dummy damage=17
+[01:12:57.321] ProcessHit called. projId=0 target=Super Dummy damage=17 isRightChoiceShot=False isEyesUpShot=False
+[01:12:57.427] Bullet OnHitNPC. projId=0 target=Blue Slime damage=20
+[01:12:57.428] ProcessHit called. projId=0 target=Blue Slime damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:12:57.587] Bullet OnHitNPC. projId=0 target=Blue Slime damage=36
+[01:12:57.587] ProcessHit called. projId=0 target=Blue Slime damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:12:58.359] Bullet OnHitNPC. projId=0 target=Blue Slime damage=36
+[01:12:58.359] ProcessHit called. projId=0 target=Blue Slime damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:12:58.523] Bullet OnHitNPC. projId=0 target=Blue Slime damage=36
+[01:12:58.523] ProcessHit called. projId=0 target=Blue Slime damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:12:58.691] Bullet OnHitNPC. projId=0 target=Blue Slime damage=36
+[01:12:58.691] ProcessHit called. projId=0 target=Blue Slime damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:12:59.196] Bullet OnHitNPC. projId=0 target=Blue Slime damage=36
+[01:12:59.196] ProcessHit called. projId=0 target=Blue Slime damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:13:00.377] Bullet OnHitNPC. projId=1 target=Blue Slime damage=20
+[01:13:00.377] ProcessHit called. projId=1 target=Blue Slime damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:13:01.874] Bullet OnHitNPC. projId=0 target=Super Dummy damage=41
+[01:13:01.874] ProcessHit called. projId=0 target=Super Dummy damage=41 isRightChoiceShot=False isEyesUpShot=False
+[01:13:02.038] Bullet OnHitNPC. projId=0 target=Super Dummy damage=20
+[01:13:02.038] ProcessHit called. projId=0 target=Super Dummy damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:13:02.371] Bullet OnHitNPC. projId=1 target=Super Dummy damage=20
+[01:13:02.371] ProcessHit called. projId=1 target=Super Dummy damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:13:02.539] Bullet OnHitNPC. projId=0 target=Super Dummy damage=20
+[01:13:02.540] ProcessHit called. projId=0 target=Super Dummy damage=20 isRightChoiceShot=False isEyesUpShot=False
+[01:13:02.704] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:13:02.705] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:13:03.801] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.801] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=3618
+[01:13:03.918] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.919] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3625
+[01:13:03.928] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.929] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3626
+[01:13:03.939] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.939] EyesUp grant skipped (already granted this frame). Frame=3626
+[01:13:03.950] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.950] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3627
+[01:13:03.966] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.967] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3628
+[01:13:03.976] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.976] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3629
+[01:13:03.986] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.986] EyesUp grant skipped (already granted this frame). Frame=3629
+[01:13:03.999] EyesUp hook triggered: GetHealLife Player=0
+[01:13:03.999] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3630
+[01:13:04.012] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.012] EyesUp grant skipped (already granted this frame). Frame=3630
+[01:13:04.022] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.023] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3631
+[01:13:04.035] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.035] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3632
+[01:13:04.046] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.046] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3633
+[01:13:04.059] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.060] EyesUp grant skipped (already granted this frame). Frame=3633
+[01:13:04.070] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.070] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3634
+[01:13:04.082] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.082] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3635
+[01:13:04.092] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.092] EyesUp grant skipped (already granted this frame). Frame=3635
+[01:13:04.108] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.108] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3636
+[01:13:04.711] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.711] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3673
+[01:13:04.721] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.722] EyesUp grant skipped (already granted this frame). Frame=3673
+[01:13:04.733] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.733] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3674
+[01:13:04.748] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.749] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3675
+[01:13:04.756] EyesUp hook triggered: GetHealLife Player=0
+[01:13:04.757] EyesUp grant skipped (already granted this frame). Frame=3675
+[01:13:10.305] RightChoice shot count=6/7
+[01:13:10.305] EyesUp stacks consumed. Remaining=6
+[01:13:10.323] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.324] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:13:10.324] ProcessHit: starting EyesUp chain
+[01:13:10.338] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.338] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.338] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.375] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.376] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.376] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.393] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.393] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.393] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.404] RightChoice shot count=7/7
+[01:13:10.404] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:13:10.404] EyesUp stacks consumed. Remaining=5
+[01:13:10.419] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.419] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=True
+[01:13:10.420] ProcessHit: starting EyesUp chain
+[01:13:10.438] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.438] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.439] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.468] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.469] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.469] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.489] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.489] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.489] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.505] RightChoice shot count=1/7
+[01:13:10.506] EyesUp stacks consumed. Remaining=4
+[01:13:10.524] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.524] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:13:10.524] ProcessHit: starting EyesUp chain
+[01:13:10.535] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.536] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.536] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.574] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.574] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.574] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.589] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.589] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.589] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.608] RightChoice shot count=2/7
+[01:13:10.609] EyesUp stacks consumed. Remaining=3
+[01:13:10.619] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.620] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:13:10.620] ProcessHit: starting EyesUp chain
+[01:13:10.642] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.642] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.642] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.676] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.677] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.677] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.688] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.688] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.688] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.710] RightChoice shot count=3/7
+[01:13:10.710] EyesUp stacks consumed. Remaining=2
+[01:13:10.726] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.726] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=True
+[01:13:10.726] ProcessHit: starting EyesUp chain
+[01:13:10.736] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.736] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.737] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.769] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:10.770] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.770] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.787] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:10.788] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:10.788] ProcessHit: handling EyesUp chain ricochet
+[01:13:10.812] RightChoice shot count=4/7
+[01:13:10.812] EyesUp stacks consumed. Remaining=1
+[01:13:10.903] RightChoice shot count=5/7
+[01:13:10.904] EyesUp stacks consumed. Remaining=0
+[01:13:11.007] RightChoice shot count=6/7
+[01:13:11.008] EyesUp TryConsume failed: stacks=0
+[01:13:11.021] Bullet OnHitNPC. projId=2 target=Super Dummy damage=18
+[01:13:11.022] ProcessHit called. projId=2 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.022] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.104] RightChoice shot count=7/7
+[01:13:11.105] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:13:11.105] EyesUp TryConsume failed: stacks=0
+[01:13:11.120] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:11.121] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:13:11.121] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:13:11.121] TryRicochet ENTER. proj=0 target=4
+[01:13:11.121] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32967 Y:4103}
+[01:13:11.121] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:13:11.122] TryRicochet: SUCCESS! Ricochet spawned projId=2 -> targetNpc=3 (Super Dummy) damage=45
+[01:13:11.140] Bullet OnHitNPC. projId=2 target=Super Dummy damage=45
+[01:13:11.141] ProcessHit called. projId=2 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.141] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.208] RightChoice shot count=1/7
+[01:13:11.208] EyesUp TryConsume failed: stacks=0
+[01:13:11.225] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:13:11.226] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.226] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.302] RightChoice shot count=2/7
+[01:13:11.303] EyesUp TryConsume failed: stacks=0
+[01:13:11.401] RightChoice shot count=3/7
+[01:13:11.402] EyesUp TryConsume failed: stacks=0
+[01:13:11.421] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:11.422] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.423] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.502] RightChoice shot count=4/7
+[01:13:11.503] EyesUp TryConsume failed: stacks=0
+[01:13:11.610] RightChoice shot count=5/7
+[01:13:11.610] EyesUp TryConsume failed: stacks=0
+[01:13:11.621] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:11.621] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.621] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.707] RightChoice shot count=6/7
+[01:13:11.708] EyesUp TryConsume failed: stacks=0
+[01:13:11.805] RightChoice shot count=7/7
+[01:13:11.805] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:13:11.805] EyesUp TryConsume failed: stacks=0
+[01:13:11.830] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:13:11.831] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:13:11.831] ProcessHit: triggering RightChoice ricochet! projId=1
+[01:13:11.831] TryRicochet ENTER. proj=1 target=4
+[01:13:11.831] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32967 Y:4103}
+[01:13:11.831] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:13:11.832] TryRicochet: SUCCESS! Ricochet spawned projId=2 -> targetNpc=3 (Super Dummy) damage=45
+[01:13:11.841] Bullet OnHitNPC. projId=2 target=Super Dummy damage=45
+[01:13:11.841] ProcessHit called. projId=2 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.842] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:11.912] RightChoice shot count=1/7
+[01:13:11.912] EyesUp TryConsume failed: stacks=0
+[01:13:12.007] RightChoice shot count=2/7
+[01:13:12.008] EyesUp TryConsume failed: stacks=0
+[01:13:12.019] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:12.020] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.020] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.112] RightChoice shot count=3/7
+[01:13:12.113] EyesUp TryConsume failed: stacks=0
+[01:13:12.207] RightChoice shot count=4/7
+[01:13:12.207] EyesUp TryConsume failed: stacks=0
+[01:13:12.308] RightChoice shot count=5/7
+[01:13:12.309] EyesUp TryConsume failed: stacks=0
+[01:13:12.328] Bullet OnHitNPC. projId=2 target=Super Dummy damage=18
+[01:13:12.328] ProcessHit called. projId=2 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.329] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.406] RightChoice shot count=6/7
+[01:13:12.407] EyesUp TryConsume failed: stacks=0
+[01:13:12.430] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:12.430] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.431] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.506] RightChoice shot count=7/7
+[01:13:12.506] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:13:12.507] EyesUp TryConsume failed: stacks=0
+[01:13:12.507] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:12.508] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:13:12.508] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:13:12.508] TryRicochet ENTER. proj=0 target=4
+[01:13:12.508] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32967 Y:4103}
+[01:13:12.508] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:13:12.509] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[01:13:12.525] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:13:12.526] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.526] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.607] RightChoice shot count=1/7
+[01:13:12.608] EyesUp TryConsume failed: stacks=0
+[01:13:12.609] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:12.609] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.609] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.704] RightChoice shot count=2/7
+[01:13:12.704] EyesUp TryConsume failed: stacks=0
+[01:13:12.805] RightChoice shot count=3/7
+[01:13:12.805] EyesUp TryConsume failed: stacks=0
+[01:13:12.806] Bullet OnHitNPC. projId=1 target=Super Dummy damage=31
+[01:13:12.806] ProcessHit called. projId=1 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.806] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.903] RightChoice shot count=4/7
+[01:13:12.904] EyesUp TryConsume failed: stacks=0
+[01:13:12.905] Bullet OnHitNPC. projId=1 target=Super Dummy damage=31
+[01:13:12.905] ProcessHit called. projId=1 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:13:12.905] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.007] RightChoice shot count=5/7
+[01:13:13.008] EyesUp TryConsume failed: stacks=0
+[01:13:13.009] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:13:13.009] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.009] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.103] RightChoice shot count=6/7
+[01:13:13.104] EyesUp TryConsume failed: stacks=0
+[01:13:13.105] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:13.105] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.105] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.206] RightChoice shot count=7/7
+[01:13:13.206] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:13:13.207] EyesUp TryConsume failed: stacks=0
+[01:13:13.208] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:13:13.208] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=True isEyesUpShot=False
+[01:13:13.208] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:13:13.208] TryRicochet ENTER. proj=0 target=4
+[01:13:13.208] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32967 Y:4103}
+[01:13:13.209] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:13:13.209] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=78
+[01:13:13.221] Bullet OnHitNPC. projId=1 target=Super Dummy damage=78
+[01:13:13.222] ProcessHit called. projId=1 target=Super Dummy damage=78 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.222] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.303] RightChoice shot count=1/7
+[01:13:13.304] EyesUp TryConsume failed: stacks=0
+[01:13:13.304] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:13.305] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.305] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.402] RightChoice shot count=2/7
+[01:13:13.402] EyesUp TryConsume failed: stacks=0
+[01:13:13.404] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:13.404] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.404] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.505] RightChoice shot count=3/7
+[01:13:13.505] EyesUp TryConsume failed: stacks=0
+[01:13:13.506] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:13:13.506] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.507] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.605] RightChoice shot count=4/7
+[01:13:13.605] EyesUp TryConsume failed: stacks=0
+[01:13:13.606] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:13:13.607] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.607] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.704] RightChoice shot count=5/7
+[01:13:13.704] EyesUp TryConsume failed: stacks=0
+[01:13:13.705] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:13.706] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.706] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.806] RightChoice shot count=6/7
+[01:13:13.807] EyesUp TryConsume failed: stacks=0
+[01:13:13.808] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:13.808] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.808] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.908] RightChoice shot count=7/7
+[01:13:13.908] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:13:13.909] EyesUp TryConsume failed: stacks=0
+[01:13:13.910] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:13.910] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:13:13.910] ProcessHit: triggering RightChoice ricochet! projId=0
+[01:13:13.910] TryRicochet ENTER. proj=0 target=4
+[01:13:13.910] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32967 Y:4103}
+[01:13:13.910] TryRicochet: Found target! npc=3 (Super Dummy)
+[01:13:13.911] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[01:13:13.919] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[01:13:13.919] ProcessHit called. projId=1 target=Super Dummy damage=45 isRightChoiceShot=False isEyesUpShot=False
+[01:13:13.920] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:14.002] RightChoice shot count=1/7
+[01:13:14.002] EyesUp TryConsume failed: stacks=0
+[01:13:14.003] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:14.004] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:14.004] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:14.102] RightChoice shot count=2/7
+[01:13:14.102] EyesUp TryConsume failed: stacks=0
+[01:13:14.103] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:14.103] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:14.103] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:14.201] RightChoice shot count=3/7
+[01:13:14.202] EyesUp TryConsume failed: stacks=0
+[01:13:14.203] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:13:14.203] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:13:14.203] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:13:16.272] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:16.272] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:16.511] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:16.511] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:16.739] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:16.740] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:20.207] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:20.207] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:20.475] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:20.475] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:20.707] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:20.707] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:21.959] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:21.960] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:22.387] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:22.387] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:22.740] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:22.741] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:23.105] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=40
+[01:13:23.105] ProcessHit called. projId=0 target=Yellow Slime damage=40 isRightChoiceShot=False isEyesUpShot=False
+[01:13:23.456] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:23.456] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:23.778] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:23.779] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:24.088] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:24.088] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:24.379] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:24.379] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:24.772] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:24.772] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:25.323] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:25.323] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:25.756] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:25.757] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:28.685] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:28.686] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:29.053] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:29.054] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:29.426] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:13:29.426] ProcessHit called. projId=0 target=Yellow Slime damage=27 isRightChoiceShot=False isEyesUpShot=False
+[01:13:35.586] EyesUp TryConsume failed: stacks=0
+[01:13:51.722] Bullet OnHitNPC. projId=0 target=Super Dummy damage=56
+[01:13:51.723] ProcessHit called. projId=0 target=Super Dummy damage=56 isRightChoiceShot=False isEyesUpShot=False
+[01:13:51.953] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:51.954] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:52.188] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:13:52.188] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:13:52.420] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:13:52.420] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:13:52.657] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:13:52.657] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:13:52.890] Bullet OnHitNPC. projId=0 target=Super Dummy damage=34
+[01:13:52.890] ProcessHit called. projId=0 target=Super Dummy damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:13:53.122] Bullet OnHitNPC. projId=0 target=Super Dummy damage=34
+[01:13:53.122] ProcessHit called. projId=0 target=Super Dummy damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:13:53.354] Bullet OnHitNPC. projId=0 target=Super Dummy damage=34
+[01:13:53.354] ProcessHit called. projId=0 target=Super Dummy damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:13:53.588] Bullet OnHitNPC. projId=0 target=Super Dummy damage=35
+[01:13:53.588] ProcessHit called. projId=0 target=Super Dummy damage=35 isRightChoiceShot=False isEyesUpShot=False
+[01:13:53.825] Bullet OnHitNPC. projId=0 target=Super Dummy damage=35
+[01:13:53.826] ProcessHit called. projId=0 target=Super Dummy damage=35 isRightChoiceShot=False isEyesUpShot=False
+[01:13:54.051] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:13:54.052] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:13:54.289] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:13:54.290] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:13:54.522] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:13:54.522] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:13:54.762] Bullet OnHitNPC. projId=0 target=Super Dummy damage=37
+[01:13:54.763] ProcessHit called. projId=0 target=Super Dummy damage=37 isRightChoiceShot=False isEyesUpShot=False
+[01:13:54.987] Bullet OnHitNPC. projId=0 target=Super Dummy damage=37
+[01:13:54.987] ProcessHit called. projId=0 target=Super Dummy damage=37 isRightChoiceShot=False isEyesUpShot=False
+[01:13:55.228] Bullet OnHitNPC. projId=0 target=Super Dummy damage=38
+[01:13:55.228] ProcessHit called. projId=0 target=Super Dummy damage=38 isRightChoiceShot=False isEyesUpShot=False
+[01:13:55.454] Bullet OnHitNPC. projId=0 target=Super Dummy damage=38
+[01:13:55.455] ProcessHit called. projId=0 target=Super Dummy damage=38 isRightChoiceShot=False isEyesUpShot=False
+[01:13:58.186] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:58.187] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:58.420] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:58.420] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:58.655] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:13:58.655] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:13:59.353] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:59.354] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:59.589] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:59.589] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:13:59.819] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:13:59.819] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:14:00.055] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:14:00.056] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:14:00.290] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:14:00.290] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:14:00.757] Bullet OnHitNPC. projId=1 target=Super Dummy damage=28
+[01:14:00.758] ProcessHit called. projId=1 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:14:00.986] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:14:00.987] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:14:01.222] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:14:01.223] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:14:01.923] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:14:01.924] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:14:04.390] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:14:04.391] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:14:04.627] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:14:04.627] ProcessHit called. projId=0 target=Super Dummy damage=28 isRightChoiceShot=False isEyesUpShot=False
+[01:14:04.855] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:14:04.856] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:14:05.088] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[01:14:05.088] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:14:05.322] Bullet OnHitNPC. projId=0 target=Super Dummy damage=67
+[01:14:05.323] ProcessHit called. projId=0 target=Super Dummy damage=67 isRightChoiceShot=False isEyesUpShot=False
+[01:14:05.556] Bullet OnHitNPC. projId=0 target=Super Dummy damage=34
+[01:14:05.556] ProcessHit called. projId=0 target=Super Dummy damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:14:05.787] Bullet OnHitNPC. projId=0 target=Super Dummy damage=34
+[01:14:05.788] ProcessHit called. projId=0 target=Super Dummy damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:14:06.021] Bullet OnHitNPC. projId=0 target=Super Dummy damage=34
+[01:14:06.021] ProcessHit called. projId=0 target=Super Dummy damage=34 isRightChoiceShot=False isEyesUpShot=False
+[01:14:06.258] Bullet OnHitNPC. projId=0 target=Super Dummy damage=35
+[01:14:06.258] ProcessHit called. projId=0 target=Super Dummy damage=35 isRightChoiceShot=False isEyesUpShot=False
+[01:14:06.491] Bullet OnHitNPC. projId=0 target=Super Dummy damage=71
+[01:14:06.492] ProcessHit called. projId=0 target=Super Dummy damage=71 isRightChoiceShot=False isEyesUpShot=False
+[01:14:06.720] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:06.720] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:06.955] Bullet OnHitNPC. projId=0 target=Super Dummy damage=73
+[01:14:06.956] ProcessHit called. projId=0 target=Super Dummy damage=73 isRightChoiceShot=False isEyesUpShot=False
+[01:14:07.186] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:07.187] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:07.425] Bullet OnHitNPC. projId=0 target=Super Dummy damage=37
+[01:14:07.425] ProcessHit called. projId=0 target=Super Dummy damage=37 isRightChoiceShot=False isEyesUpShot=False
+[01:14:07.655] Bullet OnHitNPC. projId=0 target=Super Dummy damage=37
+[01:14:07.655] ProcessHit called. projId=0 target=Super Dummy damage=37 isRightChoiceShot=False isEyesUpShot=False
+[01:14:07.885] Bullet OnHitNPC. projId=0 target=Super Dummy damage=38
+[01:14:07.885] ProcessHit called. projId=0 target=Super Dummy damage=38 isRightChoiceShot=False isEyesUpShot=False
+[01:14:08.119] Bullet OnHitNPC. projId=0 target=Super Dummy damage=38
+[01:14:08.120] ProcessHit called. projId=0 target=Super Dummy damage=38 isRightChoiceShot=False isEyesUpShot=False
+[01:14:12.854] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:12.854] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:13.287] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:13.287] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:13.738] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:13.739] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:14.455] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:14.456] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:17.569] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:17.569] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:18.758] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:18.758] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:20.170] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:20.170] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:21.458] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:21.459] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:22.523] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:22.523] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:23.589] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:23.590] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:24.647] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:14:24.647] ProcessHit called. projId=0 target=Super Dummy damage=32 isRightChoiceShot=False isEyesUpShot=False
+[01:14:25.570] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:25.571] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:26.188] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:26.188] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:26.754] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:26.755] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:30.719] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:30.719] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:33.170] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:33.171] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:33.870] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:33.870] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:34.356] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:34.356] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:34.853] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:34.853] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+[01:14:35.338] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[01:14:35.339] ProcessHit called. projId=0 target=Super Dummy damage=36 isRightChoiceShot=False isEyesUpShot=False
+---- Diagnostic Log Start 2026-01-31 01:18:21 ----
+[01:18:40.280] ProcessHit called. projId=1 target=Target Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:42.483] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:42.813] ProcessHit called. projId=1 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:43.148] ProcessHit called. projId=2 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:43.478] ProcessHit called. projId=3 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:47.150] ProcessHit called. projId=0 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:47.481] ProcessHit called. projId=1 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:47.810] ProcessHit called. projId=2 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:48.150] ProcessHit called. projId=3 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:48.483] ProcessHit called. projId=4 target=Super Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:51.633] ProcessHit called. projId=0 target=Target Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:51.960] ProcessHit called. projId=1 target=Target Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:52.300] ProcessHit called. projId=2 target=Target Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:52.629] ProcessHit called. projId=3 target=Target Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:52.969] ProcessHit called. projId=4 target=Target Dummy damage=33 isRightChoiceShot=False isEyesUpShot=False
+[01:18:54.827] RightChoice shot count=1/7
+[01:18:54.828] EyesUp TryConsume failed: stacks=0
+[01:18:54.863] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:18:54.863] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:54.863] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:54.928] RightChoice shot count=2/7
+[01:18:54.929] EyesUp TryConsume failed: stacks=0
+[01:18:54.962] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:18:54.962] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:54.963] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.032] RightChoice shot count=3/7
+[01:18:55.032] EyesUp TryConsume failed: stacks=0
+[01:18:55.070] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:18:55.070] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.070] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.132] RightChoice shot count=4/7
+[01:18:55.132] EyesUp TryConsume failed: stacks=0
+[01:18:55.233] RightChoice shot count=5/7
+[01:18:55.234] EyesUp TryConsume failed: stacks=0
+[01:18:55.334] RightChoice shot count=6/7
+[01:18:55.334] EyesUp TryConsume failed: stacks=0
+[01:18:55.430] RightChoice shot count=7/7
+[01:18:55.431] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:18:55.431] EyesUp TryConsume failed: stacks=0
+[01:18:55.534] RightChoice shot count=1/7
+[01:18:55.535] EyesUp TryConsume failed: stacks=0
+[01:18:55.546] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:18:55.547] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.547] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.630] RightChoice shot count=2/7
+[01:18:55.631] EyesUp TryConsume failed: stacks=0
+[01:18:55.651] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:18:55.652] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.652] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:55.726] RightChoice shot count=3/7
+[01:18:55.726] EyesUp TryConsume failed: stacks=0
+[01:18:55.833] RightChoice shot count=4/7
+[01:18:55.834] EyesUp TryConsume failed: stacks=0
+[01:18:55.926] RightChoice shot count=5/7
+[01:18:55.927] EyesUp TryConsume failed: stacks=0
+[01:18:56.030] RightChoice shot count=6/7
+[01:18:56.031] EyesUp TryConsume failed: stacks=0
+[01:18:56.032] Bullet OnHitNPC. projId=2 target=Super Dummy damage=18
+[01:18:56.032] ProcessHit called. projId=2 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.033] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.128] RightChoice shot count=7/7
+[01:18:56.128] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:18:56.129] EyesUp TryConsume failed: stacks=0
+[01:18:56.130] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[01:18:56.130] ProcessHit called. projId=1 target=Super Dummy damage=18 isRightChoiceShot=True isEyesUpShot=False
+[01:18:56.130] ProcessHit: triggering RightChoice ricochet! projId=1
+[01:18:56.132] TryRicochet ENTER. proj=1 target=2
+[01:18:56.132] TryRicochet searching for target. fromNpc=2 (Super Dummy) range=480 targetCenter={X:32868 Y:4119}
+[01:18:56.133] TryRicochet: NO TARGET FOUND within range!
+[01:18:56.229] RightChoice shot count=1/7
+[01:18:56.229] EyesUp TryConsume failed: stacks=0
+[01:18:56.230] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:18:56.230] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.231] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.331] RightChoice shot count=2/7
+[01:18:56.331] EyesUp TryConsume failed: stacks=0
+[01:18:56.332] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:18:56.332] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.332] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.431] RightChoice shot count=3/7
+[01:18:56.431] EyesUp TryConsume failed: stacks=0
+[01:18:56.432] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:18:56.432] ProcessHit called. projId=0 target=Super Dummy damage=18 isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.432] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.531] RightChoice shot count=4/7
+[01:18:56.532] EyesUp TryConsume failed: stacks=0
+[01:18:56.533] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[01:18:56.533] ProcessHit called. projId=0 target=Super Dummy damage=31 isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.533] ProcessHit: no ricochet triggered. isRightChoiceShot=False isEyesUpShot=False
+[01:18:56.634] RightChoice shot count=5/7
+[01:18:56.634] EyesUp TryConsume failed: stacks=0
+---- Diagnostic Log Start 2026-01-31 01:23:52 ----
+[01:24:26.610] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:24:26.610] ProcessHit called. projId=0 target=Target Dummy damage=28 isKill=False hasIncandescent=False isRightChoiceShot=False isEyesUpShot=False
+[01:24:26.974] Bullet OnHitNPC. projId=0 target=Target Dummy damage=56
+[01:24:26.974] ProcessHit called. projId=0 target=Target Dummy damage=56 isKill=False hasIncandescent=False isRightChoiceShot=False isEyesUpShot=False
+[01:24:29.114] Bullet OnHitNPC. projId=0 target=Super Dummy damage=32
+[01:24:29.114] ProcessHit called. projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False isRightChoiceShot=False isEyesUpShot=False
+[01:24:30.098] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:24:30.098] ProcessHit called. projId=0 target=Super Dummy damage=28 isKill=False hasIncandescent=False isRightChoiceShot=False isEyesUpShot=False
+[01:24:30.517] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:24:30.518] ProcessHit called. projId=0 target=Super Dummy damage=28 isKill=False hasIncandescent=False isRightChoiceShot=False isEyesUpShot=False
+[01:24:42.535] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:42.536] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:42.880] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:42.880] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:43.183] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:43.183] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:43.548] Bullet OnHitNPC. projId=0 target=Red Slime damage=42
+[01:24:43.549] ProcessHit called. projId=0 target=Red Slime damage=42 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:43.860] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:43.861] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:44.145] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:44.145] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:44.480] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:44.481] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:44.847] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:44.847] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:45.182] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:45.183] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:46.280] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:46.281] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:24:47.310] Perk diagnostics enabled.
+[01:24:51.394] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Trustee hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[01:24:51.395] Bullet OnHitNPC. projId=0 target=Red Slime damage=28
+[01:24:51.396] ProcessHit called. projId=0 target=Red Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+---- Diagnostic Log Start 2026-01-31 01:33:58 ----
+[01:34:45.025] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:34:45.026] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:34:45.407] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:34:45.407] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:34.615] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:35:34.615] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:37.756] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:35:37.756] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:37.988] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:35:37.988] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:38.740] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:35:38.740] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:38.968] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:35:38.968] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:39.187] Bullet OnHitNPC. projId=0 target=Target Dummy damage=29
+[01:35:39.188] ProcessHit called. projId=0 target=Target Dummy damage=29 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:44.281] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:44.281] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:44.516] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:44.516] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:45.213] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:45.214] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:45.466] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:45.466] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:45.659] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:45.660] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:45.926] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=84
+[01:35:45.926] ProcessHit called. projId=0 target=Yellow Slime damage=84 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:46.163] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=42
+[01:35:46.164] ProcessHit called. projId=0 target=Yellow Slime damage=42 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:49.495] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:49.496] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:49.961] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=56
+[01:35:49.962] ProcessHit called. projId=0 target=Yellow Slime damage=56 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:50.414] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:50.414] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:50.750] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:50.750] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:51.110] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:51.110] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:51.398] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:51.398] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:51.749] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=28
+[01:35:51.749] ProcessHit called. projId=0 target=Yellow Slime damage=28 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:52.110] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=42
+[01:35:52.110] ProcessHit called. projId=0 target=Yellow Slime damage=42 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:35:52.399] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=42
+[01:35:52.400] ProcessHit called. projId=0 target=Yellow Slime damage=42 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:36:07.053] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:36:07.053] ProcessHit called. projId=0 target=Yellow Slime damage=27 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:36:07.339] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:36:07.339] ProcessHit called. projId=0 target=Yellow Slime damage=27 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:36:08.074] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=27
+[01:36:08.075] ProcessHit called. projId=0 target=Yellow Slime damage=27 isKill=False hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+[01:36:08.377] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=40
+[01:36:08.378] ProcessHit called. projId=0 target=Yellow Slime damage=40 isKill=True hasIncandescent=True isRightChoiceShot=False isEyesUpShot=False
+---- Diagnostic Log Start 2026-01-31 01:45:13 ----
+[01:46:30.518] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:46:31.681] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:34.802] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:35.416] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:36.117] Bullet OnHitNPC. projId=0 target=Blue Slime damage=56
+[01:46:37.117] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:38.668] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:39.050] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:39.402] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:46:39.832] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:47:15.809] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:16.039] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:16.275] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:16.542] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:16.772] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:17.039] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:17.275] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:17.505] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:17.754] Bullet OnHitNPC. projId=0 target=Vile Spit damage=70
+[01:47:17.990] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:18.275] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:18.506] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:18.742] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:18.990] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:19.220] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:19.457] Bullet OnHitNPC. projId=0 target=Eater of Worlds damage=69
+[01:47:32.052] Bullet OnHitNPC. projId=0 target=Possessed Armor damage=58
+[01:47:32.274] Bullet OnHitNPC. projId=0 target=Possessed Armor damage=58
+[01:47:32.510] Bullet OnHitNPC. projId=0 target=Possessed Armor damage=58
+[01:47:32.825] Bullet OnHitNPC. projId=0 target=Possessed Armor damage=58
+[01:47:33.056] Bullet OnHitNPC. projId=0 target=Possessed Armor damage=58
+[01:47:48.758] Bullet OnHitNPC. projId=0 target=Blue Slime damage=105
+[01:47:50.523] Bullet OnHitNPC. projId=0 target=Super Dummy damage=70
+[01:47:51.425] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:47:51.807] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:18.710] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:19.092] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:28.510] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:28.940] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:33.177] Bullet OnHitNPC. projId=0 target=Red Slime damage=70
+[01:48:33.910] Bullet OnHitNPC. projId=0 target=Red Slime damage=105
+[01:48:38.340] Bullet OnHitNPC. projId=0 target=Super Dummy damage=70
+[01:48:38.643] Bullet OnHitNPC. projId=0 target=Red Slime damage=70
+[01:48:39.007] Bullet OnHitNPC. projId=0 target=Red Slime damage=70
+[01:48:39.377] Bullet OnHitNPC. projId=0 target=Super Dummy damage=70
+[01:48:42.055] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:48.940] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:50.292] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:54.377] Bullet OnHitNPC. projId=0 target=Blue Slime damage=105
+[01:48:57.492] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+[01:48:57.959] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
