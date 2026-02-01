@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Luminance/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Luminance.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Luminance.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Luminance/1.0.0": {
+      "type": "project",
+      "path": "../Luminance/Luminance.csproj",
+      "msbuildProject": "../Luminance/Luminance.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "Luminance >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\vexga\\.nuget\\packages\\": {}
@@ -31,7 +50,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\vexga\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Luminance\\Luminance.csproj": {
+              "projectPath": "C:\\Users\\vexga\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\Luminance\\Luminance.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

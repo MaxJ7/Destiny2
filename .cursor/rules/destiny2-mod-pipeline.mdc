@@ -146,8 +146,7 @@ Register(new IncandescentPerk());
 
 - **MultipliableFloat:** Old API; use `modifiers.DamageVariationScale *= 0f` (HitModifiers)
 - **StarlightRiver shader loader:** `Mod.File`, `FileEntry` do not exist in tML
-- **Vanilla asset path for effects:** `Assets/Effects/BeamTrail` loads from vanilla; mod effects need mod-scoped path and .xnb in mod
-- **Shader-based bullet trail:** Was attempted, caused BeamTrail asset not found; reverted to dust
+- **Incandescent/Ignition VFX:** `SolarVFXSystem` uses Luminance's `PrimitiveRenderer.RenderQuad`, `ShaderManager` (QuadRenderer), `ScreenShakeSystem`, procedural bloom/ring textures, dust for fire motes and embers.
 - **Crit spot system:** Removed; if ever reintroduced: Precision AR 1.75, Adaptive AR 1.75, Adaptive HC 1.79, Precision HC 1.55, Heavy Burst HC 2.2
 - **ExplosiveShadowGlobalItem:** Deleted; Explosive Shadow lives in Destiny2PerkProjectile + ExplosiveShadowSlug
 
@@ -178,8 +177,120 @@ Used by frames via `GetPrecisionMultiplier()`; crit system removed but values pr
 
 ---
 
-## 9. Build / Errors
+## 9. Build & Run
+
+**Luminance dependency:** Destiny2 strongly references Luminance (`modReferences` in build.txt, ProjectReference to `../Luminance`). Luminance is cloned in `ModSources/Luminance`. Users must have Luminance enabled in tModLoader. Build Luminance first (or it builds as dependency).
+
+**Build:** `dotnet build` (from project root). tML targets auto-package the mod into `bin/Debug/net8.0/`.
+
+**Run tModLoader:** `Start-Process "C:\Program Files (x86)\Steam\steamapps\common\tModLoader\start-tModLoader.bat" -WorkingDirectory "C:\Program Files (x86)\Steam\steamapps\common\tModLoader\"` (PowerShell)  
+— or double-click `start-tModLoader.bat` in the tML install folder.  
+ModSources are loaded from the workspace; enable the Destiny2 mod in-game.
+
+---
+
+## 10. Build / Errors
 
 - **MSB3073 / exit -2147450730:** tML build step crashed; check mod code for runtime exceptions during load
 - **NETSDK1127:** .NET targeting pack missing → dotnet restore or SDK install
 - **Asset not found:** Use mod-scoped paths; .xnb must be built and included in mod output
+
+---
+
+## 11. VFX / Shader Reference (Calamity, Starlight River)
+
+General-purpose reference for implementing VFX. Use as inspiration, not copy-paste.
+
+**Mod paths:** `ModSources/CalamityModPublic-1.4.4/CalamityModPublic-1.4.4`, `ModSources/StarlightRiver-master/StarlightRiver-master`
+
+---
+
+### A. Choosing a VFX approach
+
+| Use case | Approach | References |
+|----------|----------|------------|
+| **Explosions, bursts** | Particle (CustomDraw), sprite draws, dust burst, Luminance primitives | DetailedExplosion, SolarVFXSystem (Luminance RenderQuad) |
+| **Projectile trails** | PrimitiveRenderer.RenderTrail + MiscShader | MythrilFlare, SuicideBomberDemon, WulfrumHook |
+| **Telegraphs, AoE indicators** | Sprite + MiscShader (radial gradient) | CircularAoETelegraph, CircularGradientWithEdge |
+| **Shields, force fields** | Sprite + MiscShader (noise, rings) | SupremeShieldShader, RoverDriveShield |
+| **Full-screen effects** | Filters.Scene, BaseRenderer | DistortionPointHandler, HolyInfernoRenderer |
+| **Simple glows** | SpriteBatch + BlendState.Additive, BasicTint | Vanilla ForceField, procedural soft circle |
+| **Distortion / screen warp** | Filters.Scene + custom params | DistortionPointHandler |
+
+---
+
+### B. Shader loading & registration
+
+**Load:** `ModContent.Request<Effect>("ModName/Effects/ShaderName", ImmediateLoad).Value` — tML compiles .fx → .xnb at build. Calamity uses `Instance.Assets.Request<Effect>("Effects/Path", ImmediateLoad)`.
+
+**Register MiscShader (sprite-based):**  
+`GameShaders.Misc["ModName:Key"] = new MiscShaderData(new Ref<Effect>(shader), "PassName")`  
+Use with `GameShaders.Misc["ModName:Key"].Apply()` before SpriteBatch.Draw.
+
+**Register ScreenShader (full-screen):**  
+`Filters.Scene["Key"] = new Filter(new ScreenShaderData(ref, "PassName"), priority)`  
+`Filters.Scene.Activate("Key")` / `Deactivate("Key")`. Set custom params via `GetShader().Shader.Parameters["name"].SetValue(...)`.
+
+---
+
+### C. Shader types by effect (Calamity)
+
+| Shader | Use case | HLSL notes |
+|--------|----------|------------|
+| **CircularGradientWithEdge** | AoE telegraph, circular glow | `dist = length(coords-0.5)*2`, crop circle, bright edge |
+| **CircularAoETelegraph** | Countdown telegraph | Same as above; `uSaturation` = completion (0→1) |
+| **ImpFlameTrail** | Flame trails | `bloomOpacity = pow(sin(coords.y*PI), n)`, noise scroll, trail fade |
+| **HellBall** | Full-screen ball, explosions | Noise sampling, `blowUpPower`/`blowUpSize`, fake fresnel `pow(dist,6)` |
+| **SupremeShieldShader** | Force fields, shields | Noise + ring, `distanceRatio`, `inverseLerp` for ring alpha |
+| **BasicTint** | Generic colored glow | Simple tint pass |
+| **ExobladeSlashShader** | Melee trails | Multi-sampler noise, UV distortion, fire streak |
+| **ExobladePierceShader** | Pierce / impact marks | Bloom falloff, noise scroll, energy lerp |
+
+---
+
+### D. Particle systems
+
+**Calamity Particle** (`Particles/Particle.cs`): Extend `Particle`, set `Texture`, `UseAdditiveBlend`, `SetLifetime`, `UseCustomDraw`. Override `Update()`, optional `CustomDraw()`. `GeneralParticleHandler.SpawnParticle(particle)`. Batched by blend mode.
+
+**DetailedExplosion pattern:** `LifetimeCompletion` for lerp, `PiecewiseAnimation`/easing, `opacity = sin(PI/2 + completion*PI/2)` for fade-out. `Lighting.AddLight`. Scale from original to final.
+
+**CircularSmearVFX:** Minimal particle—position, color, rotation, scale, lifetime. Additive blend. No custom draw.
+
+---
+
+### E. Primitive trails (Calamity)
+
+**PrimitiveRenderer.RenderTrail(positions, settings, pointsToCreate):**  
+Positions in world space (screenPosition subtracted automatically). Needs 4+ points for smoothing.
+
+**PrimitiveSettings:** `VertexWidthFunction`, `VertexColorFunction`, `VertexOffsetFunction`, `Smoothen`, `Pixelate`, `MiscShaderData Shader`. Example: `new PrimitiveSettings(WidthFn, ColorFn, offsetFn, smoothen: true, shader: GameShaders.Misc["CalamityMod:ImpFlameTrail"])`.
+
+**Usage:** In projectile/NPC PreDraw or Draw, pass `Projectile.oldPos` or segment list. Shader receives primitive UVs (trail completion = X, width = Y).
+
+---
+
+### F. Render targets (Calamity BaseRenderer)
+
+**BaseRenderer:** Extend, implement `Layer`, `ShouldDraw`, `DrawToTarget`. Draw to `MainTarget` (screen-sized). Manager calls `DrawToTarget` then draws target to screen. Use for layered effects (HolyInferno border).
+
+**DrawToTarget pattern:** Load textures, set shader params (`radius`, `anchorPoint`, `screenPosition`, etc.), `spriteBatch.End()` then `Begin(Immediate, Additive, shader)`, draw fullscreen quad, `ExitShaderRegion()`.
+
+---
+
+### G. SpriteBatch & draw hooks
+
+**PostDrawTiles:** SpriteBatch is NOT active. Begin/End your own batch. Do NOT leave batch Begun—`DrawSuperSpecialProjectiles` runs next and calls Begin. Same for other mod draw hooks: check vanilla order.
+
+**BlendState:** `BlendState.Additive` for glows, `AlphaBlend` default. `SpriteSortMode.Immediate` when using shaders that need per-draw Apply.
+
+**Procedural texture:** Create `Texture2D` on main thread (e.g. first draw). Radial gradient: loop pixels, `dist = Distance(center)`, `alpha = smoothstep` or `1 - saturate((dist-radius)/softness)`.
+
+---
+
+### H. Starlight River (obsolete patterns)
+
+**ShaderLoader:** Uses `TmodFile`, `FileEntry`—do NOT copy. Use `ModContent.Request<Effect>`.
+
+**DistortionPointHandler:** Points with position, intensity, progress; delegate-based Update. Arrays passed to shader. Activate filter when points exist, set params each frame. Pattern is useful; loader is not.
+
+**IDrawPrimitive / IDrawAdditive:** Interfaces for custom draw ordering. `DrawPrimitives()`, `DrawAdditive(spriteBatch)`.

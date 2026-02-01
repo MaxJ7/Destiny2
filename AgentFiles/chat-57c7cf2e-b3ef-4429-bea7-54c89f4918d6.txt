@@ -1,0 +1,60 @@
+Chat 'ChatTitle(text="0>tMLMod.targets(56…" with Codex, isCustom=true)' (57c7cf2e-b3ef-4429-bea7-54c89f4918d6)
+Context:
+
+Messages: 6
+==============================================================================================================
+
+==== RestoredMessage #1 ====
+User: 
+0>tMLMod.targets(56,3): Error MSB3073 : The command "dotnet tModLoader.dll -server -build C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2 -eac C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Destiny2.dll -define "TRACE;TML_2025_11;DEBUG;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER" -unsafe false " exited with code -2147450730.
+
+Attachments:
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+0>tMLMod.targets(56,3): Error MSB3073 : The command "dotnet tModLoader.dll -server -build C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2 -eac C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Destiny2.dll -define "TRACE;TML_2025_11;DEBUG;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER" -unsafe false " exited with code -2147450730.
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #2 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #3 ====
+User: 
+1
+
+kotlin.Unit
+
+==== RestoredMessage #4 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #5 ====
+User: 
+0>tMLMod.targets(56,3): Error MSB3073 : The command "dotnet tModLoader.dll -server -build C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2 -eac C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Destiny2.dll -define "TRACE;TML_2025_11;DEBUG;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER" -unsafe false " exited with code -2147450730.
+
+Attachments:
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+0>tMLMod.targets(56,3): Error MSB3073 : The command "dotnet tModLoader.dll -server -build C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2 -eac C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Destiny2.dll -define "TRACE;TML_2025_11;DEBUG;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER" -unsafe false " exited with code -2147450730.
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #6 ====
+Assistant: 
+
+
+kotlin.Unit
+

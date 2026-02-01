@@ -13,7 +13,7 @@
 
 	<!-- References -->
 	<ItemGroup>
-		
+		<ProjectReference Include="..\Luminance\Luminance.csproj" />
 	</ItemGroup>
 
 	<!-- Folders -->

@@ -1,5 +1,6 @@
 using System;
 using Destiny2.Common.Perks;
+using Destiny2.Common.VFX;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -128,76 +129,53 @@ namespace Destiny2.Common.NPCs
 			npc.SimpleStrikeNPC(damage, 0, false, 0f);
 		}
 
+		/// <summary>Thin flickering flame tongues and embers—controlled crackling, not explosive.</summary>
 		private void SpawnScorchDust(NPC npc)
 		{
 			if (Main.dedServ)
 				return;
 
-			// Intensity increases with stacks
 			float stackRatio = ScorchStacks / (float)MaxScorchStacks;
-			int dustCount = (int)MathHelper.Lerp(1f, 4f, stackRatio);
+
+			// Low stacks: sparse embers. High stacks: denser, faster embers, shift toward white-hot
+			int dustCount = (int)MathHelper.Lerp(2f, 8f, stackRatio);
+			float emberSpeed = MathHelper.Lerp(0.5f, 2f, stackRatio);
 
 			for (int i = 0; i < dustCount; i++)
 			{
-				Vector2 position = npc.Center + Main.rand.NextVector2Circular(npc.width * 0.5f, npc.height * 0.5f);
-				Vector2 velocity = new Vector2(0f, -Main.rand.NextFloat(0.5f, 1.5f));
+				// Hug surface of model: spawn around limb/torso hitbox
+				Vector2 position = npc.Center + Main.rand.NextVector2Circular(npc.width * 0.45f, npc.height * 0.45f);
+				Vector2 velocity = new Vector2(Main.rand.NextFloat(-0.3f, 0.3f), -Main.rand.NextFloat(0.3f, emberSpeed));
 
-				// Interpolate color based on stack intensity
-				Color dustColor = Color.Lerp(SolarColor, BrightSolarColor, stackRatio);
+				// Low: light orange. High: brighter, white-hot yellow at core
+				Color dustColor = stackRatio < 0.5f
+					? Color.Lerp(SolarColor, BrightSolarColor, stackRatio * 2f)
+					: Color.Lerp(BrightSolarColor, new Color(255, 248, 200), (stackRatio - 0.5f) * 2f);
 
-				Dust dust = Dust.NewDustPerfect(position, DustID.Torch, velocity, 100, dustColor, 1.0f + stackRatio);
+				Dust dust = Dust.NewDustPerfect(position, DustID.Torch, velocity, 90, dustColor, 0.9f + stackRatio);
 				dust.noGravity = true;
-				dust.fadeIn = 0.5f;
+				dust.fadeIn = 0.4f;
 			}
 
-			// Add light that intensifies with stacks
-			float lightIntensity = 0.2f + (0.4f * stackRatio);
-			Lighting.AddLight(npc.Center, lightIntensity * 0.9f, lightIntensity * 0.3f, 0f);
+			// Flame tongue wisps: occasional larger, flickering particles
+			if (stackRatio > 0.3f && Main.rand.NextBool(3))
+			{
+				Vector2 pos = npc.Center + Main.rand.NextVector2Circular(npc.width * 0.35f, npc.height * 0.35f);
+				var d = Dust.NewDustPerfect(pos, DustID.Torch, new Vector2(Main.rand.NextFloat(-0.5f, 0.5f), -Main.rand.NextFloat(0.8f, 1.5f)), 110,
+					Color.Lerp(BrightSolarColor, Color.White, stackRatio * 0.3f), 1.2f + stackRatio * 0.5f);
+				d.noGravity = true;
+				d.fadeIn = 0.6f;
+			}
+
+			float lightIntensity = MathHelper.Lerp(0.15f, 0.55f, stackRatio);
+			Lighting.AddLight(npc.Center, lightIntensity * 0.95f, lightIntensity * 0.35f, lightIntensity * 0.05f);
 		}
 
 		private static void SpawnIgniteExplosion(Vector2 center)
 		{
-			if (Main.dedServ)
-				return;
-
-			// Large explosion burst
-			for (int i = 0; i < 50; i++)
-			{
-				Vector2 velocity = Main.rand.NextVector2Circular(6f, 6f) * Main.rand.NextFloat(1f, 2f);
-				Dust dust = Dust.NewDustPerfect(center, DustID.Torch, velocity, 100, SolarColor, 2.5f);
-				dust.noGravity = true;
-				dust.fadeIn = 1.5f;
-			}
-
-			// Secondary flames
-			for (int i = 0; i < 30; i++)
-			{
-				Vector2 velocity = Main.rand.NextVector2Circular(5f, 5f) * Main.rand.NextFloat(0.8f, 1.5f);
-				Dust dust = Dust.NewDustPerfect(center, DustID.Torch, velocity, 50, BrightSolarColor, 2f);
-				dust.noGravity = true;
-			}
-
-			// Smoke
-			for (int i = 0; i < 15; i++)
-			{
-				Vector2 velocity = Main.rand.NextVector2Circular(3f, 3f) * Main.rand.NextFloat(0.5f, 1f);
-				Dust dust = Dust.NewDustPerfect(center, DustID.Smoke, velocity, 150, Color.DarkGray, 1.5f);
-				dust.noGravity = false;
-			}
-
-			// Intense lighting
-			Lighting.AddLight(center, 1f, 0.4f, 0f);
-
-			// Spawn some sparkles
-			for (int i = 0; i < 20; i++)
-			{
-				float angle = MathHelper.TwoPi * (i / 20f);
-				Vector2 dir = angle.ToRotationVector2();
-				Vector2 pos = center + dir * Main.rand.NextFloat(10f, 40f);
-				Vector2 vel = dir * Main.rand.NextFloat(2f, 4f);
-				Dust dust = Dust.NewDustPerfect(pos, DustID.SparkForLightDisc, vel, 0, BrightSolarColor, 1f);
-				dust.noGravity = true;
-			}
+			SolarVFXSystem.TriggerExplosion(center, isIgnition: true);
+			if (!Main.dedServ)
+				Lighting.AddLight(center, 1f, 0.4f, 0f);
 		}
 
 		/// <summary>
@@ -210,57 +188,16 @@ namespace Destiny2.Common.NPCs
 				return;
 
 			int weaponDamage = explosionDamage * 4; // explosion is 1/4 weapon damage
-			SpawnIncandescentExplosionDust(center);
+
+			SolarVFXSystem.TriggerExplosion(center, isIgnition: false);
+			if (!Main.dedServ)
+			{
+				Lighting.AddLight(center, 0.9f, 0.35f, 0f);
+				SoundEngine.PlaySound(SoundID.Item14, center);
+			}
+
 			ApplyExplosionDamage(center, explosionDamage, IncandescentPerk.ExplosionRadius, excludeNpcId);
 			ApplyScorchInRadius(center, IncandescentPerk.ExplosionRadius, IncandescentPerk.ScorchStacksApplied, weaponDamage, excludeNpcId);
-
-			if (!Main.dedServ)
-				SoundEngine.PlaySound(SoundID.Item14, center);
-		}
-
-		internal static void SpawnIncandescentExplosionDust(Vector2 center)
-		{
-			if (Main.dedServ)
-				return;
-
-			// Core flash
-			for (int i = 0; i < 24; i++)
-			{
-				Vector2 velocity = Main.rand.NextVector2Circular(3.5f, 3.5f) * Main.rand.NextFloat(0.8f, 1.6f);
-				Dust dust = Dust.NewDustPerfect(center, DustID.Torch, velocity, 80, SolarColor, 1.8f);
-				dust.noGravity = true;
-				dust.fadeIn = 1.0f;
-			}
-
-			// Expanding ring
-			const int ringCount = 28;
-			for (int i = 0; i < ringCount; i++)
-			{
-				float angle = MathHelper.TwoPi * (i / (float)ringCount);
-				Vector2 dir = angle.ToRotationVector2();
-				Vector2 pos = center + dir * Main.rand.NextFloat(6f, 12f);
-				Vector2 vel = dir * Main.rand.NextFloat(2f, 4f);
-				Dust dust = Dust.NewDustPerfect(pos, DustID.Torch, vel, 60, BrightSolarColor, 1.4f);
-				dust.noGravity = true;
-			}
-
-			// Embers
-			for (int i = 0; i < 16; i++)
-			{
-				Vector2 velocity = Main.rand.NextVector2Circular(5f, 5f) * Main.rand.NextFloat(0.4f, 1.1f);
-				Dust dust = Dust.NewDustPerfect(center, DustID.SparkForLightDisc, velocity, 0, BrightSolarColor, 1.1f);
-				dust.noGravity = true;
-			}
-
-			// Smoke
-			for (int i = 0; i < 12; i++)
-			{
-				Vector2 velocity = Main.rand.NextVector2Circular(2f, 2f) * Main.rand.NextFloat(0.3f, 0.8f);
-				Dust dust = Dust.NewDustPerfect(center, DustID.Smoke, velocity, 140, Color.DarkGray, 1.1f);
-				dust.noGravity = false;
-			}
-
-			Lighting.AddLight(center, 0.9f, 0.35f, 0f);
 		}
 
 		internal static void ApplyExplosionDamage(Vector2 center, int damage, float radius, int excludeNpcId)
@@ -310,14 +247,16 @@ namespace Destiny2.Common.NPCs
 			if (ScorchStacks <= 0)
 				return;
 
-			// Apply orange tint to the NPC based on scorch intensity
 			float stackRatio = ScorchStacks / (float)MaxScorchStacks;
-			float tintStrength = 0.2f + (0.3f * stackRatio);
 
-			// Blend towards solar orange
+			// Low: light orange glow. High: brighter, denser, shift to white-hot—"primed" look
+			float tintStrength = MathHelper.Lerp(0.18f, 0.45f, stackRatio);
+			float pulse = 0.9f + 0.1f * (float)Math.Sin(Main.GameUpdateCount * 0.15f);
+			tintStrength *= pulse;
+
 			drawColor.R = (byte)MathHelper.Lerp(drawColor.R, 255, tintStrength);
-			drawColor.G = (byte)MathHelper.Lerp(drawColor.G, 100, tintStrength * 0.4f);
-			drawColor.B = (byte)MathHelper.Lerp(drawColor.B, 0, tintStrength);
+			drawColor.G = (byte)MathHelper.Lerp(drawColor.G, (byte)MathHelper.Lerp(100, 220, stackRatio), tintStrength * 0.5f);
+			drawColor.B = (byte)MathHelper.Lerp(drawColor.B, (byte)MathHelper.Lerp(0, 80, stackRatio * 0.5f), tintStrength * 0.3f);
 		}
 	}
 }

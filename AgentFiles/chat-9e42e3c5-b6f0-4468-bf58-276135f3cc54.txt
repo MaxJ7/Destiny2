@@ -1,0 +1,1536 @@
+Chat 'ChatTitle(text="make all weapons in…" with Codex, isCustom=true)' (9e42e3c5-b6f0-4468-bf58-276135f3cc54)
+Context:
+
+Messages: 32
+==============================================================================================================
+
+==== RestoredMessage #1 ====
+User: 
+make all weapons in this mod not have variable damage from base terraria, they should deal as much damage as they deal
+
+kotlin.Unit
+
+==== RestoredMessage #2 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #3 ====
+User: 
+[19:54:27.529] [.NET TP Worker/INFO] [tML]: Compilation finished with 2 errors and 2 warnings
+[19:54:27.532] [.NET TP Worker/WARN] [tML]: C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Content\Projectiles\ExplosiveShadowSlug.cs(136,24): warning CS0672: Member 'ExplosiveShadowSlug.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'ExplosiveShadowSlug.Kill(int)'.
+[19:54:27.534] [.NET TP Worker/WARN] [tML]: C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Content\Projectiles\Bullet.cs(94,24): warning CS0672: Member 'Bullet.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'Bullet.Kill(int)'.
+[19:54:27.540] [.NET TP Worker/ERROR] [tML]: C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Common\Projectiles\Destiny2NoDamageVarianceProjectile.cs(22,38): error CS0029: Cannot implicitly convert type 'float' to 'Terraria.ModLoader.MultipliableFloat'
+[19:54:27.542] [.NET TP Worker/ERROR] [tML]: C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Common\Weapons\Destiny2WeaponStats.cs(454,37): error CS0029: Cannot implicitly convert type 'float' to 'Terraria.ModLoader.MultipliableFloat'
+[19:54:27.686] [.NET TP Worker/ERROR] [tML]: Compiling Destiny2.dll failed with 2 errors and 2 warnings
+Error: C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Common\Projectiles\Destiny2NoDamageVarianceProjectile.cs(22,38): error CS0029: Cannot implicitly convert type 'float' to 'Terraria.ModLoader.MultipliableFloat'
+Terraria.ModLoader.Exceptions.BuildException: Compiling Destiny2.dll failed with 2 errors and 2 warnings
+Error: C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Common\Projectiles\Destiny2NoDamageVarianceProjectile.cs(22,38): error CS0029: Cannot implicitly convert type 'float' to 'Terraria.ModLoader.MultipliableFloat'
+   at Terraria.ModLoader.Core.ModCompile.CompileMod(BuildingMod mod, Byte[]& code, Byte[]& pdb) in tModLoader\Terraria\ModLoader\Core\ModCompile.cs:line 484
+   at Terraria.ModLoader.Core.ModCompile.BuildMod(BuildingMod mod, Byte[]& code, Byte[]& pdb) in tModLoader\Terraria\ModLoader\Core\ModCompile.cs:line 413
+   at Terraria.ModLoader.Core.ModCompile.Build(BuildingMod mod) in tModLoader\Terraria\ModLoader\Core\ModCompile.cs:line 251
+   at Terraria.ModLoader.Core.ModCompile.Build(String modFolder) in tModLoader\Terraria\ModLoader\Core\ModCompile.cs:line 225
+   at Terraria.ModLoader.UI.UIBuildMod.<>c__DisplayClass5_0.<Build>b__0(ModCompile mc) in tModLoader\Terraria\ModLoader\UI\UIBuildMod.cs:line 34
+   at Terraria.ModLoader.UI.UIBuildMod.BuildMod(Action`1 buildAction, Boolean reload) in tModLoader\Terraria\ModLoader\UI\UIBuildMod.cs:line 75
+[19:54:43.017] [Main Thread/DEBUG] [tML]: Process.Start (UseShellExecute = True): "tModLoader-Logs" 
+
+kotlin.Unit
+
+==== RestoredMessage #4 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #5 ====
+User: 
+analyze the whole mod source and optomize everything as best you can, any redundancies fix them, 
+
+kotlin.Unit
+
+==== RestoredMessage #6 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #7 ====
+User: 
+create a system that creates critical points on all enemies, these should be small ish zones that render as a sphere using unique visuals that deals increased damage when hit.
+the precision multiplier for currently implemented weapon frames per weapon type
+Precision auto rifles  1.75
+Khvostov and adaptive auto rifles 1.75
+adaptive hand cannons: 1.79
+precision hand cannons (and malfeasance) 1.55
+Heavy burst hand cannons: 2.2
+
+kotlin.Unit
+
+==== RestoredMessage #8 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #9 ====
+User: 
+Make the crit spots render with custom shaders instead of a static sprite, implement these visuals in a way you see satisfying and provide in depth coments for logic
+
+kotlin.Unit
+
+==== RestoredMessage #10 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #11 ====
+User: 
+i got this popup
+Attachments:
+Attachment Name: Image
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #12 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #13 ====
+User: 
+crit spots do not render, fix this, also make crit spots scale based on the size of an enemy, and for enemies that rotate to face the player the crit spot should rotate with them. also make the crit spots only render when the player is holding a destiny 2 weapon
+
+kotlin.Unit
+
+==== RestoredMessage #14 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #15 ====
+User: 
+they still dont show up, think hard about what could be the causes of this and work in depth to fix it
+
+kotlin.Unit
+
+==== RestoredMessage #16 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #17 ====
+User: 
+it happened again
+Attachments:
+Attachment Name: Image
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #18 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #19 ====
+User: 
+it still doesnt load i got the same error
+
+kotlin.Unit
+
+==== RestoredMessage #20 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #21 ====
+User: 
+Got it. Below is a deep dive that references specific code constructs and shader parameters only, without pointing to file paths.
+Shader Loading And Access
+•
+Shaders are auto-registered by scanning mod file entries under the Effects/ prefix and loading .xnb effects into a lazy dictionary keyed by name.
+•
+ShaderLoader.GetShader("Name") is the standard entry point, and it self-loads on first request if needed.
+•
+Effects are pulled from ModContent.Assets.Request<Effect>(path), so you can treat shader names as stable keys.
+•
+This pattern keeps shader usage local while sharing a consistent loader and cache.
+private static readonly Dictionary<string, Lazy<Asset<Effect>>> shaders = [];
+
+public void Load()
+{
+    TmodFile file = StarlightRiver.Instance.File;
+    IEnumerable<FileEntry> shaders = file.Where(n => n.Name.StartsWith("Effects/") && n.Name.EndsWith(".xnb"));
+
+    foreach (FileEntry entry in shaders)
+    {
+        string name = entry.Name.Replace(".xnb", "").Replace("Effects/", "");
+        string path = entry.Name.Replace(".xnb", "");
+        LoadShader(name, path);
+    }
+}
+
+public static Asset<Effect> GetShader(string key)
+{
+    if (shaders.ContainsKey(key))
+        return shaders[key].Value;
+
+    LoadShader(key, $"Effects/{key}");
+    return shaders[key].Value;
+}
+Weapon And Projectile Trails
+•
+Trails are geometry, not sprites, built by Trail with width and color functions per vertex.
+•
+Trail.Positions must match the max count, or it throws, so the cache length is part of the API contract.
+•
+IDrawPrimitive.DrawPrimitives() is the render hook used after dust, which keeps trails on a clean pass.
+•
+Each trail render explicitly sets transformMatrix, sampleTexture, time, and repeats.
+if (trail is null || trail.IsDisposed)
+{
+    trail = new Trail(Main.instance.GraphicsDevice, 30, new NoTip(), factor => factor * 12, factor =>
+    {
+        float alpha = 1;
+
+        if (factor.X > 0.8f)
+            alpha = 1 + (factor.X - 0.8f) * 30;
+
+        if (factor.X == 1)
+            return Color.Transparent;
+
+        if (Projectile.timeLeft < 15)
+            alpha *= Projectile.timeLeft / 15f;
+
+        return new Color(40, 50 + (int)(factor.X * 100), 255) * factor.X * alpha;
+    });
+}
+
+trail.Positions = cache.ToArray();
+trail.NextPosition = Projectile.Center + Projectile.velocity;
+
+Effect effect = ShaderLoader.GetShader("CeirosRing").Value;
+
+var world = Matrix.CreateTranslation(-Main.screenPosition.ToVector3());
+Matrix view = Main.GameViewMatrix.TransformationMatrix;
+var projection = Matrix.CreateOrthographicOffCenter(0, Main.screenWidth, Main.screenHeight, 0, -1, 1);
+
+effect.Parameters["time"].SetValue(Main.GameUpdateCount * 0.05f);
+effect.Parameters["repeats"].SetValue(2f);
+effect.Parameters["transformMatrix"].SetValue(world * view * projection);
+effect.Parameters["sampleTexture"].SetValue(Assets.EnergyTrail.Value);
+
+trail?.Render(effect);
+for (int k = 0; k < Main.maxProjectiles; k++)
+{
+    if (Main.projectile[k].active && Main.projectile[k].ModProjectile is IDrawPrimitive)
+        (Main.projectile[k].ModProjectile as IDrawPrimitive).DrawPrimitives();
+}
+Trail Shader Pattern
+•
+UV scroll uses time and repeats with a masked vertical slice for consistent thickness.
+•
+Color intensity is driven by the sampled texture and vertex color, making TrailColorFunction a simple lighting model.
+•
+The shader expects transformMatrix and inputs POSITION, TEXCOORD0, COLOR0.
+float2 st = float2(input.TexCoords.x * repeats, 0.25 + input.TexCoords.y * 0.5);
+float3 color = tex2D(samplerTex, st + float2(time, 0)).xyz;
+return float4(color * input.Color * (1.0 + color.x * 2.0), color.x * input.Color.w);
+Local Sprite Distortion
+•
+Distortion is applied via SpriteSortMode.Immediate, with noise textures bound to uImage1, uImage2, and noiseImage1.
+•
+The effect is re-used by setting uColor per pass, allowing multiple layered glows with different tints.
+•
+screenPos and offset turn world-space movement into coherent distortion.
+Main.spriteBatch.End();
+Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp,
+    DepthStencilState.Default, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+
+effect.Parameters["time"].SetValue((float)Main.timeForVisualEffects * 0.005f);
+effect.Parameters["uTime"].SetValue((float)Main.timeForVisualEffects * 0.005f);
+effect.Parameters["screenPos"].SetValue(Main.screenPosition * new Vector2(0.5f, 0.1f) / new Vector2(Main.screenWidth, Main.screenHeight));
+effect.Parameters["offset"].SetValue(new Vector2(0.001f));
+effect.Parameters["repeats"].SetValue(2);
+effect.Parameters["uImage1"].SetValue(Assets.Noise.SwirlyNoiseLooping.Value);
+effect.Parameters["uImage2"].SetValue(Assets.Noise.PerlinNoise.Value);
+effect.Parameters["noiseImage1"].SetValue(Assets.Noise.PerlinNoise.Value);
+effect.Parameters["uColor"].SetValue(color.ToVector4());
+
+effect.CurrentTechnique.Passes[0].Apply();
+for (int i = 0; i < 10; i++)
+{
+    float intensity1 = tex2D(uImage1Sampler, screenPos + (uv_n + float2(time / TWO_PI, time / TWO_PI) / repeats)).r;
+    float intensity2 = tex2D(uImage1Sampler, screenPos + (uv_n + float2(-time / TWO_PI, time / TWO_PI) / repeats)).r;
+    float angle = (sqrt(intensity1 * intensity2) * TWO_PI) * tex2D(uImage2Sampler, uv * 0.1f);
+    uv_n += rotation(offset, angle);
+}
+Screen Filters And Shockwaves
+•
+Filters are installed with Filters.Scene["Key"] = new Filter(new ScreenShaderData(...), priority).
+•
+Activation uses Filters.Scene.Activate("Key").GetShader() and the UseOpacity chain for common parameters.
+•
+Shockwaves are array-driven, pushing progresses, positions, and intensity into the shader each tick.
+Filters.Scene["StarlightRiver_GradientDistortion"] = new Filter(
+    new ScreenShaderData(ShaderLoader.GetShader("GradientDistortion"), "GradientDistortion" + "Pass"),
+    EffectPriority.High);
+
+ScreenShaderData shader = Filters.Scene["StarlightRiver_GradientDistortion"].GetShader();
+shader.Shader.Parameters["uTransform"].SetValue(Main.GameViewMatrix.TransformationMatrix);
+
+if (!Filters.Scene["StarlightRiver_GradientDistortion"].IsActive())
+{
+    Filters.Scene.Activate("StarlightRiver_GradientDistortion").GetShader()
+        .UseOpacity(2f)
+        .UseIntensity(5f)
+        .UseProgress(6)
+        .UseImage(LightingBuffer.screenLightingTarget.RenderTarget, 0);
+}
+Filters.Scene["DistortionPulse"].GetShader().Shader.Parameters["progresses"].SetValue(progresses);
+Filters.Scene["DistortionPulse"].GetShader().Shader.Parameters["positions"].SetValue(positions);
+Filters.Scene["DistortionPulse"].GetShader().Shader.Parameters["intensity"].SetValue(intensity);
+Filters.Scene["DistortionPulse"].GetShader().Shader.Parameters["numberOfPoints"].SetValue(numberOfShockwaves);
+float2 diffPosition = position - positions[i];
+float distanceToPixel = length(diffPosition);
+float radius = progresses[i] * 200.0 * intensity[i] * 0.07f;
+diffPosition *= distanceToPixel + sin(distanceToPixel * 0.2 * (1.0 - progresses[i]) + -5.0 * uTime) * waveIntensity;
+Dust And Dye Shaders
+•
+Dust uses ArmorShaderData and sets UseColor every update, giving emissive control per particle.
+•
+Dyes are bound with GameShaders.Armor.BindShader using a named pass like BasicPass.
+•
+The emissive shader scales brightness from alpha, which is why glow sprites use strong alpha ramps.
+dust.shader = new ArmorShaderData(ShaderLoader.GetShader("GlowingDust"), "GlowingDustPass");
+dust.shader?.UseColor(dust.color);
+GameShaders.Armor.BindShader(ModContent.ItemType<RainbowCycleDye>(),
+    new ArmorShaderData(ShaderLoader.GetShader("RainbowArmor"), "BasicPass"));
+float4 color = tex2D(uImage0, float2(abs(fmod(coords.x, 1.0)), coords.y));
+float3 bright = color.xyz * color.w * uColor + (color.w > 0.4 ? ((color.w - 0.4) * 2.5) : float3(0, 0, 0));
+return float4(bright, color.w * avg) * avg;
+Render Targets, Pixelation, Metaballs
+•
+ScreenTarget is the RT backbone with drawFunct, activeFunct, and order for layering.
+•
+Pixelation queues draw actions and then runs a palette-correction pass on a scaled RT.
+•
+Metaballs draw shapes to one RT, optionally pre-warp in PreDraw, then outline in MetaballEdgeDetection, and optionally post-warp in PostDraw.
+ModContent.GetInstance<PixelationSystem>().QueueRenderAction("Dusts", () =>
+{
+    Main.spriteBatch.Draw(tex, position, null, color, rotation, origin, scale, 0f, 0f);
+});
+
+paletteCorrection.Parameters["palette"].SetValue(palette.Colors);
+paletteCorrection.Parameters["colorCount"].SetValue(palette.ColorCount);
+
+sb.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp,
+    DepthStencilState.None, Main.Rasterizer, paletteCorrection, Main.GameViewMatrix.TransformationMatrix);
+
+sb.Draw(target.pixelationTarget2.RenderTarget, Vector2.Zero, null, Color.White, 0, Vector2.Zero, 2f, SpriteEffects.None, 0);
+public virtual bool PreDraw(SpriteBatch spriteBatch, Texture2D target)
+{
+    return true;
+}
+
+public virtual bool PostDraw(SpriteBatch spriteBatch, Texture2D target)
+{
+    return true;
+}
+Stunning Visuals Playbook
+•
+Layer 2 to 4 passes: base sprite, emissive glow, distorted glow, and a trail or ring.
+•
+Drive motion with time and repeats, but vary it per layer so patterns never fully align.
+•
+Use TrailColorFunction to encode lighting and fade logic, not just color.
+•
+Add noise-based distortion to just one layer to avoid smearing the whole effect.
+•
+Use a screen filter only when the effect needs to feel environmental or global.
+Prompt Template
+Effect goal:
+- Type: trail / sprite distortion / screen filter / metaball / pixelation
+- Theme and mood: [keywords]
+- Base geometry: [trail length, width curve, tip type] or [sprite scale and shape]
+- Textures: [main sampleTexture], [secondary texture], [noise textures]
+- Shader params: time scale, repeats, opacity, color ramps
+- Blending: alpha or additive, any special sampler state
+- Hook: IDrawPrimitive trail, SpriteBatch immediate, or Filters.Scene
+- Performance: RT use, SpriteBatch resets, max trail points
+- Reference code ideas: [include the code snippets or parameter names you want mirrored]
+
+here is a guide on how to make shaders work
+
+kotlin.Unit
+
+==== RestoredMessage #22 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #23 ====
+User: 
+0>ExplosiveShadowSlug.cs(158,24): Warning CS0672 : Member 'ExplosiveShadowSlug.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'ExplosiveShadowSlug.Kill(int)'.
+0>Destiny2ShaderLoader.cs(56,35): Error CS1061 : 'Mod' does not contain a definition for 'File' and no accessible extension method 'File' accepting a first argument of type 'Mod' could be found (are you missing a using directive or an assembly reference?)
+0>Destiny2ShaderLoader.cs(60,44): Error CS1061 : 'Mod' does not contain a definition for 'File' and no accessible extension method 'File' accepting a first argument of type 'Mod' could be found (are you missing a using directive or an assembly reference?)
+0>Destiny2ShaderLoader.cs(60,13): Error CS0246 : The type or namespace name 'FileEntry' could not be found (are you missing a using directive or an assembly reference?)
+
+Attachments:
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+using System;
+using Destiny2.Common.Weapons;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Destiny2.Content.Projectiles
+{
+	public sealed class Bullet : ModProjectile
+	{
+		private const float MaxDistance = 1200f;
+		private const float DustSpacing = 4f;
+		private const float Speed = 32f; 
+		private const int ExtraUpdates = 3;
+
+		private Vector2 spawnPosition;
+		private bool initialized;
+		private float maxDistance = MaxDistance;
+		private Destiny2WeaponElement weaponElement = Destiny2WeaponElement.Kinetic;
+		private bool isCrit;
+		
+		// NEW: Safety flag to prevent double-damage from CCD + vanilla collision
+		private bool hasDealtDamage;
+
+		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
+
+		public override void SetDefaults()
+		{
+			Projectile.width = 4;
+			Projectile.height = 4;
+			Projectile.friendly = true;
+			Projectile.penetrate = 1;
+			Projectile.DamageType = Destiny2WeaponElement.Kinetic.GetDamageClass();
+			Projectile.timeLeft = 60;
+			Projectile.aiStyle = -1;
+			Projectile.tileCollide = true;
+			Projectile.hide = true;
+			Projectile.extraUpdates = ExtraUpdates;
+			
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = -1;
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			weaponElement = Destiny2WeaponElement.Kinetic;
+			isCrit = false;
+			hasDealtDamage = false; // Initialize as not having hit yet
+			Projectile.ai[0] = (int)weaponElement;
+
+			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
+			{
+				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
+				if (maxFalloffTiles > 0f)
+					maxDistance = Math.Max(16f, maxFalloffTiles * 3f * 16f);
+
+				weaponElement = weaponItem.WeaponElement;
+				Projectile.ai[0] = (int)weaponElement;
+				Projectile.DamageType = weaponElement.GetDamageClass();
+				
+				if (itemUse.Player != null)
+				{
+					int critChance = itemUse.Player.GetWeaponCrit(itemUse.Item);
+					isCrit = Main.rand.Next(100) < critChance;
+				}
+			}
+
+			spawnPosition = Projectile.Center;
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
+
+			if (Projectile.velocity != Vector2.Zero)
+				Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+
+			initialized = true;
+			Projectile.netUpdate = true;
+		}
+
+		public override void AI()
+		{
+			if (!initialized)
+				return;
+			
+			// If we already hit something in a previous sub-update, don't do anything else
+			if (hasDealtDamage)
+				return;
+
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
+			
+			if (CheckNPCCollision(lastPosition, Projectile.Center, out NPC hitNPC, out float collisionDist))
+			{
+				Vector2 direction = (Projectile.Center - lastPosition).SafeNormalize(Vector2.UnitX);
+				Projectile.Center = lastPosition + direction * collisionDist;
+				
+				// Deal damage only if we haven't already
+				if (!hasDealtDamage)
+				{
+					hitNPC.SimpleStrikeNPC(
+						Projectile.damage, 
+						Projectile.direction, 
+						isCrit,                          
+						(int)Projectile.knockBack,       
+						Projectile.DamageType
+					);
+					hasDealtDamage = true;
+				}
+				
+				Projectile.Kill();
+				return;
+			}
+			
+			SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
+
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
+
+			if (Vector2.Distance(spawnPosition, Projectile.Center) >= maxDistance)
+			{
+				Projectile.Kill();
+			}
+		}
+
+		public override void OnKill(int timeLeft)
+		{
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
+			if (lastPosition != Projectile.Center)
+			{
+				SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
+			}
+			base.OnKill(timeLeft);
+		}
+
+		/// <summary>
+		/// Fallback vanilla hit handler. Prevents double-damage if vanilla detects collision 
+		/// simultaneously with our CCD system.
+		/// </summary>
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			// If we already dealt damage via CCD in AI(), ignore this vanilla callback
+			// This prevents the rare double-hit bug when extraUpdates is high
+			if (hasDealtDamage)
+			{
+				return;
+			}
+			
+			// If vanilla hit us but AI missed (very unlikely), mark that we hit
+			hasDealtDamage = true;
+			Projectile.Kill();
+		}
+
+		private bool CheckNPCCollision(Vector2 start, Vector2 end, out NPC hitNPC, out float closestDist)
+		{
+			hitNPC = null;
+			closestDist = float.MaxValue;
+			bool found = false;
+
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+				if (!npc.active || npc.dontTakeDamage)
+					continue;
+				
+				if (npc.friendly && npc.type != NPCID.TargetDummy)
+					continue;
+
+				float collisionPoint = 0f;
+				if (Collision.CheckAABBvLineCollision(
+					npc.Hitbox.TopLeft(), 
+					npc.Hitbox.Size(), 
+					start, 
+					end, 
+					Projectile.width, 
+					ref collisionPoint))
+				{
+					if (collisionPoint < closestDist)
+					{
+						closestDist = collisionPoint;
+						hitNPC = npc;
+						found = true;
+					}
+				}
+			}
+			return found;
+		}
+
+		private static void SpawnDustSegment(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+		{
+			if (Main.dedServ)
+				return;
+
+			GetDustStyle(element, out int dustType, out Color dustColor);
+			Vector2 direction = (end - start).SafeNormalize(Vector2.UnitX);
+			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
+			float length = Vector2.Distance(start, end);
+			
+			if (length < 0.1f) 
+				return;
+				
+			int count = Math.Max(1, (int)(length / DustSpacing));
+
+			for (int i = 0; i < count; i++)
+			{
+				float t = (i + 0.5f) / count;
+				Vector2 pos = Vector2.Lerp(start, end, t);
+				int dustCount = Main.rand.Next(2, 4);
+				
+				for (int j = 0; j < dustCount; j++)
+				{
+					float hueShift = (j - 1) * 0.03f;
+					Color shifted = ShiftHue(dustColor, hueShift);
+					Vector2 offset = perpendicular * Main.rand.NextFloat(-2f, 2f) + direction * Main.rand.NextFloat(-1f, 1f);
+					float scale = Main.rand.NextFloat(1.0f, 1.45f);
+					
+					Dust dust = Dust.NewDustDirect(pos + offset - new Vector2(2f), 4, 4, dustType, 0f, 0f, 40, shifted, scale);
+					dust.noGravity = true;
+					dust.noLight = false;
+					dust.velocity *= 0.3f;
+					dust.color = shifted;
+				}
+			}
+		}
+
+		private static void GetDustStyle(Destiny2WeaponElement element, out int dustType, out Color dustColor)
+		{
+			dustType = DustID.WhiteTorch;
+			dustColor = GetElementColor(element);
+		}
+
+		private static Color GetElementColor(Destiny2WeaponElement element)
+		{
+			return element switch
+			{				Destiny2WeaponElement.Void => new Color(196, 0, 240),
+				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
+				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
+				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
+				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
+				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
+				_ => new Color(255, 248, 163)
+			};
+		}
+
+		private static Color ShiftHue(Color color, float shift)
+		{
+			Vector3 rgb = color.ToVector3();
+			float max = Math.Max(rgb.X, Math.Max(rgb.Y, rgb.Z));
+			float min = Math.Min(rgb.X, Math.Min(rgb.Y, rgb.Z));
+			float delta = max - min;
+
+			float hue = 0f;
+			if (delta > 0.0001f)
+			{
+				if (max == rgb.X)
+					hue = (rgb.Y - rgb.Z) / delta;
+				else if (max == rgb.Y)
+					hue = 2f + (rgb.Z - rgb.X) / delta;
+				else
+					hue = 4f + (rgb.X - rgb.Y) / delta;
+				hue /= 6f;
+			}
+
+			if (hue < 0f)
+				hue += 1f;
+
+			float saturation = max <= 0f ? 0f : delta / max;
+			float value = max;
+			float shiftedHue = hue + shift;
+			if (shiftedHue < 0f)
+				shiftedHue += 1f;
+			else if (shiftedHue >= 1f)
+				shiftedHue -= 1f;
+
+			return ColorFromHsv(shiftedHue, saturation, value);
+		}
+
+		private static Color ColorFromHsv(float hue, float saturation, float value)
+		{
+			float c = value * saturation;
+			float x = c * (1f - Math.Abs((hue * 6f) % 2f - 1f));
+			float m = value - c;
+
+			float r;
+			float g;
+			float b;
+			float h = hue * 6f;
+
+			if (h < 1f)
+			{
+				r = c;
+				g = x;
+				b = 0f;
+			}
+			else if (h < 2f)
+			{
+				r = x;
+				g = c;
+				b = 0f;
+			}
+			else if (h < 3f)
+			{
+				r = 0f;
+				g = c;
+				b = x;
+			}
+			else if (h < 4f)
+			{
+				r = 0f;
+				g = x;
+				b = c;
+			}
+			else if (h < 5f)
+			{
+				r = x;
+				g = 0f;
+				b = c;
+			}
+			else
+			{
+				r = c;
+				g = 0f;
+				b = x;
+			}
+
+			return new Color(r + m, g + m, b + m);
+		}
+
+		private Destiny2WeaponElement GetWeaponElement()
+		{
+			int elementId = (int)Projectile.ai[0];
+			if (elementId < 0 || elementId > (int)Destiny2WeaponElement.Void)
+				return weaponElement;
+
+			return (Destiny2WeaponElement)elementId;
+		}
+	}
+}
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+0>ExplosiveShadowSlug.cs(158,24): Warning CS0672 : Member 'ExplosiveShadowSlug.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'ExplosiveShadowSlug.Kill(int)'.
+0>Destiny2ShaderLoader.cs(56,35): Error CS1061 : 'Mod' does not contain a definition for 'File' and no accessible extension method 'File' accepting a first argument of type 'Mod' could be found (are you missing a using directive or an assembly reference?)
+0>Destiny2ShaderLoader.cs(60,44): Error CS1061 : 'Mod' does not contain a definition for 'File' and no accessible extension method 'File' accepting a first argument of type 'Mod' could be found (are you missing a using directive or an assembly reference?)
+0>Destiny2ShaderLoader.cs(60,13): Error CS0246 : The type or namespace name 'FileEntry' could not be found (are you missing a using directive or an assembly reference?)
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #24 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #25 ====
+User: 
+0>ExplosiveShadowSlug.cs(158,24): Warning CS0672 : Member 'ExplosiveShadowSlug.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'ExplosiveShadowSlug.Kill(int)'.
+
+Attachments:
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+using System;
+using Destiny2.Common.Weapons;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Destiny2.Content.Projectiles
+{
+	public sealed class Bullet : ModProjectile
+	{
+		private const float MaxDistance = 1200f;
+		private const float DustSpacing = 4f;
+		private const float Speed = 32f; 
+		private const int ExtraUpdates = 3;
+
+		private Vector2 spawnPosition;
+		private bool initialized;
+		private float maxDistance = MaxDistance;
+		private Destiny2WeaponElement weaponElement = Destiny2WeaponElement.Kinetic;
+		private bool isCrit;
+		
+		// NEW: Safety flag to prevent double-damage from CCD + vanilla collision
+		private bool hasDealtDamage;
+
+		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
+
+		public override void SetDefaults()
+		{
+			Projectile.width = 4;
+			Projectile.height = 4;
+			Projectile.friendly = true;
+			Projectile.penetrate = 1;
+			Projectile.DamageType = Destiny2WeaponElement.Kinetic.GetDamageClass();
+			Projectile.timeLeft = 60;
+			Projectile.aiStyle = -1;
+			Projectile.tileCollide = true;
+			Projectile.hide = true;
+			Projectile.extraUpdates = ExtraUpdates;
+			
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = -1;
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			weaponElement = Destiny2WeaponElement.Kinetic;
+			isCrit = false;
+			hasDealtDamage = false; // Initialize as not having hit yet
+			Projectile.ai[0] = (int)weaponElement;
+
+			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
+			{
+				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
+				if (maxFalloffTiles > 0f)
+					maxDistance = Math.Max(16f, maxFalloffTiles * 3f * 16f);
+
+				weaponElement = weaponItem.WeaponElement;
+				Projectile.ai[0] = (int)weaponElement;
+				Projectile.DamageType = weaponElement.GetDamageClass();
+				
+				if (itemUse.Player != null)
+				{
+					int critChance = itemUse.Player.GetWeaponCrit(itemUse.Item);
+					isCrit = Main.rand.Next(100) < critChance;
+				}
+			}
+
+			spawnPosition = Projectile.Center;
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
+
+			if (Projectile.velocity != Vector2.Zero)
+				Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+
+			initialized = true;
+			Projectile.netUpdate = true;
+		}
+
+		public override void AI()
+		{
+			if (!initialized)
+				return;
+			
+			// If we already hit something in a previous sub-update, don't do anything else
+			if (hasDealtDamage)
+				return;
+
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
+			
+			if (CheckNPCCollision(lastPosition, Projectile.Center, out NPC hitNPC, out float collisionDist))
+			{
+				Vector2 direction = (Projectile.Center - lastPosition).SafeNormalize(Vector2.UnitX);
+				Projectile.Center = lastPosition + direction * collisionDist;
+				
+				// Deal damage only if we haven't already
+				if (!hasDealtDamage)
+				{
+					hitNPC.SimpleStrikeNPC(
+						Projectile.damage, 
+						Projectile.direction, 
+						isCrit,                          
+						(int)Projectile.knockBack,       
+						Projectile.DamageType
+					);
+					hasDealtDamage = true;
+				}
+				
+				Projectile.Kill();
+				return;
+			}
+			
+			SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
+
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
+
+			if (Vector2.Distance(spawnPosition, Projectile.Center) >= maxDistance)
+			{
+				Projectile.Kill();
+			}
+		}
+
+		public override void OnKill(int timeLeft)
+		{
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
+			if (lastPosition != Projectile.Center)
+			{
+				SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
+			}
+			base.OnKill(timeLeft);
+		}
+
+		/// <summary>
+		/// Fallback vanilla hit handler. Prevents double-damage if vanilla detects collision 
+		/// simultaneously with our CCD system.
+		/// </summary>
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			// If we already dealt damage via CCD in AI(), ignore this vanilla callback
+			// This prevents the rare double-hit bug when extraUpdates is high
+			if (hasDealtDamage)
+			{
+				return;
+			}
+			
+			// If vanilla hit us but AI missed (very unlikely), mark that we hit
+			hasDealtDamage = true;
+			Projectile.Kill();
+		}
+
+		private bool CheckNPCCollision(Vector2 start, Vector2 end, out NPC hitNPC, out float closestDist)
+		{
+			hitNPC = null;
+			closestDist = float.MaxValue;
+			bool found = false;
+
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+				if (!npc.active || npc.dontTakeDamage)
+					continue;
+				
+				if (npc.friendly && npc.type != NPCID.TargetDummy)
+					continue;
+
+				float collisionPoint = 0f;
+				if (Collision.CheckAABBvLineCollision(
+					npc.Hitbox.TopLeft(), 
+					npc.Hitbox.Size(), 
+					start, 
+					end, 
+					Projectile.width, 
+					ref collisionPoint))
+				{
+					if (collisionPoint < closestDist)
+					{
+						closestDist = collisionPoint;
+						hitNPC = npc;
+						found = true;
+					}
+				}
+			}
+			return found;
+		}
+
+		private static void SpawnDustSegment(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+		{
+			if (Main.dedServ)
+				return;
+
+			GetDustStyle(element, out int dustType, out Color dustColor);
+			Vector2 direction = (end - start).SafeNormalize(Vector2.UnitX);
+			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
+			float length = Vector2.Distance(start, end);
+			
+			if (length < 0.1f) 
+				return;
+				
+			int count = Math.Max(1, (int)(length / DustSpacing));
+
+			for (int i = 0; i < count; i++)
+			{
+				float t = (i + 0.5f) / count;
+				Vector2 pos = Vector2.Lerp(start, end, t);
+				int dustCount = Main.rand.Next(2, 4);
+				
+				for (int j = 0; j < dustCount; j++)
+				{
+					float hueShift = (j - 1) * 0.03f;
+					Color shifted = ShiftHue(dustColor, hueShift);
+					Vector2 offset = perpendicular * Main.rand.NextFloat(-2f, 2f) + direction * Main.rand.NextFloat(-1f, 1f);
+					float scale = Main.rand.NextFloat(1.0f, 1.45f);
+					
+					Dust dust = Dust.NewDustDirect(pos + offset - new Vector2(2f), 4, 4, dustType, 0f, 0f, 40, shifted, scale);
+					dust.noGravity = true;
+					dust.noLight = false;
+					dust.velocity *= 0.3f;
+					dust.color = shifted;
+				}
+			}
+		}
+
+		private static void GetDustStyle(Destiny2WeaponElement element, out int dustType, out Color dustColor)
+		{
+			dustType = DustID.WhiteTorch;
+			dustColor = GetElementColor(element);
+		}
+
+		private static Color GetElementColor(Destiny2WeaponElement element)
+		{
+			return element switch
+			{				Destiny2WeaponElement.Void => new Color(196, 0, 240),
+				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
+				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
+				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
+				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
+				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
+				_ => new Color(255, 248, 163)
+			};
+		}
+
+		private static Color ShiftHue(Color color, float shift)
+		{
+			Vector3 rgb = color.ToVector3();
+			float max = Math.Max(rgb.X, Math.Max(rgb.Y, rgb.Z));
+			float min = Math.Min(rgb.X, Math.Min(rgb.Y, rgb.Z));
+			float delta = max - min;
+
+			float hue = 0f;
+			if (delta > 0.0001f)
+			{
+				if (max == rgb.X)
+					hue = (rgb.Y - rgb.Z) / delta;
+				else if (max == rgb.Y)
+					hue = 2f + (rgb.Z - rgb.X) / delta;
+				else
+					hue = 4f + (rgb.X - rgb.Y) / delta;
+				hue /= 6f;
+			}
+
+			if (hue < 0f)
+				hue += 1f;
+
+			float saturation = max <= 0f ? 0f : delta / max;
+			float value = max;
+			float shiftedHue = hue + shift;
+			if (shiftedHue < 0f)
+				shiftedHue += 1f;
+			else if (shiftedHue >= 1f)
+				shiftedHue -= 1f;
+
+			return ColorFromHsv(shiftedHue, saturation, value);
+		}
+
+		private static Color ColorFromHsv(float hue, float saturation, float value)
+		{
+			float c = value * saturation;
+			float x = c * (1f - Math.Abs((hue * 6f) % 2f - 1f));
+			float m = value - c;
+
+			float r;
+			float g;
+			float b;
+			float h = hue * 6f;
+
+			if (h < 1f)
+			{
+				r = c;
+				g = x;
+				b = 0f;
+			}
+			else if (h < 2f)
+			{
+				r = x;
+				g = c;
+				b = 0f;
+			}
+			else if (h < 3f)
+			{
+				r = 0f;
+				g = c;
+				b = x;
+			}
+			else if (h < 4f)
+			{
+				r = 0f;
+				g = x;
+				b = c;
+			}
+			else if (h < 5f)
+			{
+				r = x;
+				g = 0f;
+				b = c;
+			}
+			else
+			{
+				r = c;
+				g = 0f;
+				b = x;
+			}
+
+			return new Color(r + m, g + m, b + m);
+		}
+
+		private Destiny2WeaponElement GetWeaponElement()
+		{
+			int elementId = (int)Projectile.ai[0];
+			if (elementId < 0 || elementId > (int)Destiny2WeaponElement.Void)
+				return weaponElement;
+
+			return (Destiny2WeaponElement)elementId;
+		}
+	}
+}
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+0>ExplosiveShadowSlug.cs(158,24): Warning CS0672 : Member 'ExplosiveShadowSlug.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'ExplosiveShadowSlug.Kill(int)'.
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #26 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #27 ====
+User: 
+remove everything to do with the crit system
+Attachments:
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+using System;
+using Destiny2.Common.Weapons;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Destiny2.Content.Projectiles
+{
+	public sealed class Bullet : ModProjectile
+	{
+		private const float MaxDistance = 1200f;
+		private const float DustSpacing = 4f;
+		private const float Speed = 32f; 
+		private const int ExtraUpdates = 3;
+
+		private Vector2 spawnPosition;
+		private bool initialized;
+		private float maxDistance = MaxDistance;
+		private Destiny2WeaponElement weaponElement = Destiny2WeaponElement.Kinetic;
+		private bool isCrit;
+		
+		// NEW: Safety flag to prevent double-damage from CCD + vanilla collision
+		private bool hasDealtDamage;
+
+		public override string Texture => $"Terraria/Images/Projectile_{ProjectileID.Bullet}";
+
+		public override void SetDefaults()
+		{
+			Projectile.width = 4;
+			Projectile.height = 4;
+			Projectile.friendly = true;
+			Projectile.penetrate = 1;
+			Projectile.DamageType = Destiny2WeaponElement.Kinetic.GetDamageClass();
+			Projectile.timeLeft = 60;
+			Projectile.aiStyle = -1;
+			Projectile.tileCollide = true;
+			Projectile.hide = true;
+			Projectile.extraUpdates = ExtraUpdates;
+			
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = -1;
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			weaponElement = Destiny2WeaponElement.Kinetic;
+			isCrit = false;
+			hasDealtDamage = false; // Initialize as not having hit yet
+			Projectile.ai[0] = (int)weaponElement;
+
+			if (source is EntitySource_ItemUse itemUse && itemUse.Item?.ModItem is Destiny2WeaponItem weaponItem)
+			{
+				float maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
+				if (maxFalloffTiles > 0f)
+					maxDistance = Math.Max(16f, maxFalloffTiles * 3f * 16f);
+
+				weaponElement = weaponItem.WeaponElement;
+				Projectile.ai[0] = (int)weaponElement;
+				Projectile.DamageType = weaponElement.GetDamageClass();
+				
+				if (itemUse.Player != null)
+				{
+					int critChance = itemUse.Player.GetWeaponCrit(itemUse.Item);
+					isCrit = Main.rand.Next(100) < critChance;
+				}
+			}
+
+			spawnPosition = Projectile.Center;
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
+
+			if (Projectile.velocity != Vector2.Zero)
+				Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+
+			initialized = true;
+			Projectile.netUpdate = true;
+		}
+
+		public override void AI()
+		{
+			if (!initialized)
+				return;
+			
+			// If we already hit something in a previous sub-update, don't do anything else
+			if (hasDealtDamage)
+				return;
+
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
+			
+			if (CheckNPCCollision(lastPosition, Projectile.Center, out NPC hitNPC, out float collisionDist))
+			{
+				Vector2 direction = (Projectile.Center - lastPosition).SafeNormalize(Vector2.UnitX);
+				Projectile.Center = lastPosition + direction * collisionDist;
+				
+				// Deal damage only if we haven't already
+				if (!hasDealtDamage)
+				{
+					hitNPC.SimpleStrikeNPC(
+						Projectile.damage, 
+						Projectile.direction, 
+						isCrit,                          
+						(int)Projectile.knockBack,       
+						Projectile.DamageType
+					);
+					hasDealtDamage = true;
+				}
+				
+				Projectile.Kill();
+				return;
+			}
+			
+			SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
+
+			Projectile.localAI[0] = Projectile.Center.X;
+			Projectile.localAI[1] = Projectile.Center.Y;
+
+			if (Vector2.Distance(spawnPosition, Projectile.Center) >= maxDistance)
+			{
+				Projectile.Kill();
+			}
+		}
+
+		public override void OnKill(int timeLeft)
+		{
+			Vector2 lastPosition = new Vector2(Projectile.localAI[0], Projectile.localAI[1]);
+			if (lastPosition != Projectile.Center)
+			{
+				SpawnDustSegment(lastPosition, Projectile.Center, GetWeaponElement());
+			}
+			base.OnKill(timeLeft);
+		}
+
+		/// <summary>
+		/// Fallback vanilla hit handler. Prevents double-damage if vanilla detects collision 
+		/// simultaneously with our CCD system.
+		/// </summary>
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			// If we already dealt damage via CCD in AI(), ignore this vanilla callback
+			// This prevents the rare double-hit bug when extraUpdates is high
+			if (hasDealtDamage)
+			{
+				return;
+			}
+			
+			// If vanilla hit us but AI missed (very unlikely), mark that we hit
+			hasDealtDamage = true;
+			Projectile.Kill();
+		}
+
+		private bool CheckNPCCollision(Vector2 start, Vector2 end, out NPC hitNPC, out float closestDist)
+		{
+			hitNPC = null;
+			closestDist = float.MaxValue;
+			bool found = false;
+
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+				if (!npc.active || npc.dontTakeDamage)
+					continue;
+				
+				if (npc.friendly && npc.type != NPCID.TargetDummy)
+					continue;
+
+				float collisionPoint = 0f;
+				if (Collision.CheckAABBvLineCollision(
+					npc.Hitbox.TopLeft(), 
+					npc.Hitbox.Size(), 
+					start, 
+					end, 
+					Projectile.width, 
+					ref collisionPoint))
+				{
+					if (collisionPoint < closestDist)
+					{
+						closestDist = collisionPoint;
+						hitNPC = npc;
+						found = true;
+					}
+				}
+			}
+			return found;
+		}
+
+		private static void SpawnDustSegment(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+		{
+			if (Main.dedServ)
+				return;
+
+			GetDustStyle(element, out int dustType, out Color dustColor);
+			Vector2 direction = (end - start).SafeNormalize(Vector2.UnitX);
+			Vector2 perpendicular = direction.RotatedBy(MathHelper.PiOver2);
+			float length = Vector2.Distance(start, end);
+			
+			if (length < 0.1f) 
+				return;
+				
+			int count = Math.Max(1, (int)(length / DustSpacing));
+
+			for (int i = 0; i < count; i++)
+			{
+				float t = (i + 0.5f) / count;
+				Vector2 pos = Vector2.Lerp(start, end, t);
+				int dustCount = Main.rand.Next(2, 4);
+				
+				for (int j = 0; j < dustCount; j++)
+				{
+					float hueShift = (j - 1) * 0.03f;
+					Color shifted = ShiftHue(dustColor, hueShift);
+					Vector2 offset = perpendicular * Main.rand.NextFloat(-2f, 2f) + direction * Main.rand.NextFloat(-1f, 1f);
+					float scale = Main.rand.NextFloat(1.0f, 1.45f);
+					
+					Dust dust = Dust.NewDustDirect(pos + offset - new Vector2(2f), 4, 4, dustType, 0f, 0f, 40, shifted, scale);
+					dust.noGravity = true;
+					dust.noLight = false;
+					dust.velocity *= 0.3f;
+					dust.color = shifted;
+				}
+			}
+		}
+
+		private static void GetDustStyle(Destiny2WeaponElement element, out int dustType, out Color dustColor)
+		{
+			dustType = DustID.WhiteTorch;
+			dustColor = GetElementColor(element);
+		}
+
+		private static Color GetElementColor(Destiny2WeaponElement element)
+		{
+			return element switch
+			{				Destiny2WeaponElement.Void => new Color(196, 0, 240),
+				Destiny2WeaponElement.Strand => new Color(55, 218, 100),
+				Destiny2WeaponElement.Stasis => new Color(51, 91, 196),
+				Destiny2WeaponElement.Solar => new Color(236, 85, 0),
+				Destiny2WeaponElement.Arc => new Color(7, 208, 255),
+				Destiny2WeaponElement.Kinetic => new Color(255, 248, 163),
+				_ => new Color(255, 248, 163)
+			};
+		}
+
+		private static Color ShiftHue(Color color, float shift)
+		{
+			Vector3 rgb = color.ToVector3();
+			float max = Math.Max(rgb.X, Math.Max(rgb.Y, rgb.Z));
+			float min = Math.Min(rgb.X, Math.Min(rgb.Y, rgb.Z));
+			float delta = max - min;
+
+			float hue = 0f;
+			if (delta > 0.0001f)
+			{
+				if (max == rgb.X)
+					hue = (rgb.Y - rgb.Z) / delta;
+				else if (max == rgb.Y)
+					hue = 2f + (rgb.Z - rgb.X) / delta;
+				else
+					hue = 4f + (rgb.X - rgb.Y) / delta;
+				hue /= 6f;
+			}
+
+			if (hue < 0f)
+				hue += 1f;
+
+			float saturation = max <= 0f ? 0f : delta / max;
+			float value = max;
+			float shiftedHue = hue + shift;
+			if (shiftedHue < 0f)
+				shiftedHue += 1f;
+			else if (shiftedHue >= 1f)
+				shiftedHue -= 1f;
+
+			return ColorFromHsv(shiftedHue, saturation, value);
+		}
+
+		private static Color ColorFromHsv(float hue, float saturation, float value)
+		{
+			float c = value * saturation;
+			float x = c * (1f - Math.Abs((hue * 6f) % 2f - 1f));
+			float m = value - c;
+
+			float r;
+			float g;
+			float b;
+			float h = hue * 6f;
+
+			if (h < 1f)
+			{
+				r = c;
+				g = x;
+				b = 0f;
+			}
+			else if (h < 2f)
+			{
+				r = x;
+				g = c;
+				b = 0f;
+			}
+			else if (h < 3f)
+			{
+				r = 0f;
+				g = c;
+				b = x;
+			}
+			else if (h < 4f)
+			{
+				r = 0f;
+				g = x;
+				b = c;
+			}
+			else if (h < 5f)
+			{
+				r = x;
+				g = 0f;
+				b = c;
+			}
+			else
+			{
+				r = c;
+				g = 0f;
+				b = x;
+			}
+
+			return new Color(r + m, g + m, b + m);
+		}
+
+		private Destiny2WeaponElement GetWeaponElement()
+		{
+			int elementId = (int)Projectile.ai[0];
+			if (elementId < 0 || elementId > (int)Destiny2WeaponElement.Void)
+				return weaponElement;
+
+			return (Destiny2WeaponElement)elementId;
+		}
+	}
+}
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+0>ExplosiveShadowSlug.cs(158,24): Warning CS0672 : Member 'ExplosiveShadowSlug.Kill(int)' overrides obsolete member 'ModProjectile.Kill(int)'. Add the Obsolete attribute to 'ExplosiveShadowSlug.Kill(int)'.
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #28 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #29 ====
+User: 
+create a system that creates critical points on all enemies, these should be small ish zones that render as a sphere using unique dust visuals that deals increased damage when hit. the precision multiplier for currently implemented weapon frames per weapon type Precision auto rifles  1.75 Khvostov and adaptive auto rifles 1.75 adaptive hand cannons: 1.79 precision hand cannons (and malfeasance) 1.55 Heavy burst hand cannons: 2.2. use your judgement on where this should appear on enemies based on their ai type (for example the top of the sprite for fighter ai npcs) 
+
+kotlin.Unit
+
+==== RestoredMessage #30 ====
+Assistant: 
+
+
+kotlin.Unit
+
+==== RestoredMessage #31 ====
+User: 
+0>Bullet.cs(134,167): Error CS1003 : Syntax error, '}' expected
+0>Bullet.cs(134,97): Error CS1073 : Unexpected token '\'
+0>Bullet.cs(134,137): Error CS1525 : Invalid expression term ''
+0>Bullet.cs(134,137): Error CS1056 : Unexpected character '\'
+0>Bullet.cs(135,4): Error CS1026 : ) expected
+0>Bullet.cs(135,4): Error CS1002 : ; expected
+0>Bullet.cs(137,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(174,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(180,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(193,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(226,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(277,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(286,2): Error CS1513 : } expected
+
+Attachments:
+Attachment Name: Console Selection
+Attachments Kind: Visible
+Attachments Source: Other / RestoredChatAttachment
+Attachments Text:
+0>Bullet.cs(134,167): Error CS1003 : Syntax error, '}' expected
+0>Bullet.cs(134,97): Error CS1073 : Unexpected token '\'
+0>Bullet.cs(134,137): Error CS1525 : Invalid expression term ''
+0>Bullet.cs(134,137): Error CS1056 : Unexpected character '\'
+0>Bullet.cs(135,4): Error CS1026 : ) expected
+0>Bullet.cs(135,4): Error CS1002 : ; expected
+0>Bullet.cs(137,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(174,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(180,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(193,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(226,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(277,3): Error CS0106 : The modifier 'private' is not valid for this item
+0>Bullet.cs(286,2): Error CS1513 : } expected
+
+
+
+kotlin.Unit
+
+==== RestoredMessage #32 ====
+Assistant: 
+
+
+kotlin.Unit
+

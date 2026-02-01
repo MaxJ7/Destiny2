@@ -1,0 +1,14 @@
+# MonoGame Content Pipeline - Destiny2 shaders
+/OutputDir:.
+/IntermediateDir:obj/ShaderContent
+/Platform:Windows
+/Profile:HiDef
+/Config:
+
+#begin SolarExplosion
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Content\Shaders\SolarExplosion.fx
+#end

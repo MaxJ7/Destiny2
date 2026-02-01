@@ -18595,3 +18595,943 @@
 [01:48:54.377] Bullet OnHitNPC. projId=0 target=Blue Slime damage=105
 [01:48:57.492] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
 [01:48:57.959] Bullet OnHitNPC. projId=0 target=Blue Slime damage=70
+---- Diagnostic Log Start 2026-01-31 01:53:23 ----
+[01:53:48.721] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:53:49.072] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:53:49.387] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:53:49.920] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:53:50.351] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:53:51.472] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:53:52.169] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:53:52.860] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:53:53.211] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:53:54.308] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:53:54.641] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:53:59.478] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:54:02.659] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:02.908] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:03.175] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:03.659] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:04.011] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:54:04.926] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:05.326] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:05.756] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:06.477] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:54:06.823] Bullet OnHitNPC. projId=0 target=Super Dummy damage=42
+[01:54:07.193] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:07.508] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:11.308] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:11.575] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:11.896] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:12.163] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:12.829] Bullet OnHitNPC. projId=0 target=Blue Slime damage=56
+[01:54:17.593] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:17.829] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:18.059] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:18.411] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:18.641] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:18.878] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:19.163] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:54:19.393] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:28.512] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.512] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=3142
+[01:54:28.515] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.515] EyesUp grant skipped (already granted this frame). Frame=3142
+[01:54:28.521] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.521] EyesUp grant skipped (already granted this frame). Frame=3142
+[01:54:28.528] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.529] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3143
+[01:54:28.535] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.535] EyesUp grant skipped (already granted this frame). Frame=3143
+[01:54:28.539] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.539] EyesUp grant skipped (already granted this frame). Frame=3143
+[01:54:28.546] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.547] EyesUp stacks GRANTED! Added=7 OldTotal=7 NewTotal=7 Frame=3144
+[01:54:28.552] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.552] EyesUp grant skipped (already granted this frame). Frame=3144
+[01:54:28.561] EyesUp hook triggered: GetHealLife Player=0
+[01:54:28.561] EyesUp grant skipped (already granted this frame). Frame=3144
+[01:54:39.774] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:54:40.174] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:54:42.610] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:54:42.743] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:54:42.877] Bullet OnHitNPC. projId=0 target=Target Dummy damage=18
+[01:54:44.993] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:54:45.125] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:54:45.259] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:54:45.392] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[01:54:45.525] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[01:54:49.592] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:54:49.962] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:54:54.041] Bullet OnHitNPC. projId=0 target=Blue Slime damage=42
+[01:54:54.507] Bullet OnHitNPC. projId=0 target=Blue Slime damage=28
+[01:55:02.325] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:55:02.561] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:55:03.695] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:55:03.925] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:55:04.162] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:55:04.392] Bullet OnHitNPC. projId=0 target=Super Dummy damage=28
+[01:55:07.507] Bullet OnHitNPC. projId=0 target=Target Dummy damage=28
+[01:55:08.143] Bullet OnHitNPC. projId=0 target=Blue Slime damage=84
+[01:55:21.944] Bullet OnHitNPC. projId=0 target=Zombie damage=55
+[01:55:22.162] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:23.210] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:23.441] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:23.677] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:23.907] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:24.154] Bullet OnHitNPC. projId=0 target=Zombie damage=41
+[01:55:24.386] Bullet OnHitNPC. projId=0 target=Zombie damage=41
+[01:55:24.616] Bullet OnHitNPC. projId=0 target=Zombie damage=41
+[01:55:24.853] Bullet OnHitNPC. projId=0 target=Zombie damage=41
+[01:55:25.083] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:28.149] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:28.386] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:28.616] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:29.538] Bullet OnHitNPC. projId=1 target=Zombie damage=27
+[01:55:30.004] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:30.234] Bullet OnHitNPC. projId=0 target=Zombie damage=27
+[01:55:50.187] Bullet OnHitNPC. projId=0 target=Amber Squirrel damage=28
+[01:55:50.720] Bullet OnHitNPC. projId=0 target=Amber Squirrel damage=28
+[01:55:52.386] Bullet OnHitNPC. projId=0 target=Amber Squirrel damage=28
+[01:56:01.017] Bullet OnHitNPC. projId=0 target=Amber Squirrel damage=28
+[01:56:01.435] Bullet OnHitNPC. projId=0 target=Amber Squirrel damage=28
+[01:56:03.743] Bullet OnHitNPC. projId=0 target=Eater of Souls damage=26
+[01:56:04.198] Bullet OnHitNPC. projId=0 target=Eater of Souls damage=26
+[01:56:04.514] Bullet OnHitNPC. projId=0 target=Eater of Souls damage=26
+[01:56:05.161] Bullet OnHitNPC. projId=0 target=Eater of Souls damage=26
+[01:57:04.494] EyesUp stacks consumed. Remaining=6
+[01:57:13.264] Bullet OnHitNPC. projId=0 target=Zombie damage=24
+[01:57:17.209] Bullet OnHitNPC. projId=0 target=Zombie damage=110
+[01:57:21.694] Bullet OnHitNPC. projId=0 target=Zombie damage=38
+[01:57:22.227] Bullet OnHitNPC. projId=0 target=Zombie damage=68
+[01:57:23.064] Bullet OnHitNPC. projId=0 target=Green Slime damage=38
+[01:57:33.683] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=32
+[01:57:34.167] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:34.670] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:35.203] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:35.701] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:37.785] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=32
+[01:57:38.234] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:38.767] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=57
+[01:57:39.270] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=32
+[01:57:39.718] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:40.149] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:40.604] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:45.003] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:45.519] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:45.985] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:46.452] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:46.900] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=38
+[01:57:47.367] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:48.349] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:48.816] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=38
+[01:57:49.287] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=34
+[01:57:49.767] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=32
+[01:57:50.349] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:51.537] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:52.149] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:52.616] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:53.070] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:57:53.894] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:54.343] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:54.791] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:55.210] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:55.628] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:57:56.058] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=64
+[01:57:57.379] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:00.446] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:00.876] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:01.324] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:01.761] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:02.191] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:02.628] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:03.591] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:03.991] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=32
+[01:58:04.427] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:04.876] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:05.779] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:06.209] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=32
+[01:58:12.895] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=24
+[01:58:14.076] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=24
+[01:58:14.313] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:14.544] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=24
+[01:58:14.791] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=49
+[01:58:15.258] Bullet OnHitNPC. projId=1 target=Servant of Cthulhu damage=28
+[01:58:15.979] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=24
+[01:58:16.179] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:16.743] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:17.058] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:17.428] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:17.779] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=42
+[01:58:18.428] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:22.343] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:23.258] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:23.609] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:23.858] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:24.209] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:24.512] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:25.895] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:26.313] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:26.658] Bullet OnHitNPC. projId=0 target=Servant of Cthulhu damage=28
+[01:58:27.124] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:27.343] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:27.591] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=28
+[01:58:28.543] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:28.676] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:28.809] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:28.943] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:29.191] Bullet OnHitNPC. projId=1 target=Eye of Cthulhu damage=18
+[01:58:29.324] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:29.458] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:29.579] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:29.712] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:29.845] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:30.312] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=19
+[01:58:30.458] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=19
+[01:58:30.724] Bullet OnHitNPC. projId=1 target=Eye of Cthulhu damage=19
+[01:58:30.858] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=19
+[01:58:30.991] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=19
+[01:58:35.124] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:35.312] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:38.342] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:38.476] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:38.609] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:38.743] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:39.658] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:39.791] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:39.924] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:40.057] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:40.191] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:40.324] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:40.458] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:40.609] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:40.743] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:40.876] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:41.010] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:41.142] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:41.258] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:41.391] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:41.524] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=22
+[01:58:41.657] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=22
+[01:58:41.791] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=22
+[01:58:41.924] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=22
+[01:58:42.057] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=22
+[01:58:42.191] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=22
+[01:58:42.476] Bullet OnHitNPC. projId=1 target=Eye of Cthulhu damage=22
+[01:58:42.609] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:42.742] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:42.876] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=18
+[01:58:43.009] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=36
+[01:58:43.142] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:43.276] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=21
+[01:58:51.027] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:58:51.075] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:58:51.124] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:58:55.312] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:58:55.360] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:58:55.808] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:58:55.857] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:03.912] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:04.760] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:04.791] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:05.390] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:05.427] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:06.245] Bullet OnHitNPC. projId=1 target=Eye of Cthulhu damage=33
+[01:59:06.742] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:07.827] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:07.875] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:08.457] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:08.511] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:09.160] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:09.208] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=33
+[01:59:10.245] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=48
+[01:59:10.293] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=48
+[01:59:11.226] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=48
+[01:59:11.275] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=48
+[01:59:12.190] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=48
+[01:59:13.123] Bullet OnHitNPC. projId=0 target=Eye of Cthulhu damage=44
+[02:00:00.871] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:01.203] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:01.368] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:01.603] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:01.785] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:01.966] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:02.136] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:02.319] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:02.484] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:02.689] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:02.869] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:03.135] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:03.423] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:09.081] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:09.213] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:09.335] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:09.466] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:09.603] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:09.735] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:09.871] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:09.998] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:10.146] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:10.269] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:10.398] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:10.538] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:10.665] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:10.798] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:10.937] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:11.065] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:11.198] Bullet OnHitNPC. projId=0 target=Super Dummy damage=45
+[02:00:11.337] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:11.469] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:11.602] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:11.736] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:11.871] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:12.004] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:12.138] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:12.265] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:12.403] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:12.536] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:12.668] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:12.805] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:12.935] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:13.065] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:13.202] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:13.337] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:13.469] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:15.965] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:16.099] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:16.234] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:16.366] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:16.499] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:16.632] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:16.778] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:16.900] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:17.035] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:17.166] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:17.299] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:17.434] Bullet OnHitNPC. projId=0 target=Super Dummy damage=21
+[02:00:17.566] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:17.699] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:17.834] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:17.968] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:18.101] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:18.235] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:18.366] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:18.499] Bullet OnHitNPC. projId=0 target=Super Dummy damage=22
+[02:00:18.632] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:18.767] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:18.899] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:19.035] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:19.166] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:19.300] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:19.434] Bullet OnHitNPC. projId=0 target=Super Dummy damage=23
+[02:00:19.566] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:19.699] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:19.832] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:19.966] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:20.101] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:20.234] Bullet OnHitNPC. projId=0 target=Super Dummy damage=24
+[02:00:25.253] RightChoice shot count=1/7
+[02:00:25.254] EyesUp stacks consumed. Remaining=5
+[02:00:25.312] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:25.313] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[02:00:25.318] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:25.319] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[02:00:25.338] Bullet OnHitNPC. projId=0 target=Blue Slime damage=36
+[02:00:26.135] RightChoice shot count=2/7
+[02:00:26.135] EyesUp stacks consumed. Remaining=4
+[02:00:26.232] RightChoice shot count=3/7
+[02:00:26.233] EyesUp stacks consumed. Remaining=3
+[02:00:26.432] RightChoice shot count=4/7
+[02:00:26.433] EyesUp stacks consumed. Remaining=2
+[02:00:26.451] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.452] Bullet OnHitNPC. projId=2 target=Super Dummy damage=18
+[02:00:26.467] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.467] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:26.489] Bullet OnHitNPC. projId=0 target=Blue Slime damage=31
+[02:00:26.535] RightChoice shot count=5/7
+[02:00:26.536] EyesUp stacks consumed. Remaining=1
+[02:00:26.554] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.555] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:26.566] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.567] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:26.632] RightChoice shot count=6/7
+[02:00:26.633] EyesUp stacks consumed. Remaining=0
+[02:00:26.651] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.652] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:26.665] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.666] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:26.737] RightChoice shot count=7/7
+[02:00:26.738] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:26.738] EyesUp TryConsume failed: stacks=0
+[02:00:26.756] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:26.757] TryRicochet ENTER. proj=0 target=7
+[02:00:26.758] TryRicochet searching for target. fromNpc=7 (Super Dummy) range=480 targetCenter={X:32785 Y:4119}
+[02:00:26.758] TryRicochet: Found target! npc=6 (Super Dummy)
+[02:00:26.758] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=6 (Super Dummy) damage=45
+[02:00:26.759] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[02:00:26.834] RightChoice shot count=1/7
+[02:00:26.835] EyesUp TryConsume failed: stacks=0
+[02:00:26.853] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[02:00:26.935] RightChoice shot count=2/7
+[02:00:26.936] EyesUp TryConsume failed: stacks=0
+[02:00:26.950] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:27.032] RightChoice shot count=3/7
+[02:00:27.032] EyesUp TryConsume failed: stacks=0
+[02:00:27.137] RightChoice shot count=4/7
+[02:00:27.137] EyesUp TryConsume failed: stacks=0
+[02:00:27.234] RightChoice shot count=5/7
+[02:00:27.235] EyesUp TryConsume failed: stacks=0
+[02:00:27.251] Bullet OnHitNPC. projId=2 target=Super Dummy damage=18
+[02:00:27.335] RightChoice shot count=6/7
+[02:00:27.336] EyesUp TryConsume failed: stacks=0
+[02:00:27.350] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:27.432] RightChoice shot count=7/7
+[02:00:27.432] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:27.433] EyesUp TryConsume failed: stacks=0
+[02:00:27.537] RightChoice shot count=1/7
+[02:00:27.538] EyesUp TryConsume failed: stacks=0
+[02:00:27.632] RightChoice shot count=2/7
+[02:00:27.633] EyesUp TryConsume failed: stacks=0
+[02:00:27.737] RightChoice shot count=3/7
+[02:00:27.738] EyesUp TryConsume failed: stacks=0
+[02:00:27.738] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:27.834] RightChoice shot count=4/7
+[02:00:27.835] EyesUp TryConsume failed: stacks=0
+[02:00:27.836] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[02:00:27.935] RightChoice shot count=5/7
+[02:00:27.936] EyesUp TryConsume failed: stacks=0
+[02:00:27.936] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.032] RightChoice shot count=6/7
+[02:00:28.033] EyesUp TryConsume failed: stacks=0
+[02:00:28.033] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.137] RightChoice shot count=7/7
+[02:00:28.137] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:28.138] EyesUp TryConsume failed: stacks=0
+[02:00:28.138] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[02:00:28.139] TryRicochet ENTER. proj=0 target=7
+[02:00:28.139] TryRicochet searching for target. fromNpc=7 (Super Dummy) range=480 targetCenter={X:32785 Y:4119}
+[02:00:28.139] TryRicochet: Found target! npc=6 (Super Dummy)
+[02:00:28.139] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=6 (Super Dummy) damage=78
+[02:00:28.140] Bullet OnHitNPC. projId=1 target=Super Dummy damage=78
+[02:00:28.232] RightChoice shot count=1/7
+[02:00:28.233] EyesUp TryConsume failed: stacks=0
+[02:00:28.234] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.336] RightChoice shot count=2/7
+[02:00:28.336] EyesUp TryConsume failed: stacks=0
+[02:00:28.337] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[02:00:28.432] RightChoice shot count=3/7
+[02:00:28.433] EyesUp TryConsume failed: stacks=0
+[02:00:28.433] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[02:00:28.535] RightChoice shot count=4/7
+[02:00:28.535] EyesUp TryConsume failed: stacks=0
+[02:00:28.536] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.633] RightChoice shot count=5/7
+[02:00:28.633] EyesUp TryConsume failed: stacks=0
+[02:00:28.634] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.735] RightChoice shot count=6/7
+[02:00:28.735] EyesUp TryConsume failed: stacks=0
+[02:00:28.736] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.834] RightChoice shot count=7/7
+[02:00:28.834] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:28.834] EyesUp TryConsume failed: stacks=0
+[02:00:28.835] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:28.835] TryRicochet ENTER. proj=0 target=7
+[02:00:28.836] TryRicochet searching for target. fromNpc=7 (Super Dummy) range=480 targetCenter={X:32785 Y:4119}
+[02:00:28.836] TryRicochet: Found target! npc=6 (Super Dummy)
+[02:00:28.836] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=6 (Super Dummy) damage=45
+[02:00:28.836] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[02:00:28.935] RightChoice shot count=1/7
+[02:00:28.935] EyesUp TryConsume failed: stacks=0
+[02:00:28.936] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.032] RightChoice shot count=2/7
+[02:00:29.033] EyesUp TryConsume failed: stacks=0
+[02:00:29.033] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.135] RightChoice shot count=3/7
+[02:00:29.135] EyesUp TryConsume failed: stacks=0
+[02:00:29.136] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.232] RightChoice shot count=4/7
+[02:00:29.233] EyesUp TryConsume failed: stacks=0
+[02:00:29.233] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.337] RightChoice shot count=5/7
+[02:00:29.337] EyesUp TryConsume failed: stacks=0
+[02:00:29.338] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.432] RightChoice shot count=6/7
+[02:00:29.432] EyesUp TryConsume failed: stacks=0
+[02:00:29.433] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.536] RightChoice shot count=7/7
+[02:00:29.537] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:29.537] EyesUp TryConsume failed: stacks=0
+[02:00:29.538] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.538] TryRicochet ENTER. proj=0 target=7
+[02:00:29.539] TryRicochet searching for target. fromNpc=7 (Super Dummy) range=480 targetCenter={X:32785 Y:4119}
+[02:00:29.539] TryRicochet: Found target! npc=6 (Super Dummy)
+[02:00:29.539] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=6 (Super Dummy) damage=45
+[02:00:29.539] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[02:00:29.633] RightChoice shot count=1/7
+[02:00:29.633] EyesUp TryConsume failed: stacks=0
+[02:00:29.634] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.737] RightChoice shot count=2/7
+[02:00:29.738] EyesUp TryConsume failed: stacks=0
+[02:00:29.738] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.834] RightChoice shot count=3/7
+[02:00:29.835] EyesUp TryConsume failed: stacks=0
+[02:00:29.835] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:29.935] RightChoice shot count=4/7
+[02:00:29.936] EyesUp TryConsume failed: stacks=0
+[02:00:29.937] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:30.032] RightChoice shot count=5/7
+[02:00:30.032] EyesUp TryConsume failed: stacks=0
+[02:00:30.033] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:32.564] EyesUp hook triggered: OnConsumeItem Player=0
+[02:00:32.565] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=23492
+[02:00:35.282] RightChoice shot count=6/7
+[02:00:35.283] EyesUp stacks consumed. Remaining=6
+[02:00:35.284] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:35.284] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:35.301] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:35.302] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:35.670] RightChoice shot count=7/7
+[02:00:35.671] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:35.671] EyesUp stacks consumed. Remaining=5
+[02:00:35.672] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:35.673] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[02:00:35.690] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:35.690] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[02:00:36.117] RightChoice shot count=1/7
+[02:00:36.118] EyesUp stacks consumed. Remaining=4
+[02:00:36.118] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:36.119] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:36.132] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:36.133] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:36.553] RightChoice shot count=2/7
+[02:00:36.553] EyesUp stacks consumed. Remaining=3
+[02:00:36.554] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:36.554] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:36.566] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:36.566] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:36.956] RightChoice shot count=3/7
+[02:00:36.956] EyesUp stacks consumed. Remaining=2
+[02:00:36.957] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:36.957] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:36.966] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:36.966] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:37.355] RightChoice shot count=4/7
+[02:00:37.356] EyesUp stacks consumed. Remaining=1
+[02:00:37.356] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:37.357] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:37.365] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:37.366] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:39.623] RightChoice shot count=5/7
+[02:00:39.623] EyesUp stacks consumed. Remaining=0
+[02:00:39.624] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:39.625] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:39.633] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:39.633] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:39.650] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:39.651] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:40.082] RightChoice shot count=6/7
+[02:00:40.083] EyesUp TryConsume failed: stacks=0
+[02:00:40.083] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:40.183] RightChoice shot count=7/7
+[02:00:40.184] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:40.184] EyesUp TryConsume failed: stacks=0
+[02:00:40.185] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:40.185] TryRicochet ENTER. proj=0 target=7
+[02:00:40.185] TryRicochet searching for target. fromNpc=7 (Super Dummy) range=480 targetCenter={X:32785 Y:4119}
+[02:00:40.185] TryRicochet: Found target! npc=6 (Super Dummy)
+[02:00:40.186] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=6 (Super Dummy) damage=90
+[02:00:40.186] Bullet OnHitNPC. projId=1 target=Super Dummy damage=90
+[02:00:40.288] RightChoice shot count=1/7
+[02:00:40.289] EyesUp TryConsume failed: stacks=0
+[02:00:40.289] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:40.384] RightChoice shot count=2/7
+[02:00:40.384] EyesUp TryConsume failed: stacks=0
+[02:00:40.385] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:40.483] RightChoice shot count=3/7
+[02:00:40.483] EyesUp TryConsume failed: stacks=0
+[02:00:40.484] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:44.386] EyesUp hook triggered: OnConsumeItem Player=0
+[02:00:44.386] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=24202
+[02:00:44.773] RightChoice shot count=4/7
+[02:00:44.774] EyesUp stacks consumed. Remaining=6
+[02:00:44.774] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:44.775] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:44.784] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:44.784] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:44.802] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:44.803] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:44.868] RightChoice shot count=5/7
+[02:00:44.869] EyesUp stacks consumed. Remaining=5
+[02:00:44.869] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:44.870] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:44.890] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:44.891] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[02:00:44.902] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:44.903] Bullet OnHitNPC. projId=1 target=Super Dummy damage=72
+[02:00:45.250] RightChoice shot count=6/7
+[02:00:45.250] EyesUp stacks consumed. Remaining=4
+[02:00:45.251] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.252] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.266] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.266] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.283] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.284] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.353] RightChoice shot count=7/7
+[02:00:45.354] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:45.354] EyesUp stacks consumed. Remaining=3
+[02:00:45.354] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.355] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.366] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.366] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.384] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.385] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.450] RightChoice shot count=1/7
+[02:00:45.450] EyesUp stacks consumed. Remaining=2
+[02:00:45.451] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.451] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.469] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.469] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.487] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.488] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.555] RightChoice shot count=2/7
+[02:00:45.556] EyesUp stacks consumed. Remaining=1
+[02:00:45.556] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.556] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.566] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.566] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.584] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.585] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.652] RightChoice shot count=3/7
+[02:00:45.653] EyesUp stacks consumed. Remaining=0
+[02:00:45.653] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.654] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.671] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.671] Bullet OnHitNPC. projId=1 target=Super Dummy damage=18
+[02:00:45.689] Bullet OnHitNPC. projId=0 target=Super Dummy damage=36
+[02:00:45.690] Bullet OnHitNPC. projId=1 target=Super Dummy damage=36
+[02:00:45.753] RightChoice shot count=4/7
+[02:00:45.754] EyesUp TryConsume failed: stacks=0
+[02:00:45.754] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.850] RightChoice shot count=5/7
+[02:00:45.851] EyesUp TryConsume failed: stacks=0
+[02:00:45.852] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:45.955] RightChoice shot count=6/7
+[02:00:45.956] EyesUp TryConsume failed: stacks=0
+[02:00:45.956] Bullet OnHitNPC. projId=0 target=Super Dummy damage=31
+[02:00:46.052] RightChoice shot count=7/7
+[02:00:46.053] RightChoice: 7th shot reached! Ricochet ARMED!
+[02:00:46.053] EyesUp TryConsume failed: stacks=0
+[02:00:46.053] Bullet OnHitNPC. projId=0 target=Super Dummy damage=18
+[02:00:46.054] TryRicochet ENTER. proj=0 target=7
+[02:00:46.054] TryRicochet searching for target. fromNpc=7 (Super Dummy) range=480 targetCenter={X:32785 Y:4119}
+[02:00:46.054] TryRicochet: Found target! npc=6 (Super Dummy)
+[02:00:46.054] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=6 (Super Dummy) damage=45
+[02:00:46.055] Bullet OnHitNPC. projId=1 target=Super Dummy damage=45
+[02:00:50.154] Bullet OnHitNPC. projId=0 target=Blue Slime damage=65
+[02:00:50.318] Bullet OnHitNPC. projId=2 target=Target Dummy damage=25
+[02:00:50.368] Bullet OnHitNPC. projId=3 target=Target Dummy damage=27
+[02:00:59.487] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:00:59.535] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:01:00.888] Bullet OnHitNPC. projId=0 target=Blue Slime damage=35
+[02:01:00.935] Bullet OnHitNPC. projId=0 target=Blue Slime damage=35
+[02:01:01.553] Bullet OnHitNPC. projId=0 target=Blue Slime damage=38
+[02:01:02.154] Bullet OnHitNPC. projId=0 target=Blue Slime damage=38
+[02:01:02.784] Bullet OnHitNPC. projId=0 target=Green Slime damage=39
+---- Diagnostic Log Start 2026-01-31 02:03:48 ----
+---- Diagnostic Log Start 2026-01-31 02:04:14 ----
+[02:04:26.008] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:26.358] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:26.656] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:28.940] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:04:29.904] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:04:38.074] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:04:38.770] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:39.007] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:39.237] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:04:39.474] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:04:40.007] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=48
+[02:04:40.322] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:43.158] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:43.473] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:43.704] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:44.025] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=48
+[02:04:44.274] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:44.504] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:44.741] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:45.025] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:45.273] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:45.504] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:04:45.807] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:46.037] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:46.273] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:04:46.492] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:04:46.722] Bullet OnHitNPC. projId=0 target=Super Dummy damage=49
+[02:04:47.292] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=64
+[02:04:48.037] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:04:49.025] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+---- Diagnostic Log Start 2026-01-31 02:07:53 ----
+[02:08:07.806] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:08.024] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:09.709] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:09.975] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:10.291] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:10.739] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:11.425] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:11.757] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:12.024] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=48
+[02:08:12.339] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:12.709] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:13.090] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:14.975] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=48
+[02:08:18.276] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:18.509] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+[02:08:19.522] Bullet OnHitNPC. projId=0 target=Yellow Slime damage=32
+---- Diagnostic Log Start 2026-01-31 02:12:22 ----
+[02:12:35.956] Bullet OnHitNPC. projId=0 target=Target Dummy damage=33
+[02:12:44.743] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:45.040] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:45.344] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:45.658] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:46.009] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:46.307] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:12:46.688] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:47.173] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:47.524] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:47.821] Bullet OnHitNPC. projId=1 target=Blue Slime damage=33
+[02:12:48.991] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:12:49.325] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+---- Diagnostic Log Start 2026-01-31 02:22:44 ----
+---- Diagnostic Log Start 2026-01-31 02:24:58 ----
+[02:25:27.655] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:27.885] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:28.751] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:28.986] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:25:29.217] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:29.932] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:33.920] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:25:34.150] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:34.599] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[02:25:36.235] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:25:36.635] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 02:30:03 ----
+[02:30:31.938] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:32.251] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:33.336] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:33.736] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:34.548] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:34.966] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:35.317] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:35.669] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:30:36.548] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:37.481] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:37.966] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:39.214] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:40.615] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:30:41.414] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:45.432] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:45.784] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:46.481] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:30:46.850] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 02:38:54 ----
+[02:39:26.959] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:27.180] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:28.314] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=48
+[02:39:28.644] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:29.756] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:30.077] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:30.411] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:30.744] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=48
+[02:39:31.823] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:32.108] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:32.423] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:32.726] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:33.059] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:33.393] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:36.775] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=48
+[02:39:37.459] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:38.059] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:39.077] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=48
+[02:39:39.811] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:40.175] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:41.059] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:43.278] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:39:44.593] Bullet OnHitNPC. projId=1 target=Jungle Slime damage=48
+[02:39:47.744] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+---- Diagnostic Log Start 2026-01-31 02:44:22 ----
+---- Diagnostic Log Start 2026-01-31 02:46:38 ----
+[02:46:50.275] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:46:50.511] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 02:49:40 ----
+[02:50:05.268] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:50:05.498] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:50:06.431] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:50:06.800] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+[02:50:07.154] Bullet OnHitNPC. projId=0 target=Jungle Slime damage=32
+---- Diagnostic Log Start 2026-01-31 02:51:24 ----
+[02:51:59.892] Bullet OnHitNPC. projId=0 target=Blue Slime damage=18
+[02:52:00.024] Bullet OnHitNPC. projId=0 target=Blue Slime damage=31
+[02:52:00.157] Bullet OnHitNPC. projId=0 target=Blue Slime damage=31
+[02:52:00.298] Bullet OnHitNPC. projId=0 target=Blue Slime damage=63
+[02:52:03.763] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:52:03.976] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:52:04.993] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:52:05.963] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:52:06.375] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[02:53:26.872] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:27.102] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:27.338] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:27.587] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:27.823] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:31.920] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:32.635] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[02:53:33.568] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:33.804] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:34.156] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:34.404] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[02:53:34.769] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 18:09:25 ----
+[18:10:05.673] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:05.896] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:06.132] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:10:09.732] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:10.084] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:10.429] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:10.760] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:11.533] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:12.188] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:10:12.890] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 18:25:25 ----
+[18:26:01.891] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[18:26:02.126] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:03.071] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:03.756] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:14.574] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:14.859] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:15.223] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[18:26:15.956] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:20.156] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:20.690] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:26:21.241] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[18:28:36.573] Bullet OnHitNPC. projId=1 target=Blue Slime damage=33
+[18:28:37.493] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:44.294] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:44.640] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:45.191] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:45.561] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:46.791] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:47.173] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:47.743] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:28:48.258] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:28:50.640] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:28:59.458] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:28:59.876] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:00.609] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:01.009] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:01.573] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:02.476] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:29:05.094] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:05.427] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:08.900] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:09.233] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:10.367] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:10.718] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:12.348] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:21.767] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:23.288] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:29:26.451] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:26.918] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:29:30.421] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:30.700] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:29:31.003] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:31.700] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:32.203] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:32.700] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:33.222] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:29:33.888] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+---- Diagnostic Log Start 2026-01-31 18:34:42 ----
+[18:35:07.892] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:35:08.213] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:35:08.843] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:35:09.176] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:35:10.339] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:35:12.976] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:35:14.358] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[18:35:14.939] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[18:35:15.776] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 22:13:30 ----
+[22:13:45.008] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:13:45.238] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:13:45.848] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:13:46.999] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:13:48.666] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:13:49.030] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:13:50.229] Bullet OnHitNPC. projId=0 target=Green Slime damage=33
+[22:13:51.429] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:13:51.799] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:13:59.799] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:00.151] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:00.799] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:14:01.035] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:51.980] Bullet OnHitNPC. projId=0 target=Target Dummy damage=33
+[22:14:52.132] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:52.847] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:53.283] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:53.798] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:54.180] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:54.762] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:14:55.150] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:14:55.883] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[22:15:00.429] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:00.798] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:11.398] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[22:15:11.762] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[22:15:12.028] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:12.731] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:13.580] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:13.931] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:14.749] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[22:15:15.495] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:15.780] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:16.046] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[22:15:16.483] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[22:15:16.750] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[22:15:17.150] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:15:17.779] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+---- Diagnostic Log Start 2026-01-31 22:26:13 ----
+[22:26:37.330] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[22:26:38.079] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:26:38.395] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:26:38.929] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:26:45.297] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:26:46.637] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[22:26:56.903] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:26:57.188] Bullet OnHitNPC. projId=0 target=Blue Slime damage=99
+[22:26:57.485] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[22:26:57.789] Bullet OnHitNPC. projId=0 target=Blue Slime damage=99
+---- Diagnostic Log Start 2026-01-31 23:24:06 ----
+[23:24:27.362] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[23:24:27.583] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:28.485] Bullet OnHitNPC. projId=1 target=Blue Slime damage=33
+[23:24:28.720] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[23:24:28.957] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:29.187] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[23:24:29.424] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:29.964] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[23:24:36.654] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:36.957] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:37.272] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:37.938] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:38.538] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:24:39.206] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[23:24:39.472] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[23:24:39.739] Bullet OnHitNPC. projId=0 target=Blue Slime damage=49
+[23:24:39.969] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+---- Diagnostic Log Start 2026-01-31 23:25:22 ----
+[23:25:41.564] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:25:41.800] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:25:42.048] Bullet OnHitNPC. projId=0 target=Blue Slime damage=33
+[23:25:42.278] Bullet OnHitNPC. projId=0 target=Blue Slime damage=66
+[23:25:42.528] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[23:25:42.746] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33
+[23:25:42.981] Bullet OnHitNPC. projId=0 target=Blue Slime damage=99
+[23:25:43.878] Bullet OnHitNPC. projId=0 target=Super Dummy damage=33

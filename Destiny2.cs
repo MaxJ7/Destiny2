@@ -1,7 +1,7 @@
 using System;
 using System.IO;
-using Terraria.ModLoader;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace Destiny2
 {

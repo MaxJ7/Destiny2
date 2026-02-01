@@ -7,14 +7,30 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "Destiny2/1.0.0": {
+        "dependencies": {
+          "Luminance": "1.0.0"
+        },
         "runtime": {
           "Destiny2.dll": {}
+        }
+      },
+      "Luminance/1.0.0": {
+        "runtime": {
+          "Luminance.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
   },
   "libraries": {
     "Destiny2/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Luminance/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

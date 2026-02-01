@@ -1,0 +1,18 @@
+Chat 'ChatTitle(text="redo the weapon per…" with Codex, isCustom=true)' (4bcbe48e-8a7d-4d13-84c1-5f4b6a62ce95)
+Context:
+
+Messages: 2
+==============================================================================================================
+
+==== RestoredMessage #1 ====
+User: 
+redo the weapon perk buff timers to be integrated into its own hud, this should show the icon of the perk, the time remaining, and how many stacks of the perk exist, this should be visually appealing instead of bare bones
+
+kotlin.Unit
+
+==== RestoredMessage #2 ====
+Assistant: 
+
+
+kotlin.Unit
+

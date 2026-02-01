@@ -7,16 +7,16 @@ namespace Destiny2.Common.Items
 {
 	public sealed class ExoticGlobalItem : GlobalItem
 	{
-		private static readonly Color ExoticColor = new Color(255, 210, 64);
-
 		public override void ModifyTooltips(Item item, System.Collections.Generic.List<TooltipLine> tooltips)
 		{
 			if (item.rare != ModContent.RarityType<ExoticRarity>())
 				return;
 
+			// Use the same pulsating glow as the rarity for consistency
+			Color exoticColor = RarityLoader.GetRarity(item.rare).RarityColor;
 			tooltips.Add(new TooltipLine(Mod, "ExoticQualifier", "Exotic")
 			{
-				OverrideColor = ExoticColor
+				OverrideColor = exoticColor
 			});
 		}
 	}
