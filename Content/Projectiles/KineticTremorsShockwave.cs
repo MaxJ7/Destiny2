@@ -64,9 +64,10 @@ namespace Destiny2.Content.Projectiles
 		private void Pulse()
 		{
 			Vector2 center = Projectile.Center;
+			int pulseIndex = (int)(KineticTremorsPerk.PulseCount - Projectile.ai[1]);
 
 			if (!Main.dedServ)
-				KineticTremorsVFXSystem.TriggerPulse(center);
+				KineticTremorsVFXSystem.TriggerPulse(center, pulseIndex);
 
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 				return;
