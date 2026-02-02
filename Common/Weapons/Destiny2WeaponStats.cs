@@ -410,7 +410,10 @@ namespace Destiny2.Common.Weapons
 				return false;
 
 			if (currentMagazine <= 0)
+			{
+				TryStartReload(player);
 				return false;
+			}
 
 			return base.CanUseItem(player);
 		}

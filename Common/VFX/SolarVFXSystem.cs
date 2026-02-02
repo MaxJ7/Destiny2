@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Luminance.Assets;
 using Luminance.Core.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -10,8 +11,8 @@ using Terraria.ModLoader;
 namespace Destiny2.Common.VFX
 {
 	/// <summary>
-	/// Destiny 2-style Solar VFX: Incandescent on-kill bursts, Scorch build-up on enemies,
-	/// and Ignition detonations. Uses Luminance's PrimitiveRenderer, ScreenShakeSystem, and shaders.
+	/// Solar flare / explosive fire VFX: Incandescent and Ignition.
+	/// Procedural flame textures, Luminance noise overlays, TurbulentNoise, BloomFlare. Expanding explosive fire.
 	/// </summary>
 	public sealed class SolarVFXSystem : ModSystem
 	{
@@ -23,518 +24,402 @@ namespace Destiny2.Common.VFX
 		}
 
 		private static readonly List<ActiveExplosion> ActiveExplosions = new();
-		private static Texture2D _bloomLobe;
-		private static Texture2D _chaosBlob;
-		private static Texture2D _ringTexture;
-		private static Texture2D _flameWaveTexture;
 
-		private const int DurationIncandescent = 40;
-		private const int DurationIgnition = 55;
+		private const int DurationIncandescent = 48;
+		private const int DurationIgnition = 64;
 
-		// Incandescent: fiery Solar—white-hot core, orange body, deep red edge
-		private static readonly Color IncandescentCore = new(255, 255, 220);
-		private static readonly Color IncandescentBody = new(255, 140, 50);
-		private static readonly Color IncandescentEdge = new(200, 60, 20);
+		// Procedural textures—solar flare / explosive fire
+		private static Texture2D _flameLobeTex;
+		private static Texture2D _flareRaysTex;
+		private static Texture2D _flameCoreTex;
 
-		// Ignition: violent detonation, white-hot flash, red-orange plasma
+		private static readonly Color IncandescentCore = new(255, 255, 250);
+		private static readonly Color IncandescentBody = new(255, 190, 80);
+		private static readonly Color IncandescentEdge = new(255, 120, 35);
+
 		private static readonly Color IgnitionCore = new(255, 255, 255);
-		private static readonly Color IgnitionBody = new(255, 90, 25);
-		private static readonly Color IgnitionPlasma = new(200, 40, 15);
-		private static readonly Color IgnitionEdge = new(140, 25, 8);
+		private static readonly Color IgnitionBody = new(255, 150, 55);
+		private static readonly Color IgnitionEdge = new(255, 85, 25);
 
 		public override void Load()
 		{
 			if (Main.dedServ) return;
+			// Procedural textures created lazily in PostDrawTiles (must run on main thread)
 		}
 
 		public override void Unload()
 		{
-			_bloomLobe?.Dispose();
-			_bloomLobe = null;
-			_chaosBlob?.Dispose();
-			_chaosBlob = null;
-			_ringTexture?.Dispose();
-			_ringTexture = null;
-			_flameWaveTexture?.Dispose();
-			_flameWaveTexture = null;
+			_flameLobeTex?.Dispose();
+			_flameLobeTex = null;
+			_flareRaysTex?.Dispose();
+			_flareRaysTex = null;
+			_flameCoreTex?.Dispose();
+			_flameCoreTex = null;
 		}
 
-		private static void EnsureTextures()
+		/// <summary>Creates procedural textures on first use. Must run on main thread (FNA3D).</summary>
+		private static void EnsureProceduralTextures()
 		{
-			if (_bloomLobe != null || Main.instance?.GraphicsDevice == null) return;
-			_bloomLobe = CreateLobeTexture(256);
-			_chaosBlob = CreateChaosBlobTexture(256);
-			_ringTexture = CreateRingTexture(256);
-			_flameWaveTexture = CreateFlameWaveTexture(256);
-		}
-
-		/// <summary>Fiery texture: 12 distinct flame tongues radiating outward—elongated teardrops, bright tips, organic noise.</summary>
-		private static Texture2D CreateFlameWaveTexture(int size)
-		{
-			var tex = new Texture2D(Main.instance.GraphicsDevice, size, size, false, SurfaceFormat.Color);
-			var data = new Color[size * size];
+			if (_flameLobeTex != null || Main.instance?.GraphicsDevice == null) return;
+			var gd = Main.instance.GraphicsDevice;
+			const int size = 256;
 			var center = new Vector2((size - 1) * 0.5f);
-			float radius = size * 0.48f;
+			float maxR = size * 0.48f;
 
-			static float Hash(float n)
-			{
-				double v = Math.Sin(n) * 43758.5453;
-				return (float)(v - Math.Floor(v));
-			}
-			static float Noise(Vector2 p)
-			{
-				var i = new Vector2((float)Math.Floor(p.X), (float)Math.Floor(p.Y));
-				var f = new Vector2(p.X - i.X, p.Y - i.Y);
-				f = f * f * (new Vector2(3, 3) - f * 2f);
-				float a = Hash(i.X + i.Y * 57f);
-				float b = Hash(i.X + 1 + i.Y * 57f);
-				float c = Hash(i.X + (i.Y + 1) * 57f);
-				float d = Hash(i.X + 1 + (i.Y + 1) * 57f);
-				return a * (1 - f.X) * (1 - f.Y) + b * f.X * (1 - f.Y) + c * (1 - f.X) * f.Y + d * f.X * f.Y;
-			}
-
-			// 12 flame tongues—elongated in radial direction, narrow perpendicular
-			const int tongueCount = 12;
+			// Flame lobe—Perlin-driven irregular edges, flame-tongue feel
+			_flameLobeTex = new Texture2D(gd, size, size, false, SurfaceFormat.Color);
+			var lobeData = new Color[size * size];
 			for (int y = 0; y < size; y++)
 			for (int x = 0; x < size; x++)
 			{
 				var p = new Vector2(x, y);
 				float dist = Vector2.Distance(p, center);
 				float angle = (float)Math.Atan2(p.Y - center.Y, p.X - center.X);
-
-				float bestAlpha = 0f;
-				for (int t = 0; t < tongueCount; t++)
-				{
-					float tongueAngle = t / (float)tongueCount * MathHelper.TwoPi;
-					float angleDiff = Math.Abs(((angle - tongueAngle + MathHelper.Pi) % MathHelper.TwoPi) - MathHelper.Pi);
-					// Tongue is elongated along its angle, narrow perpendicular (elliptical)
-					float alongTongue = dist * (float)Math.Cos(angleDiff);
-					float acrossTongue = dist * (float)Math.Sin(angleDiff);
-					// Elongated: 1.2 radial, 0.4 perpendicular
-					float ellipticalDist = (alongTongue / (radius * 1f)) * (alongTongue / (radius * 1f)) + (acrossTongue / (radius * 0.35f)) * (acrossTongue / (radius * 0.35f));
-					float tongueT = (float)Math.Sqrt(ellipticalDist);
-
-					if (tongueT <= 1f)
-					{
-						float n = Noise(new Vector2(angle * 8 + t * 7, dist * 0.06f));
-						float n2 = Noise(new Vector2(angle * 13 + 41, dist * 0.04f));
-						float irregular = 0.9f + 0.2f * n + 0.1f * n2;
-						float edge = 1f - MathHelper.Clamp((tongueT - 0.5f) / (0.5f * irregular), 0f, 1f);
-						float tip = 1f - MathHelper.Clamp(tongueT / 0.3f, 0f, 1f);
-						float alpha = Math.Max(edge * 0.85f, tip * 0.95f) * (1f - tongueT * 0.4f);
-						bestAlpha = Math.Max(bestAlpha, alpha);
-					}
-				}
-
-				// Core glow
-				float coreT = dist / (radius * 0.35f);
-				float coreAlpha = (1f - MathHelper.Clamp(coreT, 0f, 1f)) * 0.9f;
-				bestAlpha = Math.Max(bestAlpha, coreAlpha);
-
-				data[y * size + x] = bestAlpha > 0.01f ? new Color(1f, 1f, 1f, MathHelper.Clamp(bestAlpha, 0f, 1f)) : Color.Transparent;
+				float nx = (x - center.X) / size * 4f;
+				float ny = (y - center.Y) / size * 4f;
+				float perlin = PerlinNoise.Fbm(nx, ny, 3, 2.2f, 0.55f);
+				float lobe = 0.6f + 0.35f * perlin + 0.12f * PerlinNoise.Sample(angle * 2f, dist / maxR * 2f);
+				float r = maxR * MathHelper.Clamp(lobe, 0.5f, 1.4f);
+				float t = dist / r;
+				float alpha = t <= 1f ? (float)(1f - Math.Pow(t, 1.1f)) * (0.35f + 0.65f * (1f - t)) : 0f;
+				float edgeNoise = PerlinNoise.Sample(nx * 6f, ny * 6f);
+				alpha *= 0.85f + 0.15f * edgeNoise;
+				lobeData[y * size + x] = new Color(1f, 1f, 1f, MathHelper.Clamp(alpha, 0f, 1f));
 			}
-			tex.SetData(data);
-			return tex;
-		}
+			_flameLobeTex.SetData(lobeData);
 
-		/// <summary>Luminance RenderQuad places quad's bottom-left at position; offset so visual center aligns.</summary>
-		private static Vector2 GetCenteredDrawPos(Vector2 worldCenter, float scale)
-		{
-			const float halfTex = 128f;
-			// If particles appear to cluster bottom-left, the explosion may be shifted; try UseAlternateOffset = true
-			const bool UseAlternateOffset = false;
-			if (UseAlternateOffset)
-				return worldCenter - new Vector2(halfTex * scale, halfTex * scale);
-			return worldCenter - new Vector2(halfTex * scale, -halfTex * scale);
-		}
-
-		/// <summary>Explicit radial direction—Terraria Y-down, angle 0 = right. No ToRotationVector2 to avoid framework quirks.</summary>
-		private static Vector2 GetRadialDirection(float angle)
-		{
-			return new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-		}
-
-		/// <summary>Golden-ratio spaced angles for maximally uniform distribution—no clustering in any quadrant.</summary>
-		private static float GetGoldenAngle(int index, int total)
-		{
-			const float goldenAngle = 2.39996323f; // 2*PI / phi
-			return (index * goldenAngle) % MathHelper.TwoPi;
-		}
-
-		/// <summary>Single flame lobe with soft falloff—combined in multiples for irregular shape.</summary>
-		private static Texture2D CreateLobeTexture(int size)
-		{
-			var tex = new Texture2D(Main.instance.GraphicsDevice, size, size, false, SurfaceFormat.Color);
-			var data = new Color[size * size];
-			var center = new Vector2((size - 1) * 0.5f);
-			float radius = size * 0.48f;
-
+			// Flare rays—Perlin modulates ray intensity for organic variation
+			_flareRaysTex = new Texture2D(gd, size, size, false, SurfaceFormat.Color);
+			var raysData = new Color[size * size];
 			for (int y = 0; y < size; y++)
 			for (int x = 0; x < size; x++)
 			{
 				var p = new Vector2(x, y);
 				float dist = Vector2.Distance(p, center);
 				float angle = (float)Math.Atan2(p.Y - center.Y, p.X - center.X);
-				// Angular wobble: lobes and notches for irregular edge (not circular)
-				float wobble = 0.65f + 0.25f * (float)Math.Sin(angle * 4) + 0.15f * (float)Math.Sin(angle * 9);
-				float t = dist / (radius * wobble);
-				if (t <= 1f)
-				{
-					float inner = 1f - MathHelper.Clamp(t / 0.25f, 0f, 1f);
-					float outer = 1f - MathHelper.Clamp((t - 0.5f) / 0.5f, 0f, 1f);
-					float alpha = Math.Max(inner, outer * 0.6f);
-					data[y * size + x] = new Color(1f, 1f, 1f, MathHelper.Clamp(alpha, 0f, 1f));
-				}
-				else
-					data[y * size + x] = Color.Transparent;
+				float t = dist / maxR;
+				float ray = (float)(Math.Sin(angle * 14f) * 0.5 + 0.5);
+				float perlinRays = PerlinNoise.Fbm(angle * 3f, t * 4f, 2, 2f, 0.5f);
+				ray = ray * (0.7f + 0.3f * perlinRays);
+				float core = (float)Math.Exp(-t * t * 4);
+				float rayFalloff = (1f - t) * (0.45f + 0.55f * ray);
+				float turb = PerlinNoise.Sample(x * 0.03f, y * 0.03f);
+				float alpha = MathHelper.Clamp(core * 1.5f + rayFalloff * 0.85f + turb * 0.1f, 0f, 1f);
+				raysData[y * size + x] = new Color(1f, 1f, 1f, alpha);
 			}
-			tex.SetData(data);
-			return tex;
-		}
+			_flareRaysTex.SetData(raysData);
 
-		/// <summary>Chaotic blob with jagged, explosion-like edge—noise-driven irregularity.</summary>
-		private static Texture2D CreateChaosBlobTexture(int size)
-		{
-			var tex = new Texture2D(Main.instance.GraphicsDevice, size, size, false, SurfaceFormat.Color);
-			var data = new Color[size * size];
-			var center = new Vector2((size - 1) * 0.5f);
-			float radius = size * 0.45f;
-
-			static float Hash(float n)
-			{
-				double v = Math.Sin(n) * 43758.5453;
-				return (float)(v - Math.Floor(v));
-			}
-			static float Noise(Vector2 p)
-			{
-				var i = new Vector2((float)Math.Floor(p.X), (float)Math.Floor(p.Y));
-				var f = new Vector2(p.X - i.X, p.Y - i.Y);
-				f = f * f * (new Vector2(3, 3) - f * 2f);
-				float a = Hash(i.X + i.Y * 57f);
-				float b = Hash(i.X + 1 + i.Y * 57f);
-				float c = Hash(i.X + (i.Y + 1) * 57f);
-				float d = Hash(i.X + 1 + (i.Y + 1) * 57f);
-				return a * (1 - f.X) * (1 - f.Y) + b * f.X * (1 - f.Y) + c * (1 - f.X) * f.Y + d * f.X * f.Y;
-			}
-
-			for (int y = 0; y < size; y++)
-			for (int x = 0; x < size; x++)
-			{
-				var p = new Vector2(x, y);
-				float dist = Vector2.Distance(p, center);
-				float angle = (float)Math.Atan2(p.Y - center.Y, p.X - center.X);
-				float n = Noise(new Vector2(angle * 8, dist * 0.05f));
-				float n2 = Noise(new Vector2(angle * 3 + 17, dist * 0.08f));
-				// Irregular edge: base radius + noise creates fingers and indentations
-				float edgeRadius = radius * (0.7f + 0.35f * n + 0.2f * n2);
-				float t = dist / edgeRadius;
-				if (t <= 1f)
-				{
-					float core = 1f - MathHelper.Clamp(t / 0.2f, 0f, 1f);
-					float mid = 1f - MathHelper.Clamp((t - 0.35f) / 0.4f, 0f, 1f);
-					float rim = 1f - MathHelper.Clamp((t - 0.8f) / 0.2f, 0f, 1f);
-					float alpha = Math.Max(core, Math.Max(mid * 0.9f, rim * 0.5f));
-					data[y * size + x] = new Color(1f, 1f, 1f, MathHelper.Clamp(alpha, 0f, 1f));
-				}
-				else
-					data[y * size + x] = Color.Transparent;
-			}
-			tex.SetData(data);
-			return tex;
-		}
-
-		private static Texture2D CreateRingTexture(int size)
-		{
-			var tex = new Texture2D(Main.instance.GraphicsDevice, size, size, false, SurfaceFormat.Color);
-			var data = new Color[size * size];
-			var center = new Vector2((size - 1) * 0.5f);
-			float radius = size * 0.5f;
-
+			// Flame core—Perlin adds subtle turbulence to hot center
+			_flameCoreTex = new Texture2D(gd, size, size, false, SurfaceFormat.Color);
+			var coreData = new Color[size * size];
 			for (int y = 0; y < size; y++)
 			for (int x = 0; x < size; x++)
 			{
 				float dist = Vector2.Distance(new Vector2(x, y), center);
-				float t = dist / radius;
-				if (t <= 1f)
-				{
-					float ringPeak = 0.5f;
-					float ringWidth = 0.15f;
-					float alpha = 0f;
-					if (t >= ringPeak - ringWidth && t <= ringPeak + ringWidth)
-						alpha = 1f - Math.Abs(t - ringPeak) / ringWidth;
-					else if (t > ringPeak + ringWidth)
-						alpha = Math.Max(0f, 1f - (t - ringPeak - ringWidth) / 0.3f);
-					alpha *= 1f - t * 0.5f;
-					data[y * size + x] = new Color(1f, 1f, 1f, MathHelper.Clamp(alpha, 0f, 1f));
-				}
-				else
-					data[y * size + x] = Color.Transparent;
+				float t = dist / maxR;
+				float baseAlpha = t <= 1f ? (float)(1f - Math.Pow(t, 0.75f)) : 0f;
+				float perlin = PerlinNoise.Fbm(x * 0.04f, y * 0.04f, 2, 2f, 0.5f);
+				float alpha = baseAlpha * (0.9f + 0.1f * perlin);
+				coreData[y * size + x] = new Color(1f, 1f, 1f, MathHelper.Clamp(alpha, 0f, 1f));
 			}
-			tex.SetData(data);
-			return tex;
+			_flameCoreTex.SetData(coreData);
 		}
+
+		private static Vector2 QuadDrawPos(Vector2 worldCenter, float texSize, float scale)
+		{
+			float half = texSize * 0.5f * scale;
+			return worldCenter - new Vector2(half, -half);
+		}
+
+		private static Vector2 GetRadialDirection(float angle) => new((float)Math.Cos(angle), (float)Math.Sin(angle));
+		private static float GoldenAngle(int i, int n) => (i * 2.39996323f) % MathHelper.TwoPi;
 
 		public override void PostDrawTiles()
 		{
-			if (Main.gameMenu || Main.dedServ || ActiveExplosions.Count == 0) return;
+			if (Main.gameMenu || Main.dedServ) return;
+			EnsureProceduralTextures();
+			if (ActiveExplosions.Count == 0) return;
+			if (!ShaderManager.TryGetShader("Luminance.QuadRenderer", out var quadShader)) return;
+			if (!ShaderManager.TryGetShader("Luminance.StandardPrimitiveShader", out var primShader)) return;
 
-			EnsureTextures();
-
-			if (!ShaderManager.TryGetShader("Luminance.QuadRenderer", out var quadShader))
-				return;
+			Texture2D bloomTex = null;
+			Texture2D bloomFlare = null;
+			Texture2D turbulentNoise = null;
+			Texture2D wavyNoise = null;
+			try
+			{
+				bloomTex = MiscTexturesRegistry.BloomCircleSmall.Value;
+				bloomFlare = MiscTexturesRegistry.BloomFlare.Value;
+				turbulentNoise = MiscTexturesRegistry.TurbulentNoise.Value;
+				wavyNoise = MiscTexturesRegistry.WavyBlotchNoise.Value;
+			}
+			catch { }
+			if (bloomTex == null || _flameLobeTex == null) return;
 
 			int now = (int)Main.GameUpdateCount;
 			for (int i = ActiveExplosions.Count - 1; i >= 0; i--)
 			{
 				var ex = ActiveExplosions[i];
-				int duration = ex.IsIgnition ? DurationIgnition : DurationIncandescent;
+				int dur = ex.IsIgnition ? DurationIgnition : DurationIncandescent;
 				int elapsed = now - ex.SpawnFrame;
-				if (elapsed >= duration)
+				if (elapsed >= dur)
 				{
 					ActiveExplosions.RemoveAt(i);
 					continue;
 				}
 
-				float progress = elapsed / (float)duration;
-				DrawExplosion(ex.Center, progress, ex.IsIgnition, elapsed, quadShader);
+				float progress = elapsed / (float)dur;
+				DrawExplosion(ex.Center, progress, ex.IsIgnition, elapsed, quadShader, primShader, bloomTex, bloomFlare, turbulentNoise, wavyNoise);
 
-				if (progress < 0.7f && elapsed % 2 == 0)
+				if (progress < 0.9f)
 				{
-					SpawnSustainedEmber(ex.Center, ex.IsIgnition);
-					SpawnSustainedEmber(ex.Center, ex.IsIgnition);
-					if (elapsed % 4 == 0)
-						SpawnSustainedEmber(ex.Center, ex.IsIgnition);
+					for (int j = 0; j < 6; j++) SpawnSustainedEmber(ex.Center, ex.IsIgnition);
+					for (int j = 0; j < 4; j++) SpawnFlareWisp(ex.Center, ex.IsIgnition, progress);
 				}
 			}
 		}
 
-		/// <summary>Triggers an Incandescent (on-kill) or Ignition explosion.</summary>
 		public static void TriggerExplosion(Vector2 worldCenter, bool isIgnition)
 		{
 			if (Main.dedServ) return;
-
-			ActiveExplosions.Add(new ActiveExplosion
-			{
-				Center = worldCenter,
-				SpawnFrame = (int)Main.GameUpdateCount,
-				IsIgnition = isIgnition
-			});
-
+			ActiveExplosions.Add(new ActiveExplosion { Center = worldCenter, SpawnFrame = (int)Main.GameUpdateCount, IsIgnition = isIgnition });
 			SpawnParticleBurst(worldCenter, isIgnition);
-			SpawnFireMotesTowardEnemies(worldCenter, isIgnition);
-			AddScreenShake(worldCenter, isIgnition);
+			SpawnFireMotes(worldCenter, isIgnition);
 		}
 
 		private static void SpawnParticleBurst(Vector2 center, bool isIgnition)
 		{
-			if (isIgnition)
+			int n = isIgnition ? 65 : 55;
+			for (int i = 0; i < n; i++)
 			{
-				for (int i = 0; i < 110; i++)
+				float a = GoldenAngle(i, n);
+				var dir = GetRadialDirection(a);
+				dir.Y -= 0.18f;
+				dir.Normalize();
+				float speed = isIgnition ? Main.rand.NextFloat(7f, 16f) : Main.rand.NextFloat(6f, 13f);
+				var v = dir * speed;
+				var f = Dust.NewDustPerfect(center, DustID.Torch, v, 160, isIgnition ? new Color(255, 95, 35) : new Color(255, 180, 75), Main.rand.NextFloat(1.3f, 2.2f));
+				f.noGravity = true;
+				if (i % 2 == 0)
 				{
-					float angle = GetGoldenAngle(i, 110);
-					float speed = Main.rand.NextFloat(8f, 24f) * Main.rand.NextFloat(0.9f, 1.3f);
-					var vel = GetRadialDirection(angle) * speed;
-
-					if (i % 3 == 0)
-					{
-						var chunk = Dust.NewDustPerfect(center, DustID.Torch, vel * 0.6f, 120, new Color(255, 60, 20), Main.rand.NextFloat(2f, 3.5f));
-						chunk.noGravity = true;
-						chunk.fadeIn = 1f;
-					}
-					else
-					{
-						var spark = Dust.NewDustPerfect(center, DustID.WhiteTorch, vel * Main.rand.NextFloat(0.7f, 1.4f), 90, default, Main.rand.NextFloat(1.8f, 3f));
-						spark.noGravity = true;
-						spark.fadeIn = 1.5f;
-					}
-					var fire = Dust.NewDustPerfect(center, DustID.Torch, vel * Main.rand.NextFloat(0.4f, 1.1f), 150, new Color(255, 80, 25), Main.rand.NextFloat(1.2f, 2.2f));
-					fire.noGravity = true;
-					if (i % 2 == 0)
-					{
-						var smoke = Dust.NewDustPerfect(center, DustID.Smoke, vel * 0.3f, 200, new Color(80, 20, 5), Main.rand.NextFloat(1.5f, 2.5f));
-						smoke.noGravity = true;
-					}
+					var s = Dust.NewDustPerfect(center, DustID.WhiteTorch, v * 0.95f, 110, new Color(255, 250, 210), Main.rand.NextFloat(1.2f, 1.8f));
+					s.noGravity = true;
 				}
-			}
-			else
-			{
-				// Incandescent: pure radial, no enemy bias—golden-angle distribution
-				for (int i = 0; i < 90; i++)
+				if (i % 3 == 0)
 				{
-					float angle = GetGoldenAngle(i, 90);
-					float speed = Main.rand.NextFloat(6f, 18f);
-					var vel = GetRadialDirection(angle) * speed;
-
-					var fire = Dust.NewDustPerfect(center, DustID.Torch, vel * Main.rand.NextFloat(0.7f, 1.3f), 160, new Color(255, 130, 40), Main.rand.NextFloat(1.4f, 2.4f));
-					fire.noGravity = true;
-					if (i % 2 == 0)
-					{
-						var spark = Dust.NewDustPerfect(center, DustID.WhiteTorch, vel * Main.rand.NextFloat(0.9f, 1.5f), 95, new Color(255, 220, 150), Main.rand.NextFloat(1.2f, 2f));
-						spark.noGravity = true;
-					}
-					if (i % 3 == 0)
-					{
-						var ember = Dust.NewDustPerfect(center, DustID.Torch, vel * 0.6f, 130, new Color(255, 180, 70), Main.rand.NextFloat(1.2f, 1.8f));
-						ember.noGravity = true;
-					}
+					var e = Dust.NewDustPerfect(center, DustID.Torch, v * 0.8f, 130, isIgnition ? new Color(255, 140, 60) : new Color(255, 210, 120), Main.rand.NextFloat(1.1f, 1.7f));
+					e.noGravity = true;
 				}
 			}
 		}
 
-		/// <summary>Fire motes: pure radial burst, golden-angle spaced. No directional bias.</summary>
-		private static void SpawnFireMotesTowardEnemies(Vector2 center, bool isIgnition)
+		private static void SpawnFireMotes(Vector2 center, bool isIgnition)
 		{
-			int count = isIgnition ? 25 : 16;
-			for (int i = 0; i < count; i++)
+			int n = isIgnition ? 20 : 16;
+			for (int i = 0; i < n; i++)
 			{
-				float angle = GetGoldenAngle(i, count);
-				var vel = GetRadialDirection(angle) * Main.rand.NextFloat(isIgnition ? 10f : 6f, isIgnition ? 20f : 14f);
-				Color c = isIgnition ? new Color(255, 100, 40) : new Color(255, 190, 80);
-				var d = Dust.NewDustPerfect(center, DustID.Torch, vel, 95, c, Main.rand.NextFloat(1f, 1.6f));
+				float a = GoldenAngle(i, n);
+				var dir = GetRadialDirection(a);
+				dir.Y -= 0.14f;
+				dir.Normalize();
+				var v = dir * Main.rand.NextFloat(isIgnition ? 8f : 7f, isIgnition ? 16f : 13f);
+				var d = Dust.NewDustPerfect(center, DustID.Torch, v, 115, isIgnition ? new Color(255, 125, 50) : new Color(255, 230, 130), Main.rand.NextFloat(1.2f, 1.6f));
 				d.noGravity = true;
-				d.fadeIn = 0.8f;
 			}
 		}
 
 		private static void SpawnSustainedEmber(Vector2 center, bool isIgnition)
 		{
 			int idx = (int)(Main.GameUpdateCount % 36);
-			float angle = GetGoldenAngle(idx, 36);
-			float speed = Main.rand.NextFloat(2f, 8f) * (isIgnition ? 1.4f : 1f);
-			var vel = GetRadialDirection(angle) * speed;
-			Color c = isIgnition ? new Color(255, 100, 40) : new Color(255, 170, 70);
-			float scale = isIgnition ? Main.rand.NextFloat(1.2f, 2f) : Main.rand.NextFloat(0.8f, 1.3f);
-			var d = Dust.NewDustPerfect(center, DustID.Torch, vel, 85, c, scale);
+			float a = GoldenAngle(idx, 36);
+			var dir = GetRadialDirection(a);
+			dir.Y -= 0.12f;
+			dir.Normalize();
+			var v = dir * Main.rand.NextFloat(3f, 7f) * (isIgnition ? 1.25f : 1f);
+			var d = Dust.NewDustPerfect(center, DustID.Torch, v, 105, isIgnition ? new Color(255, 135, 55) : new Color(255, 210, 110), Main.rand.NextFloat(0.95f, 1.25f));
 			d.noGravity = true;
 		}
 
-		private static void AddScreenShake(Vector2 center, bool isIgnition)
+		private static void SpawnFlareWisp(Vector2 center, bool isIgnition, float progress)
 		{
-			float strength = isIgnition ? 12f : 6f;
-			ScreenShakeSystem.StartShakeAtPoint(center, strength, MathHelper.TwoPi, null, 0.25f, 600f, 200f);
+			float a = GoldenAngle((int)(Main.GameUpdateCount * 0.6f + progress * 25f) % 36, 36) + Main.rand.NextFloat(-0.5f, 0.5f);
+			var dir = GetRadialDirection(a);
+			dir.Y -= 0.18f + Main.rand.NextFloat(-0.12f, 0.18f);
+			dir.Normalize();
+			float spd = Main.rand.NextFloat(5f, 10f) * (1f + progress * 0.7f) * (isIgnition ? 1.2f : 1f);
+			var v = dir * spd;
+			var d = Dust.NewDustPerfect(center, DustID.Torch, v, 150, isIgnition ? new Color(255, 90, 30) : new Color(255, 200, 100), Main.rand.NextFloat(1.2f, 1.9f));
+			d.noGravity = true;
 		}
 
-		private static void DrawExplosion(Vector2 center, float progress, bool isIgnition, int elapsed, ManagedShader quadShader)
+		private static void DrawExplosion(Vector2 center, float progress, bool isIgnition, int elapsed, ManagedShader quadShader, ManagedShader primShader, Texture2D bloomTex, Texture2D bloomFlare, Texture2D turbulentNoise, Texture2D wavyNoise)
 		{
-			if (_bloomLobe == null || _flameWaveTexture == null || _ringTexture == null) return;
-
-			float screenH = Main.screenHeight;
-			float baseSize = isIgnition ? screenH * 0.38f : screenH * 0.2f;
-
-			// Incandescent: quick ease-out. Ignition: sharper initial burst, longer sustain
-			float expansion = isIgnition
-				? 1f - (float)Math.Pow(1f - progress, 1.5f)
-				: 1f - (1f - progress) * (1f - progress);
-
-			float scaleBase = baseSize / _bloomLobe.Width * expansion;
-
+			float radiusPx = (isIgnition ? 5f : 3f) * 16f;
 			float opacity = (float)Math.Sin(MathHelper.PiOver2 + progress * MathHelper.PiOver2);
 			if (progress > 0.5f) opacity *= (1f - progress) / 0.5f;
-
-			// Bright initial flash—Destiny 2 style white-hot burst
-			float flash = elapsed <= 6 ? (1f - elapsed / 6f) : 0f;
+			float flash = elapsed <= 10 ? (1f - elapsed / 10f) : 0f;
+			float circleExpansion = 1f - (float)Math.Pow(1f - Math.Min(progress * 1.5f, 1f), 0.6f);
+			float wispExpansion = 1f - (float)Math.Pow(1f - Math.Min(progress * 1.25f, 1f), 0.85f);
+			float t = (float)Main.timeForVisualEffects * 0.02f;
 
 			var gd = Main.instance.GraphicsDevice;
 			var prevBlend = gd.BlendState;
 			gd.BlendState = BlendState.Additive;
 
+			float tw = 256f;
+			float th = 256f;
+
 			if (isIgnition)
-			{
-				DrawIgnitionExplosion(center, progress, scaleBase, opacity, flash, quadShader);
-			}
+				DrawIgnition(center, progress, radiusPx, circleExpansion, wispExpansion, opacity, flash, t, quadShader, primShader, bloomTex, bloomFlare, turbulentNoise, wavyNoise, tw, th);
 			else
-			{
-				DrawIncandescentExplosion(center, progress, scaleBase, opacity, flash, quadShader);
-			}
+				DrawIncandescent(center, progress, radiusPx, circleExpansion, wispExpansion, opacity, flash, t, quadShader, primShader, bloomTex, bloomFlare, turbulentNoise, wavyNoise, tw, th);
 
-			// Warm fire lighting—Destiny 2 Solar orange-gold glow
-			float lightIntensity = opacity * (1.2f + flash * 2.5f);
-			Lighting.AddLight(center, 1f * lightIntensity, 0.5f * lightIntensity, 0.15f * lightIntensity);
-
+			float light = opacity * (1.5f + flash * 3f);
+			Lighting.AddLight(center, 1f * light, 0.6f * light, 0.2f * light);
 			gd.BlendState = prevBlend;
 		}
 
-		/// <summary>Incandescent: fiery burst—12 flame tongues, orange-gold, expanding ring.</summary>
-		private static void DrawIncandescentExplosion(Vector2 center, float progress, float scaleBase, float opacity, float flash, ManagedShader quadShader)
+		private static float ChaosRadius(float interpolant, float baseRadius, float expansion, float t)
 		{
-			// Outer edge—deep orange-red
-			float waveScale = scaleBase * 1.6f;
-			var drawPos = GetCenteredDrawPos(center, waveScale);
-			var edgeColor = IncandescentEdge with { A = (byte)(opacity * 140) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(waveScale), 0f, edgeColor, quadShader);
+			float angle = interpolant * MathHelper.TwoPi;
+			float perlin = PerlinNoise.Fbm(angle * 2f + t * 0.5f, t * 3f, 3, 2f, 0.5f);
+			float sine = 0.5f + 0.3f * (float)Math.Sin(angle * 6f + t) + 0.2f * (float)Math.Sin(angle * 9f + t * 1.2f);
+			float chaos = perlin * 0.6f + sine * 0.4f;
+			return baseRadius * expansion * (0.3f + 0.7f * MathHelper.Clamp(chaos, 0f, 1f));
+		}
 
-			// Mid layer—orange body
-			drawPos = GetCenteredDrawPos(center, scaleBase * 1.2f);
-			var bodyColor = IncandescentBody with { A = (byte)(opacity * 250) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(scaleBase * 1.2f), 0f, bodyColor, quadShader);
+		private static void DrawIncandescent(Vector2 center, float progress, float radiusPx, float circleExpansion, float wispExpansion, float opacity, float flash, float t, ManagedShader quadShader, ManagedShader primShader, Texture2D bloomTex, Texture2D bloomFlare, Texture2D turbulentNoise, Texture2D wavyNoise, float tw, float th)
+		{
+			float circleR = radiusPx * circleExpansion * 1.08f;
 
-			// Core—white-hot
-			drawPos = GetCenteredDrawPos(center, scaleBase);
-			var coreColor = Color.Lerp(IncandescentCore, Color.White, flash * 0.7f) with { A = (byte)(opacity * (0.95f + flash * 0.5f) * 255) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(scaleBase), 0f, coreColor, quadShader);
-
-			// Jagged chaos overlays for fiery irregularity
-			for (int i = 0; i < 4; i++)
+			// TurbulentNoise overlay—flame turbulence
+			if (turbulentNoise != null)
 			{
-				float rot = i / 4f * MathHelper.TwoPi + progress * 0.5f;
-				float s = scaleBase * 1.3f * (0.9f + 0.15f * (float)Math.Sin(i * 2.3f));
-				drawPos = GetCenteredDrawPos(center, s);
-				var tongueColor = new Color(255, 80, 20) with { A = (byte)(opacity * 85) };
-				PrimitiveRenderer.RenderQuad(_chaosBlob, drawPos, new Vector2(s), rot, tongueColor, quadShader);
+				float noiseScale = circleR * 1.2f;
+				var noisePos = QuadDrawPos(center, 256f, noiseScale / 256f);
+				PrimitiveRenderer.RenderQuad(turbulentNoise, noisePos, new Vector2(noiseScale / turbulentNoise.Width, noiseScale / turbulentNoise.Height), t * 2f, IncandescentBody with { A = (byte)(opacity * 85) }, quadShader);
 			}
 
-			// Expanding ring wave front
-			float ringProgress = Math.Min(progress * 1.4f, 1f);
-			float ringOpacity = (float)Math.Sin(ringProgress * MathHelper.Pi) * 0.75f;
-			if (ringOpacity > 0.02f)
+			// Procedural flame lobe—main expanding fire shape
+			float lobeScale = circleR * 1.15f;
+			var lobePos = QuadDrawPos(center, tw, lobeScale / tw);
+			PrimitiveRenderer.RenderQuad(_flameLobeTex, lobePos, new Vector2(lobeScale / tw, lobeScale / th), t * 0.5f, IncandescentEdge with { A = (byte)(opacity * 120) }, quadShader);
+
+			// BloomFlare—starburst rays (if available)
+			if (bloomFlare != null)
 			{
-				float ringScale = scaleBase * 1.4f * (0.9f + ringProgress * 0.45f);
-				drawPos = GetCenteredDrawPos(center, ringScale);
-				var ringColor = IncandescentBody with { A = (byte)(ringOpacity * 255) };
-				PrimitiveRenderer.RenderQuad(_ringTexture, drawPos, new Vector2(ringScale), 0f, ringColor, quadShader);
+				float flareScale = circleR * 0.9f;
+				var flarePos = QuadDrawPos(center, bloomFlare.Width, flareScale / bloomFlare.Width);
+				PrimitiveRenderer.RenderQuad(bloomFlare, flarePos, new Vector2(flareScale / bloomFlare.Width, flareScale / bloomFlare.Height), t * 0.3f, IncandescentBody with { A = (byte)(opacity * 130) }, quadShader);
+			}
+
+			// Procedural flare rays
+			float raysScale = circleR * 0.85f;
+			var raysPos = QuadDrawPos(center, tw, raysScale / tw);
+			PrimitiveRenderer.RenderQuad(_flareRaysTex, raysPos, new Vector2(raysScale / tw, raysScale / th), progress * 0.5f, IncandescentBody with { A = (byte)(opacity * 150) }, quadShader);
+
+			// Core—white hot
+			float coreScale = circleR * 0.45f;
+			var corePos = QuadDrawPos(center, tw, coreScale / tw);
+			PrimitiveRenderer.RenderQuad(_flameCoreTex, corePos, new Vector2(coreScale / tw, coreScale / th), 0f, Color.Lerp(IncandescentCore, Color.White, flash * 0.8f) with { A = (byte)(opacity * (0.95f + flash * 0.5f) * 255) }, quadShader);
+
+			// WavyBlotchNoise—extra flame chaos
+			if (wavyNoise != null)
+			{
+				float wavyScale = circleR * 0.7f;
+				var wavyPos = QuadDrawPos(center, wavyNoise.Width, wavyScale / wavyNoise.Width);
+				PrimitiveRenderer.RenderQuad(wavyNoise, wavyPos, new Vector2(wavyScale / wavyNoise.Width, wavyScale / wavyNoise.Height), t * 1.5f, IncandescentEdge with { A = (byte)(opacity * 55) }, quadShader);
+			}
+
+			// Chaos wisps—RenderCircle
+			if (primShader != null && wispExpansion > 0.05f)
+			{
+				var wispSettings = new PrimitiveSettingsCircle(
+					interpolant => ChaosRadius(interpolant, radiusPx, wispExpansion, t),
+					interpolant =>
+					{
+						float r = ChaosRadius(interpolant, radiusPx, wispExpansion, t);
+						float dist = MathHelper.Clamp(r / (radiusPx * wispExpansion), 0f, 1f);
+						byte a = (byte)(opacity * (0.25f + 0.75f * dist) * 180);
+						return (dist > 0.6f ? IncandescentEdge : dist > 0.35f ? IncandescentBody : IncandescentCore) with { A = a };
+					},
+					false, primShader);
+				PrimitiveRenderer.RenderCircle(center, wispSettings, 80);
+
+				float edgeOp = (float)Math.Sin(progress * MathHelper.Pi) * 0.45f;
+				if (edgeOp > 0.02f)
+				{
+					var edgeSettings = new PrimitiveSettingsCircleEdge(
+						interpolant => 6f + 4f * (float)Math.Sin(interpolant * MathHelper.TwoPi * 5f + t * 0.5f),
+						_ => IncandescentBody with { A = (byte)(edgeOp * 255) },
+						interpolant => ChaosRadius(interpolant, radiusPx, wispExpansion, t) * 0.98f,
+						false, primShader);
+					PrimitiveRenderer.RenderCircleEdge(center, edgeSettings, 84);
+				}
 			}
 		}
 
-		/// <summary>Ignition: violent wave of flames, white-hot core, red plasma, jagged flame tongues.</summary>
-		private static void DrawIgnitionExplosion(Vector2 center, float progress, float scaleBase, float opacity, float flash, ManagedShader quadShader)
+		private static void DrawIgnition(Vector2 center, float progress, float radiusPx, float circleExpansion, float wispExpansion, float opacity, float flash, float t, ManagedShader quadShader, ManagedShader primShader, Texture2D bloomTex, Texture2D bloomFlare, Texture2D turbulentNoise, Texture2D wavyNoise, float tw, float th)
 		{
-			// Base flame wave
-			float waveScale = scaleBase * 1.6f;
-			var drawPos = GetCenteredDrawPos(center, waveScale);
-			var edgeColor = IgnitionEdge with { A = (byte)(opacity * 110) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(waveScale), 0f, edgeColor, quadShader);
+			float circleR = radiusPx * circleExpansion * 1.1f;
 
-			drawPos = GetCenteredDrawPos(center, scaleBase * 1.25f);
-			var plasmaColor = IgnitionPlasma with { A = (byte)(opacity * 210) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(scaleBase * 1.25f), 0f, plasmaColor, quadShader);
-
-			drawPos = GetCenteredDrawPos(center, scaleBase);
-			var bodyColor = IgnitionBody with { A = (byte)(opacity * 250) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(scaleBase), 0f, bodyColor, quadShader);
-
-			drawPos = GetCenteredDrawPos(center, scaleBase * 0.7f);
-			var coreColor = Color.Lerp(IgnitionCore, IgnitionBody, 1f - flash) with { A = (byte)(opacity * (0.95f + flash) * 255) };
-			PrimitiveRenderer.RenderQuad(_flameWaveTexture, drawPos, new Vector2(scaleBase * 0.7f), 0f, coreColor, quadShader);
-
-			// Jagged flame tongues: chaos blob at varied rotations for violent fire character
-			for (int i = 0; i < 5; i++)
+			if (turbulentNoise != null)
 			{
-				float rot = i / 5f * MathHelper.TwoPi + progress * 0.8f;
-				float tongueScale = scaleBase * 1.35f * (0.85f + 0.2f * (float)Math.Sin(i * 2.1f));
-				drawPos = GetCenteredDrawPos(center, tongueScale);
-				var tongueColor = new Color(200, 50, 15) with { A = (byte)(opacity * 100) };
-				PrimitiveRenderer.RenderQuad(_chaosBlob, drawPos, new Vector2(tongueScale), rot, tongueColor, quadShader);
+				float noiseScale = circleR * 1.3f;
+				var noisePos = QuadDrawPos(center, 256f, noiseScale / 256f);
+				PrimitiveRenderer.RenderQuad(turbulentNoise, noisePos, new Vector2(noiseScale / turbulentNoise.Width, noiseScale / turbulentNoise.Height), t * 2.5f, IgnitionBody with { A = (byte)(opacity * 95) }, quadShader);
 			}
 
-			// Expanding ring
-			float ringProgress = Math.Min(progress * 2f, 1f);
-			float ringOpacity = (float)Math.Sin(ringProgress * MathHelper.Pi) * 0.9f;
-			if (ringOpacity > 0.02f)
+			PrimitiveRenderer.RenderQuad(_flameLobeTex, QuadDrawPos(center, tw, circleR * 1.2f / tw), new Vector2(circleR * 1.2f / tw, circleR * 1.2f / th), t * 0.6f, IgnitionEdge with { A = (byte)(opacity * 135) }, quadShader);
+
+			if (bloomFlare != null)
 			{
-				float ringScale = scaleBase * 1.5f * (0.75f + ringProgress * 0.7f);
-				drawPos = GetCenteredDrawPos(center, ringScale);
-				var ringColor = IgnitionBody with { A = (byte)(ringOpacity * 255) };
-				PrimitiveRenderer.RenderQuad(_ringTexture, drawPos, new Vector2(ringScale), 0f, ringColor, quadShader);
+				float flareScale = circleR * 1f;
+				var flarePos = QuadDrawPos(center, bloomFlare.Width, flareScale / bloomFlare.Width);
+				PrimitiveRenderer.RenderQuad(bloomFlare, flarePos, new Vector2(flareScale / bloomFlare.Width, flareScale / bloomFlare.Height), t * 0.4f, IgnitionBody with { A = (byte)(opacity * 145) }, quadShader);
+			}
+
+			PrimitiveRenderer.RenderQuad(_flareRaysTex, QuadDrawPos(center, tw, circleR * 0.95f / tw), new Vector2(circleR * 0.95f / tw, circleR * 0.95f / th), progress * 0.6f, IgnitionBody with { A = (byte)(opacity * 170) }, quadShader);
+
+			PrimitiveRenderer.RenderQuad(_flameCoreTex, QuadDrawPos(center, tw, circleR * 0.5f / tw), new Vector2(circleR * 0.5f / tw, circleR * 0.5f / th), 0f, Color.Lerp(IgnitionCore, IgnitionBody, 1f - flash) with { A = (byte)(opacity * (0.95f + flash * 0.6f) * 255) }, quadShader);
+
+			if (wavyNoise != null)
+			{
+				float wavyScale = circleR * 0.8f;
+				var wavyPos = QuadDrawPos(center, wavyNoise.Width, wavyScale / wavyNoise.Width);
+				PrimitiveRenderer.RenderQuad(wavyNoise, wavyPos, new Vector2(wavyScale / wavyNoise.Width, wavyScale / wavyNoise.Height), t * 1.8f, IgnitionEdge with { A = (byte)(opacity * 65) }, quadShader);
+			}
+
+			if (primShader != null && wispExpansion > 0.05f)
+			{
+				var wispSettings = new PrimitiveSettingsCircle(
+					interpolant => ChaosRadius(interpolant, radiusPx, wispExpansion, t),
+					interpolant =>
+					{
+						float r = ChaosRadius(interpolant, radiusPx, wispExpansion, t);
+						float dist = MathHelper.Clamp(r / (radiusPx * wispExpansion), 0f, 1f);
+						byte a = (byte)(opacity * (0.3f + 0.7f * dist) * 200);
+						return (dist > 0.55f ? IgnitionEdge : dist > 0.3f ? IgnitionBody : IgnitionCore) with { A = a };
+					},
+					false, primShader);
+				PrimitiveRenderer.RenderCircle(center, wispSettings, 90);
+
+				var wisp2 = new PrimitiveSettingsCircle(
+					interpolant => ChaosRadius(interpolant + 0.35f, radiusPx * 0.85f, wispExpansion * 0.9f, t + 6f),
+					interpolant => IgnitionBody with { A = (byte)(opacity * 95) },
+					false, primShader);
+				PrimitiveRenderer.RenderCircle(center, wisp2, 72);
+
+				float edgeOp = (float)Math.Sin(progress * MathHelper.Pi) * 0.5f;
+				if (edgeOp > 0.02f)
+				{
+					var edgeSettings = new PrimitiveSettingsCircleEdge(
+						interpolant => 8f + 5f * (float)Math.Sin(interpolant * MathHelper.TwoPi * 6f + t * 0.6f),
+						_ => IgnitionBody with { A = (byte)(edgeOp * 255) },
+						interpolant => ChaosRadius(interpolant, radiusPx, wispExpansion, t) * 0.97f,
+						false, primShader);
+					PrimitiveRenderer.RenderCircleEdge(center, edgeSettings, 96);
+				}
 			}
 		}
 	}

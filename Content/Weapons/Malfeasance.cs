@@ -30,11 +30,11 @@ namespace Destiny2.Content.Weapons
 
 		public override void SetDefaults()
 		{
-			Item.width = 126;
-			Item.height = 64;
+			Item.width = 61;
+			Item.height = 33;
 			Item.noMelee = true;
 			Item.autoReuse = true;
-			Item.scale = 0.25f;
+			Item.scale = 1f;
 			Item.DamageType = WeaponElement.GetDamageClass();
 			Item.damage = 32;
 			Item.knockBack = 3f;

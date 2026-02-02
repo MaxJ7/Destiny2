@@ -207,12 +207,12 @@ namespace Destiny2.Common.Perks
 		internal const int BowInitialDelayTicks = 10;
 		internal const int CooldownAfterLastPulseTicks = 120;
 		internal const int MaxShockwaveDamage = 90;
-		internal const float ShockwaveRadiusTiles = 6f;
+		internal const float ShockwaveRadiusTiles = 3f;
 		public override string IconTexture => "Destiny2/Assets/Perks/KineticTremors";
 		public override string DisplayName => "Kinetic Tremors";
 		public override string Description =>
 			"Rapid hits on a target trigger 3 shockwaves after a short delay (0.25s, 1s between pulses; bows 0.167s). "
-			+ "Shockwaves inherit buffs, deal up to 90 in a 6-tile radius. Auto Rifles: 12 hits; Hand Cannons: 6 hits. "
+			+ "Shockwaves inherit buffs, deal up to 90 in a 3-tile radius. Auto Rifles: 12 hits; Hand Cannons: 6 hits. "
 			+ "2s cooldown after last pulse.";
 		public override PerkSlotType SlotType => PerkSlotType.Major;
 	}
@@ -220,13 +220,13 @@ namespace Destiny2.Common.Perks
 	public sealed class IncandescentPerk : Destiny2Perk
 	{
 		internal const int ScorchStacksApplied = 40;
-		internal const float ExplosionRadiusTiles = 4f;
+		internal const float ExplosionRadiusTiles = 3f; // 3 block radius, 6 blocks diameter
 		internal static readonly float ExplosionRadius = ExplosionRadiusTiles * 16f;
 
 		public override string IconTexture => "Destiny2/Assets/Perks/Incandescent";
 		public override string DisplayName => "Incandescent";
 		public override string Description =>
-			"Kills cause a Solar explosion dealing 1/4 weapon damage in a 4-tile radius. "
+			"Kills cause a Solar explosion dealing 1/4 weapon damage in a 6-block diameter. "
 			+ "Targets hit receive 40 Scorch stacks; DoT ramps to 1/10 weapon damage at 100 stacks. At 100 stacks, the target ignites after ~1s.";
 		public override PerkSlotType SlotType => PerkSlotType.Major;
 	}

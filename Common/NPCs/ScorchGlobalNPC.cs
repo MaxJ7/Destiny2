@@ -16,7 +16,7 @@ namespace Destiny2.Common.NPCs
 		private const int MaxScorchStacks = 100;
 		private const int IgniteThreshold = 100;
 		private const int IgniteDamage = 90;
-		private const float IgniteRadiusTiles = 6f;
+		private const float IgniteRadiusTiles = 5f; // 10 blocks diameter
 		private const float IgniteRadius = IgniteRadiusTiles * 16f;
 		private const int IgniteDelayTicks = 60; // ~1 second delay before explosion
 		private const int DecayRatePerSecond = 10;
