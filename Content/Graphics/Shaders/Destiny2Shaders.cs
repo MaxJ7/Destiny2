@@ -22,6 +22,7 @@ namespace Destiny2.Content.Graphics.Shaders
                 Register(mod, "BulletTrailStasis");
                 Register(mod, "BulletTrailStrand");
                 Register(mod, "BulletTrailKinetic");
+                Register(mod, "BulletTrailTaken");
 
                 // Explosion Shaders
                 Asset<Effect> explosionAsset = mod.Assets.Request<Effect>("Effects/SolarExplosionShader", AssetRequestMode.ImmediateLoad);

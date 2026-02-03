@@ -58,13 +58,30 @@ namespace Destiny2.Content.Graphics.Renderers
             for (int i = 0; i < Main.maxProjectiles; i++)
             {
                 Projectile p = Main.projectile[i];
-                if (p.active && p.ModProjectile is Bullet bullet)
+                if (!p.active) continue;
+
+                if (p.ModProjectile is Bullet bullet)
                 {
                     var data = bullet.GetDrawData();
                     if (data.trail.Count >= 2)
                     {
                         MiscShaderData shader = Destiny2Shaders.GetBulletTrailShader(data.element);
                         if (shader != null)
+                        {
+                            RenderElementVFX(new List<Vector2>(data.trail), data.element, 1f, (float)(p.whoAmI * 0.1), 0f, shader);
+                        }
+                    }
+                }
+                else if (p.ModProjectile is ExplosiveShadowSlug slug)
+                {
+                    var data = slug.GetDrawData();
+                    if (data.trail.Count >= 2)
+                    {
+                        // Use Taken shader for Slug
+                        if (GameShaders.Misc.TryGetValue("Destiny2:BulletTrailTaken", out MiscShaderData shader))
+                        {
+                            RenderElementVFX(new List<Vector2>(data.trail), data.element, 1f, (float)(p.whoAmI * 0.1), 0f, shader);
+                        }
                         {
                             RenderElementVFX(new List<Vector2>(data.trail), data.element, 1f, (float)(p.whoAmI * 0.1), 0f, shader);
                         }
@@ -102,8 +119,11 @@ namespace Destiny2.Content.Graphics.Renderers
         {
             if (shader == null || trail.Count < 2) return;
 
+            bool isTaken = shader.Shader.Name == "BulletTrailTaken"; // Or check logic
+
             if (element == Destiny2WeaponElement.Solar)
             {
+                // ... Solar Logic ...
                 shader.SetShaderTexture(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarFlameNoise"), 1);
                 shader.SetShaderTexture(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarStreaks"), 2);
 
@@ -111,11 +131,18 @@ namespace Destiny2.Content.Graphics.Renderers
                 shader.Shader.Parameters["uLengthRatio"]?.SetValue(effectiveLength / 400f);
                 shader.Shader.Parameters["uSeed"]?.SetValue(seed);
             }
+            else if (isTaken)
+            {
+                // TAKEN VISUALS
+                shader.SetShaderTexture(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/TakenNoise"), 1);
+            }
 
             shader.Shader.Parameters["uTime"]?.SetValue(Main.GlobalTimeWrappedHourly);
 
             Color baseColor = GetElementColor(element) * opacity;
-            float width = (element == Destiny2WeaponElement.Solar ? 55f : 30f) * opacity;
+            float width = (element == Destiny2WeaponElement.Solar ? 36f : 16f) * opacity;
+
+            if (isTaken) width = 24f * opacity; // Slightly thicker for Taken
 
             var settings = new PrimitiveSettings(
                 WidthFunction: _ => width,
@@ -123,7 +150,21 @@ namespace Destiny2.Content.Graphics.Renderers
                 Shader: shader
             );
 
-            PrimitiveSystem.RenderTrail(trail, settings);
+            // Use NonPremultiplied for Taken to allow "Black" subtractive rendering
+            if (isTaken)
+            {
+                Main.spriteBatch.End(); // Flush current batch
+                Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.NonPremultiplied, SamplerState.LinearWrap, DepthStencilState.None, RasterizerState.CullNone, null, Main.GameViewMatrix.TransformationMatrix);
+
+                PrimitiveSystem.RenderTrail(trail, settings);
+
+                Main.spriteBatch.End();
+                // We are outside SpriteBatch in PostDrawTiles, so no need to restart it here.
+            }
+            else
+            {
+                PrimitiveSystem.RenderTrail(trail, settings);
+            }
         }
 
         private static Color GetElementColor(Destiny2WeaponElement element)
