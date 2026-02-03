@@ -10,10 +10,14 @@ alwaysApply: true
 | Path | Namespace | Purpose |
 |------|-----------|---------|
 | `Common/` | `Destiny2.Common.*` | Base classes, global systems, shared logic |
+| `Common/VFX/` | `Destiny2.Common.VFX` | VFX systems (SolarVFXSystem, KineticTremorsVFXSystem), Destiny2Shaders |
 | `Content/` | `Destiny2.Content.*` | Concrete weapons, projectiles, tiles, buffs |
 | `Assets/Perks/` | — | Perk icon PNGs (key = perk class name without "Perk") |
 | `Assets/Elements/` | — | Element icons |
 | `Assets/Ammo/` | — | Primary, Special, Heavy icons |
+| `Assets/AutoloadedEffects/Shaders/` | — | Shader .fx (Luminance autoloads); Primitives/ for bullet trails |
+
+**Where to add:** New weapon → `Content/Weapons/`. New projectile → `Content/Projectiles/`. New perk → `Common/Perks/` (add to FramePerks or WeaponPerks or new file). New VFX system → `Common/VFX/`. New shader → add .fx under `Assets/AutoloadedEffects/Shaders/` (or Primitives/) and a constant in `Destiny2Shaders`. New buff → `Content/Buffs/PerkBuffs.cs` (perk display buffs) or new file if non-perk.
 
 **Weapon base:** `Destiny2WeaponStats.cs` + `Destiny2WeaponItem.Perks.cs` (partial classes)
 **Frames:** `ScoutRifleWeaponItem`, `HandCannonWeaponItem`, `AutoRifleWeaponItem` (in Common/Weapons/)
@@ -70,13 +74,13 @@ protected override void RollPerks()
 
 - **Hitscan via vanilla Colliding:** Uses `Colliding()` with `CheckAABBvLineCollision` (start = Center - velocity, end = Center)
 - **No CCD in AI:** Bullet no longer does manual CCD; vanilla handles collision
-- **localAI[0]/[1]** — last position (for dust trail)
+- **localAI[0]/[1]** — last Center (kept in sync; trail uses `Projectile.oldPos`)
 - **OnSpawn:** Get `sourceItem` from `EntitySource_ItemUse` or `EntitySource_ItemUse_WithAmmo` → `sourceItem?.ModItem is Destiny2WeaponItem`
 - **Weapon data:** maxFalloffTiles, weaponElement, DamageType from weaponItem
 - **ai[0]** — element ID
 - **hasDealtDamage** — prevents double-handling in OnHitNPC (vanilla may fire alongside Colliding)
-- **Trail:** `SpawnDustSegment(lastPosition, Center, element)` — dust-based; do NOT reintroduce shader trail (was reverted, caused crashes)
-- **Constants:** MaxDistance 1200f, DustSpacing 4f, Speed 32f, ExtraUpdates 3
+- **Trail:** Shader-based. **Drawing is in PostDrawTiles** via `BulletDrawSystem` (Common/VFX) — same path as Kinetic Tremors so Luminance primitives work. Bullet caches positions in `trailCache`; `GetDrawData()` returns trail + element + center + rotation; `BulletDrawSystem.PostDrawTiles` loops active bullets and calls `Bullet.DrawTrail` + `Bullet.DrawCore` (Luminance `RenderTrail` + `RenderQuad`). Bullet `PreDraw` only returns false (no draw there). Shader names in `Destiny2Shaders` (Common/VFX).
+- **Constants:** MaxDistance 1200f, Speed 32f, ExtraUpdates 3, TrailPoints 24
 
 ### ExplosiveShadowSlug (Content/Projectiles/ExplosiveShadowSlug.cs)
 
@@ -142,17 +146,24 @@ Register(new IncandescentPerk());
 
 ---
 
-## 6. Anti-Patterns (Do NOT)
+## 6. Reference Mods & Original Code
+
+- **Reference only:** Use Luminance, NoxusBoss, Calamity, Starlight River (and similar) **only as references** to understand APIs, patterns, and techniques. Read their code to learn *how* things work (e.g. primitive vertex format, shader loading, trail rendering).
+- **No copied code:** Do NOT copy-paste code from reference mods. Implement **original** logic, shaders, and VFX in Destiny2. Use their public/documented APIs (e.g. Luminance’s `PrimitiveRenderer.RenderTrail`, `ShaderManager.GetShader`) as intended; write your own HLSL, C# behavior, and assets.
+
+---
+
+## 7. Anti-Patterns (Do NOT)
 
 - **MultipliableFloat:** Old API; use `modifiers.DamageVariationScale *= 0f` (HitModifiers)
 - **StarlightRiver shader loader:** `Mod.File`, `FileEntry` do not exist in tML
 - **Incandescent/Ignition VFX:** `SolarVFXSystem` uses Luminance's `PrimitiveRenderer.RenderQuad`, `ShaderManager` (QuadRenderer), `ScreenShakeSystem`, procedural bloom/ring textures, dust for fire motes and embers.
 - **Crit spot system:** Removed; if ever reintroduced: Precision AR 1.75, Adaptive AR 1.75, Adaptive HC 1.79, Precision HC 1.55, Heavy Burst HC 2.2
-- **ExplosiveShadowGlobalItem:** Deleted; Explosive Shadow lives in Destiny2PerkProjectile + ExplosiveShadowSlug
+- **ExplosiveShadowGlobalItem:** Deleted; Explosive Shadow lives in WeaponPerks (ExplosiveShadowPerk), ExplosiveShadowGlobalNPC, Destiny2PerkProjectile + ExplosiveShadowSlug
 
 ---
 
-## 7. Conventions
+## 8. Conventions
 
 - `sealed class` for leaf types (Trustee, Bullet, ScorchGlobalNPC)
 - XML `<summary>` on public/important methods
@@ -163,7 +174,7 @@ Register(new IncandescentPerk());
 
 ---
 
-## 8. Precision Multipliers (Reference)
+## 9. Precision Multipliers (Reference)
 
 Used by frames via `GetPrecisionMultiplier()`; crit system removed but values preserved for future use:
 
@@ -177,7 +188,7 @@ Used by frames via `GetPrecisionMultiplier()`; crit system removed but values pr
 
 ---
 
-## 9. Build & Run
+## 10. Build & Run
 
 **Luminance dependency:** Destiny2 strongly references Luminance (`modReferences` in build.txt, ProjectReference to `../Luminance`). Luminance is cloned in `ModSources/Luminance`. Users must have Luminance enabled in tModLoader. Build Luminance first (or it builds as dependency).
 
@@ -189,7 +200,7 @@ ModSources are loaded from the workspace; enable the Destiny2 mod in-game.
 
 ---
 
-## 10. Build / Errors
+## 11. Build / Errors
 
 - **MSB3073 / exit -2147450730:** tML build step crashed; check mod code for runtime exceptions during load
 - **NETSDK1127:** .NET targeting pack missing → dotnet restore or SDK install
@@ -197,7 +208,7 @@ ModSources are loaded from the workspace; enable the Destiny2 mod in-game.
 
 ---
 
-## 11. VFX / Shader Reference (Calamity, Starlight River)
+## 12. VFX / Shader Reference (Calamity, Starlight River)
 
 General-purpose reference for implementing VFX. Use as inspiration, not copy-paste.
 
@@ -258,14 +269,16 @@ Use with `GameShaders.Misc["ModName:Key"].Apply()` before SpriteBatch.Draw.
 
 ---
 
-### E. Primitive trails (Calamity)
+### E. Primitive trails (Calamity vs Luminance)
 
 **PrimitiveRenderer.RenderTrail(positions, settings, pointsToCreate):**  
 Positions in world space (screenPosition subtracted automatically). Needs 4+ points for smoothing.
 
-**PrimitiveSettings:** `VertexWidthFunction`, `VertexColorFunction`, `VertexOffsetFunction`, `Smoothen`, `Pixelate`, `MiscShaderData Shader`. Example: `new PrimitiveSettings(WidthFn, ColorFn, offsetFn, smoothen: true, shader: GameShaders.Misc["CalamityMod:ImpFlameTrail"])`.
+**Calamity:** `PrimitiveSettings` with `MiscShaderData Shader`; e.g. `GameShaders.Misc["CalamityMod:ImpFlameTrail"]`.
 
-**Usage:** In projectile/NPC PreDraw or Draw, pass `Projectile.oldPos` or segment list. Shader receives primitive UVs (trail completion = X, width = Y).
+**Destiny2 (Luminance):** Use `Destiny2Shaders` (Common/VFX) for shader access: `Destiny2Shaders.GetBulletTrailShader(element)`, `Destiny2Shaders.TryGet(Destiny2Shaders.SolarExplosionShader, out var shader)`, `Destiny2Shaders.IsReady`. Luminance's `PrimitiveRenderer.RenderTrail` with `PrimitiveSettings(..., Shader: Destiny2Shaders.GetBulletTrailShader(element))`. Shaders live in `Assets/AutoloadedEffects/Shaders/Primitives/` (BulletTrailArc, BulletTrailSolar, Void, Stasis, Strand). Vertex format: `float3 TextureCoordinates`, with `coords.y = (coords.y - 0.5) / input.TextureCoordinates.z + 0.5` in pixel shader (see Luminance primitive README).
+
+**Usage:** In projectile/NPC PreDraw or Draw, pass `Projectile.oldPos` (or segment list). Shader receives primitive UVs (trail completion = X, width = Y).
 
 ---
 
@@ -294,3 +307,63 @@ Positions in world space (screenPosition subtracted automatically). Needs 4+ poi
 **DistortionPointHandler:** Points with position, intensity, progress; delegate-based Update. Arrays passed to shader. Activate filter when points exist, set params each frame. Pattern is useful; loader is not.
 
 **IDrawPrimitive / IDrawAdditive:** Interfaces for custom draw ordering. `DrawPrimitives()`, `DrawAdditive(spriteBatch)`.
+
+---
+
+## 13. Luminance & Noxus Design Patterns (Adopted Workflow)
+
+### A. Integrated Shader Drawing (The `IDrawsWithShader` Pattern)
+Instead of manually restarting `SpriteBatch` in every projectile's `PreDraw`:
+1.  **Interface:** Entities implement `IDrawsWithShader` (properties: `LayeringPriority`, `ShaderShouldDrawAdditively`, method: `DrawWithShader(SpriteBatch)`).
+2.  **System:** A central `ModSystem` (like `InterfacedEntityDrawSystem`) hooks `DrawProjectiles`/`DrawNPCs`.
+    - It iterates all active entities implementing the interface.
+    - Restarts `SpriteBatch` **once** with `Immediate` sort mode and `AlphaBlend` (or `Additive`).
+    - Calls `DrawWithShader` for each.
+3.  **Benefit:** cleaner individual classes, fewer batch flushes, correct layering by priority.
+
+### B. Primitives vs. Sprites
+- **Primitives (`PrimitiveRenderer`):** For trails, shockwaves, beams. Use `PostDrawTiles` (via System) or `PreDraw` (if strictly ordered). Logic is separate from the `Projectile.AI`.
+- **Sprites:** Use `IDrawsWithShader` if they need complex shader application.
+
+### C. Particles
+- **Inheritance:** Create particles by inheriting from `Luminance.Core.Graphics.Particle`.
+- **Texture:** Use `AtlasTexture` (from `AtlasManager`) or standard textures.
+- **Visuals:** Use procedural logic (Update) to animate scale/color/rotation rather than frame-by-frame sheets where possible.
+
+### D. Rendering Philosophy
+- **Decoupled:** AI (`Projectile.cs`) handles logic. Rendering (`DrawSystem`) handles visuals.
+- **Procedural:** Prefer math-driven visuals (Sine/Noise on radius/color) over large sprite sheets for effects (e.g. `SolarVFXSystem`).
+
+---
+
+## 14. Elemental Visual Identity (Bullet & VFX Guide)
+
+### ARC
+- **Core:** Thin, needle-like, longer than wide. White-hot tip, cyan/blue body.
+- **Trail:** Discontinuous lightning filaments; jagged, snapping bursts.
+- **Motion:** Fast, flickering, sudden brightness spikes.
+- **Impact:** Star-shaped flash + forked micro-arcs.
+
+### SOLAR
+- **Core:** Rounded/teardrop pellet. White/yellow center → orange/red edge. Soft/blurry bloom.
+- **Trail:** Smooth flame plume, curling backward, continuous fluid motion.
+- **Motion:** Heavy, hot, molten.
+- **Impact:** Expanding fire bloom + drifting embers.
+
+### VOID
+- **Core:** Dense orb, dark center, purple shell, faint glowing rim.
+- **Trail:** Suction trail; particles curve *inward*, subtle, ominous.
+- **Motion:** Slow but massive/powerful.
+- **Impact:** Silent implosion, inward collapse.
+
+### STASIS
+- **Core:** Sharp crystal shard/spike. Pale icy blue + white highlights. Hard, faceted edges (no blur).
+- **Trail:** Tiny crystalline dust/shards.
+- **Motion:** Precise, rigid, "fired icicle".
+- **Impact:** Instant freeze flash + radial crystal shards.
+
+### STRAND
+- **Core:** Elongated knot of thread. Neon green/yellow-green. Organic/wavering edges.
+- **Trail:** Elastic ribbons; stretch, loop, recoil used as trail.
+- **Motion:** Whip-fast, alive, "living tether".
+- **Impact:** Threads snap outward, binding/wrapping.

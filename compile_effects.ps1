@@ -1,24 +1,21 @@
-# Compiles .fx shaders to .mgfxo for Destiny2 mod (embedded in build)
-# Run after editing shaders, before building. Requires: dotnet tool install -g dotnet-mgfxc
-param(
-    [string]$EffectsDir = (Join-Path $PSScriptRoot "Content\Shaders")
-)
+# Compiles .fx shaders using local EasyXnb and deploys to Assets
+# Source: Effects/
+# Compiler: Effects/Compiler/EasyXnb.exe
+# Destination: Assets/AutoloadedEffects/Shaders/Primitives/
 
-$fxFiles = Get-ChildItem -Path $EffectsDir -Filter "*.fx" -File -ErrorAction SilentlyContinue
-if ($fxFiles.Count -eq 0) {
-    Write-Host "No .fx files in $EffectsDir"
-    exit 0
+$ErrorActionPreference = "Stop"
+$ScriptRoot = $PSScriptRoot
+
+# 1. Run EasyXnb from Effects dir (it scans current dir)
+Write-Host "Running EasyXnb..."
+Push-Location "$ScriptRoot\Effects"
+try {
+    & ".\Compiler\EasyXnb.exe"
+}
+finally {
+    Pop-Location
 }
 
-foreach ($fx in $fxFiles) {
-    $base = [System.IO.Path]::GetFileNameWithoutExtension($fx.FullName)
-    $outPath = Join-Path $EffectsDir "$base.mgfxo"
-    Write-Host "Compiling $($fx.Name) -> $base.mgfxo"
-    & mgfxc $fx.FullName $outPath /Profile:OpenGL
-    if ($LASTEXITCODE -eq 0) {
-        Write-Host "  OK" -ForegroundColor Green
-    } else {
-        Write-Host "  FAILED" -ForegroundColor Red
-        exit 1
-    }
-}
+# 2. Results
+Write-Host "Shader compilation complete. XNB files are in $ScriptRoot\Effects"
+

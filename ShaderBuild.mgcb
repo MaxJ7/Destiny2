@@ -11,4 +11,45 @@
 /processorParam:DebugMode=Auto
 /processorParam:Optimize=True
 /build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Content\Shaders\SolarExplosion.fx
-#end
+
+#begin BulletTrailKinetic
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Assets\AutoloadedEffects\Shaders\Primitives\BulletTrailKinetic.fx
+
+#begin BulletTrailSolar
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Assets\AutoloadedEffects\Shaders\Primitives\BulletTrailSolar.fx
+
+#begin BulletTrailArc
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Assets\AutoloadedEffects\Shaders\Primitives\BulletTrailArc.fx
+
+#begin BulletTrailVoid
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Assets\AutoloadedEffects\Shaders\Primitives\BulletTrailVoid.fx
+
+#begin BulletTrailStasis
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Assets\AutoloadedEffects\Shaders\Primitives\BulletTrailStasis.fx
+
+#begin BulletTrailStrand
+/importer:EffectImporter
+/processor:EffectProcessor
+/processorParam:DebugMode=Auto
+/processorParam:Optimize=True
+/build:C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\Assets\AutoloadedEffects\Shaders\Primitives\BulletTrailStrand.fx

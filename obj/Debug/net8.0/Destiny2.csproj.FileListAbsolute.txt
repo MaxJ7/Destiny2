@@ -11,7 +11,3 @@ C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\obj\De
 C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\obj\Debug\net8.0\Destiny2.pdb
 C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\obj\Debug\net8.0\ref\Destiny2.dll
 C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\obj\Debug\net8.0\Destiny2.sourcelink.json
-C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Luminance.dll
-C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Luminance.pdb
-C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\bin\Debug\net8.0\Luminance.xml
-C:\Users\vexga\Documents\My Games\Terraria\tModLoader\ModSources\Destiny2\obj\Debug\net8.0\Destiny2.csproj.Up2Date

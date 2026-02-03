@@ -1,5 +1,12 @@
 using System;
+using System.Collections.Generic;
 using Destiny2.Common.Weapons;
+using Destiny2.Content.Projectiles;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Destiny2.Common.Perks
 {
@@ -296,5 +303,69 @@ namespace Destiny2.Common.Perks
 		{
 			stats.Range += 5f;
 		}
+	}
+
+	public sealed class ExplosiveShadowPerk : Destiny2Perk
+	{
+		internal const int SlugsToExplode = 5;
+		private const float ExplosionDamageScalar = 0.6f;
+		internal const int StunDurationTicks = 60;
+		private const int ExplosionDelayTicks = 15;
+		internal const int ExplosionCooldownTicks = 30;
+
+		public override string DisplayName => "Explosive Shadow";
+		public override string Description =>
+			"Shoot tainted slugs that burrow into combatants. Stacking enough slugs causes them all to explode, stunning surviving combatants.";
+		public override string IconTexture => "Destiny2/Assets/Perks/ExplosiveShadow";
+		public override bool IsFrame => true;
+
+		public override void OnProjectileHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			if (!target.CanBeChasedBy())
+				return;
+
+			ExplosiveShadowGlobalNPC data = target.GetGlobalNPC<ExplosiveShadowGlobalNPC>();
+			if (projectile.type != ModContent.ProjectileType<ExplosiveShadowSlug>())
+				return;
+
+			if (data.IsExplosionActive || data.IsExplosionCoolingDown)
+				return;
+
+			data.CleanupSlugs();
+			data.AddSlug(projectile.whoAmI);
+			data.MarkSlugApplied();
+			data.SlugStacks = data.SlugCount;
+
+			if (data.SlugStacks < SlugsToExplode || data.IsExplosionActive || data.IsExplosionCoolingDown)
+				return;
+
+			int explosionDamage = Math.Max(1, (int)(damageDone * ExplosionDamageScalar));
+			int hitDirection = projectile.direction != 0 ? projectile.direction : target.direction;
+			data.StartExplosionChain(explosionDamage, hitDirection, ExplosionDelayTicks);
+		}
+
+		internal static void SpawnExplosionDust(Vector2 center)
+		{
+			for (int i = 0; i < 28; i++)
+			{
+				Vector2 velocity = Main.rand.NextVector2Circular(3f, 3f) * Main.rand.NextFloat(0.6f, 1.4f);
+				Dust light = Dust.NewDustPerfect(center, DustID.WhiteTorch, velocity, 100, default, 1.4f);
+				light.noGravity = true;
+				light.fadeIn = 1.1f;
+
+				Dust dark = Dust.NewDustPerfect(center, DustID.Smoke, velocity * 0.8f, 200, new Color(10, 10, 10), 1.5f);
+				dark.noGravity = true;
+				dark.fadeIn = 0.9f;
+			}
+
+			Lighting.AddLight(center, 0.12f, 0.12f, 0.12f);
+		}
+	}
+
+	public sealed class VorpalWeaponPerk : Destiny2Perk
+	{
+		public override string DisplayName => "Vorpal Weapon";
+		public override string Description => "Increases damage against bosses.";
+		public override string IconTexture => "Destiny2/Assets/Perks/VorpalWeapon";
 	}
 }
