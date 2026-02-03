@@ -52,7 +52,8 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
     float2 noiseCoords = coords;
     
     // Animate noise
-    noiseCoords.x -= uTime * 0.8; // Fast scroll
+    // Standardize to "Beam" (Static X, Drift Y)
+    // noiseCoords.x -= uTime * 0.8; // Removed forward scroll
     noiseCoords.y += uTime * 0.2; // Slow vertical drift
     
     float noise = tex2D(uImage1Sampler, noiseCoords).r;

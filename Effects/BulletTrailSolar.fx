@@ -42,13 +42,14 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
     float s = uSeed * 10.0;
 
     // --- PHASE 1: Simple Noise Layers ---
-    float2 uv1 = float2(along * 2.0 - t * 1.2 + s, across * 0.8);
+    // Static along X, slight vertical drift/turbulence on Y for "Heat" feel
+    float2 uv1 = float2(along * 2.0 + s, across * 0.8 + t * 0.5);
     float noise1 = tex2D(uImage1, uv1).r;
     
-    float2 uv2 = float2(along * 4.0 - t * 2.5 + s, across * 1.5);
+    float2 uv2 = float2(along * 4.0 + s, across * 1.5 - t * 0.7);
     float noise2 = tex2D(uImage1, uv2).r;
     
-    float2 uv3 = float2(along * 1.0 - t * 0.5 + s, across * 0.4);
+    float2 uv3 = float2(along * 1.0 + s, across * 0.4 + t * 0.2);
     float noise3 = tex2D(uImage1, uv3).r;
 
     // --- PHASE 2: Combination & Contrast ---

@@ -24,12 +24,14 @@ namespace Destiny2.Content.Graphics.Renderers
             public float Width;
             public float Seed;
             public float Length;
+            public bool IsTaken;
 
-            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element, bool isTaken = false)
             {
                 Start = start;
                 End = end;
                 Element = element;
+                IsTaken = isTaken;
                 MaxTime = 20;
                 TimeLeft = 20;
                 Width = 25f;
@@ -40,10 +42,41 @@ namespace Destiny2.Content.Graphics.Renderers
 
         private static List<TraceVFX> Traces = new();
 
-        public static void SpawnTrace(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+        public static void SpawnTrace(Vector2 start, Vector2 end, Destiny2WeaponElement element, bool isTaken = false)
         {
             if (Main.dedServ) return;
-            Traces.Add(new TraceVFX(start, end, element));
+            Traces.Add(new TraceVFX(start, end, element, isTaken));
+        }
+
+        /// <summary>
+        /// Calculates the beam end point using collision checks.
+        /// </summary>
+        public static Vector2 GetBeamEndPoint(Vector2 start, Vector2 velocity, float maxDistance)
+        {
+            Vector2 end = start + velocity * maxDistance;
+
+            // Manual collision check (Terraria's collision methods are weird with points)
+            // CanHitLine works for vision, but we want solid collision.
+            // Let's use a step-based raycast for moderate precision.
+            Vector2 unit = velocity;
+            if (unit == Vector2.Zero) return start;
+
+            for (float dist = 0; dist < maxDistance; dist += 8f)
+            {
+                Vector2 pos = start + unit * dist;
+                Point tileCoords = pos.ToTileCoordinates();
+
+                // Active/Solid check
+                if (WorldGen.InWorld(tileCoords.X, tileCoords.Y, 2))
+                {
+                    Tile tile = Main.tile[tileCoords.X, tileCoords.Y];
+                    if (tile != null && tile.HasTile && Main.tileSolid[tile.TileType] && !Main.tileSolidTop[tile.TileType])
+                    {
+                        return pos;
+                    }
+                }
+            }
+            return end;
         }
 
         public override void PostDrawTiles()
@@ -103,7 +136,17 @@ namespace Destiny2.Content.Graphics.Renderers
                 }
 
                 List<Vector2> trail = new List<Vector2> { trace.Start, trace.End };
-                MiscShaderData shader = Destiny2Shaders.GetBulletTrailShader(trace.Element);
+                // Correct Shader Selection
+                MiscShaderData shader = null;
+                if (trace.IsTaken && GameShaders.Misc.TryGetValue("Destiny2:BulletTrailTaken", out var takenShader))
+                {
+                    shader = takenShader;
+                }
+                else
+                {
+                    shader = Destiny2Shaders.GetBulletTrailShader(trace.Element);
+                }
+
                 if (shader != null)
                 {
                     RenderElementVFX(trail, trace.Element, opacity, trace.Seed, trace.Length, shader);

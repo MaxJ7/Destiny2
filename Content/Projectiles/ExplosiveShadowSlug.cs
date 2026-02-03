@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Weapons;
+using Destiny2.Content.Graphics.Renderers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -69,7 +70,18 @@ namespace Destiny2.Content.Projectiles
                 trailCache.Add(Projectile.Center);
 
             if (Projectile.velocity != Vector2.Zero)
+            {
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+
+                // INSTANT BEAM LOGIC
+                Vector2 endPoint = ElementalBulletRenderer.GetBeamEndPoint(spawnPosition, Projectile.velocity.SafeNormalize(Vector2.UnitX), maxDistance);
+
+                // Spawn Instant Trace (Taken Visuals)
+                ElementalBulletRenderer.SpawnTrace(spawnPosition, endPoint, Destiny2WeaponElement.Void, isTaken: true);
+            }
+
+            // Clear cache and valid it keeps Projectile itself invisible
+            trailCache.Clear();
 
             initialized = true;
         }
@@ -100,25 +112,17 @@ namespace Destiny2.Content.Projectiles
             if (!initialized) return;
 
             // Cache Logic (Same as Bullet.cs for perfect parity)
+            // Cache Logic: Disabled for Instant Beam
+            /*
             if (trailCache.Count > 0)
             {
-                Vector2 lastPoint = trailCache[trailCache.Count - 1];
-                float distSq = Vector2.DistanceSquared(lastPoint, Projectile.Center);
-
-                if (distSq > 100f * 100f)
-                {
-                    trailCache.Clear();
-                    trailCache.Add(Projectile.Center);
-                }
-                else if (distSq >= 2f * 2f)
-                {
-                    trailCache.Add(Projectile.Center);
-                }
+                // ...
             }
             else
             {
                 trailCache.Add(Projectile.Center);
             }
+            */
 
             if (trailCache.Count > TrailCacheMax)
                 trailCache.RemoveAt(0);

@@ -88,15 +88,21 @@ namespace Destiny2.Content.Projectiles
             Projectile.localAI[0] = Projectile.Center.X;
             Projectile.localAI[1] = Projectile.Center.Y;
 
-            trailCache.Clear();
-            // Critical Fix: Do NOT add (0,0) to cache on spawn.
-            if (Projectile.Center != Vector2.Zero)
+            // INSTANT BEAM LOGIC
+            if (Projectile.velocity != Vector2.Zero)
             {
-                trailCache.Add(Projectile.Center);
+                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+
+                // Predict end point
+                Vector2 endPoint = ElementalBulletRenderer.GetBeamEndPoint(spawnPosition, Projectile.velocity.SafeNormalize(Vector2.UnitX), maxDistance);
+
+                // Spawn Instant Trace
+                ElementalBulletRenderer.SpawnTrace(spawnPosition, endPoint, weaponElement);
             }
 
-            if (Projectile.velocity != Vector2.Zero)
-                Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
+            trailCache.Clear();
+            // Do NOT add to trailCache. We want the projectile itself to be invisible/trail-less.
+            // The visual is now purely the Trace.
 
             // Initialize Visuals
             profile = ElementalBulletProfiles.Get(weaponElement);
@@ -122,32 +128,15 @@ namespace Destiny2.Content.Projectiles
             Projectile.localAI[0] = Projectile.Center.X;
             Projectile.localAI[1] = Projectile.Center.Y;
 
-            // CACHE LOGIC: Strict Deduping & Teleport Guard
-            // 1. Only analyze if we have a previous point
+            // CACHE LOGIC: Disabled for Instant Beam mode.
+            // We do NOT add to trailCache, so GetDrawData returns an empty list, 
+            // and ElementalBulletRenderer renders nothing for the moving projectile.
+            /*
             if (trailCache.Count > 0)
             {
-                Vector2 lastPoint = trailCache[trailCache.Count - 1];
-                float distSq = Vector2.DistanceSquared(lastPoint, Projectile.Center);
-
-                // TELEPORT GUARD: If jump > 100px, it's a glitch/teleport. Reset trail.
-                if (distSq > 100f * 100f)
-                {
-                    trailCache.Clear();
-                    trailCache.Add(Projectile.Center);
-                }
-                // DUPLICATE GUARD: If move < 2px, it's a sub-pixel jitter or stationary.
-                // Do NOT add to cache. This prevents degenerate (0-length) segments.
-                else if (distSq >= 2f * 2f)
-                {
-                    trailCache.Add(Projectile.Center);
-                }
-                // Else: Do nothing (Skip duplicate point)
+                // ...
             }
-            else
-            {
-                // First point
-                trailCache.Add(Projectile.Center);
-            }
+            */
 
             // Limit cache size
             if (trailCache.Count > TrailCacheMax)
