@@ -23,6 +23,11 @@ namespace Destiny2.Content.Projectiles
         private bool initialized;
         private float maxDistance = MaxDistance;
 
+        // Sticky State
+        public bool IsStickingToTarget { get; private set; }
+        private int targetWhoAmI = -1;
+        private Vector2 stickOffset;
+
         // VFX
         private ElementalBulletProfile profile;
         private VFXState vfxState;
@@ -34,9 +39,9 @@ namespace Destiny2.Content.Projectiles
             Projectile.width = 6;
             Projectile.height = 6;
             Projectile.friendly = true;
-            Projectile.penetrate = -1;
+            Projectile.penetrate = -1; // Infinite penetrate to allow sticking logic
             Projectile.DamageType = DamageClass.Ranged;
-            Projectile.timeLeft = 60;
+            Projectile.timeLeft = 600; // Increased duration for sticking
             Projectile.aiStyle = -1;
             Projectile.extraUpdates = ExtraUpdates;
             Projectile.tileCollide = true;
@@ -65,49 +70,91 @@ namespace Destiny2.Content.Projectiles
             if (Projectile.velocity != Vector2.Zero)
                 Projectile.velocity = Projectile.velocity.SafeNormalize(Vector2.UnitX) * Speed;
 
-            // Phase 19: Use Void Profile
             profile = ElementalBulletProfiles.Get(Destiny2WeaponElement.Void);
             vfxState = new VFXState();
-
             initialized = true;
+            Projectile.netUpdate = true;
         }
 
         public override void AI()
         {
             if (!initialized) return;
 
-            // Distance Check
-            if (Vector2.Distance(spawnPosition, Projectile.Center) >= maxDistance)
+            if (IsStickingToTarget)
+            {
+                UpdateStickyState();
+            }
+            else
+            {
+                UpdateFlightState();
+            }
+        }
+
+        private void UpdateFlightState()
+        {
+            // Max Distance Check
+            if (Vector2.DistanceSquared(spawnPosition, Projectile.Center) >= maxDistance * maxDistance)
             {
                 Projectile.Kill();
                 return;
             }
 
-            // VFX: Dust Trail (Phase 19 Style)
-            if (Projectile.numUpdates == 0)
-            {
-                ElementalBulletVFX.UpdateTrail(Projectile, profile, ref vfxState);
-            }
+            // Visuals: While flying, we don't need dusts if we're using the Trace System on hit.
+            // But a little trail doesn't hurt.
+            // ElementalBulletVFX.UpdateTrail(Projectile, profile, ref vfxState); // Optional: Commented out to match "Bullet" logic stricter
         }
 
-        public override void OnKill(int timeLeft)
+        private void UpdateStickyState()
         {
-            // IMPACT VFX (Phase 19 Style)
-            ElementalBulletVFX.SpawnImpactBurst(Projectile, profile);
-
-            // Standard explosion sound/light
-            if (!Main.dedServ)
+            NPC target = Main.npc[targetWhoAmI];
+            if (!target.active || target.life <= 0)
             {
-                SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
-                Lighting.AddLight(Projectile.Center, 0.5f, 0f, 0.5f);
+                Projectile.Kill();
+                return;
+            }
+
+            Projectile.Center = target.Center + stickOffset;
+            Projectile.gfxOffY = target.gfxOffY;
+
+            // Stick Visuals: Pulsing or glowing dust to show it's "armed"
+            if (Main.rand.NextBool(10))
+            {
+                Dust d = Dust.NewDustPerfect(Projectile.Center, DustID.PurpleCrystalShard, Vector2.Zero, 100, default, 0.5f);
+                d.noGravity = true;
             }
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            // Simple hit logic (Stickiness was likely added later? User requested Phase 18/19 revert)
-            // If Phase 19 had sticky, it was likely simple. 
-            // I'll keep it simple for now as requested "One to One".
+            if (IsStickingToTarget) return;
+
+            // 1. Spawn the BULLET TRACE (Beam)
+            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.Void);
+
+            // 2. Begin Sticky Mode
+            IsStickingToTarget = true;
+            targetWhoAmI = target.whoAmI;
+            stickOffset = Projectile.Center - target.Center;
+
+            Projectile.velocity = Vector2.Zero;
+            Projectile.friendly = false; // Stop dealing damage
+            Projectile.tileCollide = false;
+            Projectile.timeLeft = 600; // Stay alive for 10s (or until exploded by Perk)
+            Projectile.netUpdate = true;
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            // If we hit a tile, we just die and show the tracer.
+            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.Void);
+            Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
+            return true;
+        }
+
+        public override void OnKill(int timeLeft)
+        {
+            // Only spawn impact effects. Tracer is handled in OnHitNPC or OnTileCollide.
+            ElementalBulletVFX.SpawnImpactBurst(Projectile, profile);
         }
 
         public override bool PreDraw(ref Color lightColor) => false;
