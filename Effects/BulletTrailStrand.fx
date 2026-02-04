@@ -1,5 +1,7 @@
-// Strand: Thread Tracer
-// Uses scrolling noise (Kinetic Template)
+// Strand: Golden Era Safe Gradient
+// Green -> Neon Green (Weave)
+// Organic ribbon
+
 matrix uWorldViewProjection;
 float uTime;
 
@@ -23,23 +25,7 @@ VertexShaderOutput VertexShaderFunction(in VertexShaderInput input)
     output.Position = mul(input.Position, uWorldViewProjection);
     output.Color = input.Color;
     output.TextureCoordinates = input.TextureCoordinates;
-    
     return output;
-}
-
-float hash(float2 p) {
-    p = frac(p * float2(123.34, 456.21));
-    p += dot(p, p + 45.32);
-    return frac(p.x * p.y);
-}
-
-float noise(float2 p) {
-    float2 i = floor(p);
-    float2 f = frac(p);
-    f = f * f * (3.0 - 2.0 * f);
-    float res = lerp(lerp(hash(i), hash(i + float2(1.0, 0.0)), f.x),
-                     lerp(hash(i + float2(0.0, 1.0)), hash(i + float2(1.0, 1.0)), f.x), f.y);
-    return res;
 }
 
 float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
@@ -47,18 +33,16 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
     float along = input.TextureCoordinates.x;
     float across = abs(input.TextureCoordinates.y - 0.5) * 2.0;
 
-    // Kinetic Logic: Static noise
-    float2 uv = float2(along * 6.0, across * 2.0);
-    float n = noise(uv);
+    // Soft Edge
+    float alpha = 1.0 - smoothstep(0.6, 1.0, across);
+    alpha *= smoothstep(0.0, 0.1, along);
+
+    // Weave pattern (Sine wave, safe)
+    float weave = sin(along * 30.0 + uTime * 5.0) * 0.2;
+    float3 cGreen = float3(0.0, 0.6, 0.2);
+    float3 cNeon = float3(0.2, 1.0, 0.4);
     
-    float alpha = 1.0 - smoothstep(0.0, 1.0, across + n * 0.4);
-    alpha *= smoothstep(0.0, 0.2, along);
-    
-    // Color: Bright core (Neutral Luma)
-    float3 color = lerp(float3(1.2, 1.2, 1.2), float3(0.5, 0.5, 0.5), across);
-    
-    // Thread Boost (Luma)
-    color += float3(0.5, 0.5, 0.5) * (1.0 - along) * 0.5;
+    float3 color = lerp(cGreen, cNeon, across + weave);
 
     return float4(color, alpha) * input.Color;
 }
@@ -71,4 +55,3 @@ technique Technique1
         PixelShader = compile ps_3_0 PixelShaderFunction();
     }
 }
-

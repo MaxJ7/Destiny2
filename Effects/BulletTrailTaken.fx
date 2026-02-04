@@ -83,8 +83,11 @@ float4 PixelShaderFunction(VertexShaderOutput input) : COLOR0
     
     float3 finalColor = lerp(float3(0,0,0), float3(1.2, 1.2, 1.5), coreIntensity);
     
-    // Fade out at tail
-    float opacity = input.Color.a * (1.0 - coords.x); 
+    // Fade out at tail (Sharp Fade)
+    // Old linear: float opacity = input.Color.a * (1.0 - coords.x); 
+    // New Sharp: full opacity until 0.9, then fades to 0 at 1.0
+    float fade = smoothstep(1.0, 0.9, coords.x); 
+    float opacity = input.Color.a * fade;
     
     // Threshold alpha to create "torn" edges
     float alpha = auraShape * opacity;

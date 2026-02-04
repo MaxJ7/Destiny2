@@ -29,7 +29,7 @@ namespace Destiny2
             InitializeDiagnosticLog();
 
             // Load Shaders (Manual Registration for Effects folder)
-            Content.Graphics.Shaders.Destiny2Shaders.Load(this);
+            Common.VFX.Destiny2Shaders.Load(this);
         }
 
         public override void Unload()
@@ -42,7 +42,7 @@ namespace Destiny2
             HitscanLogPath = null;
             DiagnosticLogPath = null;
 
-            Content.Graphics.Shaders.Destiny2Shaders.Unload();
+            Common.VFX.Destiny2Shaders.Unload();
         }
 
         internal static void LogHitscan(string message)

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 
-namespace Destiny2.Content.Graphics.Particles
+namespace Destiny2.Common.VFX
 {
     public struct ElementalBulletProfile
     {

@@ -1,6 +1,6 @@
 using System;
 using Destiny2.Common.Perks;
-using Destiny2.Content.Graphics.Renderers;
+using Destiny2.Common.VFX;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;

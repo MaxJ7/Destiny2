@@ -3,18 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Graphics.Shaders;
 
-namespace Destiny2.Content.Graphics.Primitives
+namespace Destiny2.Common.VFX
 {
     public struct PrimitiveSettings
     {
         public Func<float, float> WidthFunction;
         public Func<float, Color> ColorFunction;
-        public MiscShaderData Shader;
+        public Effect Shader;
         public bool Pixelate;
 
-        public PrimitiveSettings(Func<float, float> WidthFunction, Func<float, Color> ColorFunction, MiscShaderData Shader = null, bool Pixelate = false)
+        public PrimitiveSettings(Func<float, float> WidthFunction, Func<float, Color> ColorFunction, Effect Shader = null, bool Pixelate = false)
         {
             this.WidthFunction = WidthFunction;
             this.ColorFunction = ColorFunction;
@@ -29,9 +28,9 @@ namespace Destiny2.Content.Graphics.Primitives
         public Func<float, Color> ColorFunction;
         public Func<float, float> RadiusFunction;
         public bool Pixelate;
-        public MiscShaderData Shader;
+        public Effect Shader;
 
-        public PrimitiveSettingsCircleEdge(Func<float, float> widthFunction, Func<float, Color> colorFunction, Func<float, float> radiusFunction, bool pixelate = false, MiscShaderData shader = null)
+        public PrimitiveSettingsCircleEdge(Func<float, float> widthFunction, Func<float, Color> colorFunction, Func<float, float> radiusFunction, bool pixelate = false, Effect shader = null)
         {
             WidthFunction = widthFunction;
             ColorFunction = colorFunction;
@@ -50,16 +49,12 @@ namespace Destiny2.Content.Graphics.Primitives
             int count = points.Count;
             VertexPositionColorTexture[] vertices = new VertexPositionColorTexture[count * 2];
 
-            Vector2 screenPos = Main.screenPosition;
-
             for (int i = 0; i < count; i++)
             {
                 float t = i / (float)(count - 1);
                 float width = settings.WidthFunction(t);
                 Color color = settings.ColorFunction(t);
-
-                // Manual screen-space subtraction for maximum stability
-                Vector2 pos = points[i] - screenPos;
+                Vector2 pos = points[i];
 
                 Vector2 normal = Vector2.Zero;
                 if (i < count - 1)
@@ -78,26 +73,35 @@ namespace Destiny2.Content.Graphics.Primitives
                 Vector2 left = pos + normal * width * 0.5f;
                 Vector2 right = pos - normal * width * 0.5f;
 
+                left -= Main.screenPosition;
+                right -= Main.screenPosition;
+
                 vertices[i * 2] = new VertexPositionColorTexture(new Vector3(left, 0), color, new Vector2(t, 0));
                 vertices[i * 2 + 1] = new VertexPositionColorTexture(new Vector3(right, 0), color, new Vector2(t, 1));
             }
 
-            MiscShaderData shader = settings.Shader;
-            if (shader == null) return;
+            Effect effect = settings.Shader;
+            if (effect == null) return;
 
-            // Flat orthographic projection (no extra matrices, we did the work in C#)
+            Matrix transform = Main.GameViewMatrix.TransformationMatrix;
             Matrix projection = Matrix.CreateOrthographicOffCenter(0, Main.screenWidth, Main.screenHeight, 0, 0, 1);
-            shader.Shader.Parameters["uWorldViewProjection"]?.SetValue(projection);
-            shader.Apply(null);
+            Matrix wvp = transform * projection;
 
-            Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, count * 2 - 2);
+            if (effect.Parameters["uWorldViewProjection"] != null)
+                effect.Parameters["uWorldViewProjection"].SetValue(wvp);
+
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+                Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, count * 2 - 2);
+            }
         }
 
         public static void RenderCircleEdge(Vector2 center, PrimitiveSettingsCircleEdge settings, int points)
         {
+            // Closed loop
             int count = points + 1;
             VertexPositionColorTexture[] vertices = new VertexPositionColorTexture[count * 2];
-            Vector2 screenPos = Main.screenPosition;
 
             for (int i = 0; i < count; i++)
             {
@@ -109,26 +113,36 @@ namespace Destiny2.Content.Graphics.Primitives
                 Color color = settings.ColorFunction(t);
 
                 Vector2 dir = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-                // Manual screen-space subtraction
-                Vector2 pos = (center + dir * radius) - screenPos;
+                Vector2 pos = center + dir * radius;
 
-                Vector2 normal = dir;
+                Vector2 normal = dir; // Pointing out
 
                 Vector2 core = pos - normal * width * 0.5f;
                 Vector2 outer = pos + normal * width * 0.5f;
+
+                core -= Main.screenPosition;
+                outer -= Main.screenPosition;
 
                 vertices[i * 2] = new VertexPositionColorTexture(new Vector3(core, 0), color, new Vector2(t, 0));
                 vertices[i * 2 + 1] = new VertexPositionColorTexture(new Vector3(outer, 0), color, new Vector2(t, 1));
             }
 
-            MiscShaderData shader = settings.Shader;
-            if (shader == null) return;
+            Effect effect = settings.Shader;
 
+            if (effect == null) return;
+
+            Matrix transform = Main.GameViewMatrix.TransformationMatrix;
             Matrix projection = Matrix.CreateOrthographicOffCenter(0, Main.screenWidth, Main.screenHeight, 0, 0, 1);
-            shader.Shader.Parameters["uWorldViewProjection"]?.SetValue(projection);
-            shader.Apply(null);
+            Matrix wvp = transform * projection;
 
-            Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, count * 2 - 2);
+            if (effect.Parameters["uWorldViewProjection"] != null)
+                effect.Parameters["uWorldViewProjection"].SetValue(wvp);
+
+            foreach (EffectPass pass in effect.CurrentTechnique.Passes)
+            {
+                pass.Apply();
+                Main.graphics.GraphicsDevice.DrawUserPrimitives(PrimitiveType.TriangleStrip, vertices, 0, count * 2 - 2);
+            }
         }
     }
 }
