@@ -16,8 +16,8 @@ namespace Destiny2.Content.Projectiles
     public sealed class ExplosiveShadowSlug : ModProjectile
     {
         private const float MaxDistance = 1200f;
-        private const float Speed = 28f;
-        private const int ExtraUpdates = 3;
+        private const float Speed = 32f; // Matched to Bullet
+        private const int ExtraUpdates = 100; // Matched to Bullet (Instant Travel)
 
         private Vector2 spawnPosition;
         private bool initialized;
@@ -129,7 +129,7 @@ namespace Destiny2.Content.Projectiles
             if (IsStickingToTarget) return;
 
             // 1. Spawn the BULLET TRACE (Beam)
-            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.ExplosiveShadow);
+            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2Shaders.ExplosiveShadowTrail);
 
             // 2. Begin Sticky Mode
             IsStickingToTarget = true;
@@ -140,19 +140,26 @@ namespace Destiny2.Content.Projectiles
             Projectile.friendly = false; // Stop dealing damage
             Projectile.tileCollide = false;
             Projectile.timeLeft = 600; // Stay alive for 10s (or until exploded by Perk)
+            Projectile.extraUpdates = 0; // IMPORTANT: Reset updates so the bomb lasts 10 real seconds, not 0.1s
             Projectile.netUpdate = true;
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             // If we hit a tile, we just die and show the tracer.
-            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.ExplosiveShadow);
+            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2Shaders.ExplosiveShadowTrail);
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
             return true;
         }
 
         public override void OnKill(int timeLeft)
         {
+            // If we are NOT sticking, we need to ensure the trace is drawn (e.g. Max Range Miss or Tile Collide).
+            if (!IsStickingToTarget)
+            {
+                BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2Shaders.ExplosiveShadowTrail);
+            }
+
             // Only spawn impact effects. Tracer is handled in OnHitNPC or OnTileCollide.
             ElementalBulletVFX.SpawnImpactBurst(Projectile, profile);
         }

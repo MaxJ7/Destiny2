@@ -49,6 +49,7 @@ namespace Destiny2.Common.Perks
         private Destiny2WeaponItem sourceWeaponItem;
         private Destiny2AmmoType ammoType = Destiny2AmmoType.Primary;
         private Destiny2WeaponElement rightChoiceElement = Destiny2WeaponElement.Kinetic;
+        private bool hasTouchOfMalice;
 
         public override bool InstancePerEntity => true;
         internal bool HasIncandescentPerk => hasIncandescent;
@@ -132,6 +133,7 @@ namespace Destiny2.Common.Perks
             ammoType = Destiny2AmmoType.Primary;
             rightChoiceElement = Destiny2WeaponElement.Kinetic;
             hasArmorPiercingRounds = false;
+            hasTouchOfMalice = false;
 
             bool isChild = IsChildProjectile(source);
             Destiny2PerkProjectile parentData = null;
@@ -187,6 +189,8 @@ namespace Destiny2.Common.Perks
                         hasEyesUpGuardian = true;
                     else if (perk is ArmorPiercingRoundsPerk)
                         hasArmorPiercingRounds = true;
+                    else if (perk is TouchOfMalicePerk)
+                        hasTouchOfMalice = true;
                 }
 
                 // THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
@@ -316,6 +320,9 @@ namespace Destiny2.Common.Perks
                     if (bonus > 0f)
                         multiplier *= 1f + bonus;
                 }
+
+                if (hasTouchOfMalice && sourceWeaponItem.CurrentMagazine == 1)
+                    multiplier *= TouchOfMalicePerk.DamageMultiplier;
             }
 
             if (multiplier > 1f)

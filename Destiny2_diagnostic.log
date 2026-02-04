@@ -1074,3 +1074,23 @@
 ---- Diagnostic Log Start 2026-02-04 01:17:57 ----
 ---- Diagnostic Log Start 2026-02-04 01:24:20 ----
 ---- Diagnostic Log Start 2026-02-04 01:28:13 ----
+---- Diagnostic Log Start 2026-02-04 01:36:31 ----
+---- Diagnostic Log Start 2026-02-04 01:36:55 ----
+---- Diagnostic Log Start 2026-02-04 01:42:53 ----
+---- Diagnostic Log Start 2026-02-04 01:43:48 ----
+---- Diagnostic Log Start 2026-02-04 01:47:58 ----
+---- Diagnostic Log Start 2026-02-04 01:56:50 ----
+---- Diagnostic Log Start 2026-02-04 02:06:54 ----
+---- Diagnostic Log Start 2026-02-04 02:08:31 ----
+---- Diagnostic Log Start 2026-02-04 02:36:06 ----
+---- Diagnostic Log Start 2026-02-04 02:36:42 ----
+---- Diagnostic Log Start 2026-02-04 02:42:40 ----
+---- Diagnostic Log Start 2026-02-04 02:44:24 ----
+---- Diagnostic Log Start 2026-02-04 02:48:14 ----
+---- Diagnostic Log Start 2026-02-04 02:49:06 ----
+---- Diagnostic Log Start 2026-02-04 02:50:23 ----
+[02:51:27.290] EyesUp TryConsume failed: stacks=0
+[02:51:41.644] EyesUp hook triggered: GetHealLife Player=0
+[02:51:41.644] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=4387
+[02:51:41.651] EyesUp hook triggered: GetHealLife Player=0
+[02:51:41.651] EyesUp grant skipped (already granted this frame). Frame=4387

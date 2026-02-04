@@ -10,8 +10,7 @@ namespace Destiny2.Common.Weapons
         Strand,
         Solar,
         Arc,
-        Void,
-        ExplosiveShadow
+        Void
     }
 
     public static class Destiny2WeaponElementExtensions

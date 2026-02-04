@@ -44,12 +44,19 @@ namespace Destiny2.Common.Perks
             Register(new AggressiveBurstFramePerk());
             Register(new WaveFramePerk());
             Register(new TheRightChoiceFramePerk());
+            Register(new TouchOfMalicePerk());
             Register(new HammerForgedRiflingPerk());
             Register(new SmallborePerk());
+            Register(new PolygonalRiflingPerk());
             Register(new ExtendedMagPerk());
+            Register(new FlaredMagwellPerk());
             Register(new TacticalMagPerk());
             Register(new AlloyMagPerk());
+            Register(new ArmorPiercingRoundsPerk());
+            // Register(new RicochetRoundsPerk());
+            Register(new HandLaidStockPerk());
             Register(new CompositeStockPerk());
+            Register(new RampagePerk());
             Register(new OutlawPerk());
             Register(new RapidHitPerk());
             Register(new KillClipPerk());
@@ -57,7 +64,6 @@ namespace Destiny2.Common.Perks
             Register(new EyesUpGuardianPerk());
             Register(new ShootToLootPerk());
             Register(new FourthTimesTheCharmPerk());
-            Register(new RampagePerk());
             Register(new OnslaughtPerk());
             Register(new KineticTremorsPerk());
             Register(new AdagioPerk());
@@ -67,7 +73,6 @@ namespace Destiny2.Common.Perks
             Register(new ExplosiveShadowPerk());
             Register(new VorpalWeaponPerk());
             Register(new IncandescentPerk());
-            Register(new ArmorPiercingRoundsPerk());
         }
 
         public static void Register(Destiny2Perk perk)

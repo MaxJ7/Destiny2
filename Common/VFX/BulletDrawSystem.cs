@@ -14,15 +14,17 @@ namespace Destiny2.Common.VFX
             public Vector2 Start;
             public Vector2 End;
             public Destiny2WeaponElement Element;
+            public Effect CustomShader; // Added Custom Shader support
             public int TimeLeft;
             public int MaxTime;
             public float Width;
 
-            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element, Effect customShader = null)
             {
                 Start = start;
                 End = end;
                 Element = element;
+                CustomShader = customShader;
                 MaxTime = 15;
                 TimeLeft = 15;
                 Width = 20f;
@@ -35,6 +37,13 @@ namespace Destiny2.Common.VFX
         {
             if (Main.dedServ) return;
             Traces.Add(new TraceVFX(start, end, element));
+        }
+
+        public static void SpawnTrace(Vector2 start, Vector2 end, Effect customShader)
+        {
+            if (Main.dedServ) return;
+            // Use Kinetic as placeholder element, but shader will override
+            Traces.Add(new TraceVFX(start, end, Destiny2WeaponElement.Kinetic, customShader));
         }
 
         public override void PostDrawTiles()
@@ -57,7 +66,7 @@ namespace Destiny2.Common.VFX
                 }
 
                 List<Vector2> trail = GenerateBeamTrail(trace.Start, trace.End);
-                RenderElementVFX(trail, trace.Element, opacity);
+                RenderElementVFX(trail, trace.Element, opacity, trace.CustomShader);
 
                 // Decrement time
                 var newTrace = trace;
@@ -76,9 +85,9 @@ namespace Destiny2.Common.VFX
             return points;
         }
 
-        private static void RenderElementVFX(List<Vector2> trail, Destiny2WeaponElement element, float opacity)
+        private static void RenderElementVFX(List<Vector2> trail, Destiny2WeaponElement element, float opacity, Effect customShader = null)
         {
-            Effect shader = Destiny2Shaders.GetBulletTrailShader(element);
+            Effect shader = customShader ?? Destiny2Shaders.GetBulletTrailShader(element);
             if (shader == null) return;
 
             // Common parameters
@@ -95,7 +104,37 @@ namespace Destiny2.Common.VFX
                     shader.Parameters["NoiseTexture"].SetValue(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/SolarNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
             }
 
+            // For custom shaders like ExplosiveShadow, we might want custom setup here, 
+            // but for now the shader handles its own noise via uImage1 if passed. 
+            // Currently BulletTrailExplosiveShadow uses uImage1, which PrimitiveSystem should construct if used.
+            // But PrimitiveSystem usually passes Main.pixel for uImage0.
+            // If the shader needs uImage1 (Noise), we need to set it here if PrimitiveSystem allows.
+            // Our PrimitiveSettings handles shader parameters? No, PrimitiveSystem does.
+            // Let's assume the texture is handled by the shader logic or defaults for now.
+            // Wait, Custom Shader uses uImage1. primitiveSystem.RenderTrail usually sets textures?
+            // Checking: PrimitiveSystem.RenderTrail -> PrimitiveRenderer -> Uses the provided shader.
+            // If shader expects uImage1, we MUST set it here.
+
+            // CHECK: Does BulletTrailExplosiveShadow use uImage1? Yes.
+            // Where is that texture coming from?
+            // "Destiny2/Assets/Textures/SolarNoise" is a good noise candidates, or "TakenNoise".
+            // Since we implemented it reusing "SolarNoise" logic potentially, we should set it.
+            // However, the Custom Shader call passes 'element' as 'Kinetic' (placeholder).
+            // So we might need to check if (customShader == Destiny2Shaders.ExplosiveShadowTrail)
+
+            if (customShader == Destiny2Shaders.ExplosiveShadowTrail)
+            {
+                if (shader.Parameters["uImage1"] != null)
+                    shader.Parameters["uImage1"].SetValue(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/SolarNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+            }
+
             Color baseColor = GetElementColor(element) * opacity;
+            // Overwrite color for Explosive Shadow manually if needed, or rely on Shader ignoring Vertex Color?
+            // The shader: uses `input.Color`.
+            // Kinetic returns White.
+            // ExplosiveShadow shader hardcodes colors (White Core, Dark Cyan Aura) and multiplies by input.Color.
+            // So White input is perfect.
+
             float width = 15f * opacity;
 
             var settings = new PrimitiveSettings(

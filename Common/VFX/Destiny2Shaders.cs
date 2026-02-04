@@ -72,7 +72,6 @@ namespace Destiny2.Common.VFX
                 Destiny2WeaponElement.Void => VoidTrail,
                 Destiny2WeaponElement.Stasis => StasisTrail,
                 Destiny2WeaponElement.Strand => StrandTrail,
-                Destiny2WeaponElement.ExplosiveShadow => ExplosiveShadowTrail,
                 _ => KineticTrail
             };
         }
