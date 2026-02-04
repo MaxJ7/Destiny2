@@ -129,7 +129,7 @@ namespace Destiny2.Content.Projectiles
             if (IsStickingToTarget) return;
 
             // 1. Spawn the BULLET TRACE (Beam)
-            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.Void);
+            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.ExplosiveShadow);
 
             // 2. Begin Sticky Mode
             IsStickingToTarget = true;
@@ -146,7 +146,7 @@ namespace Destiny2.Content.Projectiles
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
             // If we hit a tile, we just die and show the tracer.
-            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.Void);
+            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, Destiny2WeaponElement.ExplosiveShadow);
             Collision.HitTiles(Projectile.position, Projectile.velocity, Projectile.width, Projectile.height);
             return true;
         }
