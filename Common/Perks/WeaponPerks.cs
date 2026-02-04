@@ -408,4 +408,19 @@ namespace Destiny2.Common.Perks
             stats.Stability += 10;
         }
     }
+
+    public sealed class ChargedWithBlightPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Charged with Blight";
+        public override string Description => "hits charge up a Taken Blight shot. Hold Reload with maximum stacks to activate.";
+        public override string IconTexture => "Destiny2/Assets/Perks/ChargedWithBlight";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+
+        public const int MaxStacks = 10;
+        public const int BlightDamage = 208;
+        public const int DotDamage = 10;
+        public const int DotDuration = 4;
+        public const float SorrowVulnerability = 1.5f;
+        public const int HealAmount = 25;
+    }
 }

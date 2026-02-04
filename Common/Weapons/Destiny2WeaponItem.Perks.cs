@@ -5,6 +5,7 @@ using Destiny2.Common.Players;
 using Destiny2.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -62,6 +63,9 @@ namespace Destiny2.Common.Weapons
         private int dynamicSwayStacks;
         private int rightChoiceShotCount;
         private int touchOfMaliceKillCount;
+        private int blightStacks;
+        private bool isBlightLauncherActive;
+        private int reloadHoldTimer;
         private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
         private readonly List<int> kineticTremorsTargetKeys = new List<int>();
 
@@ -147,6 +151,11 @@ namespace Destiny2.Common.Weapons
 
             if (fourthTimesHitTimer > 0 && fourthTimesHitCount > 0)
                 AddPerkHudEntry(entries, nameof(FourthTimesTheCharmPerk), fourthTimesHitTimer, FourthTimesTheCharmPerk.WindowTicks, fourthTimesHitCount, true);
+
+            if (isBlightLauncherActive)
+                AddPerkHudEntry(entries, nameof(ChargedWithBlightPerk), 1, 1, 0, false);
+            else if (blightStacks > 0)
+                AddPerkHudEntry(entries, nameof(ChargedWithBlightPerk), 1, 1, blightStacks, true);
         }
 
         private static void AddPerkHudEntry(List<PerkHudEntry> entries, string perkKey, int timer, int maxTimer, int stacks, bool showStacks)
@@ -362,6 +371,8 @@ namespace Destiny2.Common.Weapons
                 modPlayer.RequestDynamicSwayBuff(dynamicSwayStacks > 0 ? dynamicSwayTimer : 0);
                 modPlayer.RequestFourthTimesBuff(fourthTimesHitTimer);
             }
+
+            UpdateBlightLauncherMode(player);
         }
 
         internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool isKill)
@@ -375,10 +386,20 @@ namespace Destiny2.Common.Weapons
             if (hasFrenzy)
                 RegisterCombat(player);
 
+            if (HasPerk<ChargedWithBlightPerk>())
+            {
+                if (blightStacks < ChargedWithBlightPerk.MaxStacks)
+                {
+                    blightStacks++;
+                    if (blightStacks >= ChargedWithBlightPerk.MaxStacks)
+                        SendPerkDebug(player, "Blight Launcher Ready! Hold Reload to activate.");
+                }
+            }
+
             if (target == null || target.friendly || !isKill)
                 return;
 
-            if (hasOutlaw)
+            if (hasOutlaw && hit.Crit)
                 ActivateOutlaw(player);
 
             if (hasKillClip)
@@ -720,6 +741,45 @@ namespace Destiny2.Common.Weapons
                     kineticTremorsTargets.Remove(npcId);
                 else
                     kineticTremorsTargets[npcId] = state;
+            }
+        }
+        private void UpdateBlightLauncherMode(Player player)
+        {
+            if (player == null || player.HeldItem?.ModItem != this || !HasPerk<ChargedWithBlightPerk>())
+            {
+                reloadHoldTimer = 0;
+                return;
+            }
+
+            if (blightStacks >= ChargedWithBlightPerk.MaxStacks && global::Destiny2.Destiny2.ReloadKeybind.Current)
+            {
+                reloadHoldTimer++;
+                if (reloadHoldTimer >= 60) // 1 second hold
+                {
+                    reloadHoldTimer = 0;
+                    if (!isBlightLauncherActive)
+                    {
+                        isBlightLauncherActive = true;
+                        blightStacks = 0;
+
+                        // Cancel reload
+                        isReloading = false;
+                        reloadTimer = 0;
+                        reloadTimerMax = 0;
+
+                        // Heal player
+                        int heal = ChargedWithBlightPerk.HealAmount;
+                        player.statLife = Math.Min(player.statLife + heal, player.statLifeMax2);
+                        player.HealEffect(heal);
+
+                        SoundEngine.PlaySound(SoundID.Item4, player.Center); // Sound for activation
+                        SendPerkDebug(player, "Blight Launcher ACTIVE!");
+                    }
+                }
+            }
+            else
+            {
+                reloadHoldTimer = 0;
             }
         }
     }

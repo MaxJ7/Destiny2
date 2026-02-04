@@ -43,6 +43,11 @@ Items: {
 		DisplayName: Trustee
 		Tooltip: ""
 	}
+
+	TouchOfMalice: {
+		DisplayName: Touch Of Malice
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -51,6 +56,7 @@ Projectiles: {
 	KineticTremorsShockwave.DisplayName: Kinetic Tremors Shockwave
 	KineticTremorsDustAnchor.DisplayName: Kinetic Tremors Dust Anchor
 	BeamBurst.DisplayName: Beam Burst
+	ChargedWithBlightProjectile.DisplayName: Charged With Blight Projectile
 }
 
 Buffs: {
@@ -107,6 +113,11 @@ Buffs: {
 	TargetLockBuff: {
 		DisplayName: Target Lock Buff
 		Description: Mods.Destiny2.Buffs.TargetLockBuff.Description
+	}
+
+	BlightDebuff: {
+		DisplayName: Blight Debuff
+		Description: Mods.Destiny2.Buffs.BlightDebuff.Description
 	}
 }
 

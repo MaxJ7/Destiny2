@@ -61,6 +61,7 @@ namespace Destiny2.Common.Weapons
 
         public abstract Destiny2WeaponStats BaseStats { get; }
         public virtual Destiny2AmmoType AmmoType => Destiny2AmmoType.Primary;
+        public virtual bool IsWeaponOfSorrow => false;
         public Destiny2WeaponElement WeaponElement => hasElementOverride ? elementOverride : GetDefaultWeaponElement();
 
         protected override bool CloneNewInstances => true;
@@ -437,6 +438,25 @@ namespace Destiny2.Common.Weapons
                 if (isReloading || currentMagazine <= 0)
                     return false;
 
+                if (isBlightLauncherActive)
+                {
+                    type = ModContent.ProjectileType<ChargedWithBlightProjectile>();
+
+                    // Scale damage by player modifiers
+                    DamageClass damageClass = Destiny2WeaponElement.Arc.GetDamageClass();
+                    StatModifier statMod = player.GetTotalDamage(damageClass);
+                    damage = (int)statMod.ApplyTo(ChargedWithBlightPerk.BlightDamage);
+
+                    isBlightLauncherActive = false;
+                    velocity = velocity.SafeNormalize(Vector2.UnitX) * 8f; // Slow moving
+
+                    int p = Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+                    if (p >= 0 && p < Main.maxProjectiles)
+                        Main.projectile[p].DamageType = damageClass;
+
+                    return false; // We handled shooting
+                }
+
                 bool touchedByMalice = HasPerk<TouchOfMalicePerk>() && currentMagazine == 1;
 
                 if (!touchedByMalice)
@@ -535,7 +555,7 @@ namespace Destiny2.Common.Weapons
         {
             tooltips.RemoveAll(line => line.Mod == "Terraria" && VanillaStatLines.Contains(line.Name));
 
-            Destiny2WeaponStats stats = BaseStats;
+            Destiny2WeaponStats stats = GetStats();
             Destiny2WeaponElement element = WeaponElement;
             tooltips.Add(new TooltipLine(Mod, ElementTooltipPrefix + element, $"{Item.damage} {element} Damage")
             {

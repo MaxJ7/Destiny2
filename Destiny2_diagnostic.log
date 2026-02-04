@@ -1094,3 +1094,28 @@
 [02:51:41.644] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=4387
 [02:51:41.651] EyesUp hook triggered: GetHealLife Player=0
 [02:51:41.651] EyesUp grant skipped (already granted this frame). Frame=4387
+---- Diagnostic Log Start 2026-02-04 02:55:18 ----
+---- Diagnostic Log Start 2026-02-04 02:57:08 ----
+[02:57:47.833] Perk diagnostics enabled.
+[02:57:49.130] Perk diagnostics disabled.
+[02:57:52.167] Perk diagnostics enabled.
+[02:57:54.349] Armor-Piercing Rounds applied. projId=0 penetrate=2
+[02:57:54.349] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Breakneck hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[02:57:56.900] Armor-Piercing Rounds applied. projId=0 penetrate=2
+[02:57:56.901] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Breakneck hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[02:57:57.500] Armor-Piercing Rounds applied. projId=0 penetrate=2
+[02:57:57.501] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Breakneck hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[02:57:58.997] Perk diagnostics disabled.
+---- Diagnostic Log Start 2026-02-04 03:08:14 ----
+[03:08:50.090] EyesUp TryConsume failed: stacks=0
+---- Diagnostic Log Start 2026-02-04 03:12:19 ----
+---- Diagnostic Log Start 2026-02-04 03:19:38 ----
+---- Diagnostic Log Start 2026-02-04 03:24:37 ----
+---- Diagnostic Log Start 2026-02-04 03:25:17 ----
+[03:28:40.604] EyesUp TryConsume failed: stacks=0
+[03:28:41.040] EyesUp TryConsume failed: stacks=0
+[03:28:41.707] EyesUp TryConsume failed: stacks=0
+[03:28:42.537] EyesUp TryConsume failed: stacks=0
+---- Diagnostic Log Start 2026-02-04 03:30:25 ----
+---- Diagnostic Log Start 2026-02-04 03:30:53 ----
+---- Diagnostic Log Start 2026-02-04 03:34:08 ----

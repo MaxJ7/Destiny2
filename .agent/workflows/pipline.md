@@ -201,3 +201,43 @@ OnHitNPC
 :
 if (isKill && isPrecision && perks.Contains<DragonflyPerk>()) {
     SpawnExplosion(target.Center); // Custom method
+}
+Workflow 5: Alternate Firing Modes (Hold Activation)
+Goal: Add "Blight Launcher" (Hold Reload to swap shot type).
+
+State Management: In 
+Destiny2WeaponItem.Perks.cs
+:
+Add stacks, isActive, and holdTimer.
+Implement an UpdateMode method called via 
+UpdatePerkTimers
+.
+Check global::Destiny2.Destiny2.ReloadKeybind.Current for the hold timer.
+Firing Logic: In 
+Destiny2WeaponStats.cs
+:
+Intercept the 
+Shoot
+ override.
+If isActive, fire the custom projectile and set isActive = false.
+Heal/VFX: Activation logic in UpdateMode handles the player.HealEffect and sound.
+5. Critical Gotchas & Common Pitfalls
+⚠️ The "Hit Gate" Pitfall
+In 
+Destiny2PerkProjectile.cs
+, the 
+NotifyProjectileHit
+ call is gated by a check for active perks.
+
+The Problem: If you add a new hit-based perk but forget to add its hasPerk check to the if (!hasOutlaw && !hasRapidHit ...) guard clause, the perk will never trigger unless the weapon also has one of those other perks.
+The Fix: Always add a hasYourNewPerk flag and include it in that final guard.
+⚠️ Weapon Stat Consistency
+The Rule: Never reference BaseStats for tooltips or UI calculations.
+The Fix: Always use 
+GetStats()
+ (or weapon.GetStats()). This ensures that barrel/magazine buffs and active trait bonuses (like Target Lock) are accurately reflected in the numbers shown to the player.
+⚠️ Stack Increment Logic
+The Problem: Placing stack-on-hit logic below the isKill guard in 
+Destiny2WeaponItem.Perks.cs
+.
+The Fix: Ensure hit-based logic (like stack acquisition) remains above the if (!isKill) return; block.

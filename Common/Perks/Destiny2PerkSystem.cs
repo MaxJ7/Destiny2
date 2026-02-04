@@ -73,6 +73,7 @@ namespace Destiny2.Common.Perks
             Register(new ExplosiveShadowPerk());
             Register(new VorpalWeaponPerk());
             Register(new IncandescentPerk());
+            Register(new ChargedWithBlightPerk());
         }
 
         public static void Register(Destiny2Perk perk)

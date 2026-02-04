@@ -50,6 +50,7 @@ namespace Destiny2.Common.Perks
         private Destiny2AmmoType ammoType = Destiny2AmmoType.Primary;
         private Destiny2WeaponElement rightChoiceElement = Destiny2WeaponElement.Kinetic;
         private bool hasTouchOfMalice;
+        private bool hasChargedWithBlight;
 
         public override bool InstancePerEntity => true;
         internal bool HasIncandescentPerk => hasIncandescent;
@@ -63,7 +64,8 @@ namespace Destiny2.Common.Perks
 
             int bulletType = ModContent.ProjectileType<Bullet>();
             int slugType = ModContent.ProjectileType<ExplosiveShadowSlug>();
-            return projectile.type == bulletType || projectile.type == slugType;
+            int blightType = ModContent.ProjectileType<ChargedWithBlightProjectile>();
+            return projectile.type == bulletType || projectile.type == slugType || projectile.type == blightType;
         }
 
         private static void LogDiagnostic(string message)
@@ -134,6 +136,7 @@ namespace Destiny2.Common.Perks
             rightChoiceElement = Destiny2WeaponElement.Kinetic;
             hasArmorPiercingRounds = false;
             hasTouchOfMalice = false;
+            hasChargedWithBlight = false;
 
             bool isChild = IsChildProjectile(source);
             Destiny2PerkProjectile parentData = null;
@@ -191,6 +194,8 @@ namespace Destiny2.Common.Perks
                         hasArmorPiercingRounds = true;
                     else if (perk is TouchOfMalicePerk)
                         hasTouchOfMalice = true;
+                    else if (perk is ChargedWithBlightPerk)
+                        hasChargedWithBlight = true;
                 }
 
                 // THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
@@ -409,7 +414,7 @@ namespace Destiny2.Common.Perks
                 sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, damageDone);
 
             if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage
-                && !hasOnslaught && !hasAdagio && !hasFeedingFrenzy)
+                && !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasChargedWithBlight)
                 return;
 
             Player owner = GetOwner(projectile.owner);
