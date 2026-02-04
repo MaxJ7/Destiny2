@@ -26,4 +26,8 @@
 		<Folder Include="Old\" />
 	</ItemGroup>
 
+	<Target Name="CompileShaders" BeforeTargets="BeforeBuild">
+		<Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)\compile_effects.ps1&quot;" />
+	</Target>
+
 </Project>

@@ -1,21 +1,34 @@
-# Compiles .fx shaders using local EasyXnb and deploys to Assets
-# Source: Effects/
-# Compiler: Effects/Compiler/EasyXnb.exe
-# Destination: Assets/AutoloadedEffects/Shaders/Primitives/
-
 $ErrorActionPreference = "Stop"
-$ScriptRoot = $PSScriptRoot
 
-# 1. Run EasyXnb from Effects dir (it scans current dir)
-Write-Host "Running EasyXnb..."
-Push-Location "$ScriptRoot\Effects"
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$compilerDir = Join-Path $scriptDir "Effects\Compiler"
+$easyXnbPath = Join-Path $compilerDir "EasyXnb.exe"
+
+if (-not (Test-Path $easyXnbPath)) {
+    Write-Host "EasyXnb.exe not found at $easyXnbPath"
+    exit 1
+}
+
+Write-Host "Compiling Shaders using EasyXnb..."
+Push-Location $compilerDir
+
 try {
-    & ".\Compiler\EasyXnb.exe"
+    # EasyXnb.exe Config should already be set to InputDir=".." OutputDir=".."
+    # If not, it defaults to local, so ensuring we are in the directory is key.
+    # We run it and wait for exit.
+    $process = Start-Process -FilePath $easyXnbPath -Wait -PassThru -NoNewWindow
+    
+    if ($process.ExitCode -ne 0) {
+        Write-Host "EasyXnb failed with exit code $($process.ExitCode)"
+        exit $process.ExitCode
+    }
+    
+    Write-Host "Shader compilation successful."
+}
+catch {
+    Write-Host "An error occurred during shader compilation: $_"
+    exit 1
 }
 finally {
     Pop-Location
 }
-
-# 2. Results
-Write-Host "Shader compilation complete. XNB files are in $ScriptRoot\Effects"
-

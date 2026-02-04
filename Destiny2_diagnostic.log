@@ -827,3 +827,247 @@
 ---- Diagnostic Log Start 2026-02-03 20:02:58 ----
 ---- Diagnostic Log Start 2026-02-03 20:04:50 ----
 ---- Diagnostic Log Start 2026-02-03 20:06:01 ----
+---- Diagnostic Log Start 2026-02-04 00:46:42 ----
+---- Diagnostic Log Start 2026-02-04 00:47:46 ----
+---- Diagnostic Log Start 2026-02-04 00:49:50 ----
+---- Diagnostic Log Start 2026-02-04 00:52:46 ----
+[00:55:39.596] RightChoice shot count=1/7
+[00:55:39.597] EyesUp TryConsume failed: stacks=0
+[00:55:39.693] RightChoice shot count=2/7
+[00:55:39.694] EyesUp TryConsume failed: stacks=0
+[00:55:39.796] RightChoice shot count=3/7
+[00:55:39.797] EyesUp TryConsume failed: stacks=0
+[00:55:39.893] RightChoice shot count=4/7
+[00:55:39.894] EyesUp TryConsume failed: stacks=0
+[00:55:39.996] RightChoice shot count=5/7
+[00:55:39.997] EyesUp TryConsume failed: stacks=0
+[00:55:40.093] RightChoice shot count=6/7
+[00:55:40.094] EyesUp TryConsume failed: stacks=0
+[00:55:40.197] RightChoice shot count=7/7
+[00:55:40.198] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:40.198] EyesUp TryConsume failed: stacks=0
+[00:55:40.295] RightChoice shot count=1/7
+[00:55:40.295] EyesUp TryConsume failed: stacks=0
+[00:55:40.397] RightChoice shot count=2/7
+[00:55:40.397] EyesUp TryConsume failed: stacks=0
+[00:55:40.493] RightChoice shot count=3/7
+[00:55:40.494] EyesUp TryConsume failed: stacks=0
+[00:55:46.930] RightChoice shot count=4/7
+[00:55:46.930] EyesUp TryConsume failed: stacks=0
+[00:55:47.026] RightChoice shot count=5/7
+[00:55:47.027] EyesUp TryConsume failed: stacks=0
+[00:55:47.130] RightChoice shot count=6/7
+[00:55:47.130] EyesUp TryConsume failed: stacks=0
+[00:55:47.227] RightChoice shot count=7/7
+[00:55:47.227] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:47.227] EyesUp TryConsume failed: stacks=0
+[00:55:47.228] TryRicochet ENTER. proj=0 target=4
+[00:55:47.228] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:55:47.229] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:55:47.229] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=78
+[00:55:47.329] RightChoice shot count=1/7
+[00:55:47.330] EyesUp TryConsume failed: stacks=0
+[00:55:47.426] RightChoice shot count=2/7
+[00:55:47.427] EyesUp TryConsume failed: stacks=0
+[00:55:47.529] RightChoice shot count=3/7
+[00:55:47.530] EyesUp TryConsume failed: stacks=0
+[00:55:47.809] RightChoice shot count=4/7
+[00:55:47.809] EyesUp TryConsume failed: stacks=0
+[00:55:47.911] RightChoice shot count=5/7
+[00:55:47.912] EyesUp TryConsume failed: stacks=0
+[00:55:48.008] RightChoice shot count=6/7
+[00:55:48.009] EyesUp TryConsume failed: stacks=0
+[00:55:48.111] RightChoice shot count=7/7
+[00:55:48.112] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:48.112] EyesUp TryConsume failed: stacks=0
+[00:55:48.112] TryRicochet ENTER. proj=0 target=4
+[00:55:48.113] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:55:48.113] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:55:48.113] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[00:55:48.208] RightChoice shot count=1/7
+[00:55:48.209] EyesUp TryConsume failed: stacks=0
+[00:55:48.311] RightChoice shot count=2/7
+[00:55:48.312] EyesUp TryConsume failed: stacks=0
+[00:55:48.408] RightChoice shot count=3/7
+[00:55:48.409] EyesUp TryConsume failed: stacks=0
+[00:55:48.511] RightChoice shot count=4/7
+[00:55:48.512] EyesUp TryConsume failed: stacks=0
+[00:55:48.608] RightChoice shot count=5/7
+[00:55:48.609] EyesUp TryConsume failed: stacks=0
+[00:55:48.712] RightChoice shot count=6/7
+[00:55:48.712] EyesUp TryConsume failed: stacks=0
+[00:55:48.808] RightChoice shot count=7/7
+[00:55:48.809] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:48.809] EyesUp TryConsume failed: stacks=0
+[00:55:48.809] TryRicochet ENTER. proj=0 target=4
+[00:55:48.810] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:55:48.810] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:55:48.810] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[00:55:48.911] RightChoice shot count=1/7
+[00:55:48.912] EyesUp TryConsume failed: stacks=0
+[00:55:49.094] RightChoice shot count=2/7
+[00:55:49.094] EyesUp TryConsume failed: stacks=0
+[00:55:49.196] RightChoice shot count=3/7
+[00:55:49.196] EyesUp TryConsume failed: stacks=0
+[00:55:49.293] RightChoice shot count=4/7
+[00:55:49.294] EyesUp TryConsume failed: stacks=0
+[00:55:49.396] RightChoice shot count=5/7
+[00:55:49.397] EyesUp TryConsume failed: stacks=0
+[00:55:49.493] RightChoice shot count=6/7
+[00:55:49.494] EyesUp TryConsume failed: stacks=0
+[00:55:49.596] RightChoice shot count=7/7
+[00:55:49.597] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:49.597] EyesUp TryConsume failed: stacks=0
+[00:55:49.693] RightChoice shot count=1/7
+[00:55:49.694] EyesUp TryConsume failed: stacks=0
+[00:55:49.796] RightChoice shot count=2/7
+[00:55:49.797] EyesUp TryConsume failed: stacks=0
+[00:55:49.893] RightChoice shot count=3/7
+[00:55:49.894] EyesUp TryConsume failed: stacks=0
+[00:55:50.075] RightChoice shot count=4/7
+[00:55:50.075] EyesUp TryConsume failed: stacks=0
+[00:55:50.178] RightChoice shot count=5/7
+[00:55:50.178] EyesUp TryConsume failed: stacks=0
+[00:55:50.275] RightChoice shot count=6/7
+[00:55:50.276] EyesUp TryConsume failed: stacks=0
+[00:55:50.378] RightChoice shot count=7/7
+[00:55:50.378] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:50.379] EyesUp TryConsume failed: stacks=0
+[00:55:50.379] TryRicochet ENTER. proj=0 target=4
+[00:55:50.379] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:55:50.380] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:55:50.380] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[00:55:50.475] RightChoice shot count=1/7
+[00:55:50.475] EyesUp TryConsume failed: stacks=0
+[00:55:50.578] RightChoice shot count=2/7
+[00:55:50.578] EyesUp TryConsume failed: stacks=0
+[00:55:50.675] RightChoice shot count=3/7
+[00:55:50.675] EyesUp TryConsume failed: stacks=0
+[00:55:53.102] EyesUp hook triggered: OnConsumeItem Player=0
+[00:55:53.102] EyesUp stacks GRANTED! Added=7 OldTotal=0 NewTotal=7 Frame=1536
+[00:55:56.112] RightChoice shot count=4/7
+[00:55:56.112] EyesUp stacks consumed. Remaining=6
+[00:55:56.208] RightChoice shot count=5/7
+[00:55:56.209] EyesUp stacks consumed. Remaining=5
+[00:55:56.311] RightChoice shot count=6/7
+[00:55:56.312] EyesUp stacks consumed. Remaining=4
+[00:55:56.408] RightChoice shot count=7/7
+[00:55:56.409] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:56.409] EyesUp stacks consumed. Remaining=3
+[00:55:56.511] RightChoice shot count=1/7
+[00:55:56.512] EyesUp stacks consumed. Remaining=2
+[00:55:56.608] RightChoice shot count=2/7
+[00:55:56.609] EyesUp stacks consumed. Remaining=1
+[00:55:56.711] RightChoice shot count=3/7
+[00:55:56.712] EyesUp stacks consumed. Remaining=0
+[00:55:56.808] RightChoice shot count=4/7
+[00:55:56.809] EyesUp TryConsume failed: stacks=0
+[00:55:56.911] RightChoice shot count=5/7
+[00:55:56.912] EyesUp TryConsume failed: stacks=0
+[00:55:57.008] RightChoice shot count=6/7
+[00:55:57.009] EyesUp TryConsume failed: stacks=0
+[00:55:57.111] RightChoice shot count=7/7
+[00:55:57.112] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:55:57.112] EyesUp TryConsume failed: stacks=0
+[00:55:57.208] RightChoice shot count=1/7
+[00:55:57.209] EyesUp TryConsume failed: stacks=0
+[00:55:59.942] RightChoice shot count=2/7
+[00:55:59.942] EyesUp TryConsume failed: stacks=0
+[00:56:00.044] RightChoice shot count=3/7
+[00:56:00.045] EyesUp TryConsume failed: stacks=0
+[00:56:00.141] RightChoice shot count=4/7
+[00:56:00.142] EyesUp TryConsume failed: stacks=0
+[00:56:00.245] RightChoice shot count=5/7
+[00:56:00.245] EyesUp TryConsume failed: stacks=0
+[00:56:00.342] RightChoice shot count=6/7
+[00:56:00.342] EyesUp TryConsume failed: stacks=0
+[00:56:00.445] RightChoice shot count=7/7
+[00:56:00.445] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:56:00.445] EyesUp TryConsume failed: stacks=0
+[00:56:00.446] TryRicochet ENTER. proj=0 target=4
+[00:56:00.446] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:56:00.446] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:56:00.446] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[00:56:00.542] RightChoice shot count=1/7
+[00:56:00.542] EyesUp TryConsume failed: stacks=0
+[00:56:00.645] RightChoice shot count=2/7
+[00:56:00.645] EyesUp TryConsume failed: stacks=0
+[00:56:00.741] RightChoice shot count=3/7
+[00:56:00.742] EyesUp TryConsume failed: stacks=0
+[00:56:00.844] RightChoice shot count=4/7
+[00:56:00.845] EyesUp TryConsume failed: stacks=0
+[00:56:00.942] RightChoice shot count=5/7
+[00:56:00.942] EyesUp TryConsume failed: stacks=0
+[00:56:01.045] RightChoice shot count=6/7
+[00:56:01.045] EyesUp TryConsume failed: stacks=0
+[00:56:01.141] RightChoice shot count=7/7
+[00:56:01.142] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:56:01.142] EyesUp TryConsume failed: stacks=0
+[00:56:01.142] TryRicochet ENTER. proj=0 target=4
+[00:56:01.143] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:56:01.143] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:56:01.143] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=45
+[00:56:01.245] RightChoice shot count=1/7
+[00:56:01.245] EyesUp TryConsume failed: stacks=0
+[00:56:01.342] RightChoice shot count=2/7
+[00:56:01.342] EyesUp TryConsume failed: stacks=0
+[00:56:01.445] RightChoice shot count=3/7
+[00:56:01.445] EyesUp TryConsume failed: stacks=0
+[00:56:01.542] RightChoice shot count=4/7
+[00:56:01.542] EyesUp TryConsume failed: stacks=0
+[00:56:01.644] RightChoice shot count=5/7
+[00:56:01.645] EyesUp TryConsume failed: stacks=0
+[00:56:01.741] RightChoice shot count=6/7
+[00:56:01.742] EyesUp TryConsume failed: stacks=0
+[00:56:01.845] RightChoice shot count=7/7
+[00:56:01.845] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:56:01.845] EyesUp TryConsume failed: stacks=0
+[00:56:01.941] RightChoice shot count=1/7
+[00:56:01.942] EyesUp TryConsume failed: stacks=0
+[00:56:02.045] RightChoice shot count=2/7
+[00:56:02.045] EyesUp TryConsume failed: stacks=0
+[00:56:02.142] RightChoice shot count=3/7
+[00:56:02.142] EyesUp TryConsume failed: stacks=0
+[00:56:02.244] RightChoice shot count=4/7
+[00:56:02.245] EyesUp TryConsume failed: stacks=0
+[00:56:02.341] RightChoice shot count=5/7
+[00:56:02.342] EyesUp TryConsume failed: stacks=0
+[00:56:02.444] RightChoice shot count=6/7
+[00:56:02.445] EyesUp TryConsume failed: stacks=0
+[00:56:02.542] RightChoice shot count=7/7
+[00:56:02.542] RightChoice: 7th shot reached! Ricochet ARMED!
+[00:56:02.542] EyesUp TryConsume failed: stacks=0
+[00:56:02.543] TryRicochet ENTER. proj=0 target=4
+[00:56:02.543] TryRicochet searching for target. fromNpc=4 (Super Dummy) range=480 targetCenter={X:32569 Y:4119}
+[00:56:02.543] TryRicochet: Found target! npc=3 (Super Dummy)
+[00:56:02.543] TryRicochet: SUCCESS! Ricochet spawned projId=1 -> targetNpc=3 (Super Dummy) damage=90
+[00:56:02.645] RightChoice shot count=1/7
+[00:56:02.645] EyesUp TryConsume failed: stacks=0
+[00:56:02.741] RightChoice shot count=2/7
+[00:56:02.742] EyesUp TryConsume failed: stacks=0
+[00:56:02.844] RightChoice shot count=3/7
+[00:56:02.845] EyesUp TryConsume failed: stacks=0
+[00:56:49.826] EyesUp TryConsume failed: stacks=0
+---- Diagnostic Log Start 2026-02-04 00:59:20 ----
+---- Diagnostic Log Start 2026-02-04 00:59:47 ----
+[01:06:25.314] RightChoice shot count=1/7
+[01:06:25.314] EyesUp TryConsume failed: stacks=0
+[01:06:26.665] RightChoice shot count=2/7
+[01:06:26.665] EyesUp TryConsume failed: stacks=0
+[01:06:26.762] RightChoice shot count=3/7
+[01:06:26.762] EyesUp TryConsume failed: stacks=0
+[01:06:26.865] RightChoice shot count=4/7
+[01:06:26.865] EyesUp TryConsume failed: stacks=0
+[01:06:26.962] RightChoice shot count=5/7
+[01:06:26.962] EyesUp TryConsume failed: stacks=0
+[01:06:27.065] RightChoice shot count=6/7
+[01:06:27.065] EyesUp TryConsume failed: stacks=0
+[01:06:27.162] RightChoice shot count=7/7
+[01:06:27.162] RightChoice: 7th shot reached! Ricochet ARMED!
+[01:06:27.164] EyesUp TryConsume failed: stacks=0
+[01:06:27.265] RightChoice shot count=1/7
+[01:06:27.265] EyesUp TryConsume failed: stacks=0
+[01:06:27.362] RightChoice shot count=2/7
+[01:06:27.362] EyesUp TryConsume failed: stacks=0
+[01:06:27.465] RightChoice shot count=3/7
+[01:06:27.465] EyesUp TryConsume failed: stacks=0

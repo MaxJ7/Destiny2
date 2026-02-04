@@ -96,7 +96,7 @@ namespace Destiny2.Common.VFX
             }
 
             Color baseColor = GetElementColor(element) * opacity;
-            float width = 30f * opacity;
+            float width = 15f * opacity;
 
             var settings = new PrimitiveSettings(
                 WidthFunction: (float completion) => width,
