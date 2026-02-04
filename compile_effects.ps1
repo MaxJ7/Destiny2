@@ -24,6 +24,15 @@ try {
     }
     
     Write-Host "Shader compilation successful."
+    
+    # Move compiled XNBs to Effects folder
+    $xnbFiles = Get-ChildItem -Path $compilerDir -Filter "*.xnb"
+    $effectsDir = Join-Path $scriptDir "Effects"
+    foreach ($file in $xnbFiles) {
+        $destination = Join-Path $effectsDir $file.Name
+        Move-Item -Path $file.FullName -Destination $destination -Force
+        Write-Host "Moved $($file.Name) to Effects/"
+    }
 }
 catch {
     Write-Host "An error occurred during shader compilation: $_"
