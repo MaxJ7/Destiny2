@@ -14,6 +14,7 @@ namespace Destiny2.Common.VFX
         public static Effect StasisTrail;
         public static Effect StrandTrail;
         public static Effect KineticTrail;
+        public static Effect CorruptionTrail;
         public static Effect ExplosiveShadowTrail;
 
         // Native BasicEffect for generic primitives (Circles, etc.)
@@ -48,6 +49,7 @@ namespace Destiny2.Common.VFX
             StasisTrail = mod.Assets.Request<Effect>("Effects/BulletTrailStasis", AssetRequestMode.ImmediateLoad).Value;
             StrandTrail = mod.Assets.Request<Effect>("Effects/BulletTrailStrand", AssetRequestMode.ImmediateLoad).Value;
             KineticTrail = mod.Assets.Request<Effect>("Effects/BulletTrailKinetic", AssetRequestMode.ImmediateLoad).Value;
+            CorruptionTrail = mod.Assets.Request<Effect>("Effects/BulletTrailCorruption", AssetRequestMode.ImmediateLoad).Value;
             ExplosiveShadowTrail = mod.Assets.Request<Effect>("Effects/BulletTrailExplosiveShadow", AssetRequestMode.ImmediateLoad).Value;
         }
 

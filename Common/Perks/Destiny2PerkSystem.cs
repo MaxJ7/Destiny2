@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using SteelSeries.GameSense;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -74,6 +75,8 @@ namespace Destiny2.Common.Perks
             Register(new VorpalWeaponPerk());
             Register(new IncandescentPerk());
             Register(new ChargedWithBlightPerk());
+            Register(new TheCorruptionSpreadsFramePerk());
+            Register(new ParasitismPerk());
         }
 
         public static void Register(Destiny2Perk perk)

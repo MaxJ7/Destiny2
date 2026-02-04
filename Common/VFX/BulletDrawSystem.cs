@@ -19,7 +19,7 @@ namespace Destiny2.Common.VFX
             public int MaxTime;
             public float Width;
 
-            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element, Effect customShader = null)
+            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element, float width, Effect customShader = null)
             {
                 Start = start;
                 End = end;
@@ -27,23 +27,23 @@ namespace Destiny2.Common.VFX
                 CustomShader = customShader;
                 MaxTime = 15;
                 TimeLeft = 15;
-                Width = 20f;
+                Width = width;
             }
         }
 
         private static List<TraceVFX> Traces = new();
 
-        public static void SpawnTrace(Vector2 start, Vector2 end, Destiny2WeaponElement element)
+        public static void SpawnTrace(Vector2 start, Vector2 end, Destiny2WeaponElement element, float width = 15f)
         {
             if (Main.dedServ) return;
-            Traces.Add(new TraceVFX(start, end, element));
+            Traces.Add(new TraceVFX(start, end, element, width));
         }
 
-        public static void SpawnTrace(Vector2 start, Vector2 end, Effect customShader)
+        public static void SpawnTrace(Vector2 start, Vector2 end, Effect customShader, float width = 15f)
         {
             if (Main.dedServ) return;
             // Use Kinetic as placeholder element, but shader will override
-            Traces.Add(new TraceVFX(start, end, Destiny2WeaponElement.Kinetic, customShader));
+            Traces.Add(new TraceVFX(start, end, Destiny2WeaponElement.Kinetic, width, customShader));
         }
 
         public override void PostDrawTiles()
@@ -66,7 +66,7 @@ namespace Destiny2.Common.VFX
                 }
 
                 List<Vector2> trail = GenerateBeamTrail(trace.Start, trace.End);
-                RenderElementVFX(trail, trace.Element, opacity, trace.CustomShader);
+                RenderElementVFX(trail, trace.Element, opacity, trace.Width, trace.CustomShader);
 
                 // Decrement time
                 var newTrace = trace;
@@ -85,7 +85,7 @@ namespace Destiny2.Common.VFX
             return points;
         }
 
-        private static void RenderElementVFX(List<Vector2> trail, Destiny2WeaponElement element, float opacity, Effect customShader = null)
+        private static void RenderElementVFX(List<Vector2> trail, Destiny2WeaponElement element, float opacity, float baseWidth, Effect customShader = null)
         {
             Effect shader = customShader ?? Destiny2Shaders.GetBulletTrailShader(element);
             if (shader == null) return;
@@ -135,7 +135,7 @@ namespace Destiny2.Common.VFX
             // ExplosiveShadow shader hardcodes colors (White Core, Dark Cyan Aura) and multiplies by input.Color.
             // So White input is perfect.
 
-            float width = 15f * opacity;
+            float width = baseWidth * opacity;
 
             var settings = new PrimitiveSettings(
                 WidthFunction: (float completion) => width,

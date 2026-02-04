@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Players;
 using Destiny2.Content.Projectiles;
+using Destiny2.Common.NPCs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -66,6 +67,8 @@ namespace Destiny2.Common.Weapons
         private int blightStacks;
         private bool isBlightLauncherActive;
         private int reloadHoldTimer;
+        private int corruptionHitCount;
+        private ulong lastCorruptionHitTick;
         private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
         private readonly List<int> kineticTremorsTargetKeys = new List<int>();
 
@@ -386,6 +389,11 @@ namespace Destiny2.Common.Weapons
             if (hasFrenzy)
                 RegisterCombat(player);
 
+            if (HasFrame && FramePerkKey == nameof(TheCorruptionSpreadsFramePerk))
+            {
+                RegisterCorruptionHit(player, target);
+            }
+
             if (HasPerk<ChargedWithBlightPerk>() && !isBlightProjectile)
             {
                 if (blightStacks < ChargedWithBlightPerk.MaxStacks)
@@ -594,8 +602,10 @@ namespace Destiny2.Common.Weapons
 
             float t = (ratio - TargetLockPerk.MinHitsRatio) / (TargetLockPerk.MaxHitsRatio - TargetLockPerk.MinHitsRatio);
             t = MathHelper.Clamp(t, 0f, 1f);
+            t = MathHelper.Clamp(t, 0f, 1f);
             return MathHelper.Lerp(TargetLockPerk.MinDamageBonus, TargetLockPerk.MaxDamageBonus, t);
         }
+
 
         private void ResetTargetLockState()
         {
@@ -781,6 +791,38 @@ namespace Destiny2.Common.Weapons
             {
                 reloadHoldTimer = 0;
             }
+        }
+
+        private void RegisterCorruptionHit(Player player, NPC target)
+        {
+            ulong now = Main.GameUpdateCount;
+            // < 1 second gap (60 ticks)
+            if (now - lastCorruptionHitTick > 60)
+            {
+                corruptionHitCount = 0;
+            }
+
+            corruptionHitCount++;
+            lastCorruptionHitTick = now;
+
+            if (corruptionHitCount >= 12)
+            {
+                corruptionHitCount = 0;
+                SpawnNaniteSwarm(player, target);
+            }
+        }
+
+        private void SpawnNaniteSwarm(Player player, NPC target)
+        {
+            int count = Main.rand.Next(2, 4); // 2-3 nanites as requested
+            for (int i = 0; i < count; i++)
+            {
+                // Spawn Radius: 40f (Increased to ensure they spawn outside small hitboxes)
+                Vector2 spawnPos = target.Center + Main.rand.NextVector2Circular(40f, 40f);
+                Vector2 vel = Main.rand.NextVector2Circular(8f, 8f); // Increased spread for "Cloud" effect
+                Projectile.NewProjectile(player.GetSource_ItemUse(Item), spawnPos, vel, ModContent.ProjectileType<NaniteProjectile>(), 60, 0f, player.whoAmI);
+            }
+            SoundEngine.PlaySound(SoundID.Item96, target.Center); // Glitchy sound
         }
     }
 }

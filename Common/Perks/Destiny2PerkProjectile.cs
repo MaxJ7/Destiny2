@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Destiny2.Common.NPCs;
 using Destiny2.Common.Players;
 using Destiny2.Common.Weapons;
+using Destiny2.Common.VFX;
 using Destiny2.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -53,6 +54,8 @@ namespace Destiny2.Common.Perks
         private bool hasChargedWithBlight;
         private bool hasRicochetRounds;
         private bool ricocheted;
+        private bool hasParasitism;
+        public Microsoft.Xna.Framework.Graphics.Effect CustomTrailShader { get; set; }
 
         public override bool InstancePerEntity => true;
         internal bool HasIncandescentPerk => hasIncandescent;
@@ -141,6 +144,7 @@ namespace Destiny2.Common.Perks
             hasChargedWithBlight = false;
             hasRicochetRounds = false;
             ricocheted = false;
+            hasParasitism = false;
 
             bool isChild = IsChildProjectile(source);
             Destiny2PerkProjectile parentData = null;
@@ -202,6 +206,11 @@ namespace Destiny2.Common.Perks
                         hasChargedWithBlight = true;
                     else if (perk is RicochetRoundsPerk)
                         hasRicochetRounds = true;
+                    else if (perk is ParasitismPerk)
+                    {
+                        hasParasitism = true;
+                        CustomTrailShader = Destiny2Shaders.CorruptionTrail;
+                    }
                 }
 
                 // THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
@@ -334,10 +343,75 @@ namespace Destiny2.Common.Perks
 
                 if (hasTouchOfMalice && sourceWeaponItem.CurrentMagazine == 1)
                     multiplier *= TouchOfMalicePerk.DamageMultiplier;
+
+                if (hasParasitism)
+                {
+                    NaniteGlobalNPC naniteGlobal = target.GetGlobalNPC<NaniteGlobalNPC>();
+                    if (naniteGlobal != null && naniteGlobal.NaniteStacks > 0)
+                    {
+                        float bonus = 0f;
+                        int stacks = naniteGlobal.NaniteStacks;
+
+                        // Scaling Logic
+                        if (stacks <= 5)
+                            bonus = 0.30f + (0.25f * (stacks - 1));
+                        else
+                        {
+                            float base5 = 1.30f;
+                            int extraStacks = stacks - 5;
+                            bonus = base5 + (0.021f * extraStacks);
+                        }
+
+                        if (bonus > 3.5f) bonus = 3.5f;
+
+                        if (bonus > 3.5f) bonus = 3.5f;
+
+                        if (DiagnosticsEnabled)
+                            LogDiagnostic($"[Parasitism] Bonus: {bonus:P0} Stacks: {stacks}");
+
+                        multiplier *= (1f + bonus);
+                    }
+                }
             }
 
             if (multiplier > 1f)
                 modifiers.FinalDamage *= multiplier;
+        }
+
+        public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
+        {
+            if (hasRicochetRounds && !ricocheted)
+            {
+                ricocheted = true;
+
+                // Handle visual trail segmentation for Bullets
+                if (projectile.ModProjectile is Bullet bullet)
+                {
+                    // Spawn a trace for the segment that just hit the wall
+                    BulletDrawSystem.SpawnTrace(bullet.spawnPosition, projectile.Center, (Destiny2WeaponElement)projectile.ai[0]);
+
+                    // Update the bullet's spawn position to the bounce point
+                    bullet.spawnPosition = projectile.Center;
+                }
+
+                // Reflect velocity
+                if (Math.Abs(projectile.velocity.X - oldVelocity.X) > float.Epsilon)
+                    projectile.velocity.X = -oldVelocity.X;
+                if (Math.Abs(projectile.velocity.Y - oldVelocity.Y) > float.Epsilon)
+                    projectile.velocity.Y = -oldVelocity.Y;
+
+                // Impact visuals/sound
+                Terraria.Audio.SoundEngine.PlaySound(SoundID.Item10, projectile.Center);
+                for (int i = 0; i < 5; i++)
+                {
+                    Dust d = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, DustID.Smoke, 0f, 0f, 100, default, 0.8f);
+                    d.velocity *= 0.5f;
+                }
+
+                return false; // Don't kill the projectile
+            }
+
+            return true;
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
@@ -493,26 +567,27 @@ namespace Destiny2.Common.Perks
 
         private static void TryRicochet(Projectile projectile, NPC target, int damageDone, Destiny2WeaponElement element)
         {
-            LogAlways($"TryRicochet ENTER. proj={projectile?.identity} target={target?.whoAmI}");
+            LogDiagnostic($"TryRicochet ENTER. proj={projectile?.identity} target={target?.whoAmI}");
 
             if (projectile == null || target == null)
             {
-                LogAlways("TryRicochet aborted: null projectile or target");
+                LogDiagnostic("TryRicochet aborted: null projectile or target");
                 return;
             }
 
-            LogAlways($"TryRicochet searching for target. fromNpc={target.whoAmI} ({target.FullName}) range={RightChoiceRicochetRange} targetCenter={target.Center}");
+            LogDiagnostic($"TryRicochet searching for target. fromNpc={target.whoAmI} ({target.FullName}) range={RightChoiceRicochetRange} targetCenter={target.Center}");
 
             NPC ricochetTarget = FindRicochetTarget(target, target.Center, RightChoiceRicochetRange);
             if (ricochetTarget == null)
             {
-                LogAlways("TryRicochet: NO TARGET FOUND within range!");
+                LogDiagnostic("TryRicochet: NO TARGET FOUND within range!");
                 Player owner = GetOwner(projectile.owner);
                 ShowPerkFeedback(owner, "The Right Choice - No target in range!", new Color(255, 150, 100));
                 return;
             }
 
-            LogAlways($"TryRicochet: Found target! npc={ricochetTarget.whoAmI} ({ricochetTarget.FullName})");
+
+            LogDiagnostic($"TryRicochet: Found target! npc={ricochetTarget.whoAmI} ({ricochetTarget.FullName})");
 
             Vector2 direction = (ricochetTarget.Center - target.Center).SafeNormalize(Vector2.UnitX);
             float offsetDistance = Math.Max(target.width, target.height) * 0.5f + 6f;
@@ -523,7 +598,7 @@ namespace Destiny2.Common.Perks
             int projId = Projectile.NewProjectile(projectile.GetSource_FromThis(), spawnPos, direction, projectile.type, ricochetDamage, projectile.knockBack, projectile.owner, 0f, aimRotation);
             if (projId < 0 || projId >= Main.maxProjectiles)
             {
-                LogAlways($"TryRicochet: FAILED to spawn projectile! projId={projId}");
+                LogDiagnostic($"TryRicochet: FAILED to spawn projectile! projId={projId}");
                 return;
             }
 
@@ -532,7 +607,7 @@ namespace Destiny2.Common.Perks
             ricochet.DamageType = element.GetDamageClass();
             ricochet.netUpdate = true;
 
-            LogAlways($"TryRicochet: SUCCESS! Ricochet spawned projId={projId} -> targetNpc={ricochetTarget.whoAmI} ({ricochetTarget.FullName}) damage={ricochetDamage}");
+            LogDiagnostic($"TryRicochet: SUCCESS! Ricochet spawned projId={projId} -> targetNpc={ricochetTarget.whoAmI} ({ricochetTarget.FullName}) damage={ricochetDamage}");
             Player owner2 = GetOwner(projectile.owner);
             ShowPerkFeedback(owner2, $"Ricochet -> {ricochetTarget.FullName}!", new Color(255, 200, 100));
         }

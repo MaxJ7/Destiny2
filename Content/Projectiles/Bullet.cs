@@ -1,5 +1,6 @@
 using System;
 using Destiny2.Common.VFX;
+using Destiny2.Common.Perks;
 using Destiny2.Common.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -19,7 +20,7 @@ namespace Destiny2.Content.Projectiles
         private const float Speed = 32f;
         private const int ExtraUpdates = 100;
 
-        private Vector2 spawnPosition;
+        internal Vector2 spawnPosition;
         private bool initialized;
         private float maxDistance = MaxDistance;
         private Destiny2WeaponElement weaponElement = Destiny2WeaponElement.Kinetic;
@@ -111,8 +112,16 @@ namespace Destiny2.Content.Projectiles
         public override void OnKill(int timeLeft)
         {
             // VISUAL TRACER SYSTEM (Phase 1)
-            // Spawn the standalone visual tracer so it can linger after the projectile dies.
-            BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, GetWeaponElement());
+            // Check for shader override from Destiny2PerkProjectile
+            var perkData = Projectile.GetGlobalProjectile<Destiny2PerkProjectile>();
+            if (perkData != null && perkData.CustomTrailShader != null)
+            {
+                BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, perkData.CustomTrailShader);
+            }
+            else
+            {
+                BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, GetWeaponElement());
+            }
 
             // Spawn Impact Burst (Hit effect)
             ElementalBulletVFX.SpawnImpactBurst(Projectile, profile);

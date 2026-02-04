@@ -48,6 +48,16 @@ Items: {
 		DisplayName: Touch Of Malice
 		Tooltip: ""
 	}
+
+	PulseRifleTest: {
+		Tooltip: ""
+		DisplayName: Pulse Rifle Test
+	}
+
+	OutbreakPerfected: {
+		Tooltip: ""
+		DisplayName: Outbreak Perfected
+	}
 }
 
 Projectiles: {
@@ -57,6 +67,7 @@ Projectiles: {
 	KineticTremorsDustAnchor.DisplayName: Kinetic Tremors Dust Anchor
 	BeamBurst.DisplayName: Beam Burst
 	ChargedWithBlightProjectile.DisplayName: Charged With Blight Projectile
+	NaniteProjectile.DisplayName: Nanite Projectile
 }
 
 Buffs: {
@@ -118,6 +129,11 @@ Buffs: {
 	BlightDebuff: {
 		DisplayName: Blight Debuff
 		Description: Mods.Destiny2.Buffs.BlightDebuff.Description
+	}
+
+	NaniteDebuff: {
+		Description: Mods.Destiny2.Buffs.NaniteDebuff.Description
+		DisplayName: Nanite Debuff
 	}
 }
 

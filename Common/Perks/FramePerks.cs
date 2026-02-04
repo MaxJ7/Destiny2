@@ -147,4 +147,12 @@ namespace Destiny2.Common.Perks
         public override string IconTexture => "Destiny2/Assets/Perks/TouchOfMalice";
         public override bool IsFrame => true;
     }
+
+    public sealed class TheCorruptionSpreadsFramePerk : Destiny2Perk
+    {
+        public override string DisplayName => "The Corruption Spreads";
+        public override string Description => "This weapon creates SIVA nanites on rapid hits and precision kills.";
+        public override string IconTexture => "Destiny2/Assets/Perks/TheCorruptionSpreads";
+        public override bool IsFrame => true;
+    }
 }

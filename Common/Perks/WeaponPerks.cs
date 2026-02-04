@@ -437,4 +437,12 @@ namespace Destiny2.Common.Perks
             stats.Stability += 10;
         }
     }
+
+    public class ParasitismPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Parasitism";
+        public override string Description => "This weapon does more damage to enemies based on SIVA nanites.";
+        public override string IconTexture => "Destiny2/Assets/Perks/Parasitism";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
 }

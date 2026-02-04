@@ -1,9 +1,12 @@
 ---
-description: Entire development pipeline
+description: pipeline
 ---
 
+description: pipeline
 Destiny 2 Mod Development Pipeline
 1. Architecture Overview
+> READ THE CODE STYLE GUIDE FIRST <
+
 The codebase is strictly divided into Common (Systems/Logic) and Content (Assets/Implementations).
 
 The "God Classes"
@@ -19,7 +22,9 @@ Destiny2PerkProjectile
  (Common/Perks) - Handles everything that happens when a bullet hits something (Ricochets, Explosions, Debuff application).
 VFX Logic: 
 BulletDrawSystem
- (Common/VFX) - Handles drawing beam trails for all weapons.
+ (Common/VFX) - Handles drawing beam trails for all weapons. See 
+bullets.md
+ for a deep dive.
 2. Directory Structure & System Map
 common/Weapons/ (The Core)
 Destiny2WeaponStats.cs
@@ -36,9 +41,7 @@ ModifyWeaponDamage
 .
 Destiny2WeaponItem.Perks.cs
 : Partial class containing the implementation of Trait Perks (e.g., Rampage Stacks).
-[Archetype]WeaponItem.cs: (e.g., 
-ScoutRifleWeaponItem
-) Defines Recoil, Falloff Curves, and Frame Perk Overrides (RPM).
+[Archetype]WeaponItem.cs: (e.g., ScoutRifleWeaponItem) Defines Recoil, Falloff Curves, and Frame Perk Overrides (RPM).
 common/Perks/ (The Enhancers)
 Destiny2PerkSystem.cs
 : Registry.
@@ -58,17 +61,19 @@ common/VFX/ (The Visuals)
 BulletDrawSystem.cs
 : The central rendering loop.
 Destiny2Shaders.cs
-: Loads and compiles 
-.fx
- files.
+: Loads and compiles .fx files.
+common/NPCs/ (The Logic)
+GlobalNPCs: All 
+GlobalNPC
+ classes belong here (e.g. 
+NaniteGlobalNPC.cs
+). They track state (debuffs, stacks) on enemies.
 common/UI/ (The Interface)
 Destiny2HudSystem.cs
 : Draws the HUD.
 Assets/Perks/ (The Visuals)
 Icon Library: Always search this directory before implementing a new perk.
-Naming Rule: Matches class names for seamless loading. (e.g., 
-Rampage.png
- -> 
+Naming Rule: Matches class names for seamless loading. (e.g., Rampage.png -> 
 RampagePerk
 ).
 Workflow: If an icon exists, use its name for the perk class to avoid pathing errors.
@@ -221,6 +226,11 @@ Shoot
  override.
 If isActive, fire the custom projectile and set isActive = false.
 Heal/VFX: Activation logic in UpdateMode handles the player.HealEffect and sound.
+Workflow 6: Creating a New Archetype
+Goal: Add "Trace Rifles" as a new weapon class. See 
+create_new_archetype.md
+ for the full guide.
+
 5. Critical Gotchas & Common Pitfalls
 ⚠️ The "Hit Gate" Pitfall
 In 
@@ -236,8 +246,16 @@ The Rule: Never reference BaseStats for tooltips or UI calculations.
 The Fix: Always use 
 GetStats()
  (or weapon.GetStats()). This ensures that barrel/magazine buffs and active trait bonuses (like Target Lock) are accurately reflected in the numbers shown to the player.
-⚠️ Stack Increment Logic
-The Problem: Placing stack-on-hit logic below the isKill guard in 
-Destiny2WeaponItem.Perks.cs
-.
-The Fix: Ensure hit-based logic (like stack acquisition) remains above the if (!isKill) return; block.
+⚠️ Perk Trigger Ordering (Hit vs. Kill)
+In 
+NotifyProjectileHit
+, the order of logic is critical to prevent "leaking" effects or missing triggers.
+
+The Rule: Always place Hit-based logic (Stacks, Combat Registration) ABOVE the isKill guard. Place Kill-based logic (Outlaw, Feeding Frenzy) BELOW it.
+The Gotcha: If you accidentally place a Kill-based perk like Feeding Frenzy above the guard, it will become an infinite-uptime perk that triggers on every shot. If you place a Hit-based perk like Charged with Blight below the guard, it will feel "broken" because it only charges when you finish off an enemy.
+⚠️ Weapon of Sorrow Identification
+The Requirement: To benefit from the Blight debuff's +50% damage bonus, a weapon must be tagged.
+The Implementation: Override public override bool IsWeaponOfSorrow => true; in the specific weapon class (e.g., TouchOfMalice.cs).
+
+Comment
+Ctrl+Alt+M
