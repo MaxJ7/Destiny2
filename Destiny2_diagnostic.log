@@ -1119,3 +1119,81 @@
 ---- Diagnostic Log Start 2026-02-04 03:30:25 ----
 ---- Diagnostic Log Start 2026-02-04 03:30:53 ----
 ---- Diagnostic Log Start 2026-02-04 03:34:08 ----
+---- Diagnostic Log Start 2026-02-04 03:35:15 ----
+---- Diagnostic Log Start 2026-02-04 03:40:20 ----
+[03:41:03.103] Perk diagnostics enabled.
+[03:41:05.037] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:05.655] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:09.606] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:10.055] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:10.521] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:10.970] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:11.570] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:11.571] ProcessHit projId=0 target=Target Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:12.006] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:12.007] ProcessHit projId=0 target=Target Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:12.455] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:12.988] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:12.989] ProcessHit projId=0 target=Target Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:14.703] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:14.704] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:15.152] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:15.152] ProcessHit projId=0 target=Super Dummy damage=57 isKill=False hasIncandescent=False
+[03:41:15.788] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:16.570] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:17.006] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:20.521] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:20.522] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:20.952] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:20.953] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:21.388] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:21.921] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:21.922] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:22.370] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:22.371] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:22.873] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:22.874] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:23.370] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:23.371] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:23.873] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:23.874] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:27.103] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:28.388] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:28.389] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:29.237] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:29.237] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:30.570] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:30.570] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:31.521] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:31.522] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:34.836] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:34.837] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:36.037] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:36.037] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:37.570] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:37.571] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:39.055] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:39.056] ProcessHit projId=0 target=Super Dummy damage=32 isKill=False hasIncandescent=False
+[03:41:40.739] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:40.740] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+[03:41:41.473] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:41.474] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+[03:41:42.170] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:42.171] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+[03:41:42.836] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:42.837] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+[03:41:43.486] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:43.486] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+[03:41:44.073] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:44.074] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+[03:41:44.606] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:44.607] ProcessHit projId=0 target=Super Dummy damage=73 isKill=False hasIncandescent=False
+[03:41:45.121] PerkProj.OnSpawn projId=0 type=1022 source=EntitySource_ItemUse_WithAmmo weapon=Eyasluna hasRightChoice=False isRightChoiceShot=False hasEyesUp=False isEyesUpShot=False isEyesUpRicochet=False chainId=0 remaining=0
+[03:41:45.122] ProcessHit projId=0 target=Super Dummy damage=36 isKill=False hasIncandescent=False
+---- Diagnostic Log Start 2026-02-04 03:41:58 ----
+---- Diagnostic Log Start 2026-02-04 03:44:35 ----
+---- Diagnostic Log Start 2026-02-04 03:45:03 ----
+---- Diagnostic Log Start 2026-02-04 03:48:34 ----
+---- Diagnostic Log Start 2026-02-04 03:48:48 ----
+[03:49:07.234] EyesUp TryConsume failed: stacks=0
+---- Diagnostic Log Start 2026-02-04 03:50:02 ----

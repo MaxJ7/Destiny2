@@ -51,6 +51,8 @@ namespace Destiny2.Common.Perks
         private Destiny2WeaponElement rightChoiceElement = Destiny2WeaponElement.Kinetic;
         private bool hasTouchOfMalice;
         private bool hasChargedWithBlight;
+        private bool hasRicochetRounds;
+        private bool ricocheted;
 
         public override bool InstancePerEntity => true;
         internal bool HasIncandescentPerk => hasIncandescent;
@@ -137,6 +139,8 @@ namespace Destiny2.Common.Perks
             hasArmorPiercingRounds = false;
             hasTouchOfMalice = false;
             hasChargedWithBlight = false;
+            hasRicochetRounds = false;
+            ricocheted = false;
 
             bool isChild = IsChildProjectile(source);
             Destiny2PerkProjectile parentData = null;
@@ -196,6 +200,8 @@ namespace Destiny2.Common.Perks
                         hasTouchOfMalice = true;
                     else if (perk is ChargedWithBlightPerk)
                         hasChargedWithBlight = true;
+                    else if (perk is RicochetRoundsPerk)
+                        hasRicochetRounds = true;
                 }
 
                 // THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
@@ -419,7 +425,7 @@ namespace Destiny2.Common.Perks
 
             Player owner = GetOwner(projectile.owner);
             sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
-                hasOnslaught, hasAdagio, hasFeedingFrenzy, isKill);
+                hasOnslaught, hasAdagio, hasFeedingFrenzy, isKill, projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>());
         }
 
         public override void OnKill(Projectile projectile, int timeLeft)

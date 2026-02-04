@@ -53,7 +53,7 @@ namespace Destiny2.Common.Perks
             Register(new TacticalMagPerk());
             Register(new AlloyMagPerk());
             Register(new ArmorPiercingRoundsPerk());
-            // Register(new RicochetRoundsPerk());
+            Register(new RicochetRoundsPerk());
             Register(new HandLaidStockPerk());
             Register(new CompositeStockPerk());
             Register(new RampagePerk());

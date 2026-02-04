@@ -375,7 +375,7 @@ namespace Destiny2.Common.Weapons
             UpdateBlightLauncherMode(player);
         }
 
-        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool isKill)
+        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool isKill, bool isBlightProjectile)
         {
             if (hasRapidHit && hit.Crit)
                 AddRapidHitStack(player);
@@ -386,7 +386,7 @@ namespace Destiny2.Common.Weapons
             if (hasFrenzy)
                 RegisterCombat(player);
 
-            if (HasPerk<ChargedWithBlightPerk>())
+            if (HasPerk<ChargedWithBlightPerk>() && !isBlightProjectile)
             {
                 if (blightStacks < ChargedWithBlightPerk.MaxStacks)
                 {

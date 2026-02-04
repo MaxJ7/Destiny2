@@ -423,4 +423,18 @@ namespace Destiny2.Common.Perks
         public const float SorrowVulnerability = 1.5f;
         public const int HealAmount = 25;
     }
+
+    public sealed class RicochetRoundsPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Ricochet Rounds";
+        public override string Description => "Bullets bounce off hard surfaces. Increases stability and range.";
+        public override string IconTexture => "Destiny2/Assets/Perks/RicochetRounds";
+        public override PerkSlotType SlotType => PerkSlotType.Magazine;
+
+        public override void ModifyStats(ref Destiny2WeaponStats stats)
+        {
+            stats.Range += 5;
+            stats.Stability += 10;
+        }
+    }
 }
