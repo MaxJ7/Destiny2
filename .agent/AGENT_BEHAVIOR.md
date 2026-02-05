@@ -24,7 +24,14 @@ You are working in a complex, high-context codebase ("Destiny 2" in Terraria). T
 | **[create_new_perk.md](workflows/create_new_perk.md)** | **Perk Workflow.** Step-by-step checklist for creating generic, frame, or major perks. |
 | **[create_new_weapon.md](workflows/create_new_weapon.md)** | **Weapon Workflow.** Checklist for implementing new guns (Sprites, Sounds, Stats). |
 | **[create_new_archetype.md](workflows/create_new_archetype.md)** | **Archetype Workflow.** How to add entirely new weapon classes (e.g., Trace Rifles). |
-| **[graphics_architecture.md](workflows/graphics_architecture.md)** | **VFX Bible.** The master guide to Beams, Shaders, and Particle Systems. |
+| **[advanced_vfx_techniques.md](workflows/advanced_vfx_techniques.md)** | **VFX Research.** Deep technical info on Bloom, Distortion, and Additive Blending. |
+- **[graphics_architecture.md](workflows/graphics_architecture.md)**: The "Bible" for VFX. Consult this before writing any shader or particle code.
+
+## 2. Post-Task Protocol
+> [!IMPORTANT]
+> **ALWAYS** compile the mod/effects after finishing a coding task to ensure validity.
+*   **If Shaders were modified**: Run `compile_effects.ps1`.
+*   **If C# was modified**: Run `dotnet build`.
 
 ## 3. PERSISTENT SYSTEM RULES (DO NOT HALLUCINATE)
 *   **Precision System:** This mod uses a CUSTOM precision system (`Destiny2CritSpotGlobalNPC`).

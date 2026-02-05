@@ -2,7 +2,14 @@
 > **Purpose:** The definitive manual for implementing "AAA" quality Visual Effects (VFX) in this mod. This guide abstracts specific implementation details into architectural patterns.
 
 ## 1. The "Uber-Shader" Philosophy
-To maintain high performance and developer velocity, we avoid writing unique shaders for every new item. Instead, we use two flexible **Master Shaders** driven by texture sets and parameters.
+To maintain high performance and developer velocity, we avoid writing unique shaders for every new item. Instead, we use two flexible **Master Shaders** located in `Effects/` (not Assets).
+
+### The "High-Pressure Energy Stream" Pattern (Noise Logic)
+The gold standard for energy effects in this mod. Designed to maximize chaos while staying under PS 2.0/3.0 instruction limits.
+*   **Prime-Based Scroll Crossing:** Use prime numbers for scroll speeds (e.g., `4.71`, `2.33`) to prevent repeating interference patterns.
+*   **Multi-Axis Jitter (Scrossing):** Noise-distort both X and Y axes of UVs to eliminate "conveyor belt" scrolling.
+*   **Procedural Thinning:** Use high-order power functions (e.g., `pow(y, 10)`) in the shader to concentrate wide geometry into a needle-thin core.
+*   **Physical Breaks (Clip Logic):** Use `clip()` based on a noise threshold to create jagged, high-pressure gaps in the energy stream.
 
 ### A. The "Linear Tech" Shader (Beams & Trails)
 Used for anything that flows along a path: Laser beams, sword slashes, flowing rivers of fire.
@@ -70,7 +77,24 @@ Understanding the hierarchy of "small moving things" is critical for performance
 *   **Features:**
     *   Full Access to `Radial Tech` shaders.
     *   Custom update logic (Sine wave motion, homing).
+    *   **Lifetime Erosion:** Use `Alpha` (0..1) to drive the shader's `Threshold` parameter. As the particle fades, it physically "burns away" instead of just becoming transparent.
     *   Heavy performance cost; keep counts low (<50).
+
+---
+
+## 5. Advanced Rendering Patterns (The "Juice")
+
+### A. The Triple-Pass Technique
+For high-importance projectiles (e.g., Boss attacks, Snipe Shots), draw the sprite **three times**:
+1.  **The Shadow (Pass 1):** Draw slightly larger, black, low opacity. Creates contrast against bright backgrounds.
+2.  **The Body (Pass 2):** Draw normal color, normal size. The "physical" object.
+3.  **The Bloom (Pass 3):** Draw slightly smaller, white/bright color, `Additive` blending. Creates the "hot core" look.
+
+### B. Sine-Wave Animation
+Don't let sprites sit still.
+*   **Breathing:** `scale = baseScale + sin(Main.time * speed) * amount`.
+*   **Wobble:** `rotation = velocity.ToRotation() + sin(Main.time * speed) * amount`.
+*   **Flash:** `color = Color.Lerp(Color.White, Color.Red, sin(Main.time))`.
 
 ---
 
@@ -84,6 +108,7 @@ Understanding the hierarchy of "small moving things" is critical for performance
     *   Detail: High-contrast "cracks".
 *   **Gradient:** White (Core) -> Yellow -> Deep Orange -> Red (Edge).
 *   **Feel:** Fast flow speed, heavy distortion on edges to simulate heat haze.
+*   **Optimization:** Uses the **High-Pressure Energy Stream** pattern for the "Boiling Needle" look.
 
 ### Recipe: Void Energy (e.g., Graviton Lance)
 *   **Concept:** "Negative Space & Implosion"

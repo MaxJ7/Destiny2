@@ -2,6 +2,7 @@ using Destiny2.Common.Weapons;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Destiny2.Common.VFX.Particles;
 
 namespace Destiny2.Common.VFX
 {
@@ -36,14 +37,26 @@ namespace Destiny2.Common.VFX
 
     public static class ElementalBulletVFX
     {
-        public static void UpdateTrail(Projectile projectile, ElementalBulletProfile profile, ref VFXState state)
+        public static void UpdateTrail(Projectile projectile, Destiny2WeaponElement element, ElementalBulletProfile profile, ref VFXState state)
         {
             state.Timer++;
             if (state.Timer % profile.TrailFrequency == 0)
             {
-                Dust d = Dust.NewDustPerfect(projectile.Center, profile.DustType, Vector2.Zero, 0, profile.Color, profile.DustScale);
-                d.noGravity = true;
-                d.velocity = projectile.velocity * 0.2f;
+                if (element == Destiny2WeaponElement.Solar)
+                {
+                    // Spawn Solar Particle
+                    if (!Main.dedServ)
+                    {
+                        ParticleHandler.SpawnParticle(new Particles.SolarTrailParticle(projectile.Center, projectile.velocity * 0.2f, 1f));
+                    }
+                }
+                else
+                {
+                    // Default Dust Logic
+                    Dust d = Dust.NewDustPerfect(projectile.Center, profile.DustType, Vector2.Zero, 0, profile.Color, profile.DustScale);
+                    d.noGravity = true;
+                    d.velocity = projectile.velocity * 0.2f;
+                }
             }
         }
 

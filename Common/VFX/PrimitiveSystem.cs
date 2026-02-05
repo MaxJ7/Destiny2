@@ -12,13 +12,15 @@ namespace Destiny2.Common.VFX
         public Func<float, Color> ColorFunction;
         public Effect Shader;
         public bool Pixelate;
+        public float? UVScale; // Standardize texture density (World Space UVs)
 
-        public PrimitiveSettings(Func<float, float> WidthFunction, Func<float, Color> ColorFunction, Effect Shader = null, bool Pixelate = false)
+        public PrimitiveSettings(Func<float, float> WidthFunction, Func<float, Color> ColorFunction, Effect Shader = null, bool Pixelate = false, float? UVScale = null)
         {
             this.WidthFunction = WidthFunction;
             this.ColorFunction = ColorFunction;
             this.Shader = Shader;
             this.Pixelate = Pixelate;
+            this.UVScale = UVScale;
         }
     }
 
@@ -49,9 +51,23 @@ namespace Destiny2.Common.VFX
             int count = points.Count;
             VertexPositionColorTexture[] vertices = new VertexPositionColorTexture[count * 2];
 
+            float currentDistance = 0f;
+
             for (int i = 0; i < count; i++)
             {
                 float t = i / (float)(count - 1);
+
+                // Calculate World Distance for Tiling
+                if (i > 0)
+                {
+                    currentDistance += Vector2.Distance(points[i], points[i - 1]);
+                }
+
+                // Determine U-Coordinate
+                // If UVScale is set, U = Distance / Scale (Tiles the texture).
+                // If null, U = t (Stretches the texture 0..1).
+                float u = settings.UVScale.HasValue ? (currentDistance / settings.UVScale.Value) : t;
+
                 float width = settings.WidthFunction(t);
                 Color color = settings.ColorFunction(t);
                 Vector2 pos = points[i];
@@ -59,15 +75,15 @@ namespace Destiny2.Common.VFX
                 Vector2 normal = Vector2.Zero;
                 if (i < count - 1)
                 {
-                    normal = points[i + 1] - points[i];
-                    normal.Normalize();
-                    normal = new Vector2(-normal.Y, normal.X);
+                    Vector2 dir = points[i + 1] - points[i];
+                    if (dir != Vector2.Zero) dir.Normalize();
+                    normal = new Vector2(-dir.Y, dir.X);
                 }
                 else if (i > 0)
                 {
-                    normal = points[i] - points[i - 1];
-                    normal.Normalize();
-                    normal = new Vector2(-normal.Y, normal.X);
+                    Vector2 dir = points[i] - points[i - 1];
+                    if (dir != Vector2.Zero) dir.Normalize();
+                    normal = new Vector2(-dir.Y, dir.X);
                 }
 
                 Vector2 left = pos + normal * width * 0.5f;
@@ -76,8 +92,8 @@ namespace Destiny2.Common.VFX
                 left -= Main.screenPosition;
                 right -= Main.screenPosition;
 
-                vertices[i * 2] = new VertexPositionColorTexture(new Vector3(left, 0), color, new Vector2(t, 0));
-                vertices[i * 2 + 1] = new VertexPositionColorTexture(new Vector3(right, 0), color, new Vector2(t, 1));
+                vertices[i * 2] = new VertexPositionColorTexture(new Vector3(left, 0), color, new Vector2(u, 0));
+                vertices[i * 2 + 1] = new VertexPositionColorTexture(new Vector3(right, 0), color, new Vector2(u, 1));
             }
 
             Effect effect = settings.Shader;

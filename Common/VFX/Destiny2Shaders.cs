@@ -43,7 +43,7 @@ namespace Destiny2.Common.VFX
             // Load standard XNB effects
             // Path: Effects/ (Root level Effects folder)
 
-            SolarTrail = mod.Assets.Request<Effect>("Effects/BulletTrailSolar", AssetRequestMode.ImmediateLoad).Value;
+            SolarTrail = mod.Assets.Request<Effect>("Effects/Linear", AssetRequestMode.ImmediateLoad).Value;
             ArcTrail = mod.Assets.Request<Effect>("Effects/BulletTrailArc", AssetRequestMode.ImmediateLoad).Value;
             VoidTrail = mod.Assets.Request<Effect>("Effects/BulletTrailVoid", AssetRequestMode.ImmediateLoad).Value;
             StasisTrail = mod.Assets.Request<Effect>("Effects/BulletTrailStasis", AssetRequestMode.ImmediateLoad).Value;

@@ -47,6 +47,10 @@ This codebase is strictly divided into `Common` (Systems/Logic) and `Content` (A
     *   **Defaults**: Uses `SetDefaults` to set DamageType, Shoot, ShootSpeed (Critical).
     *   **Perks**: Uses `RollFramePerk` and `RollPerks` (with `RollFrom`/`SetPerks`).
 
+*   **Gold Standard (Shaders)**: [Linear.fx](file:///C:/Users/vexga/Documents/My%20Games/Terraria/tModLoader/ModSources/Destiny2/Effects/Linear.fx)
+    *   **Technique**: High-Pressure Energy Stream Logic.
+    *   **Features**: Prime-speed scrossing, pow12 thinning, 63-instruction PS 2.0 optimization.
+
 ---
 
 ## 3. Perk Types & Rules

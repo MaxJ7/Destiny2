@@ -97,23 +97,34 @@ namespace Destiny2.Common.VFX
             if (shader.Parameters["uTime"] != null)
                 shader.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly);
 
-            // Specific textures (Solar Noise)
+            // Solar Uber-Shader Configuration
             if (element == Destiny2WeaponElement.Solar)
             {
-                if (shader.Parameters["NoiseTexture"] != null)
-                    shader.Parameters["NoiseTexture"].SetValue(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/SolarNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
-            }
+                // Core Gradient (White -> Yellow -> Orange -> Red)
+                // HDR Tuning: Reverted slightly to originally requested colors but kept >1.0 for bloom.
+                shader.Parameters["Color1"]?.SetValue(new Vector3(2.0f, 1.8f, 1.5f));       // Intense White/Yellow Center
+                shader.Parameters["Color2"]?.SetValue(new Vector3(1.5f, 0.8f, 0.0f));       // Solar Orange
+                shader.Parameters["Color3"]?.SetValue(new Vector3(1.0f, 0.2f, 0.0f));       // Deep Red
+                shader.Parameters["Color4"]?.SetValue(new Vector3(0.5f, 0.0f, 0.0f));       // Dark Edge
 
-            // For custom shaders like ExplosiveShadow, we might want custom setup here, 
-            // but for now the shader handles its own noise via uImage1 if passed. 
-            // Currently BulletTrailExplosiveShadow uses uImage1, which PrimitiveSystem should construct if used.
-            // But PrimitiveSystem usually passes Main.pixel for uImage0.
-            // If the shader needs uImage1 (Noise), we need to set it here if PrimitiveSystem allows.
-            // Our PrimitiveSettings handles shader parameters? No, PrimitiveSystem does.
-            // Let's assume the texture is handled by the shader logic or defaults for now.
-            // Wait, Custom Shader uses uImage1. primitiveSystem.RenderTrail usually sets textures?
-            // Checking: PrimitiveSystem.RenderTrail -> PrimitiveRenderer -> Uses the provided shader.
-            // If shader expects uImage1, we MUST set it here.
+                // Flow & Distortion
+                shader.Parameters["flowSpeed"]?.SetValue(1.5f);
+                shader.Parameters["uOpacity"]?.SetValue(opacity);
+
+                // Textures
+                var noise = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarFlameNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                var erosion = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarExplosionNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                var flow = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarStreaks", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+
+                // Texture 1 (Base Shape): Use MagicPixel (Solid White) so we can shape it mathematically in shader.
+                shader.Parameters["sampleTexture1"]?.SetValue(Terraria.GameContent.TextureAssets.MagicPixel.Value);
+
+                shader.Parameters["sampleTexture2"]?.SetValue(noise);   // SolarFlameNoise
+                // ROUND 4: Use TakenNoise (Cellular) for Erosion to get "Cracked" look
+                var takenNoise = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/TakenNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                shader.Parameters["sampleTexture3"]?.SetValue(takenNoise); // Was SolarExplosionNoise
+                shader.Parameters["sampleTexture4"]?.SetValue(flow);    // SolarStreaks
+            }
 
             // CHECK: Does BulletTrailExplosiveShadow use uImage1? Yes.
             // Where is that texture coming from?
@@ -136,15 +147,41 @@ namespace Destiny2.Common.VFX
             // So White input is perfect.
 
             float width = baseWidth * opacity;
+            if (element == Destiny2WeaponElement.Solar)
+            {
+                // MULTI-PASS RENDERING
+                // Pass 1: The "Bloom" (Concentrated Halo)
+                var bloomSettings = new PrimitiveSettings(
+                    WidthFunction: (float completion) => 24f * opacity, // Restore width for noise room
+                    ColorFunction: (float completion) => new Color(255, 100, 0) * 0.95f * opacity, // Solid Orange
+                    Shader: shader,
+                    Pixelate: false,
+                    UVScale: 64f
+                );
+                PrimitiveSystem.RenderTrail(trail, bloomSettings);
 
-            var settings = new PrimitiveSettings(
-                WidthFunction: (float completion) => width,
-                ColorFunction: (float completion) => baseColor,
-                Shader: shader,
-                Pixelate: false
-            );
-
-            PrimitiveSystem.RenderTrail(trail, settings);
+                // Pass 2: The "Core" (Razor Thin Plasma)
+                var coreSettings = new PrimitiveSettings(
+                    WidthFunction: (float completion) => 8f * opacity, // Restore width for noise room
+                    ColorFunction: (float completion) => new Color(255, 255, 255) * 1.0f * opacity, // Pure White Core
+                    Shader: shader,
+                    Pixelate: false,
+                    UVScale: 64f
+                );
+                PrimitiveSystem.RenderTrail(trail, coreSettings);
+            }
+            else
+            {
+                // Standard Single-Pass Rendering for other elements
+                var settings = new PrimitiveSettings(
+                    WidthFunction: (float completion) => width,
+                    ColorFunction: (float completion) => baseColor,
+                    Shader: shader,
+                    Pixelate: false,
+                    UVScale: null
+                );
+                PrimitiveSystem.RenderTrail(trail, settings);
+            }
         }
 
         private static Color GetElementColor(Destiny2WeaponElement element)

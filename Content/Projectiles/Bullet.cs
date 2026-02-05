@@ -105,7 +105,7 @@ namespace Destiny2.Content.Projectiles
             // VFX (Dust while flying - minimal for instant bullets but good for "feeling")
             if (Projectile.numUpdates == 0)
             {
-                ElementalBulletVFX.UpdateTrail(Projectile, profile, ref vfxState);
+                ElementalBulletVFX.UpdateTrail(Projectile, weaponElement, profile, ref vfxState);
             }
         }
 

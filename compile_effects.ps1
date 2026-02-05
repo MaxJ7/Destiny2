@@ -9,7 +9,7 @@ if (-not (Test-Path $easyXnbPath)) {
     exit 1
 }
 
-Write-Host "Compiling Shaders using EasyXnb..."
+Write-Host "Compiling Shaders using EasyXnb... (Version 5)"
 Push-Location $compilerDir
 
 try {
@@ -26,12 +26,13 @@ try {
     Write-Host "Shader compilation successful."
     
     # Move compiled XNBs to Effects folder
-    $xnbFiles = Get-ChildItem -Path $compilerDir -Filter "*.xnb"
+    # Move compiled XNBs to Effects folder (Bulk Move)
+    $xnbPattern = Join-Path $compilerDir "*.xnb"
     $effectsDir = Join-Path $scriptDir "Effects"
-    foreach ($file in $xnbFiles) {
-        $destination = Join-Path $effectsDir $file.Name
-        Move-Item -Path $file.FullName -Destination $destination -Force
-        Write-Host "Moved $($file.Name) to Effects/"
+    
+    Write-Host "Moving all .xnb files to Effects/..."
+    if (Test-Path $xnbPattern) {
+        Move-Item -Path $xnbPattern -Destination $effectsDir -Force
     }
 }
 catch {
