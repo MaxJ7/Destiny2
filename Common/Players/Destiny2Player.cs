@@ -199,7 +199,7 @@ namespace Destiny2.Common.Players
             global::Destiny2.Destiny2.LogDiagnostic($"EyesUp stacks GRANTED! Added={amount} OldTotal={oldStacks} NewTotal={eyesUpGuardianStacks} Frame={currentFrame}");
 
             // Show visual feedback to player
-            if (Main.netMode != NetmodeID.Server && Player.whoAmI == Main.myPlayer)
+            if (Main.netMode != NetmodeID.Server && Player.whoAmI == Main.myPlayer && global::Destiny2.Destiny2.DiagnosticsEnabled)
             {
                 Main.NewText($"Eyes Up, Guardian! {eyesUpGuardianStacks} stacks ready.", 100, 200, 255);
             }

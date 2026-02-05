@@ -57,7 +57,7 @@ Common Hooks:
 ModifyShootStats
 : Change bullet behavior (velocity, damage) before firing.
 NotifyProjectileHit
-: Handle on-hit effects (applying buffs, spawning projectiles).
+: Handle on-hit effects (applying buffs, spawning projectiles). MUST use the isPrecision parameter for precision-based perks.
 NotifyPlayerHurt
 : Handle trigger when player takes damage (e.g., Frenzy).
 UpdatePerkTimers

@@ -378,23 +378,23 @@ namespace Destiny2.Common.Weapons
             UpdateBlightLauncherMode(player);
         }
 
-        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool isKill, bool isBlightProjectile)
+        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
         {
-            if (hasRapidHit && hit.Crit)
+            if (hasRapidHit && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 AddRapidHitStack(player);
 
-            if (hasFourthTimes)
+            if (hasFourthTimes && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 RegisterFourthTimesHit(player);
 
             if (hasFrenzy)
                 RegisterCombat(player);
 
-            if (HasFrame && FramePerkKey == nameof(TheCorruptionSpreadsFramePerk))
+            if (HasFrame && FramePerkKey == nameof(TheCorruptionSpreadsFramePerk) && !isNaniteProjectile)
             {
                 RegisterCorruptionHit(player, target);
             }
 
-            if (HasPerk<ChargedWithBlightPerk>() && !isBlightProjectile)
+            if (HasPerk<ChargedWithBlightPerk>() && isPrecision && !isBlightProjectile)
             {
                 if (blightStacks < ChargedWithBlightPerk.MaxStacks)
                 {
@@ -407,7 +407,7 @@ namespace Destiny2.Common.Weapons
             if (target == null || target.friendly || !isKill)
                 return;
 
-            if (hasOutlaw && hit.Crit)
+            if (hasOutlaw && isPrecision)
                 ActivateOutlaw(player);
 
             if (hasKillClip)

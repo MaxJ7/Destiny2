@@ -42,6 +42,21 @@ namespace Destiny2.Common.Weapons
             return 1.65f;
         }
 
+        public override int GetBurstCount()
+        {
+            if (TryGetFramePerk(out Destiny2Perk framePerk))
+            {
+                if (framePerk is AggressiveBurstFramePerk) return AggressiveBurstCount;
+                if (framePerk is HeavyBurstFramePerk) return HeavyBurstCount;
+                if (framePerk is HighImpactFramePerk) return HighImpactBurstCount;
+                if (framePerk is AdaptiveFramePerk) return AdaptiveBurstCount;
+                if (framePerk is LightweightFramePerk) return LightweightBurstCount;
+                if (framePerk is TheCorruptionSpreadsFramePerk) return 3; // Outbreak
+                if (framePerk is RapidFireFramePerk) return RapidFireBurstCount;
+            }
+            return 3; // Standard Pulse
+        }
+
         protected virtual float BaseRecoil => 1.0f;
         protected virtual float MinFalloffTiles => 27f;
         protected virtual float MaxFalloffTiles => 45f;
@@ -161,13 +176,9 @@ namespace Destiny2.Common.Weapons
             // If it's a 3-round burst, that's 3 bursts per second.
             // Cycle Time = 60 / 3 = 20 frames per burst cycle.
 
-            int burstCount = 3;
+            int burstCount = GetBurstCount();
             if (TryGetFramePerk(out Destiny2Perk framePerk))
             {
-                if (framePerk is AggressiveBurstFramePerk) burstCount = AggressiveBurstCount; // 4
-                else if (framePerk is HeavyBurstFramePerk) burstCount = HeavyBurstCount; // 2
-                else if (framePerk is HighImpactFramePerk) burstCount = HighImpactBurstCount; // 3
-
                 // Lightweight Bonus
                 if (framePerk is LightweightFramePerk || framePerk is TheCorruptionSpreadsFramePerk)
                 {

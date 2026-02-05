@@ -12,11 +12,11 @@ namespace Destiny2.Content.Weapons
     {
 
         public override Destiny2WeaponStats BaseStats => new Destiny2WeaponStats(
-            range: 64f,
-            stability: 46f,
-            reloadSpeed: 50f,
+            range: 44f,
+            stability: 40f,
+            reloadSpeed: 45f,
             roundsPerMinute: 450,
-            magazine: 35
+            magazine: 36
         );
 
         protected override Destiny2WeaponElement GetDefaultWeaponElement()
@@ -33,7 +33,7 @@ namespace Destiny2.Content.Weapons
             Item.knockBack = 2f;
             Item.noMelee = true; // Guns don't hit
             Item.autoReuse = true;
-            Item.scale = 1f;
+            Item.scale = .65f;
 
             // Damage Type from Element
             Item.DamageType = WeaponElement.GetDamageClass();

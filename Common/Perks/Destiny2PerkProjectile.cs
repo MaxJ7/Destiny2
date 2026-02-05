@@ -55,6 +55,8 @@ namespace Destiny2.Common.Perks
         private bool hasRicochetRounds;
         private bool ricocheted;
         private bool hasParasitism;
+        private bool isPrecisionHit; // Track for OnHitNPC
+        public bool CanCrit = true;
         public Microsoft.Xna.Framework.Graphics.Effect CustomTrailShader { get; set; }
 
         public override bool InstancePerEntity => true;
@@ -94,6 +96,9 @@ namespace Destiny2.Common.Perks
         /// </summary>
         private static void ShowPerkFeedback(Player player, string message, Color color)
         {
+            if (!DiagnosticsEnabled)
+                return;
+
             if (Main.netMode == NetmodeID.Server)
                 return;
 
@@ -145,6 +150,14 @@ namespace Destiny2.Common.Perks
             hasRicochetRounds = false;
             ricocheted = false;
             hasParasitism = false;
+            CanCrit = true;
+
+            // Non-Crit Projectiles (Nanites, Blight, etc)
+            if (projectile.type == ModContent.ProjectileType<NaniteProjectile>() ||
+                projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>())
+            {
+                CanCrit = false;
+            }
 
             bool isChild = IsChildProjectile(source);
             Destiny2PerkProjectile parentData = null;
@@ -294,6 +307,13 @@ namespace Destiny2.Common.Perks
 
         public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
         {
+            isPrecisionHit = false;
+            // Disable vanilla crits for all projectiles related to this mod
+            if (projectile.ModProjectile?.Mod == Mod || sourceWeaponItem != null)
+            {
+                modifiers.DisableCrit();
+            }
+
             if (target != null)
             {
                 lastPreHitLife = target.life;
@@ -308,13 +328,23 @@ namespace Destiny2.Common.Perks
             if (sourceWeaponItem != null)
             {
                 float precisionMultiplier = sourceWeaponItem.GetPrecisionMultiplier();
-                if (precisionMultiplier > 1f)
+
+                // Precision Logic
+                if (sourceWeaponItem.CanCrit && CanCrit)
                 {
                     Destiny2CritSpotGlobalNPC critSpot = target.GetGlobalNPC<Destiny2CritSpotGlobalNPC>();
-                    if (critSpot != null && critSpot.IsHitInCritSpot(target, projectile.Center))
+                    // Check Precision status INDEPENDENT of multiplier
+                    if (critSpot != null && critSpot.IsPrecisionShot(target, projectile.Center - projectile.velocity, projectile.Center))
                     {
-                        multiplier *= precisionMultiplier;
-                        critSpot.RegisterPrecisionHit();
+                        critSpot.RegisterPrecisionHit(target);
+                        isPrecisionHit = true;
+
+                        // Apply damage multiplier if applicable
+                        if (precisionMultiplier > 1f)
+                        {
+                            multiplier *= precisionMultiplier;
+                            modifiers.SetCrit(); // Only set "Crit" text if we actually did crit damage
+                        }
                     }
                 }
 
@@ -344,7 +374,7 @@ namespace Destiny2.Common.Perks
                 if (hasTouchOfMalice && sourceWeaponItem.CurrentMagazine == 1)
                     multiplier *= TouchOfMalicePerk.DamageMultiplier;
 
-                if (hasParasitism)
+                if (hasParasitism && projectile.type != ModContent.ProjectileType<NaniteProjectile>())
                 {
                     NaniteGlobalNPC naniteGlobal = target.GetGlobalNPC<NaniteGlobalNPC>();
                     if (naniteGlobal != null && naniteGlobal.NaniteStacks > 0)
@@ -364,8 +394,6 @@ namespace Destiny2.Common.Perks
 
                         if (bonus > 3.5f) bonus = 3.5f;
 
-                        if (bonus > 3.5f) bonus = 3.5f;
-
                         if (DiagnosticsEnabled)
                             LogDiagnostic($"[Parasitism] Bonus: {bonus:P0} Stacks: {stacks}");
 
@@ -377,6 +405,49 @@ namespace Destiny2.Common.Perks
             if (multiplier > 1f)
                 modifiers.FinalDamage *= multiplier;
         }
+
+        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            if (isPrecisionHit)
+            {
+                // Find the CombatText that was just spawned and color it Yellow
+                // CombatText is usually the last one in the list if spawned this frame.
+                // We scan backwards for a text matching the damage amount near the target.
+                // Find the CombatText that was just spawned and color it Yellow
+                string damageStr = damageDone.ToString();
+                float bestLife = -1f;
+                int bestIdx = -1;
+
+                for (int i = 0; i < 100; i++)
+                {
+                    CombatText text = Main.combatText[i];
+                    // Match if it's recently spawned (lifeTime near max) and contains our damage
+                    if (text != null && text.active && text.lifeTime > bestLife && text.text.Contains(damageStr))
+                    {
+                        // Match if it's within a reasonable distance of the target's center
+                        if (Vector2.DistanceSquared(text.position, target.Center) < 450 * 450)
+                        {
+                            bestLife = text.lifeTime;
+                            bestIdx = i;
+                        }
+                    }
+                }
+
+                if (bestIdx != -1)
+                {
+                    Main.combatText[bestIdx].color = new Color(255, 235, 4); // Destiny Yellow
+                }
+            }
+
+            // Standard Perk Processing
+            if (DiagnosticsEnabled && isPrecisionHit)
+                LogDiagnostic("OnHitNPC: Processing Precision Hit for perks.");
+
+            ProcessHit(projectile, target, hit, damageDone);
+
+            isPrecisionHit = false; // Reset AFTER processing perks
+        }
+
 
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
@@ -414,10 +485,6 @@ namespace Destiny2.Common.Perks
             return true;
         }
 
-        public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
-        {
-            ProcessHit(projectile, target, hit, damageDone);
-        }
 
         private void ProcessHit(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
         {
@@ -442,7 +509,8 @@ namespace Destiny2.Common.Perks
             if (hasIncandescent && isKill && target != null && Main.netMode != NetmodeID.MultiplayerClient)
             {
                 Main.NewText($"[Perk] Incandescent Triggered! Kill detected.", Color.Orange);
-                int explosionDamage = Math.Max(1, (int)(damageDone * 0.25f));
+                // Use projectile.damage instead of damageDone to ensure consistent explosion damage
+                int explosionDamage = Math.Max(1, (int)(projectile.damage * 0.25f));
                 ScorchGlobalNPC.TriggerIncandescentExplosion(target.Center, explosionDamage, target.whoAmI);
             }
 
@@ -491,7 +559,7 @@ namespace Destiny2.Common.Perks
                 return;
 
             if (hasKineticTremors)
-                sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, damageDone);
+                sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, projectile.damage);
 
             if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage
                 && !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasChargedWithBlight)
@@ -499,7 +567,8 @@ namespace Destiny2.Common.Perks
 
             Player owner = GetOwner(projectile.owner);
             sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
-                hasOnslaught, hasAdagio, hasFeedingFrenzy, isKill, projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>());
+                hasOnslaught, hasAdagio, hasFeedingFrenzy, isKill, projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>(),
+                projectile.type == ModContent.ProjectileType<NaniteProjectile>(), isPrecisionHit);
         }
 
         public override void OnKill(Projectile projectile, int timeLeft)

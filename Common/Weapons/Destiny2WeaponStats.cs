@@ -62,6 +62,7 @@ namespace Destiny2.Common.Weapons
         public abstract Destiny2WeaponStats BaseStats { get; }
         public virtual Destiny2AmmoType AmmoType => Destiny2AmmoType.Primary;
         public virtual bool IsWeaponOfSorrow => false;
+        public virtual bool CanCrit => true;
         public Destiny2WeaponElement WeaponElement => hasElementOverride ? elementOverride : GetDefaultWeaponElement();
 
         protected override bool CloneNewInstances => true;
@@ -305,6 +306,17 @@ namespace Destiny2.Common.Weapons
                 perk.ModifyStats(ref stats);
             ApplyFrameRateOfFire(ref stats);
             ApplyActivePerkStats(ref stats);
+
+            // Handle Burst Rounding: Ensure magazine is divisible by burst count if modified by perks
+            int burst = GetBurstCount();
+            if (burst > 1 && stats.Magazine > 0)
+            {
+                if (stats.Magazine % burst != 0)
+                {
+                    stats.Magazine = ((stats.Magazine / burst) + 1) * burst;
+                }
+            }
+
             return stats;
         }
 
@@ -317,6 +329,8 @@ namespace Destiny2.Common.Weapons
         public string CatalystPerkKey => catalystPerkKey;
         public bool HasElementOverride => hasElementOverride;
         public virtual float GetPrecisionMultiplier() => 1f;
+
+        public virtual int GetBurstCount() => 1;
         protected virtual Destiny2WeaponElement GetDefaultWeaponElement()
         {
             return Destiny2WeaponElement.Kinetic;
@@ -878,6 +892,9 @@ namespace Destiny2.Common.Weapons
 
         private static void SendPerkDebug(Player player, string message)
         {
+            if (!global::Destiny2.Destiny2.DiagnosticsEnabled)
+                return;
+
             if (Main.netMode == NetmodeID.Server)
                 return;
 

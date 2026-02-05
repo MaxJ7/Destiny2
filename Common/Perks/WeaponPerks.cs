@@ -339,7 +339,9 @@ namespace Destiny2.Common.Perks
             if (data.SlugStacks < SlugsToExplode || data.IsExplosionActive || data.IsExplosionCoolingDown)
                 return;
 
-            int explosionDamage = Math.Max(1, (int)(damageDone * ExplosionDamageScalar));
+            // Use projectile.damage instead of damageDone to ensure the explosion is based on the 
+            // weapon's base damage and isn't amplified by precision multipliers (crits).
+            int explosionDamage = Math.Max(1, (int)(projectile.damage * ExplosionDamageScalar));
             int hitDirection = projectile.direction != 0 ? projectile.direction : target.direction;
             data.StartExplosionChain(explosionDamage, hitDirection, ExplosionDelayTicks);
         }
