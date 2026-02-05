@@ -1,3 +1,5 @@
+using Destiny2.Common.Weapons;
+
 namespace Destiny2.Common.Perks
 {
     public sealed class AdaptiveFramePerk : Destiny2Perk

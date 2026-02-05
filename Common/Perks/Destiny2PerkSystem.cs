@@ -77,6 +77,12 @@ namespace Destiny2.Common.Perks
             Register(new ChargedWithBlightPerk());
             Register(new TheCorruptionSpreadsFramePerk());
             Register(new ParasitismPerk());
+            Register(new NaturalStringPerk());
+            Register(new ElasticStringPerk());
+            Register(new CompactArrowShaftPerk());
+            Register(new CarbonArrowShaftPerk());
+            Register(new ArchersTempoPerk());
+            Register(new ExplosiveHeadPerk());
         }
 
         public static void Register(Destiny2Perk perk)

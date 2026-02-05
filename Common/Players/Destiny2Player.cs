@@ -25,6 +25,7 @@ namespace Destiny2.Common.Players
         private int targetLockBuffTimer;
         private int dynamicSwayBuffTimer;
         private int fourthTimesBuffTimer;
+        private int archersTempoBuffTimer;
         private int eyesUpGuardianStacks;
         private bool perkBuffsCleared;
 
@@ -57,6 +58,7 @@ namespace Destiny2.Common.Players
             targetLockBuffTimer = 0;
             dynamicSwayBuffTimer = 0;
             fourthTimesBuffTimer = 0;
+            archersTempoBuffTimer = 0;
         }
 
         public override void ProcessTriggers(TriggersSet triggersSet)
@@ -164,6 +166,12 @@ namespace Destiny2.Common.Players
                 fourthTimesBuffTimer = timer;
         }
 
+        internal void RequestArchersTempoBuff(int timer)
+        {
+            if (timer > archersTempoBuffTimer)
+                archersTempoBuffTimer = timer;
+        }
+
         internal bool TryConsumeEyesUpGuardianStack()
         {
             if (eyesUpGuardianStacks <= 0)
@@ -223,6 +231,7 @@ namespace Destiny2.Common.Players
             ApplyTimedBuff(ModContent.BuffType<TargetLockBuff>(), targetLockBuffTimer);
             ApplyTimedBuff(ModContent.BuffType<DynamicSwayReductionBuff>(), dynamicSwayBuffTimer);
             ApplyTimedBuff(ModContent.BuffType<FourthTimesTheCharmBuff>(), fourthTimesBuffTimer);
+            ApplyTimedBuff(ModContent.BuffType<ArchersTempoBuff>(), archersTempoBuffTimer);
         }
 
         private void ApplyTimedBuff(int buffType, int timer)
@@ -275,6 +284,7 @@ namespace Destiny2.Common.Players
             Player.ClearBuff(ModContent.BuffType<TargetLockBuff>());
             Player.ClearBuff(ModContent.BuffType<DynamicSwayReductionBuff>());
             Player.ClearBuff(ModContent.BuffType<FourthTimesTheCharmBuff>());
+            Player.ClearBuff(ModContent.BuffType<ArchersTempoBuff>());
         }
     }
 }

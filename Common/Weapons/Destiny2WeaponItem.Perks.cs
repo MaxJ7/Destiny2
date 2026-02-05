@@ -16,14 +16,16 @@ namespace Destiny2.Common.Weapons
     {
         internal readonly struct PerkHudEntry
         {
+            public readonly string DisplayName;
             public readonly string IconTexture;
             public readonly int Timer;
             public readonly int MaxTimer;
             public readonly int Stacks;
             public readonly bool ShowStacks;
 
-            public PerkHudEntry(string iconTexture, int timer, int maxTimer, int stacks, bool showStacks)
+            public PerkHudEntry(string displayName, string iconTexture, int timer, int maxTimer, int stacks, bool showStacks)
             {
+                DisplayName = displayName;
                 IconTexture = iconTexture;
                 Timer = timer;
                 MaxTimer = maxTimer;
@@ -69,6 +71,7 @@ namespace Destiny2.Common.Weapons
         private int reloadHoldTimer;
         private int corruptionHitCount;
         private ulong lastCorruptionHitTick;
+        private int archersTempoTimer;
         private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
         private readonly List<int> kineticTremorsTargetKeys = new List<int>();
 
@@ -104,10 +107,15 @@ namespace Destiny2.Common.Weapons
             {
                 stats.Range += AdagioPerk.RangeBonus;
                 stats.RoundsPerMinute = ApplyRpmScalar(stats.RoundsPerMinute, AdagioPerk.RpmScalar);
+                if (IsBowWeapon())
+                    stats.ChargeTime = (int)(stats.ChargeTime * AdagioPerk.BowChargeTimeScalar);
             }
 
             if (dynamicSwayTimer > 0 && dynamicSwayStacks > 0)
                 stats.Stability += dynamicSwayStacks * DynamicSwayReductionPerk.StabilityPerStack;
+
+            if (archersTempoTimer > 0)
+                stats.ChargeTime = (int)(stats.ChargeTime * ArchersTempoPerk.ChargeTimeScalar);
 
 
         }
@@ -159,6 +167,9 @@ namespace Destiny2.Common.Weapons
                 AddPerkHudEntry(entries, nameof(ChargedWithBlightPerk), 1, 1, 0, false);
             else if (blightStacks > 0)
                 AddPerkHudEntry(entries, nameof(ChargedWithBlightPerk), 1, 1, blightStacks, true);
+
+            if (archersTempoTimer > 0)
+                AddPerkHudEntry(entries, nameof(ArchersTempoPerk), archersTempoTimer, ArchersTempoPerk.DurationTicks, 1, false);
         }
 
         private static void AddPerkHudEntry(List<PerkHudEntry> entries, string perkKey, int timer, int maxTimer, int stacks, bool showStacks)
@@ -166,23 +177,16 @@ namespace Destiny2.Common.Weapons
             if (timer <= 0)
                 return;
 
-            string iconTexture = GetPerkIconTexture(perkKey);
+            if (!Destiny2PerkSystem.TryGet(perkKey, out Destiny2Perk perk))
+                return;
+
+            string iconTexture = perk.IconTexture;
             if (string.IsNullOrWhiteSpace(iconTexture))
                 return;
 
-            entries.Add(new PerkHudEntry(iconTexture, timer, maxTimer, stacks, showStacks));
+            entries.Add(new PerkHudEntry(perk.DisplayName, iconTexture, timer, maxTimer, stacks, showStacks));
         }
 
-        private static string GetPerkIconTexture(string perkKey)
-        {
-            if (string.IsNullOrWhiteSpace(perkKey))
-                return null;
-
-            if (!Destiny2PerkSystem.TryGet(perkKey, out Destiny2Perk perk))
-                return null;
-
-            return perk.IconTexture;
-        }
 
         private int GetTargetLockStacks()
         {
@@ -354,6 +358,9 @@ namespace Destiny2.Common.Weapons
                     dynamicSwayStacks = 0;
             }
 
+            if (archersTempoTimer > 0)
+                archersTempoTimer--;
+
             if (targetLockHitCount > 0 && !IsPlayerFiring(player))
                 ResetTargetLockState();
 
@@ -373,12 +380,13 @@ namespace Destiny2.Common.Weapons
                 modPlayer.RequestTargetLockBuff(targetLockHitCount > 0 ? targetLockHitTimer : 0);
                 modPlayer.RequestDynamicSwayBuff(dynamicSwayStacks > 0 ? dynamicSwayTimer : 0);
                 modPlayer.RequestFourthTimesBuff(fourthTimesHitTimer);
+                modPlayer.RequestArchersTempoBuff(archersTempoTimer);
             }
 
             UpdateBlightLauncherMode(player);
         }
 
-        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
+        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool hasArchersTempo, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
         {
             if (hasRapidHit && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 AddRapidHitStack(player);
@@ -393,6 +401,9 @@ namespace Destiny2.Common.Weapons
             {
                 RegisterCorruptionHit(player, target);
             }
+
+            if (hasArchersTempo && isPrecision)
+                ActivateArchersTempo(player);
 
             if (HasPerk<ChargedWithBlightPerk>() && isPrecision && !isBlightProjectile)
             {
@@ -580,6 +591,12 @@ namespace Destiny2.Common.Weapons
                 dynamicSwayStacks++;
         }
 
+        private void ActivateArchersTempo(Player player)
+        {
+            archersTempoTimer = ArchersTempoPerk.DurationTicks;
+            SendPerkDebug(player, "Archer's Tempo activated");
+        }
+
         internal float RegisterTargetLockHit(NPC target)
         {
             if (target == null || !target.CanBeChasedBy())
@@ -693,7 +710,7 @@ namespace Destiny2.Common.Weapons
 
         private bool IsBowWeapon()
         {
-            return Item.useAmmo == AmmoID.Arrow;
+            return this is CombatBowWeaponItem;
         }
 
         private void SpawnKineticTremorsShockwave(Projectile projectile, NPC target, int damageDone, int initialDelay)

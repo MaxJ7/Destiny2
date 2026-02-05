@@ -26,14 +26,16 @@ namespace Destiny2.Common.Weapons
         public float ReloadSpeed;
         public int RoundsPerMinute;
         public int Magazine;
+        public int ChargeTime;
 
-        public Destiny2WeaponStats(float range, float stability, float reloadSpeed, int roundsPerMinute, int magazine)
+        public Destiny2WeaponStats(float range, float stability, float reloadSpeed, int roundsPerMinute, int magazine, int chargeTime = 0)
         {
             Range = range;
             Stability = stability;
             ReloadSpeed = reloadSpeed;
             RoundsPerMinute = roundsPerMinute;
             Magazine = magazine;
+            ChargeTime = chargeTime;
         }
     }
 
@@ -51,7 +53,7 @@ namespace Destiny2.Common.Weapons
         private string framePerkKey;
         private string catalystPerkKey;
         private int catalystItemType;
-        private int currentMagazine;
+        protected int currentMagazine;
         private bool magazineInitialized;
         private int reloadTimer;
         private int reloadTimerMax;
@@ -139,7 +141,8 @@ namespace Destiny2.Common.Weapons
                     ["stability"] = customStats.Stability,
                     ["reloadSpeed"] = customStats.ReloadSpeed,
                     ["rpm"] = customStats.RoundsPerMinute,
-                    ["magazine"] = customStats.Magazine
+                    ["magazine"] = customStats.Magazine,
+                    ["chargeTime"] = customStats.ChargeTime
                 };
                 tag["customStats"] = statsTag;
             }
@@ -176,7 +179,8 @@ namespace Destiny2.Common.Weapons
                     statsTag.GetFloat("stability"),
                     statsTag.GetFloat("reloadSpeed"),
                     statsTag.GetInt("rpm"),
-                    statsTag.GetInt("magazine"));
+                    statsTag.GetInt("magazine"),
+                    statsTag.GetInt("chargeTime"));
             }
 
             if (tag.ContainsKey("framePerkKey"))
@@ -230,6 +234,7 @@ namespace Destiny2.Common.Weapons
                 writer.Write(customStats.ReloadSpeed);
                 writer.Write(customStats.RoundsPerMinute);
                 writer.Write(customStats.Magazine);
+                writer.Write(customStats.ChargeTime);
             }
 
             writer.Write(HasFrame);
@@ -267,6 +272,7 @@ namespace Destiny2.Common.Weapons
                 customStats.ReloadSpeed = reader.ReadSingle();
                 customStats.RoundsPerMinute = reader.ReadInt32();
                 customStats.Magazine = reader.ReadInt32();
+                customStats.ChargeTime = reader.ReadInt32();
             }
 
             if (reader.ReadBoolean())
@@ -302,9 +308,12 @@ namespace Destiny2.Common.Weapons
         public virtual Destiny2WeaponStats GetStats()
         {
             Destiny2WeaponStats stats = hasCustomStats ? customStats : BaseStats;
+            ApplyFrameRateOfFire(ref stats);
+            ApplyFrameChargeTime(ref stats);
+
             foreach (Destiny2Perk perk in GetPerks())
                 perk.ModifyStats(ref stats);
-            ApplyFrameRateOfFire(ref stats);
+
             ApplyActivePerkStats(ref stats);
 
             // Handle Burst Rounding: Ensure magazine is divisible by burst count if modified by perks
@@ -350,6 +359,11 @@ namespace Destiny2.Common.Weapons
         protected virtual int GetFrameRoundsPerMinute(Destiny2Perk framePerk, int currentRpm)
         {
             return currentRpm;
+        }
+
+        protected virtual int GetFrameChargeTime(Destiny2Perk framePerk, int currentChargeTime)
+        {
+            return currentChargeTime;
         }
 
         public void ApplyCustomStats(Destiny2WeaponStats stats)
@@ -576,6 +590,10 @@ namespace Destiny2.Common.Weapons
             tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Reload", $"Reload: {stats.ReloadSpeed:0}"));
             tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "RPM", $"RPM: {stats.RoundsPerMinute}"));
             tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "Magazine", $"Magazine: {stats.Magazine}"));
+            if (stats.ChargeTime > 0)
+            {
+                tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "ChargeTime", $"Charge Time: {stats.ChargeTime} ms"));
+            }
             tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "AmmoType", $"Ammo Type: {AmmoType}"));
             tooltips.Add(new TooltipLine(Mod, PerkIconsTooltipName, " "));
         }
@@ -868,7 +886,7 @@ namespace Destiny2.Common.Weapons
             Item.useAnimation = useTime;
         }
 
-        private void UpdateWeaponState(Player player)
+        protected void UpdateWeaponState(Player player)
         {
             MarkPickedUp();
             EnsurePerksRolled();
@@ -915,6 +933,19 @@ namespace Destiny2.Common.Weapons
             int frameRpm = GetFrameRoundsPerMinute(framePerk, stats.RoundsPerMinute);
             if (frameRpm > 0)
                 stats.RoundsPerMinute = frameRpm;
+        }
+
+        private void ApplyFrameChargeTime(ref Destiny2WeaponStats stats)
+        {
+            if (string.IsNullOrWhiteSpace(framePerkKey))
+                return;
+
+            if (!Destiny2PerkSystem.TryGet(framePerkKey, out Destiny2Perk framePerk))
+                return;
+
+            int frameChargeTime = GetFrameChargeTime(framePerk, stats.ChargeTime);
+            if (frameChargeTime > 0)
+                stats.ChargeTime = frameChargeTime;
         }
 
         private void SyncDamageTypeToElement()

@@ -67,7 +67,7 @@ Content/Weapons/MyGun.cs -> Content/Weapons/MyGun.png.
 Forbidden: Overriding Texture property manually. Let tModLoader auto-load.
 Boilerplate: SetDefaults must ALWAYS explicitly set:
 Item.DamageType = WeaponElement.GetDamageClass();
-Item.shoot = ModContent.ProjectileType<Bullet>();
+Item.shoot = ModContent.ProjectileType<Bullet>(); // Or CombatBowProjectile for Bows
 Item.useAmmo = AmmoID.None;
 5. Archetype Architecture
 Rule: Archetypes define the "feel" and math.
@@ -78,8 +78,8 @@ Responsibility:
 MUST override GetRecoilStrength (Stability -> Vector2).
 MUST override GetFalloffTiles (Range -> Tiles).
 MUST override GetReloadSeconds (Reload -> Seconds).
-MUST override GetFrameRoundsPerMinute (Frame Perk -> RPM).
-Forbidden: Implementing concrete stats (Damage, MagSize) in the Archetype. These belong in the specific Weapon.
+MUST override GetFrameRoundsPerMinute (Frame Perk -> RPM). Or GetFrameChargeTime for Bows.
+Forbidden: Implementing concrete stats (Damage, MagSize) in the Archetype. These belong in the specific Weapon. (Note: Bows MUST set Magazine = 1 in GetStats or SetDefaults).
 6. NPC & logic Architecture
 Rule: Separate Logic/Systems from Content/Assets.
 

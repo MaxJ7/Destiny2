@@ -155,11 +155,14 @@ Perks are divided into 4 categories.
 2.  **Firing Logic:** In `Destiny2WeaponStats.cs`:
     *   Intercept the `Shoot` override.
     *   If `isActive`, fire the custom projectile and set `isActive = false`.
-3.  **Heal/VFX:** Activation logic in `UpdateMode` handles the `player.HealEffect` and sound.
-
-### Workflow 6: Creating a New Archetype
-*Goal: Add "Trace Rifles" as a new weapon class.*
-See **[create_new_archetype.md](create_new_archetype.md)** for the full guide.
+3.  **Heal/VFX:** Activation logic in `UpdateMode` handles the| **[create_new_perk.md](create_new_perk.md)** | **Perk Workflow.** Step-by-step checklist for creating generic, frame, or major perks. |
+| **[create_new_weapon.md](create_new_weapon.md)** | **Weapon Workflow.** Checklist for implementing new guns (Sprites, Sounds, Stats). |
+| **[create_new_bow.md](create_new_bow.md)** | **Bow Workflow.** Checklist for implementing new bows (Draw Time, Animations). |
+| **[create_new_archetype.md](create_new_archetype.md)** | **Archetype Workflow.** How to add entirely new weapon classes (e.g., Trace Rifles). |
+a Combat Bow
+*Goal: Add "Tyranny of Heaven" (Solar Bow).*
+See **[create_new_bow.md](create_new_bow.md)** for the full guide.
+**Note**: Bows must use `Magazine = 1` and `CombatBowProjectile`.
 
 ---
 

@@ -34,6 +34,8 @@ namespace Destiny2.Common.Perks
         private bool targetLockShotRegistered;
         private bool targetLockShotHit;
         private bool hasIncandescent;
+        private bool hasExplosiveHead;
+        private int explosiveHeadBaseExplosionDamage;
         private int lastPreHitLife;
         private int lastHitTargetId = -1;
         private bool hasPreHitLife;
@@ -41,8 +43,8 @@ namespace Destiny2.Common.Perks
         private bool hasRightChoice;
         private bool isRightChoiceShot;
         private bool hasEyesUpGuardian;
-        private bool isEyesUpGuardianRicochet;
         private bool isEyesUpGuardianShot;
+        private bool isEyesUpGuardianRicochet;
         private int eyesUpRicochetRemaining;
         private int eyesUpChainId;
         private Destiny2WeaponElement eyesUpElement = Destiny2WeaponElement.Kinetic;
@@ -55,6 +57,7 @@ namespace Destiny2.Common.Perks
         private bool hasRicochetRounds;
         private bool ricocheted;
         private bool hasParasitism;
+        private bool hasArchersTempo;
         private bool isPrecisionHit; // Track for OnHitNPC
         public bool CanCrit = true;
         public Microsoft.Xna.Framework.Graphics.Effect CustomTrailShader { get; set; }
@@ -73,7 +76,8 @@ namespace Destiny2.Common.Perks
             int bulletType = ModContent.ProjectileType<Bullet>();
             int slugType = ModContent.ProjectileType<ExplosiveShadowSlug>();
             int blightType = ModContent.ProjectileType<ChargedWithBlightProjectile>();
-            return projectile.type == bulletType || projectile.type == slugType || projectile.type == blightType;
+            int bowType = ModContent.ProjectileType<CombatBowProjectile>();
+            return projectile.type == bulletType || projectile.type == slugType || projectile.type == blightType || projectile.type == bowType;
         }
 
         private static void LogDiagnostic(string message)
@@ -131,6 +135,7 @@ namespace Destiny2.Common.Perks
             targetLockShotRegistered = false;
             targetLockShotHit = false;
             hasIncandescent = false;
+            hasExplosiveHead = false;
             lastPreHitLife = 0;
             lastHitTargetId = -1;
             hasPreHitLife = false;
@@ -151,6 +156,7 @@ namespace Destiny2.Common.Perks
             hasRicochetRounds = false;
             ricocheted = false;
             hasParasitism = false;
+            hasArchersTempo = false;
             CanCrit = true;
 
             // Non-Crit Projectiles (Nanites, Blight, etc)
@@ -208,6 +214,10 @@ namespace Destiny2.Common.Perks
                         hasFeedingFrenzy = true;
                     else if (perk is IncandescentPerk)
                         hasIncandescent = true;
+                    else if (perk is ArchersTempoPerk)
+                        hasArchersTempo = true;
+                    else if (perk is ExplosiveHeadPerk && projectile.type != ModContent.ProjectileType<ExplosiveHeadExplosion>())
+                        hasExplosiveHead = true;
                     else if (perk is TheRightChoiceFramePerk)
                         hasRightChoice = true;
                     else if (perk is EyesUpGuardianPerk)
@@ -327,6 +337,7 @@ namespace Destiny2.Common.Perks
             if (hasVorpal && IsBossTarget(target))
                 multiplier *= GetVorpalMultiplier(ammoType);
 
+
             if (sourceWeaponItem != null)
             {
                 float precisionMultiplier = sourceWeaponItem.GetPrecisionMultiplier();
@@ -364,7 +375,12 @@ namespace Destiny2.Common.Perks
                 }
 
                 if (hasAdagio && sourceWeaponItem.IsAdagioActive)
-                    multiplier *= AdagioPerk.DamageMultiplier;
+                {
+                    if (sourceWeaponItem is CombatBowWeaponItem)
+                        multiplier *= AdagioPerk.BowDamageMultiplier;
+                    else
+                        multiplier *= AdagioPerk.DamageMultiplier;
+                }
 
                 if (hasTargetLock)
                 {
@@ -404,8 +420,23 @@ namespace Destiny2.Common.Perks
                 }
             }
 
-            if (multiplier > 1f)
-                modifiers.FinalDamage *= multiplier;
+            if (multiplier != 1f)
+                modifiers.SourceDamage *= multiplier;
+
+            if (hasExplosiveHead)
+            {
+                // Explosive Head Balance: 
+                // Body shot deals 50% impact. 
+                // Explosion deals 1.3x of that 50% (effectively 65% of base).
+                // Precision hits scale the explosion further to maintain a net increase.
+                float effectiveBase = projectile.damage;
+                if (projectile.ModProjectile is Content.Projectiles.CombatBowProjectile bow)
+                    effectiveBase = bow.baseDamage;
+
+                float explosionScalar = isPrecisionHit ? 2.2f : 1.3f; // 1.3x for body, 2.2x for precision
+                explosiveHeadBaseExplosionDamage = (int)(effectiveBase * 0.5f * explosionScalar);
+                modifiers.SourceDamage *= 0.5f;
+            }
         }
 
         public override void OnHitNPC(Projectile projectile, NPC target, NPC.HitInfo hit, int damageDone)
@@ -446,6 +477,9 @@ namespace Destiny2.Common.Perks
                 LogDiagnostic("OnHitNPC: Processing Precision Hit for perks.");
 
             ProcessHit(projectile, target, hit, damageDone);
+
+            if (hasExplosiveHead)
+                SpawnExplosiveHeadExplosion(projectile, target, damageDone);
 
             isPrecisionHit = false; // Reset AFTER processing perks
         }
@@ -564,12 +598,12 @@ namespace Destiny2.Common.Perks
                 sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, projectile.damage);
 
             if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage
-                && !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasChargedWithBlight)
+                && !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasChargedWithBlight && !hasArchersTempo)
                 return;
 
             Player owner = GetOwner(projectile.owner);
             sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
-                hasOnslaught, hasAdagio, hasFeedingFrenzy, isKill, projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>(),
+                hasOnslaught, hasAdagio, hasFeedingFrenzy, hasArchersTempo, isKill, projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>(),
                 projectile.type == ModContent.ProjectileType<NaniteProjectile>(), isPrecisionHit);
         }
 
@@ -864,6 +898,15 @@ namespace Destiny2.Common.Perks
                 return;
 
             EyesUpChainHits.Remove(chainId);
+        }
+
+        private void SpawnExplosiveHeadExplosion(Projectile projectile, NPC target, int damageDone)
+        {
+            // Use the pre-calculated base damage to ensure headshots don't buff the explosion
+            int damage = explosiveHeadBaseExplosionDamage;
+            int element = sourceWeaponItem != null ? (int)sourceWeaponItem.WeaponElement : 0;
+
+            Projectile.NewProjectile(projectile.GetSource_FromThis(), target.Center, Vector2.Zero, ModContent.ProjectileType<ExplosiveHeadExplosion>(), damage, 0f, projectile.owner, element);
         }
     }
 }

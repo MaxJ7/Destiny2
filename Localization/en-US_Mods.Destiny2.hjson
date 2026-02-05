@@ -58,6 +58,11 @@ Items: {
 		Tooltip: ""
 		DisplayName: Outbreak Perfected
 	}
+
+	TyrannyOfHeaven: {
+		DisplayName: Tyranny Of Heaven
+		Tooltip: ""
+	}
 }
 
 Projectiles: {
@@ -68,6 +73,9 @@ Projectiles: {
 	BeamBurst.DisplayName: Beam Burst
 	ChargedWithBlightProjectile.DisplayName: Charged With Blight Projectile
 	NaniteProjectile.DisplayName: Nanite Projectile
+	CombatBowProjectile.DisplayName: Combat Bow Projectile
+	ExplosiveHeadExplosion.DisplayName: Explosive Head Explosion
+	HeldBowProjectile.DisplayName: Held Bow Projectile
 }
 
 Buffs: {
@@ -134,6 +142,11 @@ Buffs: {
 	NaniteDebuff: {
 		Description: Mods.Destiny2.Buffs.NaniteDebuff.Description
 		DisplayName: Nanite Debuff
+	}
+
+	ArchersTempoBuff: {
+		Description: Mods.Destiny2.Buffs.ArchersTempoBuff.Description
+		DisplayName: Archers Tempo Buff
 	}
 }
 

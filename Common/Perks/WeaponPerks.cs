@@ -242,8 +242,10 @@ namespace Destiny2.Common.Perks
     {
         internal const int DurationTicks = 420;
         internal const float DamageMultiplier = 1.3f;
+        internal const float BowDamageMultiplier = 1.2f;
         internal const float RangeBonus = 10f;
         internal const float RpmScalar = 0.8333333f;
+        internal const float BowChargeTimeScalar = 1.3f;
         public override string IconTexture => "Destiny2/Assets/Perks/Adagio";
         public override string DisplayName => "Adagio";
         public override string Description =>
@@ -445,6 +447,81 @@ namespace Destiny2.Common.Perks
         public override string DisplayName => "Parasitism";
         public override string Description => "This weapon does more damage to enemies based on SIVA nanites.";
         public override string IconTexture => "Destiny2/Assets/Perks/Parasitism";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class NaturalStringPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Natural String";
+        public override string Description => "Increases stability and range.";
+        public override string IconTexture => "Destiny2/Assets/Perks/NaturalString";
+        public override PerkSlotType SlotType => PerkSlotType.Barrel;
+
+        public override void ModifyStats(ref Destiny2WeaponStats stats)
+        {
+            stats.Stability += 5f;
+            stats.Range += 5f;
+        }
+    }
+
+    public sealed class ElasticStringPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Elastic String";
+        public override string Description => "Greatly decreases charge time, but decreases stability.";
+        public override string IconTexture => "Destiny2/Assets/Perks/ElasticString";
+        public override PerkSlotType SlotType => PerkSlotType.Barrel;
+
+        public override void ModifyStats(ref Destiny2WeaponStats stats)
+        {
+            stats.Stability -= 10f;
+            stats.ChargeTime -= 67; // Faster draw
+        }
+    }
+
+    public sealed class CompactArrowShaftPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Compact Arrow Shaft";
+        public override string Description => "Increases reload speed.";
+        public override string IconTexture => "Destiny2/Assets/Perks/CompactArrowShaft";
+        public override PerkSlotType SlotType => PerkSlotType.Magazine;
+
+        public override void ModifyStats(ref Destiny2WeaponStats stats)
+        {
+            stats.ReloadSpeed += 10f;
+        }
+    }
+
+    public sealed class CarbonArrowShaftPerk : Destiny2Perk
+    {
+        public override string DisplayName => "Carbon Arrow Shaft";
+        public override string Description => "Increases stability.";
+        public override string IconTexture => "Destiny2/Assets/Perks/CarbonArrowShaft";
+        public override PerkSlotType SlotType => PerkSlotType.Magazine;
+
+        public override void ModifyStats(ref Destiny2WeaponStats stats)
+        {
+            stats.Stability += 10f;
+        }
+    }
+
+    public sealed class ArchersTempoPerk : Destiny2Perk
+    {
+        internal const int DurationTicks = 180;
+        internal const float ChargeTimeScalar = 0.75f;
+        public override string DisplayName => "Archer's Tempo";
+        public override string Description => "Landing a precision hit decreases drawing time for a short period.";
+        public override string IconTexture => "Destiny2/Assets/Perks/ArchersTempo";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class ExplosiveHeadPerk : Destiny2Perk
+    {
+        internal const float ExplosionDamageScalar = 1.3f;
+        internal const float ImpactDamageScalar = 0.5f;
+
+        public override string DisplayName => "Explosive Head";
+        public override string Description => "Arrows split into an impact and an explosion portion. Precision hits deal bonus damage.";
+        public override string IconTexture => "Destiny2/Assets/Perks/ExplosiveHead";
         public override PerkSlotType SlotType => PerkSlotType.Major;
     }
 }

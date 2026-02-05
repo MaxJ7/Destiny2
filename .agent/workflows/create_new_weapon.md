@@ -6,6 +6,7 @@ This workflow guides you through creating a new Weapon (e.g., The Recluse, Fateb
 
 ## 1. Prerequisites
 - The **Archetype** must exist (e.g., `AutoRifleWeaponItem`). If not, see `/create_new_archetype`.
+- For **Bows**, see `/create_new_bow` specifically.
 - The **Frame Perk** must exist (e.g., `LightweightFramePerk`).
 - The **Sprite** (`.png`) must exist in the same folder as the `.cs` file.
 

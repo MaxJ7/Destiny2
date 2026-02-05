@@ -20,7 +20,8 @@ This codebase is strictly divided into `Common` (Systems/Logic) and `Content` (A
 ### Common/Weapons/
 *   `Destiny2WeaponStats.cs`: **Core Class Definition**. Main partial class for `Destiny2WeaponItem`.
 *   `Destiny2WeaponItem.Perks.cs`: **Major Perk Implementations**. Stores timers (`rampageStacks`) and Hooks (`NotifyProjectileHit`).
-*   `[Archetype]WeaponItem.cs`: **Archetype Logic**. Defines Recoil, Falloff, and **Frame Perk Overrides** (RPM).
+*   `[Archetype]WeaponItem.cs`: **Archetype Logic**. Defines Recoil, Falloff, and **Frame Perk Overrides** (RPM). 
+    *   **CombatBowWeaponItem.cs**: Specialized archetype for bows handling `DrawRatio` and Variable Draw logic.
 *   `Common/Players/`: `ModPlayer` classes (e.g., `Destiny2Player`).
 *   `Common/NPCs/`: `GlobalNPC` classes (e.g., `NaniteGlobalNPC`). Logic/State only.
 *   `Common/UI/`: User Interface systems.
