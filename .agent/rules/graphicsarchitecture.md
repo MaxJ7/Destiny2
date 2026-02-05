@@ -124,6 +124,34 @@ Don't let sprites sit still.
 *   **Gradient:** White -> Magenta -> Purple -> **Black**.
 *   **Feel:** Use Subtractive blending to make the center look "darker" than the background universe.
 
+## 7. Advanced: Visual Overrides
+Sometimes a weapon needs a unique bullet trail (e.g., SIVA Red, Taken Blight) but logically behaves like a standard element (Kinetic).
+
+**Rule:** Do NOT add new values to `Destiny2WeaponElement` for purely visual effects.
+**Rule:** Do NOT create new `.fx` files for simple variations. Use the **Uber-Shader**.
+
+### Implementation Pattern
+1.  **Add Technique:** Open `Effects/Linear.fx` and add a new `technique MyEffect { ... }`.
+2.  **Override in Code:** Use `Destiny2PerkProjectile` to intercept `OnSpawn`.
+3.  **Set Technique String:** Assign `CustomTrailTechnique = "MyEffect"`.
+
+#### Example: Corruption (Outbreak Perfected)
+The weapon is `Kinetic` (damage logic), but the trail is SIVA Red (visuals).
+
+**Destiny2PerkProjectile.cs:**
+```csharp
+public override void OnSpawn(Projectile projectile, IEntitySource source) {
+    if (HasPerk<ParasitismPerk>()) {
+        // Point to the Uber Shader (optional if default, but good for safety)
+        CustomTrailShader = Destiny2Shaders.SolarTrail; 
+        
+        // Select the specific look
+        CustomTrailTechnique = "Corruption"; 
+    }
+}
+```
+**Bullet.cs (Automatic Handling):** The bullet system passes the `CustomTrailTechnique` string to `BulletDrawSystem`, which selects the correct HLSL technique inside `Linear.fx`.
+
 ### Recipe: Arc Energy (e.g., Riskrunner)
 *   **Concept:** "Chaotic & Instant"
 *   **Shader:** Linear Tech (Instanced).

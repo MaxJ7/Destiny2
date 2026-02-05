@@ -19,7 +19,9 @@ namespace Destiny2.Common.VFX
             public int MaxTime;
             public float Width;
 
-            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element, float width, Effect customShader = null)
+            public string Technique;
+
+            public TraceVFX(Vector2 start, Vector2 end, Destiny2WeaponElement element, float width, Effect customShader = null, string technique = null)
             {
                 Start = start;
                 End = end;
@@ -28,6 +30,7 @@ namespace Destiny2.Common.VFX
                 MaxTime = 15;
                 TimeLeft = 15;
                 Width = width;
+                Technique = technique;
             }
         }
 
@@ -39,11 +42,11 @@ namespace Destiny2.Common.VFX
             Traces.Add(new TraceVFX(start, end, element, width));
         }
 
-        public static void SpawnTrace(Vector2 start, Vector2 end, Effect customShader, float width = 15f)
+        public static void SpawnTrace(Vector2 start, Vector2 end, Effect customShader, float width = 15f, string technique = null)
         {
             if (Main.dedServ) return;
             // Use Kinetic as placeholder element, but shader will override
-            Traces.Add(new TraceVFX(start, end, Destiny2WeaponElement.Kinetic, width, customShader));
+            Traces.Add(new TraceVFX(start, end, Destiny2WeaponElement.Kinetic, width, customShader, technique));
         }
 
         public override void PostDrawTiles()
@@ -66,7 +69,7 @@ namespace Destiny2.Common.VFX
                 }
 
                 List<Vector2> trail = GenerateBeamTrail(trace.Start, trace.End);
-                RenderElementVFX(trail, trace.Element, opacity, trace.Width, trace.CustomShader);
+                RenderTrace(trail, trace.Element, opacity, trace.Width, trace.CustomShader, trace.Technique);
 
                 // Decrement time
                 var newTrace = trace;
@@ -85,10 +88,10 @@ namespace Destiny2.Common.VFX
             return points;
         }
 
-        private static void RenderElementVFX(List<Vector2> trail, Destiny2WeaponElement element, float opacity, float baseWidth, Effect customShader = null)
+        private static void RenderTrace(List<Vector2> trail, Destiny2WeaponElement element, float opacity, float baseWidth, Microsoft.Xna.Framework.Graphics.Effect customShader, string techniqueOverride)
         {
             Effect shader = customShader ?? Destiny2Shaders.GetBulletTrailShader(element);
-            if (shader == null) return;
+            string techniqueName = techniqueOverride ?? element.ToString();
 
             // Common parameters
             if (shader.Parameters["globalTime"] != null)
@@ -96,6 +99,15 @@ namespace Destiny2.Common.VFX
 
             if (shader.Parameters["uTime"] != null)
                 shader.Parameters["uTime"].SetValue(Main.GlobalTimeWrappedHourly);
+
+            // Set Technique: Use Override if present, else Element Name
+            // string techniqueName = techniqueOverride ?? element.ToString();
+
+            // Apply Technique
+            if (shader.Techniques[techniqueName] != null)
+                shader.CurrentTechnique = shader.Techniques[techniqueName];
+            else if (shader.Techniques["Kinetic"] != null)
+                shader.CurrentTechnique = shader.Techniques["Kinetic"]; // Fallback
 
             // Solar Uber-Shader Configuration
             if (element == Destiny2WeaponElement.Solar)
@@ -113,7 +125,6 @@ namespace Destiny2.Common.VFX
 
                 // Textures
                 var noise = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarFlameNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
-                var erosion = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarExplosionNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
                 var flow = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Noise/SolarStreaks", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
 
                 // Texture 1 (Base Shape): Use MagicPixel (Solid White) so we can shape it mathematically in shader.
@@ -125,21 +136,139 @@ namespace Destiny2.Common.VFX
                 shader.Parameters["sampleTexture3"]?.SetValue(takenNoise); // Was SolarExplosionNoise
                 shader.Parameters["sampleTexture4"]?.SetValue(flow);    // SolarStreaks
             }
-
-            // CHECK: Does BulletTrailExplosiveShadow use uImage1? Yes.
-            // Where is that texture coming from?
-            // "Destiny2/Assets/Textures/SolarNoise" is a good noise candidates, or "TakenNoise".
-            // Since we implemented it reusing "SolarNoise" logic potentially, we should set it.
-            // However, the Custom Shader call passes 'element' as 'Kinetic' (placeholder).
-            // So we might need to check if (customShader == Destiny2Shaders.ExplosiveShadowTrail)
-
-            if (customShader == Destiny2Shaders.ExplosiveShadowTrail)
+            else if (techniqueName == "ExplosiveShadow")
             {
-                if (shader.Parameters["uImage1"] != null)
-                    shader.Parameters["uImage1"].SetValue(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/SolarNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+                // Explosive Shadow relies on a noise texture for its shape.
+                // In Legacy, it used uImage1. In Uber-Shader, we mapped uImage1 -> sampleTexture2.
+                var noise = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/SolarNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value;
+                shader.Parameters["sampleTexture2"]?.SetValue(noise);
             }
 
+            // Apply Technique
+            if (shader.Techniques[techniqueName] != null)
+                shader.CurrentTechnique = shader.Techniques[techniqueName];
+            else if (shader.Techniques["Kinetic"] != null)
+                shader.CurrentTechnique = shader.Techniques["Kinetic"]; // Fallback
+
+            // Solar Uber-Shader Configuration
+            if (element == Destiny2WeaponElement.Solar)
+            {
+                // ... Existing Solar Logic ...
+            }
+
+            // Explosive Shadow Setup (Mapped to Noise Texture)
+            // IF we can identify it. 
+            // For now, let's assume we need to handle "ExplosiveShadow" via a temporary workaround or verify how it's called.
+            // Looking at `BulletDrawSystem.cs` original code... explicitly checking `customShader == Destiny2Shaders.ExplosiveShadowTrail`.
+
+            // To support this migration, we need to handle the texture assignment whenever we use the shader.
+            // Since `SolarTrail` is the uber shader, we can just assign the noise texture to `sampleTexture2` ALWAYS if we want, or conditionally.
+            // `sampleTexture2` is used by Solar (Flame Noise) and ExplosiveShadow (Nebula Noise).
+            // Solar sets it explicitly below.
+            // We need ExplosiveShadow to set it too.
+
+            // TEMPORARY FIX: Detecting ExplosiveShadow.
+            // Since we can't easily, we might need to modify `Destiny2PerkProjectile` to pass a `VisualID` instead of `Effect`.
+            // BUT, for this Refactor, if we can't change the interfaces:
+
+            // If `techniqueName == "ExplosiveShadow"`... but `element` won't be that.
+
+            // OKAY: I will modify `Destiny2Shaders.cs` to keep a SEPARATE "ExplosiveShadow" variable that holds a *dummy* effect or just an indicator, 
+            // OR we accept that we need to add `Desitny2WeaponElement.ExplosiveShadow` or similar.
+
+            // Wait, look at `RenderElementVFX` args: `Destiny2WeaponElement element, float opacity, float baseWidth, Effect customShader = null`.
+            // When `ExplosiveShadow` is used, the projectile sets `CustomTrailShader`.
+            // If we update `Destiny2PerkProjectile` to pass a technique name string, that's best.
+            // But I can't edit `Destiny2PerkProjectile` easily right now (out of scope/complexity).
+
+            // ALTERNATIVE: Use `shader.Parameters["globalTime"]` check? No.
+
+            // Let's assume for this specific file, we only map ELEMENTS.
+            // If `ExplosiveShadow` is used, it might be visually broken unless `element` is matched.
+            // Wait, `Destiny2WeaponElement` DOES NOT have `ExplosiveShadow`.
+
+            // Current Workaround:
+            // Check if `shader.CurrentTechnique.Name` is "ExplosiveShadow" ? No, that's circular.
+
+            // I will enable "ExplosiveShadow" detection by checking a specific parameter? No.
+
+            // I will add `Technique Override` support to `RenderElementVFX`? No, signature change.
+
+            // I will use `Destiny2WeaponElement.Solar` logic for Solar.
+            // I will add logic: If `shader == Destiny2Shaders.SolarTrail` AND `element == Kinetic` (default for many overrides), 
+            // maybe we can infer? No.
+
+            // OK, to allow the build to pass and "Most" things to work:
+            // I will rely on `element.ToString()`. 
+            // `ExplosiveShadow` uses `CorruptionTrail` usually? No, it used `BulletTrailExplosiveShadow`.
+
+            // I will simply set the textures for ALL techniques that need them if possible.
+            // `Linear.fx` uses `sampleTexture2` for noise.
+            // If I set `sampleTexture2` to `SolarFlameNoise` for Solar, it breaks ExplosiveShadow if it runs on the same frame?
+            // `RenderElementVFX` runs per-trail. Setting parameters is immediate for the `DrawUserPrimitives` call that follows.
+            // So we CAN overwrite parameters per trace.
+
+            // HACK: I will rename the Effect variable to `ExplosiveShadowTrail` but point it to `SolarTrail`.
+            // Object Reference Equality might explicitly fail if they point to the same object.
+            // `if (customShader == Destiny2Shaders.ExplosiveShadowTrail)` becomes `if (SolarTrail == SolarTrail)`. Always true.
+
+            // FIX: In `Destiny2Shaders`, I will NOT assign `ExplosiveShadowTrail = SolarTrail`.
+            // I will leave it `null` or valid.
+            // Actually, if I load it as `SolarTrail` (same file), it will be a DIFFERENT INSTANCE of the Effect class?
+            // `mod.Assets.Request<Effect>(...)` returns the SAME asset instance if path is identical.
+            // So they will be the same object.
+
+            // SOLUTION: I will look for `ExplosiveShadow` usage. 
+            // Generally, visual overrides SHOULD set the Element to something identifiable or we just lose that specific override logic for now
+            // and treat it as the Element it is.
+            // Most "Explosive Shadow" projectiles likely set `Element = Solar` anyway? No, Kinetic ("MountainTop").
+
+            // I will update the logic to just handle `Destiny2WeaponElement` correctly for now. 
+            // I will comment out the `ExplosiveShadow` specific block and rely on generic handling, 
+            // knowing that might revert it to a "Kinetic" look until we add `Destiny2WeaponElement.ExplosiveShadow`.
+
+            // (Self-Correction): "Explosive Shadow" is a perk.
+            // I'll add a check: `if (element != Solar && element != Arc ...)`.
+
+            // Let's stick to the Plan: "Update RenderElementVFX to ... Select the correct Technique based on Destiny2WeaponElement".
+            // If valid: `shader.CurrentTechnique = shader.Techniques[element.ToString()]`.
+            // This covers Solar, Arc, Void, Stasis, Strand.
+            // Kinetic is default.
+            // Corruption is NOT an element. ExplosiveShadow is NOT an element.
+            // These will default to `Kinetic` technique for now, effectively "Downgrading" them to Kinetic visuals.
+            // This is acceptable for a "Migration" if we note it, BUT user asked for "1:1 visual parity".
+
+            // TO FIX PARITY:
+            // I must map `Destiny2WeaponElement` to the correct technique.
+            // Use `element.ToString()`.
+            // For Corruption/ExplosiveShadow, they are inaccessible via Element enum.
+            // I will leave their legacy logic commented out and note that we need to update the Enum or callsite to restore them fully.
+            // Or, simply, for this task, I focus on the main 5 elements.
+
+            // WAIT! The user said "move the other bullet effects over... keep their visuals".
+            // If I break Corruption/ExplosiveShadow, I fail.
+
+            // I will add `Destiny2WeaponElement.Corruption` and `Destiny2WeaponElement.ExplosiveShadow` to the Enum in a separate step?
+            // Modifying Enums breaks binary compatibility but this is source.
+            // This is the cleanest way.
+
+            // I'll check `Destiny2WeaponElement.cs` location. `Common/Weapons/Destiny2WeaponElement.cs`.
+
+            if (shader.Parameters["uImage1"] != null)
+                shader.Parameters["uImage1"].SetValue(ModContent.Request<Texture2D>("Destiny2/Assets/Textures/SolarNoise", ReLogic.Content.AssetRequestMode.ImmediateLoad).Value);
+
+
             Color baseColor = GetElementColor(element) * opacity;
+
+            // Override baseColor for specific techniques if the Element (placeholder) is wrong
+            if (techniqueName == "Corruption")
+            {
+                baseColor = new Color(255, 20, 20) * opacity; // Deep Red
+            }
+            else if (techniqueName == "ExplosiveShadow")
+            {
+                baseColor = new Color(255, 255, 255) * opacity; // White
+            }
             // Overwrite color for Explosive Shadow manually if needed, or rely on Shader ignoring Vertex Color?
             // The shader: uses `input.Color`.
             // Kinetic returns White.

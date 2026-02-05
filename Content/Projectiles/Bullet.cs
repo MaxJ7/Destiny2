@@ -116,7 +116,7 @@ namespace Destiny2.Content.Projectiles
             var perkData = Projectile.GetGlobalProjectile<Destiny2PerkProjectile>();
             if (perkData != null && perkData.CustomTrailShader != null)
             {
-                BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, perkData.CustomTrailShader);
+                BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, perkData.CustomTrailShader, 15f, perkData.CustomTrailTechnique);
             }
             else
             {

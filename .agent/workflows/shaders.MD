@@ -176,10 +176,15 @@ Sometimes a weapon needs a unique bullet trail (e.g., SIVA Red, Taken Blight) bu
 
 **Rule:** Do NOT add new values to `Destiny2WeaponElement` for purely visual effects.
 
+## 7. Advanced: Visual Overrides
+Sometimes a weapon needs a unique bullet trail (e.g., SIVA Red, Taken Blight) but logically behaves like a standard element (Kinetic).
+
+**Rule:** Do NOT add new values to `Destiny2WeaponElement` for purely visual effects.
+
 ### Implementation Pattern
-1.  **Create Shader:** `Effects/BulletTrailMyEffect.fx`.
-2.  **Load Shader:** Add to `Destiny2Shaders.cs`.
-3.  **Override in Code:** Use `Destiny2PerkProjectile` to intercept the `OnKill` (or `OnSpawn`) logic. Set the `CustomTrailShader` property on the `Destiny2PerkProjectile` instance.
+1.  **Modify Uber-Shader:** Add a new technique to `Effects/Linear.fx`.
+2.  **Override in Code:** Use `Destiny2PerkProjectile` to intercept `OnSpawn`.
+3.  **Set String ID:** Assign `CustomTrailTechnique = "MyTechniqueName"`.
 
 #### Example: Corruption (Outbreak Perfected)
 The weapon is `Kinetic` (damage logic), but the trail is SIVA Red (visuals).
@@ -188,8 +193,8 @@ The weapon is `Kinetic` (damage logic), but the trail is SIVA Red (visuals).
 ```csharp
 public override void OnSpawn(Projectile projectile, IEntitySource source) {
     if (HasPerk<ParasitismPerk>()) {
-        CustomTrailShader = Destiny2Shaders.CorruptionTrail;
+        CustomTrailTechnique = "Corruption"; // Maps to 'technique Corruption' in Linear.fx
     }
 }
 ```
-**Bullet.cs (Automatic Handling):** The bullet automatically checks `Destiny2PerkProjectile.CustomTrailShader`. If set, it uses that shader instead of the default Element shader.
+**Bullet.cs (Automatic Handling):** The string is passed down to `BulletDrawSystem` which selects the matching HLSL technique validation.

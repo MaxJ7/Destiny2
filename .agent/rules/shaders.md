@@ -49,7 +49,33 @@ The mod uses **Triangle Strips** to render smooth trails. This avoids the "segme
 1.  **Spine:** The central line defined by the points.
 2.  **Extrusion:** For each point, calculate the normal (perpendicular vector).
 3.  **Vertices:** Create two vertices per point: `Center + Normal * Width` and `Center - Normal * Width`.
-4.  **UVs:** Map texture coordinates (0 to 1) along the length of the strip.
+4.*   **Feel:** High "Shininess" (specular output). Particles should shatter/fade instantly, not drift like smoke.
+
+### Recipe: Dynamic Gradient Trail (TrailGradientMap.fx)
+*   **Concept**: Changing trail colors without new assets.
+*   **Technique**: Array-based Gradient Mapping.
+*   **Shader Code**:
+    ```hlsl
+    float3 gradColors[10]; // Passed from C#
+    float3 blendColors(float gray) {
+        float segment = 1.0 / (5.0 - 1.0); // 5 colors
+        int i = int(floor(gray / segment));
+        float t = (gray - float(i) * segment) / segment;
+        return lerp(gradColors[i], gradColors[i+1], t);
+    }
+    ```
+
+### Recipe: Polar Warp (Orbs/Portals)
+*   **Concept**: Infinite circular scrolling.
+*   **Technique**: Cartesian -> Polar conversion.
+    ```hlsl
+    float2 polar(float2 uv) {
+        float2 dir = uv - 0.5;
+        float radius = length(dir) * 2.0;
+        float angle = atan2(dir.y, dir.x) / 6.28;
+        return float2(radius, angle);
+    }
+    ```
 
 ### 3.2 Usage
 To render a trail:
@@ -136,13 +162,10 @@ public override bool PreDraw(ref Color lightColor) {
     *   Check `VertexShader`. If you are using SpriteBatch, you usually don't need a custom Vertex Shader. If using Primitives, you MUST match the Vertex Declaration (Position, Color, Texture).
 *   **Shader crashes?**
 
-## 6. Optimization: The PS 2.0 vs PS 3.0 Choice
-*   **ps_2_0 (Standard)**: Hard limit of 64 instructions. Use for simple trails and widespread compatibility.
-*   **ps_3_0 (High-Fidelity)**: Unlocks 512+ instructions and dynamic branching. **Use for "Boiling Needle" and Triple-Noise effects.**
-    *   *Usage*: Change `compile ps_2_0` to `compile ps_3_0` in the `.fx` file.
-    *   *Requirements*: `EasyXnb.exe.config` must have `TargetProfile` set to `HiDef`.
+## 6. Optimization: The PS 2.0 "64-Slot" Limit
+Many shaders in this mod target `ps_2_0` for compatibility. This profile has a hard limit of **64 arithmetic instructions**.
 
-### Techniques to Shave Instructions (ps_2_0)
+### Techniques to Shave Instructions
 *   **Manual Power Expansions**: `pow(x, 8)` is expensive. Use temporary variables: `float x2 = x*x; float x4 = x2*x2; float x8 = x4*x4;`.
 *   **Avoid Branches**: `if` statements expand into multiple potential instructions. Use `lerp(a, b, saturate(condition))` or `step()` / `smoothstep()` chains.
 *   **Consolidate Multiplications**: Combine multiple scalar coefficients into a single combined factor before applying it to the color.

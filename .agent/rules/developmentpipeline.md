@@ -187,6 +187,6 @@ In `NotifyProjectileHit`, the order of logic is critical to prevent "leaking" ef
 *   **The Rule:** Never rely on `hit.Crit` or `damageMultiplier` for logic.
 *   **The Fix:** Use the `isPrecision` parameter passed to `NotifyProjectileHit`. This ensures that even weapons with a 1.0x precision multiplier (e.g. Explosive Payload) still trigger precision perks.
 
-### ⚠️ Weapon of Sorrow Identification
-*   **The Requirement:** To benefit from the Blight debuff's +50% damage bonus, a weapon must be tagged.
-*   **The Implementation:** Override `public override bool IsWeaponOfSorrow => true;` in the specific weapon class (e.g., `TouchOfMalice.cs`).
+### ⚠️ Enum Pollution (Visuals)
+*   **The Rule:** Do NOT add values like "Corruption" or "Taken" to `Destiny2WeaponElement`.
+*   **The Fix:** Use the **String-Based Visual Override Pattern**. Adding a `CustomTrailTechnique` string (e.g., "Corruption") to `Destiny2PerkProjectile` allows the Uber-Shader to change visuals without breaking the logic enum.

@@ -42,7 +42,7 @@ You are working in a complex, high-context codebase ("Destiny 2" in Terraria). T
     *   Bullets use `BulletDrawSystem` + Shaders.
     *   Do NOT put drawing logic in Projectile `PreDraw` if it's a standard bullet trail.
 *   **Asset Management:**
-    *   Visual-only changes (like "Taken Blight" trail) must NOT pollute the `Destiny2WeaponElement` enum. Use `CustomTrailShader`.
+    *   Visual-only changes (like "Taken Blight" trail) must NOT pollute the `Destiny2WeaponElement` enum. Use `CustomTrailTechnique` string overrides.
 
 ## 4. EXECUTION PROTOCOL
 If a user asks for a new feature (Weapon, Perk, Effect), you **MUST**:

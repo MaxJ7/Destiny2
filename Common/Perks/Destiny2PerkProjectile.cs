@@ -58,6 +58,7 @@ namespace Destiny2.Common.Perks
         private bool isPrecisionHit; // Track for OnHitNPC
         public bool CanCrit = true;
         public Microsoft.Xna.Framework.Graphics.Effect CustomTrailShader { get; set; }
+        public string CustomTrailTechnique { get; set; }
 
         public override bool InstancePerEntity => true;
         internal bool HasIncandescentPerk => hasIncandescent;
@@ -222,7 +223,8 @@ namespace Destiny2.Common.Perks
                     else if (perk is ParasitismPerk)
                     {
                         hasParasitism = true;
-                        CustomTrailShader = Destiny2Shaders.CorruptionTrail;
+                        CustomTrailShader = Destiny2Shaders.SolarTrail; // Use Uber Shader
+                        CustomTrailTechnique = "Corruption";
                     }
                 }
 

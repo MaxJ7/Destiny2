@@ -25,7 +25,7 @@ This codebase is strictly divided into `Common` (Systems/Logic) and `Content` (A
 *   `Common/NPCs/`: `GlobalNPC` classes (e.g., `NaniteGlobalNPC`). Logic/State only.
 *   `Common/UI/`: User Interface systems.
 *   `Destiny2AmmoType.cs`: Enum.
-*   `Destiny2WeaponElement.cs`: Enum.
+*   `Destiny2WeaponElement.cs`: Enum. **PURELY for Damage Types.** Do not add visual-only elements here.
 
 ### Common/Perks/
 *   `WeaponPerks.cs`: **Definitions**. Defines properties (Name, Icon, Description, SlotType).

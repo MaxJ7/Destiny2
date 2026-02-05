@@ -44,13 +44,16 @@ namespace Destiny2.Common.VFX
             // Path: Effects/ (Root level Effects folder)
 
             SolarTrail = mod.Assets.Request<Effect>("Effects/Linear", AssetRequestMode.ImmediateLoad).Value;
-            ArcTrail = mod.Assets.Request<Effect>("Effects/BulletTrailArc", AssetRequestMode.ImmediateLoad).Value;
-            VoidTrail = mod.Assets.Request<Effect>("Effects/BulletTrailVoid", AssetRequestMode.ImmediateLoad).Value;
-            StasisTrail = mod.Assets.Request<Effect>("Effects/BulletTrailStasis", AssetRequestMode.ImmediateLoad).Value;
-            StrandTrail = mod.Assets.Request<Effect>("Effects/BulletTrailStrand", AssetRequestMode.ImmediateLoad).Value;
-            KineticTrail = mod.Assets.Request<Effect>("Effects/BulletTrailKinetic", AssetRequestMode.ImmediateLoad).Value;
-            CorruptionTrail = mod.Assets.Request<Effect>("Effects/BulletTrailCorruption", AssetRequestMode.ImmediateLoad).Value;
-            ExplosiveShadowTrail = mod.Assets.Request<Effect>("Effects/BulletTrailExplosiveShadow", AssetRequestMode.ImmediateLoad).Value;
+
+            // LEGACY: All other trails are now techniques within "Linear" (SolarTrail)
+            // We keep the static properties null to enforce usage of the Uber Shader
+            ArcTrail = SolarTrail;
+            VoidTrail = SolarTrail;
+            StasisTrail = SolarTrail;
+            StrandTrail = SolarTrail;
+            KineticTrail = SolarTrail;
+            CorruptionTrail = SolarTrail;
+            ExplosiveShadowTrail = SolarTrail;
         }
 
         public static void Unload()
@@ -67,15 +70,9 @@ namespace Destiny2.Common.VFX
 
         public static Effect GetBulletTrailShader(Destiny2WeaponElement element)
         {
-            return element switch
-            {
-                Destiny2WeaponElement.Solar => SolarTrail,
-                Destiny2WeaponElement.Arc => ArcTrail,
-                Destiny2WeaponElement.Void => VoidTrail,
-                Destiny2WeaponElement.Stasis => StasisTrail,
-                Destiny2WeaponElement.Strand => StrandTrail,
-                _ => KineticTrail
-            };
+            // PROXY: All elements now use the Linear Uber-Shader ("SolarTrail")
+            // The specific look is determined by the Technique passed in BulletDrawSystem
+            return SolarTrail;
         }
     }
 }

@@ -29,7 +29,7 @@ This codebase is strictly divided into `Common` (Systems/Logic) and `Content` (A
 *   `Common/NPCs/`: `GlobalNPC` classes (e.g., `NaniteGlobalNPC`). Logic/State only.
 *   `Common/UI/`: User Interface systems.
 *   `Destiny2AmmoType.cs`: Enum.
-*   `Destiny2WeaponElement.cs`: Enum.
+*   `Destiny2WeaponElement.cs`: Enum. **PURELY for Damage Types.** Do not add visual-only elements here.
 
 ### Common/Perks/
 *   `WeaponPerks.cs`: **Definitions**. Defines properties (Name, Icon, Description, SlotType).
@@ -53,7 +53,7 @@ This codebase is strictly divided into `Common` (Systems/Logic) and `Content` (A
 
 *   **Gold Standard (Shaders)**: [Linear.fx](file:///C:/Users/vexga/Documents/My%20Games/Terraria/tModLoader/ModSources/Destiny2/Effects/Linear.fx)
     *   **Technique**: High-Pressure Energy Stream Logic.
-    *   **Features**: Prime-speed scrossing, pow10 thinning, 64-instruction PS 2.0 optimization.
+    *   **Features**: Prime-speed scrossing, pow12 thinning, 63-instruction PS 2.0 optimization.
 
 ---
 
