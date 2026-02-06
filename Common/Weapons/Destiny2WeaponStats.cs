@@ -118,6 +118,11 @@ namespace Destiny2.Common.Weapons
             clone.dynamicSwayStacks = dynamicSwayStacks;
             clone.rightChoiceShotCount = rightChoiceShotCount;
             clone.kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>(kineticTremorsTargets);
+            clone.killingWindTimer = killingWindTimer;
+            clone.successfulWarmUpTimer = successfulWarmUpTimer;
+            clone.fireflyTimer = fireflyTimer;
+            clone.precisionInstrumentTimer = precisionInstrumentTimer;
+            clone.precisionInstrumentStacks = precisionInstrumentStacks;
             clone.hasElementOverride = hasElementOverride;
             clone.elementOverride = elementOverride;
             return clone;
@@ -158,6 +163,12 @@ namespace Destiny2.Common.Weapons
 
             if (hasElementOverride)
                 tag["elementOverride"] = (int)elementOverride;
+
+            tag["killingWindTimer"] = killingWindTimer;
+            tag["successfulWarmUpTimer"] = successfulWarmUpTimer;
+            tag["fireflyTimer"] = fireflyTimer;
+            tag["precisionInstrumentTimer"] = precisionInstrumentTimer;
+            tag["precisionInstrumentStacks"] = precisionInstrumentStacks;
         }
 
         public override void LoadData(TagCompound tag)
@@ -208,6 +219,13 @@ namespace Destiny2.Common.Weapons
                 hasElementOverride = false;
                 elementOverride = default;
             }
+
+            killingWindTimer = tag.GetInt("killingWindTimer");
+            successfulWarmUpTimer = tag.GetInt("successfulWarmUpTimer");
+            fireflyTimer = tag.GetInt("fireflyTimer");
+            precisionInstrumentTimer = tag.GetInt("precisionInstrumentTimer");
+            precisionInstrumentStacks = tag.GetInt("precisionInstrumentStacks");
+
             SyncDamageTypeToElement();
 
             bool hasPerkData = perkKeys.Count > 0
@@ -251,6 +269,12 @@ namespace Destiny2.Common.Weapons
             writer.Write(hasElementOverride);
             if (hasElementOverride)
                 writer.Write((int)elementOverride);
+
+            writer.Write(killingWindTimer);
+            writer.Write(successfulWarmUpTimer);
+            writer.Write(fireflyTimer);
+            writer.Write(precisionInstrumentTimer);
+            writer.Write(precisionInstrumentStacks);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -296,6 +320,13 @@ namespace Destiny2.Common.Weapons
                 elementOverride = (Destiny2WeaponElement)reader.ReadInt32();
             else
                 elementOverride = default;
+
+            killingWindTimer = reader.ReadInt32();
+            successfulWarmUpTimer = reader.ReadInt32();
+            fireflyTimer = reader.ReadInt32();
+            precisionInstrumentTimer = reader.ReadInt32();
+            precisionInstrumentStacks = reader.ReadInt32();
+
             SyncDamageTypeToElement();
 
             bool hasPerkData = perkKeys.Count > 0
@@ -800,6 +831,8 @@ namespace Destiny2.Common.Weapons
                 killClipWindowTimer = 0;
             }
 
+            NotifyPrecisionInstrumentMiss();
+
             float reloadSeconds = GetReloadSeconds();
             if (reloadSeconds <= 0f)
             {
@@ -834,6 +867,8 @@ namespace Destiny2.Common.Weapons
                 reloadTimer = 0;
                 reloadTimerMax = 0;
                 currentMagazine = GetStats().Magazine;
+                ResetFocusedFuryCounter();
+                ResetKillingTally();
                 if (killClipPending)
                 {
                     killClipPending = false;

@@ -83,6 +83,16 @@ namespace Destiny2.Common.Perks
             Register(new CarbonArrowShaftPerk());
             Register(new ArchersTempoPerk());
             Register(new ExplosiveHeadPerk());
+            Register(new KillingWindPerk());
+            Register(new DragonflyPerk());
+            Register(new FireflyPerk());
+            Register(new SuccessfulWarmUpPerk());
+            Register(new PrecisionInstrumentPerk());
+            Register(new ReconstructionPerk());
+            Register(new ExplosivePayloadPerk());
+            Register(new FocusedFuryPerk());
+            Register(new KillingTallyPerk());
+            Register(new OneForAllPerk());
         }
 
         public static void Register(Destiny2Perk perk)

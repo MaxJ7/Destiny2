@@ -29,10 +29,12 @@ namespace Destiny2.Common.Weapons
 
             if (framePerk is HeavyBurstFramePerk)
                 return 2.2f;
-            if (framePerk is AdaptiveFramePerk)
+            if (framePerk is AdaptiveFramePerk || framePerk is LightweightFramePerk)
                 return 1.79f;
             if (framePerk is PrecisionFramePerk || framePerk is ExplosiveShadowPerk)
                 return 1.55f;
+            if (framePerk is AggressiveFramePerk)
+                return 1.2f;    
 
             return 1f;
         }
@@ -109,12 +111,10 @@ namespace Destiny2.Common.Weapons
                 return 180;
             if (framePerk is ExplosiveShadowPerk)
                 return 180;
-            if (framePerk is HeavyBurstFramePerk)
-                return 255;
-            if (framePerk is AggressiveBurstFramePerk)
-                return 255;
             if (framePerk is AggressiveFramePerk)
                 return 120;
+            if (framePerk is LightweightFramePerk)
+                return 150;
 
             return currentRpm;
         }

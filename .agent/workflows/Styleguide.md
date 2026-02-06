@@ -99,3 +99,4 @@ ModifyHitNPC Duplication: Do NOT override ModifyHitNPC in Destiny2WeaponStats.cs
 Bullet Logic: Destiny2WeaponItem.ModifyHitNPC DOES NOT work for bullets. Use Destiny2PerkProjectile.ModifyHitNPC for all ranged weapon perks.
 Perk Registration: You MUST register new perks in Destiny2PerkSystem.InitializePerks().
 Enum Pollution: Do NOT add new values to Destiny2WeaponElement for visual-only effects (e.g., "Corruption" or "Taken"). Use the Visual Override pattern in Destiny2PerkProjectile instead.
+Explosive Projectiles: Always inherit from Destiny2ExplosionProjectile for perk-based explosions. In Destiny2PerkProjectile.OnSpawn, you MUST exclude explosion projectiles from triggering explosive perks to prevent infinite recursion loops.

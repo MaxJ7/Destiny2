@@ -52,7 +52,7 @@ namespace Destiny2.Content.Weapons
         {
             string barrel = RollFrom(nameof(ElasticStringPerk), nameof(NaturalStringPerk));
             string magazine = RollFrom(nameof(CarbonArrowShaftPerk), nameof(CompactArrowShaftPerk));
-            string majorOne = RollFrom(nameof(ArchersTempoPerk), nameof(ExplosiveHeadPerk));
+            string majorOne = RollFrom(nameof(ArchersTempoPerk), nameof(ExplosiveHeadPerk), nameof(DragonflyPerk), nameof(SuccessfulWarmUpPerk));
             string majorTwo = RollFrom(nameof(IncandescentPerk), nameof(AdagioPerk));
 
             SetPerks(barrel, magazine, majorOne, majorTwo);

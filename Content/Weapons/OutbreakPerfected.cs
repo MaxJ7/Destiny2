@@ -33,7 +33,7 @@ namespace Destiny2.Content.Weapons
             Item.knockBack = 2f;
             Item.noMelee = true; // Guns don't hit
             Item.autoReuse = true;
-            Item.scale = .65f;
+            Item.scale = .85f;
 
             // Damage Type from Element
             Item.DamageType = WeaponElement.GetDamageClass();

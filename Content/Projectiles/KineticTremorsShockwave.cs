@@ -67,7 +67,7 @@ namespace Destiny2.Content.Projectiles
             int pulseIndex = (int)(KineticTremorsPerk.PulseCount - Projectile.ai[1]);
 
             if (!Main.dedServ)
-                KineticShockwaveRenderer.TriggerPulse(center, pulseIndex);
+                KineticShockwaveRenderer.TriggerPulse(Projectile.GetSource_FromThis(), center, pulseIndex);
 
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;

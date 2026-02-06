@@ -14,6 +14,8 @@ namespace Destiny2.Common.Weapons
 {
     public abstract partial class Destiny2WeaponItem
     {
+        private static bool DiagnosticsEnabled => global::Destiny2.Destiny2.DiagnosticsEnabled;
+
         internal readonly struct PerkHudEntry
         {
             public readonly string DisplayName;
@@ -72,6 +74,18 @@ namespace Destiny2.Common.Weapons
         private int corruptionHitCount;
         private ulong lastCorruptionHitTick;
         private int archersTempoTimer;
+        private int killingWindTimer;
+        private int successfulWarmUpTimer;
+        private int fireflyTimer;
+        private int precisionInstrumentTimer;
+        private int precisionInstrumentStacks;
+        private int reconstructionTimer;
+        private int focusedFuryHitCount;
+        private int focusedFuryTimer;
+        private int killingTallyStacks;
+        private HashSet<int> oneForAllHitIds = new HashSet<int>();
+        private int oneForAllWindowTimer;
+        private int oneForAllBuffTimer;
         private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
         private readonly List<int> kineticTremorsTargetKeys = new List<int>();
 
@@ -117,7 +131,24 @@ namespace Destiny2.Common.Weapons
             if (archersTempoTimer > 0)
                 stats.ChargeTime = (int)(stats.ChargeTime * ArchersTempoPerk.ChargeTimeScalar);
 
+            if (killingWindTimer > 0)
+                stats.Range += KillingWindPerk.RangeBonus;
 
+            if (fireflyTimer > 0)
+                stats.ReloadSpeed += FireflyPerk.ReloadSpeedBonus;
+
+            if (successfulWarmUpTimer > 0)
+                stats.ChargeTime = (int)(stats.ChargeTime * SuccessfulWarmUpPerk.ChargeTimeScalar);
+        }
+
+        internal bool IsFocusedFuryActive => focusedFuryTimer > 0;
+        internal bool IsOneForAllActive => oneForAllBuffTimer > 0;
+        internal int KillingTallyStacks => killingTallyStacks;
+
+        internal float GetKillingTallyMultiplier()
+        {
+            if (killingTallyStacks <= 0) return 1f;
+            return KillingTallyPerk.DamageMultiplierByStacks[Math.Clamp(killingTallyStacks, 0, KillingTallyPerk.MaxStacks)];
         }
 
         internal void AppendPerkHudEntries(List<PerkHudEntry> entries)
@@ -154,7 +185,7 @@ namespace Destiny2.Common.Weapons
                 int stacks = GetTargetLockStacks();
                 if (stacks <= 0)
                     stacks = 1;
-                AddPerkHudEntry(entries, nameof(TargetLockPerk), targetLockHitTimer, TargetLockPerk.HitWindowTicks, stacks, true);
+                AddPerkHudEntry(entries, nameof(TargetLockPerk), targetLockHitTimer, TargetLockPerk.HitWindowTicks, stacks, stacks > 1);
             }
 
             if (dynamicSwayTimer > 0 && dynamicSwayStacks > 0)
@@ -170,6 +201,27 @@ namespace Destiny2.Common.Weapons
 
             if (archersTempoTimer > 0)
                 AddPerkHudEntry(entries, nameof(ArchersTempoPerk), archersTempoTimer, ArchersTempoPerk.DurationTicks, 1, false);
+
+            if (killingWindTimer > 0)
+                AddPerkHudEntry(entries, nameof(KillingWindPerk), killingWindTimer, KillingWindPerk.DurationTicks, 1, false);
+
+            if (successfulWarmUpTimer > 0)
+                AddPerkHudEntry(entries, nameof(SuccessfulWarmUpPerk), successfulWarmUpTimer, SuccessfulWarmUpPerk.DurationTicks, 1, false);
+
+            if (fireflyTimer > 0)
+                AddPerkHudEntry(entries, nameof(FireflyPerk), fireflyTimer, FireflyPerk.DurationTicks, 1, false);
+
+            if (precisionInstrumentTimer > 0 && precisionInstrumentStacks > 0)
+                AddPerkHudEntry(entries, nameof(PrecisionInstrumentPerk), precisionInstrumentTimer, PrecisionInstrumentPerk.DurationTicks, precisionInstrumentStacks, true);
+
+            if (focusedFuryTimer > 0)
+                AddPerkHudEntry(entries, nameof(FocusedFuryPerk), focusedFuryTimer, FocusedFuryPerk.DurationTicks, 1, false);
+
+            if (killingTallyStacks > 0)
+                AddPerkHudEntry(entries, nameof(KillingTallyPerk), 1, 1, killingTallyStacks, true);
+
+            if (oneForAllBuffTimer > 0)
+                AddPerkHudEntry(entries, nameof(OneForAllPerk), oneForAllBuffTimer, OneForAllPerk.DurationTicks, 1, false);
         }
 
         private static void AddPerkHudEntry(List<PerkHudEntry> entries, string perkKey, int timer, int maxTimer, int stacks, bool showStacks)
@@ -361,10 +413,70 @@ namespace Destiny2.Common.Weapons
             if (archersTempoTimer > 0)
                 archersTempoTimer--;
 
+            if (killingWindTimer > 0)
+                killingWindTimer--;
+
+            if (successfulWarmUpTimer > 0)
+                successfulWarmUpTimer--;
+
+            if (fireflyTimer > 0)
+                fireflyTimer--;
+
+            if (precisionInstrumentTimer > 0)
+            {
+                precisionInstrumentTimer--;
+                if (precisionInstrumentTimer <= 0)
+                    precisionInstrumentStacks = 0;
+            }
+
             if (targetLockHitCount > 0 && !IsPlayerFiring(player))
                 ResetTargetLockState();
 
             UpdateKineticTremorsTargets();
+
+            // RECONSTRUCTION
+            if (HasPerk<ReconstructionPerk>())
+            {
+                if (!IsPlayerFiring(player) && !isReloading)
+                {
+                    reconstructionTimer++;
+                    if (reconstructionTimer >= ReconstructionPerk.FillIntervalTicks)
+                    {
+                        reconstructionTimer = 0;
+                        int magSize = GetStats().Magazine;
+                        if (currentMagazine < magSize * 2)
+                        {
+                            int toLoad = (int)Math.Ceiling(magSize * ReconstructionPerk.FillPercent);
+                            currentMagazine = Math.Min(magSize * 2, currentMagazine + toLoad);
+                        }
+                    }
+                }
+                else
+                {
+                    reconstructionTimer = 0;
+                }
+            }
+
+            // FOCUSED FURY
+            if (focusedFuryTimer > 0)
+                focusedFuryTimer--;
+
+            // ONE FOR ALL
+            if (oneForAllWindowTimer > 0)
+            {
+                oneForAllWindowTimer--;
+                if (oneForAllWindowTimer <= 0)
+                    oneForAllHitIds.Clear();
+            }
+            if (oneForAllBuffTimer > 0)
+                oneForAllBuffTimer--;
+
+            // KILLING TALLY
+            // Reset on stow
+            if (player?.HeldItem?.ModItem != this)
+            {
+                killingTallyStacks = 0;
+            }
 
             if (player?.HeldItem?.ModItem == this)
             {
@@ -386,10 +498,17 @@ namespace Destiny2.Common.Weapons
             UpdateBlightLauncherMode(player);
         }
 
-        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool hasArchersTempo, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
+        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool hasArchersTempo, bool hasKillingWind, bool hasSuccessfulWarmUp, bool hasFirefly, bool hasOneForAll, bool hasFocusedFury, bool hasKillingTally, bool hasExplosivePayload, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
         {
             if (hasRapidHit && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 AddRapidHitStack(player);
+
+            if (hasFocusedFury)
+                RegisterFocusedFuryHit(player, isPrecision);
+
+            if (hasOneForAll && target != null)
+                RegisterOneForAllHit(player, target.whoAmI);
+
 
             if (hasFourthTimes && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 RegisterFourthTimesHit(player);
@@ -448,6 +567,56 @@ namespace Destiny2.Common.Weapons
                     SendPerkDebug(player, "Touch of Malice Heal");
                 }
             }
+
+            if (isKill)
+            {
+                if (hasKillingWind)
+                    ActivateKillingWind(player);
+                if (hasSuccessfulWarmUp)
+                    ActivateSuccessfulWarmUp(player);
+                if (hasFirefly && isPrecision)
+                    ActivateFirefly(player);
+                if (hasKillingTally)
+                    AddKillingTallyStack(player);
+            }
+        }
+
+        public void RegisterPrecisionInstrumentHit(Player player, bool isPrecision)
+        {
+            if (!HasPerk<PrecisionInstrumentPerk>())
+                return;
+
+            precisionInstrumentStacks = Math.Min(precisionInstrumentStacks + 1, PrecisionInstrumentPerk.MaxStacks);
+            precisionInstrumentTimer = IsBowWeapon() ? PrecisionInstrumentPerk.ChargeDurationTicks : PrecisionInstrumentPerk.DurationTicks;
+            if (DiagnosticsEnabled)
+                SendPerkDebug(player, $"Precision Instrument x{precisionInstrumentStacks}");
+        }
+
+        public void NotifyPrecisionInstrumentMiss()
+        {
+            if (precisionInstrumentStacks > 0)
+            {
+                precisionInstrumentStacks = 0;
+                precisionInstrumentTimer = 0;
+            }
+        }
+
+        private void ActivateKillingWind(Player player)
+        {
+            killingWindTimer = KillingWindPerk.DurationTicks;
+            SendPerkDebug(player, "Killing Wind activated");
+        }
+
+        private void ActivateSuccessfulWarmUp(Player player)
+        {
+            successfulWarmUpTimer = SuccessfulWarmUpPerk.DurationTicks;
+            SendPerkDebug(player, "Successful Warm-Up activated");
+        }
+
+        private void ActivateFirefly(Player player)
+        {
+            fireflyTimer = FireflyPerk.DurationTicks;
+            SendPerkDebug(player, "Firefly: Reload Speed increased");
         }
 
         internal bool TryConsumeRightChoiceShot()
@@ -650,6 +819,15 @@ namespace Destiny2.Common.Weapons
             ResetTargetLockState();
         }
 
+        public float GetPrecisionInstrumentMultiplier()
+        {
+            if (precisionInstrumentStacks <= 0)
+                return 0f;
+
+            int stacks = Math.Clamp(precisionInstrumentStacks, 0, PrecisionInstrumentPerk.MaxStacks);
+            return PrecisionInstrumentPerk.PrecisionDamageBonusByStacks[stacks];
+        }
+
         internal void RegisterKineticTremorsHit(Projectile projectile, NPC target, int damageDone)
         {
             if (projectile == null || target == null || !target.CanBeChasedBy())
@@ -704,6 +882,8 @@ namespace Destiny2.Common.Weapons
                 return KineticTremorsPerk.AutoRifleHitsRequired;
             if (this is HandCannonWeaponItem)
                 return KineticTremorsPerk.HandCannonHitsRequired;
+            if (this is CombatBowWeaponItem)
+                return KineticTremorsPerk.BowHitsRequired;
 
             return KineticTremorsPerk.AutoRifleHitsRequired;
         }
@@ -841,5 +1021,63 @@ namespace Destiny2.Common.Weapons
             }
             SoundEngine.PlaySound(SoundID.Item96, target.Center); // Glitchy sound
         }
+
+        internal void RegisterFocusedFuryHit(Player player, bool isPrecision)
+        {
+            if (!HasPerk<FocusedFuryPerk>())
+                return;
+
+            if (isPrecision)
+            {
+                focusedFuryHitCount++;
+                int threshold = Math.Max(1, (int)(BaseStats.Magazine * 0.5f));
+                if (focusedFuryHitCount >= threshold)
+                {
+                    focusedFuryTimer = FocusedFuryPerk.DurationTicks;
+                    focusedFuryHitCount = 0;
+                    SendPerkDebug(player, "Focused Fury Activated");
+                }
+            }
+        }
+
+        internal void AddKillingTallyStack(Player player)
+        {
+            if (!HasPerk<KillingTallyPerk>())
+                return;
+
+            killingTallyStacks = Math.Min(KillingTallyPerk.MaxStacks, killingTallyStacks + 1);
+            SendPerkDebug(player, $"Killing Tally x{killingTallyStacks}");
+        }
+
+        internal void RegisterOneForAllHit(Player player, int targetId)
+        {
+            if (!HasPerk<OneForAllPerk>() || oneForAllBuffTimer > 0)
+                return;
+
+            if (oneForAllHitIds.Add(targetId))
+            {
+                if (oneForAllHitIds.Count == 1)
+                    oneForAllWindowTimer = OneForAllPerk.WindowTicks;
+
+                if (oneForAllHitIds.Count >= OneForAllPerk.TargetsRequired)
+                {
+                    oneForAllBuffTimer = OneForAllPerk.DurationTicks;
+                    oneForAllHitIds.Clear();
+                    oneForAllWindowTimer = 0;
+                    SendPerkDebug(player, "One For All Activated");
+                }
+            }
+        }
+
+        private void ResetFocusedFuryCounter()
+        {
+            focusedFuryHitCount = 0;
+        }
+
+        private void ResetKillingTally()
+        {
+            killingTallyStacks = 0;
+        }
+
     }
 }

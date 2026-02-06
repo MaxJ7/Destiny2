@@ -47,6 +47,9 @@ You are working in a complex, high-context codebase ("Destiny 2" in Terraria). T
     *   Do NOT put drawing logic in Projectile `PreDraw` if it's a standard bullet trail.
 *   **Asset Management:**
     *   Visual-only changes (like "Taken Blight" trail) must NOT pollute the `Destiny2WeaponElement` enum. Use `CustomTrailShader`.
+*   **Explosive Projectiles:** This mod uses a UNIFIED base class for explosions (`Destiny2ExplosionProjectile`).
+    *   **Rule:** Always inherit from `Destiny2ExplosionProjectile` for perk-based explosions.
+    *   **Recursion:** In `Destiny2PerkProjectile.OnSpawn`, you MUST exclude explosion projectiles from triggering explosive perks (e.g., `ExplosivePayloadPerk`) to prevent infinite recursion loops.
 
 ## 4. EXECUTION PROTOCOL
 If a user asks for a new feature (Weapon, Perk, Effect), you **MUST**:

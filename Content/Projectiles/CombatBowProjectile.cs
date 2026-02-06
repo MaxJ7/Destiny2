@@ -4,9 +4,11 @@ using Destiny2.Common.Weapons;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.Graphics.Shaders;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace Destiny2.Content.Projectiles
 {
@@ -40,7 +42,7 @@ namespace Destiny2.Content.Projectiles
             Projectile.aiStyle = -1;
             Projectile.extraUpdates = 0;
             Projectile.arrow = true;
-            Projectile.alpha = 255;
+            Projectile.alpha = 0; // Visible by default
         }
 
         public override void OnSpawn(IEntitySource source)
@@ -64,10 +66,12 @@ namespace Destiny2.Content.Projectiles
             {
                 Projectile.extraUpdates = MaxUpdatesHitscan;
                 Projectile.timeLeft = 600 * (MaxUpdatesHitscan + 1);
+                Projectile.alpha = 255; // Hitscan is invisible, uses BulletDrawSystem traces
             }
             else
             {
                 Projectile.extraUpdates = MaxUpdatesNormal;
+                Projectile.alpha = 0; // Non-hitscan is visible
             }
 
             Projectile.DamageType = element.GetDamageClass();
@@ -89,6 +93,9 @@ namespace Destiny2.Content.Projectiles
                     Projectile.velocity.Y += 0.15f;
                 }
                 Projectile.velocity *= 0.99f;
+
+                // Only generate dust trail for normal projectiles
+                GenerateDustTrail();
             }
 
             // --- DAMAGE FALLOFF ---
@@ -100,47 +107,89 @@ namespace Destiny2.Content.Projectiles
                 float damageMultiplier = MathHelper.Lerp(1.0f, 0.5f, ratio);
                 Projectile.damage = (int)(baseDamage * damageMultiplier);
             }
+        }
 
-            GenerateDustTrail();
+        public override void OnKill(int timeLeft)
+        {
+            // If it was a hitscan shot, spawn a persistent visual trace
+            if (Projectile.extraUpdates > 0)
+            {
+                BulletDrawSystem.SpawnTrace(spawnPosition, Projectile.Center, element, 12f);
+            }
+
+            // Standard impact effects (Dust)
+            for (int i = 0; i < 10; i++)
+            {
+                Dust d = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, GetDustForElement(element), 0, 0, 100, GetColorForElement(element), 1f);
+                d.velocity *= 1.5f;
+                d.noGravity = true;
+            }
         }
 
         private void GenerateDustTrail()
         {
-            int steps = (Projectile.extraUpdates + 1) * 2;
+            int steps = 2; // Fixed steps for AI-only trail
             Vector2 start = Projectile.oldPosition + Projectile.Size / 2f;
             Vector2 end = Projectile.Center;
-            Vector2 dir = (end - start);
-
-            float lenSq = dir.LengthSquared();
-            if (lenSq < 0.1f || lenSq > 4000000f) return;
 
             int dustId = GetDustForElement(element);
             Color baseColor = GetColorForElement(element);
-
-            Vector3 hsl = Main.rgbToHsl(baseColor);
 
             for (int i = 0; i < steps; i++)
             {
                 float progress = i / (float)steps;
                 Vector2 pos = Vector2.Lerp(start, end, progress);
 
-                float hueShift = (float)Math.Sin(Main.GlobalTimeWrappedHourly * 5f + i * 0.1f) * 0.05f;
-                float newHue = (hsl.X + hueShift) % 1f;
-                if (newHue < 0) newHue += 1f;
-
-                Color finalColor = Main.hslToRgb(newHue, hsl.Y, 0.6f);
-
-                Dust d = Dust.NewDustPerfect(pos, dustId, Vector2.Zero, 0, finalColor, 0.8f);
+                Dust d = Dust.NewDustPerfect(pos, dustId, Vector2.Zero, 120, baseColor, 1.2f);
                 d.noGravity = true;
-                d.velocity = Vector2.Zero;
-                d.noLight = true;
-                d.scale = 0.8f;
+                d.velocity *= 0.1f;
             }
         }
 
         private int GetDustForElement(Destiny2WeaponElement element)
         {
             return DustID.WhiteTorch;
+        }
+
+        public override bool PreDraw(ref Color lightColor)
+        {
+            // Only draw the arrow texture for non-hitscan projectiles
+            if (Projectile.extraUpdates > 0) return false;
+
+            Texture2D texture = ModContent.Request<Texture2D>("Destiny2/Assets/Textures/Arrow").Value;
+            Vector2 origin = texture.Size() / 2f;
+            float rotation = Projectile.rotation;
+
+            ArmorShaderData shader = ElementalShaderSystem.GetShader(element);
+
+            DrawData drawData = new DrawData(
+                texture,
+                Projectile.Center - Main.screenPosition,
+                null,
+                lightColor,
+                rotation,
+                origin,
+                Projectile.scale,
+                SpriteEffects.None,
+                0
+            );
+
+            int shaderId = ElementalShaderSystem.GetShaderId(element);
+
+            if (shaderId > 0 && shader != null)
+            {
+                drawData.shader = shaderId;
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+                shader.Apply(Projectile, drawData);
+                drawData.Draw(Main.spriteBatch);
+                Main.spriteBatch.End();
+                Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+                return false;
+            }
+
+            drawData.Draw(Main.spriteBatch);
+            return false;
         }
 
         private Color GetColorForElement(Destiny2WeaponElement element)

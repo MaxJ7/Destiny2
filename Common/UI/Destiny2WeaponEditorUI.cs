@@ -1,531 +1,336 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Weapons;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
 namespace Destiny2.Common.UI
 {
-	public sealed class Destiny2WeaponEditorUI : UIState
-	{
-		private const float PanelWidth = 560f;
-		private const float PanelHeight = 440f;
-		private const float LeftPadding = 12f;
-		private const float RightPadding = 12f;
-		private const float TopButtonWidth = 150f;
-		private const float TopButtonHeight = 26f;
-		private const float TopButtonLeft = PanelWidth - RightPadding - TopButtonWidth;
-		private const float RowHeight = 26f;
-		private const float RowLabelOffset = 4f;
-		private const float RowButtonWidth = 26f;
-		private const float RowButtonHeight = 22f;
-		private const float RowButtonGap = 6f;
-		private const float PrevButtonLeft = PanelWidth - RightPadding - (RowButtonWidth * 2f) - RowButtonGap;
-		private const float NextButtonLeft = PanelWidth - RightPadding - RowButtonWidth;
-		private const float StatValueLeft = 120f;
-		private const float StatMinusLeft = 320f;
-		private const float StatPlusLeft = StatMinusLeft + RowButtonWidth + RowButtonGap;
-		private const float PerkValueLeft = 140f;
-		private const float ResetButtonWidth = 130f;
-		private const float ResetButtonHeight = 26f;
-		private const float ResetButtonTop = PanelHeight - ResetButtonHeight - 12f;
-
-		private readonly Dictionary<string, UIText> statTexts = new Dictionary<string, UIText>(StringComparer.Ordinal);
-		private readonly List<UIText> perkTexts = new List<UIText>();
-		private static readonly string[] PerkSlotNames = new[]
-		{
-			"Barrel",
-			"Magazine",
-			"Major Perk",
-			"Major Perk"
-		};
-		private static readonly PerkSlotType[] PerkSlotTypes = new[]
-		{
-			PerkSlotType.Barrel,
-			PerkSlotType.Magazine,
-			PerkSlotType.Major,
-			PerkSlotType.Major
-		};
-		private static readonly Destiny2WeaponElement[] WeaponElements = new[]
-		{
-			Destiny2WeaponElement.Kinetic,
-			Destiny2WeaponElement.Stasis,
-			Destiny2WeaponElement.Strand,
-			Destiny2WeaponElement.Solar,
-			Destiny2WeaponElement.Arc,
-			Destiny2WeaponElement.Void
-		};
-		private static readonly Dictionary<PerkSlotType, List<Destiny2Perk>> PerksBySlotType = new Dictionary<PerkSlotType, List<Destiny2Perk>>();
-		private UIText itemText;
-		private UIText statsSourceText;
-		private UIText frameText;
-		private UIText elementText;
-		private Item selectedItem;
-
-		public override void OnInitialize()
-		{
-			UIPanel panel = new UIPanel
-			{
-				Width = { Pixels = PanelWidth },
-				Height = { Pixels = PanelHeight },
-				HAlign = 0.5f,
-				VAlign = 0.5f
-			};
-			Append(panel);
-
-			UIText title = new UIText("Destiny2 Weapon Editor");
-			title.Left.Set(LeftPadding, 0f);
-			title.Top.Set(10f, 0f);
-			panel.Append(title);
-
-			itemText = new UIText("Selected: (hold a Destiny2 weapon)");
-			itemText.Left.Set(LeftPadding, 0f);
-			itemText.Top.Set(34f, 0f);
-			panel.Append(itemText);
-
-			statsSourceText = new UIText("Stats: Base");
-			statsSourceText.Left.Set(LeftPadding, 0f);
-			statsSourceText.Top.Set(52f, 0f);
-			panel.Append(statsSourceText);
-
-			UITextPanel<string> useHeldButton = CreateButton("Use Held Item", () =>
-			{
-				Item held = Main.LocalPlayer.HeldItem;
-				if (held?.ModItem is Destiny2WeaponItem)
-					selectedItem = held;
-			});
-			useHeldButton.Left.Set(TopButtonLeft, 0f);
-			useHeldButton.Top.Set(28f, 0f);
-			useHeldButton.Width.Set(TopButtonWidth, 0f);
-			useHeldButton.Height.Set(TopButtonHeight, 0f);
-			panel.Append(useHeldButton);
-
-			UITextPanel<string> clearButton = CreateButton("Clear", () => selectedItem = null);
-			clearButton.Left.Set(TopButtonLeft, 0f);
-			clearButton.Top.Set(58f, 0f);
-			clearButton.Width.Set(TopButtonWidth, 0f);
-			clearButton.Height.Set(TopButtonHeight, 0f);
-			panel.Append(clearButton);
-
-			float rowTop = 86f;
-			AddStatRow(panel, "Range", "Range", rowTop, -1f, 1f, ApplyRange);
-			rowTop += RowHeight;
-			AddStatRow(panel, "Stability", "Stability", rowTop, -1f, 1f, ApplyStability);
-			rowTop += RowHeight;
-			AddStatRow(panel, "Reload", "Reload", rowTop, -1f, 1f, ApplyReload);
-			rowTop += RowHeight;
-			AddStatRow(panel, "RPM", "RPM", rowTop, -5f, 5f, ApplyRpm);
-			rowTop += RowHeight;
-			AddStatRow(panel, "Magazine", "Magazine", rowTop, -1f, 1f, ApplyMagazine);
-			rowTop += RowHeight;
-
-			AddFrameRow(panel, rowTop);
-			rowTop += RowHeight;
-			AddElementRow(panel, rowTop);
-			rowTop += RowHeight;
-			for (int i = 0; i < PerkSlotNames.Length; i++)
-			{
-				AddPerkRow(panel, rowTop, i);
-				rowTop += RowHeight;
-			}
-
-			UITextPanel<string> resetStatsButton = CreateButton("Reset Stats", () =>
-			{
-				if (TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-					weapon.ClearCustomStats();
-			});
-			resetStatsButton.Left.Set(LeftPadding, 0f);
-			resetStatsButton.Top.Set(ResetButtonTop, 0f);
-			resetStatsButton.Width.Set(ResetButtonWidth, 0f);
-			resetStatsButton.Height.Set(ResetButtonHeight, 0f);
-			panel.Append(resetStatsButton);
-
-			UITextPanel<string> resetPerksButton = CreateButton("Reset Perks", () =>
-			{
-				if (TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-					weapon.ResetPerks();
-			});
-			resetPerksButton.Left.Set(LeftPadding + ResetButtonWidth + 10f, 0f);
-			resetPerksButton.Top.Set(ResetButtonTop, 0f);
-			resetPerksButton.Width.Set(ResetButtonWidth, 0f);
-			resetPerksButton.Height.Set(ResetButtonHeight, 0f);
-			panel.Append(resetPerksButton);
-		}
-
-		public override void Update(GameTime gameTime)
-		{
-			base.Update(gameTime);
-
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out Item item))
-			{
-				itemText.SetText("Selected: (hold a Destiny2 weapon)");
-				statsSourceText.SetText("Stats: Base");
-				SetStatText("Range", "--");
-				SetStatText("Stability", "--");
-				SetStatText("Reload", "--");
-				SetStatText("RPM", "--");
-				SetStatText("Magazine", "--");
-				if (frameText != null)
-					frameText.SetText("Frame: --");
-				if (elementText != null)
-					elementText.SetText("Element: --");
-				for (int i = 0; i < perkTexts.Count; i++)
-					perkTexts[i].SetText("--");
-				return;
-			}
-
-			itemText.SetText($"Selected: {item.Name}");
-			statsSourceText.SetText(weapon.HasCustomStats ? "Stats: Custom" : "Stats: Base");
-
-			Destiny2WeaponStats stats = weapon.GetEditableStats();
-			SetStatText("Range", stats.Range.ToString("0"));
-			SetStatText("Stability", stats.Stability.ToString("0"));
-			SetStatText("Reload", stats.ReloadSpeed.ToString("0"));
-			SetStatText("RPM", stats.RoundsPerMinute.ToString());
-			SetStatText("Magazine", stats.Magazine.ToString());
-
-			if (frameText != null)
-			{
-				string frameName = "None";
-				if (!string.IsNullOrWhiteSpace(weapon.FramePerkKey) && Destiny2PerkSystem.TryGet(weapon.FramePerkKey, out Destiny2Perk framePerk))
-					frameName = framePerk.DisplayName;
-				frameText.SetText($"Frame: {frameName}");
-			}
-
-			if (elementText != null)
-				elementText.SetText($"Element: {weapon.WeaponElement}");
-
-			for (int i = 0; i < perkTexts.Count; i++)
-			{
-				string perkName = "None";
-				if (weapon.PerkKeys.Count > i && Destiny2PerkSystem.TryGet(weapon.PerkKeys[i], out Destiny2Perk perk))
-					perkName = perk.DisplayName;
-				perkTexts[i].SetText(perkName);
-			}
-		}
-
-		private void AddStatRow(UIElement panel, string label, string key, float top, float minusStep, float plusStep, Action<float> apply)
-		{
-			UIText labelText = new UIText($"{label}:");
-			labelText.Left.Set(LeftPadding, 0f);
-			labelText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(labelText);
-
-			UIText valueText = new UIText("--");
-			valueText.Left.Set(StatValueLeft, 0f);
-			valueText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(valueText);
-			statTexts[key] = valueText;
-
-			UITextPanel<string> minusButton = CreateButton("-", () => apply(GetModifiedDelta(minusStep)));
-			minusButton.Left.Set(StatMinusLeft, 0f);
-			minusButton.Top.Set(top, 0f);
-			minusButton.Width.Set(RowButtonWidth, 0f);
-			minusButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(minusButton);
-
-			UITextPanel<string> plusButton = CreateButton("+", () => apply(GetModifiedDelta(plusStep)));
-			plusButton.Left.Set(StatPlusLeft, 0f);
-			plusButton.Top.Set(top, 0f);
-			plusButton.Width.Set(RowButtonWidth, 0f);
-			plusButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(plusButton);
-		}
-
-		private void AddPerkRow(UIElement panel, float top, int slotIndex)
-		{
-			string slotName = slotIndex < PerkSlotNames.Length ? PerkSlotNames[slotIndex] : $"Slot {slotIndex + 1}";
-			UIText labelText = new UIText($"{slotName}:");
-			labelText.Left.Set(LeftPadding, 0f);
-			labelText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(labelText);
-
-			UIText perkText = new UIText("--");
-			perkText.Left.Set(PerkValueLeft, 0f);
-			perkText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(perkText);
-			perkTexts.Add(perkText);
-
-			UITextPanel<string> prevButton = CreateButton("<", () => CyclePerk(slotIndex, -1));
-			prevButton.Left.Set(PrevButtonLeft, 0f);
-			prevButton.Top.Set(top, 0f);
-			prevButton.Width.Set(RowButtonWidth, 0f);
-			prevButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(prevButton);
-
-			UITextPanel<string> nextButton = CreateButton(">", () => CyclePerk(slotIndex, 1));
-			nextButton.Left.Set(NextButtonLeft, 0f);
-			nextButton.Top.Set(top, 0f);
-			nextButton.Width.Set(RowButtonWidth, 0f);
-			nextButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(nextButton);
-		}
-
-		private void AddFrameRow(UIElement panel, float top)
-		{
-			UIText labelText = new UIText("Frame:");
-			labelText.Left.Set(LeftPadding, 0f);
-			labelText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(labelText);
-
-			frameText = new UIText("Frame: --");
-			frameText.Left.Set(PerkValueLeft, 0f);
-			frameText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(frameText);
-
-			UITextPanel<string> prevButton = CreateButton("<", () => CycleFrame(-1));
-			prevButton.Left.Set(PrevButtonLeft, 0f);
-			prevButton.Top.Set(top, 0f);
-			prevButton.Width.Set(RowButtonWidth, 0f);
-			prevButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(prevButton);
-
-			UITextPanel<string> nextButton = CreateButton(">", () => CycleFrame(1));
-			nextButton.Left.Set(NextButtonLeft, 0f);
-			nextButton.Top.Set(top, 0f);
-			nextButton.Width.Set(RowButtonWidth, 0f);
-			nextButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(nextButton);
-		}
-
-		private void AddElementRow(UIElement panel, float top)
-		{
-			UIText labelText = new UIText("Element:");
-			labelText.Left.Set(LeftPadding, 0f);
-			labelText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(labelText);
-
-			elementText = new UIText("Element: --");
-			elementText.Left.Set(PerkValueLeft, 0f);
-			elementText.Top.Set(top + RowLabelOffset, 0f);
-			panel.Append(elementText);
-
-			UITextPanel<string> prevButton = CreateButton("<", () => CycleElement(-1));
-			prevButton.Left.Set(PrevButtonLeft, 0f);
-			prevButton.Top.Set(top, 0f);
-			prevButton.Width.Set(RowButtonWidth, 0f);
-			prevButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(prevButton);
-
-			UITextPanel<string> nextButton = CreateButton(">", () => CycleElement(1));
-			nextButton.Left.Set(NextButtonLeft, 0f);
-			nextButton.Top.Set(top, 0f);
-			nextButton.Width.Set(RowButtonWidth, 0f);
-			nextButton.Height.Set(RowButtonHeight, 0f);
-			panel.Append(nextButton);
-		}
-
-		private static UITextPanel<string> CreateButton(string text, Action onClick)
-		{
-			UITextPanel<string> button = new UITextPanel<string>(text);
-			button.OnLeftClick += (_, _) => onClick?.Invoke();
-			return button;
-		}
-
-		private static float GetModifiedDelta(float baseDelta)
-		{
-			float sign = Math.Sign(baseDelta);
-			if (Math.Abs(sign) < 0.001f)
-				return 0f;
-
-			if (!IsControlDown())
-				return baseDelta;
-
-			float step = IsShiftDown() ? 10f : 5f;
-			return step * sign;
-		}
-
-		private static bool IsControlDown()
-		{
-			return Main.keyState.IsKeyDown(Keys.LeftControl) || Main.keyState.IsKeyDown(Keys.RightControl);
-		}
-
-		private static bool IsShiftDown()
-		{
-			return Main.keyState.IsKeyDown(Keys.LeftShift) || Main.keyState.IsKeyDown(Keys.RightShift);
-		}
-
-		private void ApplyRange(float delta)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			Destiny2WeaponStats stats = weapon.GetEditableStats();
-			stats.Range = Math.Clamp(stats.Range + delta, 0f, 100f);
-			weapon.ApplyCustomStats(stats);
-		}
-
-		private void ApplyStability(float delta)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			Destiny2WeaponStats stats = weapon.GetEditableStats();
-			stats.Stability = Math.Clamp(stats.Stability + delta, 0f, 100f);
-			weapon.ApplyCustomStats(stats);
-		}
-
-		private void ApplyReload(float delta)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			Destiny2WeaponStats stats = weapon.GetEditableStats();
-			stats.ReloadSpeed = Math.Clamp(stats.ReloadSpeed + delta, 0f, 100f);
-			weapon.ApplyCustomStats(stats);
-		}
-
-		private void ApplyRpm(float delta)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			Destiny2WeaponStats stats = weapon.GetEditableStats();
-			int rpm = Math.Max(1, stats.RoundsPerMinute + (int)delta);
-			stats.RoundsPerMinute = rpm;
-			weapon.ApplyCustomStats(stats);
-		}
-
-		private void ApplyMagazine(float delta)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			Destiny2WeaponStats stats = weapon.GetEditableStats();
-			int magazine = Math.Max(0, stats.Magazine + (int)delta);
-			stats.Magazine = magazine;
-			weapon.ApplyCustomStats(stats);
-		}
-
-		private void CyclePerk(int slotIndex, int direction)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			List<Destiny2Perk> perks = GetPerksForSlot(slotIndex);
-			if (perks.Count == 0)
-				return;
-
-			string currentKey = weapon.PerkKeys.Count > slotIndex ? weapon.PerkKeys[slotIndex] : null;
-			int index = 0;
-			if (currentKey != null)
-			{
-				for (int i = 0; i < perks.Count; i++)
-				{
-					if (perks[i].Key == currentKey)
-					{
-						index = i;
-						break;
-					}
-				}
-			}
-
-			int nextIndex = (index + direction) % perks.Count;
-			if (nextIndex < 0)
-				nextIndex += perks.Count;
-
-			weapon.ReplacePerkAtSlot(slotIndex, perks[nextIndex].Key);
-		}
-
-		private void CycleFrame(int direction)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			IReadOnlyList<Destiny2Perk> frames = Destiny2PerkSystem.FramePerks;
-			if (frames.Count == 0)
-				return;
-
-			string currentKey = weapon.FramePerkKey;
-			int index = 0;
-			if (!string.IsNullOrWhiteSpace(currentKey))
-			{
-				for (int i = 0; i < frames.Count; i++)
-				{
-					if (frames[i].Key == currentKey)
-					{
-						index = i;
-						break;
-					}
-				}
-			}
-
-			int nextIndex = (index + direction) % frames.Count;
-			if (nextIndex < 0)
-				nextIndex += frames.Count;
-
-			weapon.ReplaceFramePerk(frames[nextIndex].Key);
-		}
-
-		private void CycleElement(int direction)
-		{
-			if (!TryGetWeapon(out Destiny2WeaponItem weapon, out _))
-				return;
-
-			if (WeaponElements.Length == 0)
-				return;
-
-			Destiny2WeaponElement currentElement = weapon.WeaponElement;
-			int index = 0;
-			for (int i = 0; i < WeaponElements.Length; i++)
-			{
-				if (WeaponElements[i] == currentElement)
-				{
-					index = i;
-					break;
-				}
-			}
-
-			int nextIndex = (index + direction) % WeaponElements.Length;
-			if (nextIndex < 0)
-				nextIndex += WeaponElements.Length;
-
-			weapon.SetWeaponElement(WeaponElements[nextIndex]);
-		}
-
-		private bool TryGetWeapon(out Destiny2WeaponItem weapon, out Item item)
-		{
-			Item candidate = selectedItem;
-			if (candidate == null || candidate.IsAir)
-				candidate = Main.LocalPlayer.HeldItem;
-
-			if (candidate?.ModItem is Destiny2WeaponItem weaponItem)
-			{
-				weapon = weaponItem;
-				item = candidate;
-				return true;
-			}
-
-			weapon = null;
-			item = null;
-			return false;
-		}
-
-		private void SetStatText(string key, string value)
-		{
-			if (statTexts.TryGetValue(key, out UIText text))
-				text.SetText(value);
-		}
-
-		private static List<Destiny2Perk> GetPerksForSlot(int slotIndex)
-		{
-			PerkSlotType slotType = slotIndex < PerkSlotTypes.Length ? PerkSlotTypes[slotIndex] : PerkSlotType.Major;
-			if (PerksBySlotType.TryGetValue(slotType, out List<Destiny2Perk> cached))
-				return cached;
-
-			List<Destiny2Perk> perks = new List<Destiny2Perk>();
-			foreach (Destiny2Perk perk in Destiny2PerkSystem.Perks)
-			{
-				if (perk.SlotType == slotType)
-					perks.Add(perk);
-			}
-
-			PerksBySlotType[slotType] = perks;
-			return perks;
-		}
-	}
+    public sealed class Destiny2WeaponEditorUI : UIState
+    {
+        private const float PanelWidth = 600f;
+        private float currentPanelHeight = 600f;
+        private const float LeftPadding = 16f;
+        private const float RightPadding = 16f;
+        private const float Column1Width = 120f;
+        private const float SliderWidth = 240f;
+        private const float InputWidth = 60f;
+        private const float RowHeight = 36f;
+        private const float ResetButtonWidth = 140f;
+        private const float ResetButtonHeight = 32f;
+
+        private UIPanel mainPanel;
+        private readonly Dictionary<string, Destiny2UISlider> statSliders = new Dictionary<string, Destiny2UISlider>();
+        private readonly Dictionary<string, Destiny2UITextInput> statInputs = new Dictionary<string, Destiny2UITextInput>();
+        private readonly List<Destiny2UIDropdown> perkDropdowns = new List<Destiny2UIDropdown>();
+        private Destiny2UIDropdown frameDropdown;
+        private Destiny2UIDropdown elementDropdown;
+
+        private static readonly string[] PerkSlotNames = new[] { "Barrel", "Magazine", "Major Perk 1", "Major Perk 2" };
+        private static readonly PerkSlotType[] PerkSlotTypes = new[] { PerkSlotType.Barrel, PerkSlotType.Magazine, PerkSlotType.Major, PerkSlotType.Major };
+        private static readonly Destiny2WeaponElement[] WeaponElements = (Destiny2WeaponElement[])Enum.GetValues(typeof(Destiny2WeaponElement));
+
+        private UIText itemText;
+        private UIText statsSourceText;
+        private Item selectedItem;
+        private bool _updatingFromLogic;
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+
+            // Draw open dropdown on top
+            Destiny2UIDropdown.OpenDropdown?.DrawOptions(spriteBatch);
+        }
+
+        public override void OnInitialize()
+        {
+            mainPanel = new UIPanel
+            {
+                Width = { Pixels = PanelWidth },
+                Height = { Pixels = currentPanelHeight },
+                HAlign = 0.5f,
+                VAlign = 0.5f,
+                BackgroundColor = Destiny2UIStyle.PanelBack,
+                BorderColor = Destiny2UIStyle.PanelBorder
+            };
+            Append(mainPanel);
+
+            UIText title = new UIText("WEAPON MODIFICATION PROTOCOL", 0.8f, true) { TextColor = Destiny2UIStyle.Gold };
+            title.Left.Set(LeftPadding, 0f);
+            title.Top.Set(12f, 0f);
+            mainPanel.Append(title);
+
+            itemText = new UIText("NO WEAPON DETECTED") { TextColor = Color.Gray };
+            itemText.Left.Set(LeftPadding, 0f);
+            itemText.Top.Set(42f, 0f);
+            mainPanel.Append(itemText);
+
+            statsSourceText = new UIText("SOURCE: UNKNOWN", 0.8f) { TextColor = Color.DarkGray };
+            statsSourceText.Left.Set(LeftPadding, 0f);
+            statsSourceText.Top.Set(62f, 0f);
+            mainPanel.Append(statsSourceText);
+
+            float rowTop = 90f;
+            AddStatRow(mainPanel, "Range", "Range", rowTop, 0, 100, (v) => ApplyStat("Range", v));
+            rowTop += RowHeight;
+            AddStatRow(mainPanel, "Stability", "Stability", rowTop, 0, 100, (v) => ApplyStat("Stability", v));
+            rowTop += RowHeight;
+            AddStatRow(mainPanel, "Reload", "Reload", rowTop, 0, 100, (v) => ApplyStat("Reload", v));
+            rowTop += RowHeight;
+            AddStatRow(mainPanel, "RPM", "RPM", rowTop, 1, 1200, (v) => ApplyStat("RPM", (int)v));
+            rowTop += RowHeight;
+            AddStatRow(mainPanel, "Magazine", "Magazine", rowTop, 0, 200, (v) => ApplyStat("Magazine", (int)v));
+            rowTop += RowHeight + 10f;
+
+            AddFrameDropdown(mainPanel, rowTop);
+            rowTop += RowHeight;
+            AddElementDropdown(mainPanel, rowTop);
+            rowTop += RowHeight;
+
+            for (int i = 0; i < PerkSlotNames.Length; i++)
+            {
+                AddPerkDropdown(mainPanel, rowTop, i);
+                rowTop += RowHeight;
+            }
+
+            rowTop += 20f; // Bottom spacing
+            currentPanelHeight = rowTop + ResetButtonHeight + 20f;
+            mainPanel.Height.Set(currentPanelHeight, 0f);
+
+            var resetStats = CreateButton("RESET PARAMETERS", () =>
+            {
+                if (TryGetWeapon(out var w, out _)) w.ClearCustomStats();
+            });
+            resetStats.Left.Set(LeftPadding, 0f);
+            resetStats.Top.Set(currentPanelHeight - 50f, 0f);
+            resetStats.Width.Set(ResetButtonWidth, 0f);
+            resetStats.Height.Set(ResetButtonHeight, 0f);
+            mainPanel.Append(resetStats);
+
+            var useHeld = CreateButton("SYNC HELD", () =>
+            {
+                Item held = Main.LocalPlayer.HeldItem;
+                if (held?.ModItem is Destiny2WeaponItem) selectedItem = held;
+            });
+            useHeld.Left.Set(PanelWidth - RightPadding - ResetButtonWidth, 0f);
+            useHeld.Top.Set(12f, 0f);
+            useHeld.Width.Set(ResetButtonWidth, 0f);
+            useHeld.Height.Set(ResetButtonHeight, 0f);
+            mainPanel.Append(useHeld);
+        }
+
+        private void AddStatRow(UIPanel panel, string label, string key, float top, float min, float max, Action<float> onApply)
+        {
+            UIText title = new UIText(label) { TextColor = Destiny2UIStyle.TextBase };
+            title.Left.Set(LeftPadding, 0f);
+            title.Top.Set(top + 4, 0f);
+            panel.Append(title);
+
+            Destiny2UISlider slider = new Destiny2UISlider();
+            slider.Left.Set(Column1Width, 0f);
+            slider.Top.Set(top + 6, 0f);
+            slider.Width.Set(SliderWidth, 0f);
+            slider.OnValueChanged = (p) =>
+            {
+                if (_updatingFromLogic) return;
+                float val = min + (max - min) * p;
+                onApply(val);
+                if (statInputs.TryGetValue(key, out var input)) input.Text = val.ToString("0");
+            };
+            panel.Append(slider);
+            statSliders[key] = slider;
+
+            Destiny2UITextInput input = new Destiny2UITextInput();
+            input.Left.Set(Column1Width + SliderWidth + 10f, 0f);
+            input.Top.Set(top + 2, 0f);
+            input.Width.Set(InputWidth, 0f);
+            input.OnTextChange = (s) =>
+            {
+                if (_updatingFromLogic) return;
+                if (float.TryParse(s, out float val))
+                {
+                    val = MathHelper.Clamp(val, min, max);
+                    onApply(val);
+                    slider.Percentage = (val - min) / (max - min);
+                }
+            };
+            panel.Append(input);
+            statInputs[key] = input;
+        }
+
+        private void AddFrameDropdown(UIPanel panel, float top)
+        {
+            UIText title = new UIText("Archetype") { TextColor = Destiny2UIStyle.TextBase };
+            title.Left.Set(LeftPadding, 0f);
+            title.Top.Set(top + 4, 0f);
+            panel.Append(title);
+
+            frameDropdown = new Destiny2UIDropdown("Select Frame...");
+            frameDropdown.Left.Set(Column1Width, 0f);
+            frameDropdown.Top.Set(top, 0f);
+            frameDropdown.Width.Set(SliderWidth + InputWidth + 10f, 0f);
+
+            var frames = Destiny2PerkSystem.FramePerks;
+            frameDropdown.Options = frames.Select(f => f.DisplayName).ToList();
+            frameDropdown.OnSelected = (idx) =>
+            {
+                if (TryGetWeapon(out var w, out _)) w.ReplaceFramePerk(frames[idx].Key);
+            };
+            panel.Append(frameDropdown);
+        }
+
+        private void AddElementDropdown(UIPanel panel, float top)
+        {
+            UIText title = new UIText("Element") { TextColor = Destiny2UIStyle.TextBase };
+            title.Left.Set(LeftPadding, 0f);
+            title.Top.Set(top + 4, 0f);
+            panel.Append(title);
+
+            elementDropdown = new Destiny2UIDropdown("Select Element...");
+            elementDropdown.Left.Set(Column1Width, 0f);
+            elementDropdown.Top.Set(top, 0f);
+            elementDropdown.Width.Set(SliderWidth + InputWidth + 10f, 0f);
+            elementDropdown.Options = WeaponElements.Select(e => e.ToString()).ToList();
+            elementDropdown.OnSelected = (idx) =>
+            {
+                if (TryGetWeapon(out var w, out _)) w.SetWeaponElement(WeaponElements[idx]);
+            };
+            panel.Append(elementDropdown);
+        }
+
+        private void AddPerkDropdown(UIPanel panel, float top, int slot)
+        {
+            UIText title = new UIText(PerkSlotNames[slot]) { TextColor = Destiny2UIStyle.TextBase };
+            title.Left.Set(LeftPadding, 0f);
+            title.Top.Set(top + 4, 0f);
+            panel.Append(title);
+
+            var dropdown = new Destiny2UIDropdown($"Select {PerkSlotNames[slot]}...");
+            dropdown.Left.Set(Column1Width, 0f);
+            dropdown.Top.Set(top, 0f);
+            dropdown.Width.Set(SliderWidth + InputWidth + 10f, 0f);
+
+            var perks = GetPerksForSlot(slot);
+            dropdown.Options = perks.Select(p => p.DisplayName).ToList();
+            dropdown.OnSelected = (idx) =>
+            {
+                if (TryGetWeapon(out var w, out _)) w.ReplacePerkAtSlot(slot, perks[idx].Key);
+            };
+            panel.Append(dropdown);
+            perkDropdowns.Add(dropdown);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            // Block hotbar scrolling if a dropdown is open or hovered
+            bool dropdownOpen = Destiny2UIDropdown.OpenDropdown != null;
+            bool panelHovered = mainPanel.ContainsPoint(Main.MouseScreen);
+
+            if (dropdownOpen || panelHovered)
+            {
+                Main.LocalPlayer.mouseInterface = true;
+                // Zero out the scroll wheel delta to prevent hotbar switching
+                // In some versions of tModLoader, this is enough to block it
+                // We can also try setting delayUseItem
+                Main.LocalPlayer.delayUseItem = true;
+            }
+
+
+            if (!TryGetWeapon(out var weapon, out var item))
+            {
+                itemText.SetText("NO WEAPON DETECTED");
+                statsSourceText.SetText("SOURCE: UNKNOWN");
+                return;
+            }
+
+            itemText.SetText($"PROTOCOL: {item.Name.ToUpper()}");
+            statsSourceText.SetText(weapon.HasCustomStats ? "SOURCE: MODIFIED DATA" : "SOURCE: FACTORY DEFAULTS");
+
+            _updatingFromLogic = true;
+            var stats = weapon.GetEditableStats();
+            SyncStat("Range", stats.Range, 0, 100);
+            SyncStat("Stability", stats.Stability, 0, 100);
+            SyncStat("Reload", stats.ReloadSpeed, 0, 100);
+            SyncStat("RPM", stats.RoundsPerMinute, 1, 1200);
+            SyncStat("Magazine", stats.Magazine, 0, 200);
+
+            if (!string.IsNullOrWhiteSpace(weapon.FramePerkKey) && Destiny2PerkSystem.TryGet(weapon.FramePerkKey, out var frame))
+                frameDropdown.SetSelected(frame.DisplayName);
+
+            elementDropdown.SetSelected(weapon.WeaponElement.ToString());
+
+            // Refresh options if they were initially empty (due to early initialization)
+            if (frameDropdown.Options.Count == 0)
+                frameDropdown.Options = Destiny2PerkSystem.FramePerks.Select(f => f.DisplayName).ToList();
+            if (elementDropdown.Options.Count == 0)
+                elementDropdown.Options = WeaponElements.Select(e => e.ToString()).ToList();
+
+            for (int i = 0; i < perkDropdowns.Count; i++)
+            {
+                if (perkDropdowns[i].Options.Count == 0)
+                {
+                    var perks = GetPerksForSlot(i);
+                    perkDropdowns[i].Options = perks.Select(p => p.DisplayName).ToList();
+                }
+
+                if (weapon.PerkKeys.Count > i && Destiny2PerkSystem.TryGet(weapon.PerkKeys[i], out var perk))
+                    perkDropdowns[i].SetSelected(perk.DisplayName);
+                else
+                    perkDropdowns[i].SetSelected("None");
+            }
+            _updatingFromLogic = false;
+        }
+
+        private void SyncStat(string key, float val, float min, float max)
+        {
+            if (statSliders.TryGetValue(key, out var s)) s.Percentage = (val - min) / (max - min);
+            if (statInputs.TryGetValue(key, out var i)) i.Text = val.ToString("0");
+        }
+
+        private void ApplyStat(string key, float val)
+        {
+            if (!TryGetWeapon(out var weapon, out _)) return;
+            var stats = weapon.GetEditableStats();
+            switch (key)
+            {
+                case "Range": stats.Range = val; break;
+                case "Stability": stats.Stability = val; break;
+                case "Reload": stats.ReloadSpeed = val; break;
+                case "RPM": stats.RoundsPerMinute = (int)val; break;
+                case "Magazine": stats.Magazine = (int)val; break;
+            }
+            weapon.ApplyCustomStats(stats);
+        }
+
+        private bool TryGetWeapon(out Destiny2WeaponItem weapon, out Item item)
+        {
+            Item cand = selectedItem ?? Main.LocalPlayer.HeldItem;
+            if (cand?.ModItem is Destiny2WeaponItem w) { weapon = w; item = cand; return true; }
+            weapon = null; item = null; return false;
+        }
+
+        private static UITextPanel<string> CreateButton(string text, Action onClick)
+        {
+            var b = new UITextPanel<string>(text) { BackgroundColor = Color.Black * 0.4f };
+            b.OnMouseOver += (_, _) => b.BackgroundColor = Destiny2UIStyle.ButtonHover;
+            b.OnMouseOut += (_, _) => b.BackgroundColor = Color.Black * 0.4f;
+            b.OnLeftClick += (_, _) => onClick?.Invoke();
+            return b;
+        }
+        private static List<Destiny2Perk> GetPerksForSlot(int slotIndex)
+        {
+            var type = slotIndex < PerkSlotTypes.Length ? PerkSlotTypes[slotIndex] : PerkSlotType.Major;
+            return Destiny2PerkSystem.Perks.Where(p => p.SlotType == type).ToList();
+        }
+    }
 }

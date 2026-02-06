@@ -28,12 +28,18 @@ namespace Destiny2.Common.Weapons
         public bool IsPerfectDraw { get; private set; }
         public bool IsOverdrawn { get; private set; }
 
-        internal int CurrentDrawTicks => currentDrawTicks;
-        internal int MaxDrawTicks => maxDrawTicks;
+        public int CurrentDrawTicks => currentDrawTicks;
+        public int MaxDrawTicks => maxDrawTicks;
 
         // Stat-driven Windows
         public int PerfectDrawWindowTicks { get; private set; }
         public int MaxOverdrawTicks { get; private set; }
+
+        // Drawing properties for PlayerDrawLayer
+        public Vector2 VisualNockPos { get; private set; }
+        public Vector2 VisualHeadPos { get; private set; }
+        public Vector2 VisualAimDir { get; private set; }
+        public bool VisualIsDrawing => wasChanneling;
 
         public override void SetDefaults()
         {
@@ -87,9 +93,9 @@ namespace Destiny2.Common.Weapons
 
             // --- STAT SCALING ---
             // Stability increases Perfect Draw Window (10 to 60 ticks)
-            PerfectDrawWindowTicks = (int)MathHelper.Lerp(10, 60, stats.Stability / 100f);
+            PerfectDrawWindowTicks = (int)MathHelper.Lerp(10, 30, stats.Stability / 100f);
             // Stability increases Max Overdraw hold time (120 to 600 ticks)
-            MaxOverdrawTicks = (int)MathHelper.Lerp(120, 600, stats.Stability / 100f);
+            MaxOverdrawTicks = (int)MathHelper.Lerp(120, 28, stats.Stability / 100f);
 
             // --- RELOAD / NOCKING LOGIC ---
             if (IsReloading)
@@ -115,6 +121,7 @@ namespace Destiny2.Common.Weapons
                 player.SetCompositeArmBack(true, Player.CompositeArmStretchAmount.Full, baseFrontRot);
 
                 currentDrawTicks = 0;
+                DrawRatio = 0f;
                 heldTicks = 0;
                 wasChanneling = false;
                 return;
@@ -132,6 +139,7 @@ namespace Destiny2.Common.Weapons
 
             if (player.channel)
             {
+                UpdateWeaponState(player); // CRITICAL: Updates reload timer!
                 // Arm Animation
                 Player.CompositeArmStretchAmount stretch = Player.CompositeArmStretchAmount.Full;
                 if (DrawRatio > 0.4f) stretch = Player.CompositeArmStretchAmount.ThreeQuarters;
@@ -182,11 +190,30 @@ namespace Destiny2.Common.Weapons
                 // --- ARROW RENDERING ---
                 if (currentDrawTicks > 2)
                 {
-                    Vector2 handPos = player.MountedCenter + new Vector2(0f, -2f);
-                    Vector2 bowPos = handPos + aimDir * 24f;
-                    Vector2 nockPos = bowPos - aimDir * (DrawRatio * 16f);
+                    // handPos at shoulder/arm height
+                    Vector2 handPos = player.MountedCenter + new Vector2(0f, -4f);
 
-                    SpawnDustLine(nockPos, bowPos, GetDustForElement(WeaponElement), GetColorForElement(WeaponElement));
+                    // Refined offsets for hand alignment
+                    float bowOffset = 22f;
+                    if (stretch == Player.CompositeArmStretchAmount.ThreeQuarters) bowOffset = 16f;
+                    if (stretch == Player.CompositeArmStretchAmount.None) bowOffset = 8f;
+
+                    Vector2 bowStavePos = handPos + aimDir * bowOffset;
+
+                    // Sync the item sprite position with the hand
+                    player.itemLocation = bowStavePos;
+
+                    // nockPos pulls BACKWARDS towards the face (Max pull 16f)
+                    Vector2 nockPos = bowStavePos - aimDir * (DrawRatio * 16f);
+
+                    // FIXED LENGTH ARROW: Arrow head moves back in sync with the nock/string
+                    float arrowLength = 28f;
+                    Vector2 headPos = nockPos + aimDir * arrowLength;
+
+                    // Store for PlayerDrawLayer
+                    VisualNockPos = nockPos;
+                    VisualHeadPos = headPos;
+                    VisualAimDir = aimDir;
                 }
 
                 wasChanneling = true;
@@ -201,11 +228,13 @@ namespace Destiny2.Common.Weapons
                     }
 
                     currentDrawTicks = 0;
+                    DrawRatio = 0f;
                     heldTicks = 0;
                     wasChanneling = false;
                 }
                 else
                 {
+                    DrawRatio = 0f;
                     heldTicks = 0;
                 }
             }
@@ -273,12 +302,18 @@ namespace Destiny2.Common.Weapons
             var source = new EntitySource_ItemUse_WithAmmo(player, Item, Item.useAmmo);
             int type = Item.shoot;
 
+            // Sync spawn position with visual bow stave
+            float finalBowOffset = 22f;
+            if (drawRatio > 0.4f) finalBowOffset = 16f;
+            if (drawRatio > 0.8f) finalBowOffset = 8f;
+            Vector2 spawnPos = player.MountedCenter + new Vector2(0f, -4f) + aimDir * finalBowOffset;
+
             // ai[0] = Element
             // ai[1] = DrawRatio
             // ai[2] = Falloff Start (scaled) [Packed as bits or just used as AI?] 
             // We'll use 4/5/6 for falloff
 
-            int p = Projectile.NewProjectile(source, player.MountedCenter, velocity, type, damage, knockback, player.whoAmI, (int)WeaponElement, drawRatio);
+            int p = Projectile.NewProjectile(source, spawnPos, velocity, type, damage, knockback, player.whoAmI, (int)WeaponElement, drawRatio);
             if (p >= 0 && p < Main.maxProjectiles)
             {
                 // Passing Falloff Data via custom Projectile properties
@@ -301,6 +336,8 @@ namespace Destiny2.Common.Weapons
         {
             if (HasFrame && FramePerkKey == nameof(LightweightBowFramePerk))
                 return 1.6f;
+            if (HasFrame && FramePerkKey == nameof(PrecisionBowFramePerk))
+                return 1.45f;
 
             return 1.5f; // Default for Precision Bows or others
         }
@@ -317,10 +354,10 @@ namespace Destiny2.Common.Weapons
             if (framePerk is PrecisionBowFramePerk) baseTime = 667;
 
             // Adagio: 30% increase to draw time
-            if (HasPerk<AdagioPerk>() && IsAdagioActive)
-            {
-                baseTime = (int)(baseTime * 1.3f);
-            }
+            //if (HasPerk<AdagioPerk>() && IsAdagioActive)
+            //{
+            //    baseTime = (int)(baseTime * 1.3f);
+            //}
 
             return baseTime;
         }

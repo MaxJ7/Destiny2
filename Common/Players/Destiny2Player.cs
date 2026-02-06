@@ -176,12 +176,10 @@ namespace Destiny2.Common.Players
         {
             if (eyesUpGuardianStacks <= 0)
             {
-                global::Destiny2.Destiny2.LogDiagnostic($"EyesUp TryConsume failed: stacks={eyesUpGuardianStacks}");
                 return false;
             }
 
             eyesUpGuardianStacks--;
-            global::Destiny2.Destiny2.LogDiagnostic($"EyesUp stacks consumed. Remaining={eyesUpGuardianStacks}");
             return true;
         }
 
@@ -194,7 +192,6 @@ namespace Destiny2.Common.Players
             int currentFrame = (int)Main.GameUpdateCount;
             if (lastEyesUpGrantFrame == currentFrame)
             {
-                global::Destiny2.Destiny2.LogDiagnostic($"EyesUp grant skipped (already granted this frame). Frame={currentFrame}");
                 return;
             }
             lastEyesUpGrantFrame = currentFrame;
@@ -204,12 +201,10 @@ namespace Destiny2.Common.Players
             eyesUpGuardianStacks = nextStacks;
 
             // Always log this important event
-            global::Destiny2.Destiny2.LogDiagnostic($"EyesUp stacks GRANTED! Added={amount} OldTotal={oldStacks} NewTotal={eyesUpGuardianStacks} Frame={currentFrame}");
 
             // Show visual feedback to player
             if (Main.netMode != NetmodeID.Server && Player.whoAmI == Main.myPlayer && global::Destiny2.Destiny2.DiagnosticsEnabled)
             {
-                Main.NewText($"Eyes Up, Guardian! {eyesUpGuardianStacks} stacks ready.", 100, 200, 255);
             }
         }
 

@@ -165,6 +165,14 @@ Perks are divided into 4 categories.
 *Goal: Add "Trace Rifles" as a new weapon class.*
 See **[create_new_archetype.md](create_new_archetype.md)** for the full guide.
 
+### Workflow 7: Creating an Explosive Projectile
+*Goal: Add a new explosive effect (e.g., "Volatile Rounds").*
+
+1.  **Inheritance:** Create a new projectile class inheriting from `Destiny2ExplosionProjectile`.
+2.  **Config:** Override `PrimingDelay`, `ExpansionTime`, and `RadiusTiles` if needed.
+3.  **Visuals:** Override `OnExpansion` for custom particle effects.
+4.  **Registration:** In `Destiny2PerkProjectile.OnSpawn`, add a check to EXCLUDE the new projectile type from the perk logic to prevent infinite recursion loops.
+
 ---
 
 ## 5. Critical Gotchas & Common Pitfalls

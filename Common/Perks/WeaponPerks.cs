@@ -208,13 +208,14 @@ namespace Destiny2.Common.Perks
         internal const int HitWindowTicks = 180;
         internal const int AutoRifleHitsRequired = 12;
         internal const int HandCannonHitsRequired = 6;
+        internal const int BowHitsRequired = 3;
         internal const int PulseCount = 3;
         internal const int PulseIntervalTicks = 60;
         internal const int InitialDelayTicks = 15;
         internal const int BowInitialDelayTicks = 10;
         internal const int CooldownAfterLastPulseTicks = 120;
         internal const int MaxShockwaveDamage = 90;
-        internal const float ShockwaveRadiusTiles = 3f;
+        internal const float ShockwaveRadiusTiles = 7f;
         public override string IconTexture => "Destiny2/Assets/Perks/KineticTremors";
         public override string DisplayName => "Kinetic Tremors";
         public override string Description =>
@@ -227,7 +228,7 @@ namespace Destiny2.Common.Perks
     public sealed class IncandescentPerk : Destiny2Perk
     {
         internal const int ScorchStacksApplied = 40;
-        internal const float ExplosionRadiusTiles = 3f; // 3 block radius, 6 blocks diameter
+        internal const float ExplosionRadiusTiles = 4f; // 4 block radius, 8 blocks diameter
         internal static readonly float ExplosionRadius = ExplosionRadiusTiles * 16f;
 
         public override string IconTexture => "Destiny2/Assets/Perks/Incandescent";
@@ -522,6 +523,120 @@ namespace Destiny2.Common.Perks
         public override string DisplayName => "Explosive Head";
         public override string Description => "Arrows split into an impact and an explosion portion. Precision hits deal bonus damage.";
         public override string IconTexture => "Destiny2/Assets/Perks/ExplosiveHead";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class KillingWindPerk : Destiny2Perk
+    {
+        internal const int DurationTicks = 360; // 6 seconds
+        internal const float RangeBonus = 20f;
+        internal const float MoveSpeedMultiplier = 1.10f;
+        internal const float FalloffDistanceScalar = 1.05f;
+
+        public override string DisplayName => "Killing Wind";
+        public override string Description => "Final blows grant increased mobility, weapon range, and handling for a short duration.";
+        public override string IconTexture => "Destiny2/Assets/Perks/KillingWind";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class DragonflyPerk : Destiny2Perk
+    {
+        internal const int ExplosionDamage = 120;
+        internal const float ExplosionRadiusTiles = 4f;
+
+        public override string DisplayName => "Dragonfly";
+        public override string Description => "Precision kills create an elemental explosion.";
+        public override string IconTexture => "Destiny2/Assets/Perks/Dragonfly";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class FireflyPerk : Destiny2Perk
+    {
+        internal const int ExplosionDamage = 100;
+        internal const float ExplosionRadiusTiles = 6f;
+        internal const int ReloadSpeedBonus = 50;
+        internal const int DurationTicks = 300; // 5 seconds
+
+        public override string DisplayName => "Firefly";
+        public override string Description => "Precision kills create a Solar explosion and increase reload speed.";
+        public override string IconTexture => "Destiny2/Assets/Perks/Firefly";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class SuccessfulWarmUpPerk : Destiny2Perk
+    {
+        internal const int DurationTicks = 300; // 5 seconds
+        internal const float ChargeTimeScalar = 0.625f; // 1.0 - 0.375
+
+        public override string DisplayName => "Successful Warm-Up";
+        public override string Description => "Each final blow with this weapon increases charge or draw speed for a short duration.";
+        public override string IconTexture => "Destiny2/Assets/Perks/SuccessfulWarmUp";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class PrecisionInstrumentPerk : Destiny2Perk
+    {
+        internal const int MaxStacks = 6;
+        internal const int DurationTicks = 75; // 1.25s
+        internal const int ChargeDurationTicks = 126; // 2.1s
+        internal static readonly float[] PrecisionDamageBonusByStacks = { 0f, 0.0417f, 0.0833f, 0.125f, 0.1667f, 0.2083f, 0.25f };
+
+        public override string DisplayName => "Precision Instrument";
+        public override string Description => "Dealing sustained damage increases precision damage.";
+        public override string IconTexture => "Destiny2/Assets/Perks/PrecisionInstrument";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class ReconstructionPerk : Destiny2Perk
+    {
+        internal const int FillIntervalTicks = 330; // 5.5s
+        internal const float FillPercent = 0.25f;
+        public override string DisplayName => "Reconstruction";
+        public override string Description => "This weapon slowly reloads itself over time from reserves, up to double capacity.";
+        public override string IconTexture => "Destiny2/Assets/Perks/Reconstruction";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class ExplosivePayloadPerk : Destiny2Perk
+    {
+        internal const float ExplosionDamageScalar = 0.65f; // 50% * 1.3
+        internal const float ImpactDamageScalar = 0.5f;
+        internal const float CritCompensationMultiplier = 1.133f;
+        public override string DisplayName => "Explosive Payload";
+        public override string Description => "Rounds create a small explosion on impact. Bonus damage on body shots.";
+        public override string IconTexture => "Destiny2/Assets/Perks/ExplosivePayload";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class FocusedFuryPerk : Destiny2Perk
+    {
+        internal const int DurationTicks = 660; // 11s
+        internal const float DamageMultiplier = 1.2f;
+        public override string DisplayName => "Focused Fury";
+        public override string Description => "Dealing half relevant magazine capacity as precision hits grants 20% increased damage.";
+        public override string IconTexture => "Destiny2/Assets/Perks/FocusedFury";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class KillingTallyPerk : Destiny2Perk
+    {
+        internal const int MaxStacks = 3;
+        internal static readonly float[] DamageMultiplierByStacks = { 1f, 1.1f, 1.2f, 1.3f };
+        public override string DisplayName => "Killing Tally";
+        public override string Description => "Kills increase damage until stowing or reloading. Stacks 3x (10%/20%/30%).";
+        public override string IconTexture => "Destiny2/Assets/Perks/KillingTally";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
+
+    public sealed class OneForAllPerk : Destiny2Perk
+    {
+        internal const int DurationTicks = 600; // 10s
+        internal const int WindowTicks = 180; // 3s
+        internal const int TargetsRequired = 3;
+        internal const float DamageMultiplier = 1.35f;
+        public override string DisplayName => "One For All";
+        public override string Description => "Hitting three separate targets within 3 seconds grants 35% increased damage for 10 seconds.";
+        public override string IconTexture => "Destiny2/Assets/Perks/OneForAll";
         public override PerkSlotType SlotType => PerkSlotType.Major;
     }
 }

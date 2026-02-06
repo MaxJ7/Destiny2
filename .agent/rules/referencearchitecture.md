@@ -76,4 +76,5 @@ This codebase is strictly divided into `Common` (Systems/Logic) and `Content` (A
 ## 4. Critical Interactions
 *   **Networking:** `Destiny2WeaponItem` syncs state. `Destiny2PerkProjectile` generally does not (impact logic is local/server authoritative).
 *   **Performance (Critical):** In `Destiny2PerkProjectile`, **ALWAYS** cache perk presence in `OnSpawn` (e.g., `bool hasPerk = ...`). Do **NOT** call `HasPerk<T>()` in the hot loops like `ModifyHitNPC`.
+*   **Explosive Projectiles:** Always inherit from `Destiny2ExplosionProjectile` for perk-based explosions. In `Destiny2PerkProjectile.OnSpawn`, you MUST exclude explosion projectiles from triggering explosive perks to prevent infinite recursion loops.
 *   **VFX:** Shaders must be compiled (`EasyXnb`) before `Destiny2Shaders` can load them.

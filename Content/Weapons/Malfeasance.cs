@@ -34,7 +34,7 @@ namespace Destiny2.Content.Weapons
             Item.height = 28;
             Item.noMelee = true;
             Item.autoReuse = true;
-            Item.scale = 1f;
+            Item.scale = .85f;
             Item.DamageType = WeaponElement.GetDamageClass();
             Item.damage = 32;
             Item.knockBack = 3f;

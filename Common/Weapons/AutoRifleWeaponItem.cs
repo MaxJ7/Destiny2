@@ -27,7 +27,7 @@ namespace Destiny2.Common.Weapons
 			if (!TryGetFramePerk(out Destiny2Perk framePerk))
 				return 1f;
 
-			if (framePerk is PrecisionFramePerk || framePerk is AdaptiveFramePerk || framePerk is TheRightChoiceFramePerk)
+			if (framePerk is PrecisionFramePerk || framePerk is RapidFireFramePerk || framePerk is HighImpactFramePerk || framePerk is AdaptiveFramePerk || framePerk is TheRightChoiceFramePerk || framePerk is LightweightFramePerk)
 				return 1.75f;
 
 			return 1f;
@@ -91,6 +91,12 @@ namespace Destiny2.Common.Weapons
 				return 450;
 			if (framePerk is TheRightChoiceFramePerk)
 				return 600;
+			if (framePerk is LightweightFramePerk)
+				return 720;
+			if (framePerk is RapidFireFramePerk)
+				return 720;	
+			if(framePerk is HighImpactFramePerk)
+				return 360;
 
 			return currentRpm;
 		}

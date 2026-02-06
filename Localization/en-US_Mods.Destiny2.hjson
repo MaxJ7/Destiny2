@@ -63,6 +63,41 @@ Items: {
 		DisplayName: Tyranny Of Heaven
 		Tooltip: ""
 	}
+
+	AccruedRedemption: {
+		Tooltip: ""
+		DisplayName: Accrued Redemption
+	}
+
+	VoidDyeProxy: {
+		Tooltip: ""
+		DisplayName: Void Dye Proxy
+	}
+
+	StrandDyeProxy: {
+		Tooltip: ""
+		DisplayName: Strand Dye Proxy
+	}
+
+	StasisDyeProxy: {
+		Tooltip: ""
+		DisplayName: Stasis Dye Proxy
+	}
+
+	SolarDyeProxy: {
+		Tooltip: ""
+		DisplayName: Solar Dye Proxy
+	}
+
+	ElementalDyeProxy: {
+		Tooltip: ""
+		DisplayName: Elemental Dye Proxy
+	}
+
+	ArcDyeProxy: {
+		Tooltip: ""
+		DisplayName: Arc Dye Proxy
+	}
 }
 
 Projectiles: {
@@ -76,6 +111,7 @@ Projectiles: {
 	CombatBowProjectile.DisplayName: Combat Bow Projectile
 	ExplosiveHeadExplosion.DisplayName: Explosive Head Explosion
 	HeldBowProjectile.DisplayName: Held Bow Projectile
+	PerkExplosion.DisplayName: Perk Explosion
 }
 
 Buffs: {

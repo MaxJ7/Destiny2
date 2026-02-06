@@ -102,7 +102,7 @@ namespace Destiny2.Common.UI
         private static void DrawBowChargeBar(SpriteBatch spriteBatch, CombatBowWeaponItem bowItem, Vector2 basePos)
         {
             float progress = bowItem.DrawRatio;
-            if (progress <= 0f) return;
+            if (progress <= 0f || bowItem.CurrentDrawTicks <= 0) return;
 
             int barWidth = 40;
             int barHeight = 4;

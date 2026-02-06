@@ -56,8 +56,8 @@ Common/Weapons/Destiny2WeaponItem.Perks.cs
 Common Hooks:
 ModifyShootStats
 : Change bullet behavior (velocity, damage) before firing.
-NotifyProjectileHit
-: Handle on-hit effects (applying buffs, spawning projectiles). MUST use the isPrecision parameter for precision-based perks.
+NotifyProjectileHit: Handle on-hit effects (applying buffs, spawning projectiles). MUST use the isPrecision parameter for precision-based perks.
+Explosive Perks: If spawning an explosion, the explosion projectile MUST inherit from `Destiny2ExplosionProjectile`. You MUST also exclude the explosion projectile from triggering itself in `Destiny2PerkProjectile.OnSpawn` (search for "Recursion Loop" check).
 NotifyPlayerHurt
 : Handle trigger when player takes damage (e.g., Frenzy).
 UpdatePerkTimers

@@ -82,6 +82,14 @@ namespace Destiny2.Common.Weapons
         {
             if (framePerk is RapidFireFramePerk || framePerk is TouchOfMalicePerk)
                 return 260;
+            if (framePerk is LightweightFramePerk)
+                return 200;
+            if (framePerk is AggressiveFramePerk)
+                return 120; 
+            if (framePerk is PrecisionFramePerk)
+                return 180;
+            if (framePerk is HighImpactFramePerk)
+                return 150;
 
             return currentRpm;
         }

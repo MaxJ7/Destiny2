@@ -36,6 +36,7 @@ namespace Destiny2.Common.Perks
         private bool hasIncandescent;
         private bool hasExplosiveHead;
         private int explosiveHeadBaseExplosionDamage;
+        private int explosivePayloadBaseExplosionDamage;
         private int lastPreHitLife;
         private int lastHitTargetId = -1;
         private bool hasPreHitLife;
@@ -58,6 +59,17 @@ namespace Destiny2.Common.Perks
         private bool ricocheted;
         private bool hasParasitism;
         private bool hasArchersTempo;
+        private bool hasKillingWind;
+        private bool hasDragonfly;
+        private bool hasFirefly;
+        private bool hasSuccessfulWarmUp;
+        private bool hasPrecisionInstrument;
+        private bool hasOneForAll;
+        private bool hasFocusedFury;
+        private bool hasKillingTally;
+        private bool hasExplosivePayload;
+        private bool precisionInstrumentShotRegistered;
+        private bool precisionInstrumentShotHit;
         private bool isPrecisionHit; // Track for OnHitNPC
         public bool CanCrit = true;
         public Microsoft.Xna.Framework.Graphics.Effect CustomTrailShader { get; set; }
@@ -157,6 +169,17 @@ namespace Destiny2.Common.Perks
             ricocheted = false;
             hasParasitism = false;
             hasArchersTempo = false;
+            hasKillingWind = false;
+            hasDragonfly = false;
+            hasFirefly = false;
+            hasSuccessfulWarmUp = false;
+            hasPrecisionInstrument = false;
+            hasOneForAll = false;
+            hasFocusedFury = false;
+            hasKillingTally = false;
+            hasExplosivePayload = false;
+            precisionInstrumentShotRegistered = false;
+            precisionInstrumentShotHit = false;
             CanCrit = true;
 
             // Non-Crit Projectiles (Nanites, Blight, etc)
@@ -236,6 +259,24 @@ namespace Destiny2.Common.Perks
                         CustomTrailShader = Destiny2Shaders.SolarTrail; // Use Uber Shader
                         CustomTrailTechnique = "Corruption";
                     }
+                    else if (perk is KillingWindPerk)
+                        hasKillingWind = true;
+                    else if (perk is DragonflyPerk && projectile.type != ModContent.ProjectileType<PerkExplosion>())
+                        hasDragonfly = true;
+                    else if (perk is FireflyPerk && projectile.type != ModContent.ProjectileType<PerkExplosion>())
+                        hasFirefly = true;
+                    else if (perk is SuccessfulWarmUpPerk)
+                        hasSuccessfulWarmUp = true;
+                    else if (perk is PrecisionInstrumentPerk)
+                        hasPrecisionInstrument = true;
+                    else if (perk is OneForAllPerk)
+                        hasOneForAll = true;
+                    else if (perk is FocusedFuryPerk)
+                        hasFocusedFury = true;
+                    else if (perk is KillingTallyPerk)
+                        hasKillingTally = true;
+                    else if (perk is ExplosivePayloadPerk && projectile.type != ModContent.ProjectileType<PerkExplosion>())
+                        hasExplosivePayload = true;
                 }
 
                 // THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
@@ -261,6 +302,17 @@ namespace Destiny2.Common.Perks
 
                 if (hasEyesUpGuardian)
                     eyesUpElement = weaponItem.WeaponElement;
+
+                if (hasExplosiveHead)
+                {
+                    // Fallback calculation for tile hits (where ModifyHitNPC isn't called)
+                    float damageMultiplier = weaponItem is CombatBowWeaponItem ? 1.0f : 1.0f; // Simplified fallback
+                    float effectiveBase = projectile.damage;
+
+                    // We can't know if it's a precision hit yet, so we assume body shot logic for the fallback
+                    // or use a safe baseline.
+                    explosiveHeadBaseExplosionDamage = (int)(effectiveBase * 0.5f * 1.3f);
+                }
             }
 
             // EYES UP GUARDIAN: inherit chain state for ricochet projectiles spawned from an existing chain
@@ -305,6 +357,12 @@ namespace Destiny2.Common.Perks
             {
                 targetLockShotRegistered = true;
                 targetLockShotHit = false;
+            }
+
+            if (hasPrecisionInstrument && !isChild && sourceWeaponItem != null)
+            {
+                precisionInstrumentShotRegistered = true;
+                precisionInstrumentShotHit = false;
             }
 
             if (DiagnosticsEnabled && IsTrackedProjectile(projectile))
@@ -361,6 +419,24 @@ namespace Destiny2.Common.Perks
                     }
                 }
 
+                if (hasExplosivePayload)
+                {
+                    // Calculate based on unaltered projectile damage to avoid double-halving or compounding issues
+                    float effectiveBase = projectile.damage;
+                    if (projectile.ModProjectile is Content.Projectiles.CombatBowProjectile bow)
+                        effectiveBase = bow.baseDamage;
+
+                    explosivePayloadBaseExplosionDamage = (int)(effectiveBase * ExplosivePayloadPerk.ExplosionDamageScalar);
+
+                    // Impact Damage Reduction
+                    modifiers.SourceDamage *= ExplosivePayloadPerk.ImpactDamageScalar;
+                    if (isPrecisionHit)
+                    {
+                        modifiers.CritDamage *= ExplosivePayloadPerk.CritCompensationMultiplier;
+                        modifiers.SetCrit();
+                    }
+                }
+
                 if (hasKillClip && sourceWeaponItem.IsKillClipActive)
                     multiplier *= KillClipPerk.DamageMultiplier;
 
@@ -387,6 +463,22 @@ namespace Destiny2.Common.Perks
                     float bonus = sourceWeaponItem.RegisterTargetLockHit(target);
                     if (bonus > 0f)
                         multiplier *= 1f + bonus;
+                }
+
+                if (hasPrecisionInstrument)
+                {
+                    precisionInstrumentShotHit = true;
+                    sourceWeaponItem.RegisterPrecisionInstrumentHit(GetOwner(projectile.owner), isPrecisionHit);
+
+                    if (isPrecisionHit)
+                    {
+                        float bonus = sourceWeaponItem.GetPrecisionInstrumentMultiplier();
+                        if (bonus > 0f)
+                        {
+                            multiplier *= 1f + bonus;
+                            modifiers.SetCrit();
+                        }
+                    }
                 }
 
                 if (hasTouchOfMalice && sourceWeaponItem.CurrentMagazine == 1)
@@ -418,6 +510,15 @@ namespace Destiny2.Common.Perks
                         multiplier *= (1f + bonus);
                     }
                 }
+
+                if (hasFocusedFury && sourceWeaponItem.IsFocusedFuryActive)
+                    multiplier *= FocusedFuryPerk.DamageMultiplier;
+
+                if (hasKillingTally)
+                    multiplier *= sourceWeaponItem.GetKillingTallyMultiplier();
+
+                if (hasOneForAll && sourceWeaponItem.IsOneForAllActive)
+                    multiplier *= OneForAllPerk.DamageMultiplier;
             }
 
             if (multiplier != 1f)
@@ -425,6 +526,15 @@ namespace Destiny2.Common.Perks
 
             if (hasExplosiveHead)
             {
+                // If we also have Explosive Payload, we don't want to double-halve the impact damage.
+                // However, in D2 bows have Head and guns have Payload.
+                // If they both exist, we apply the 0.5 once (already handled by Payload above if present).
+                // If Payload is NOT present, we apply it here.
+                if (!hasExplosivePayload)
+                {
+                    modifiers.SourceDamage *= 0.5f;
+                }
+
                 // Explosive Head Balance: 
                 // Body shot deals 50% impact. 
                 // Explosion deals 1.3x of that 50% (effectively 65% of base).
@@ -435,7 +545,6 @@ namespace Destiny2.Common.Perks
 
                 float explosionScalar = isPrecisionHit ? 2.2f : 1.3f; // 1.3x for body, 2.2x for precision
                 explosiveHeadBaseExplosionDamage = (int)(effectiveBase * 0.5f * explosionScalar);
-                modifiers.SourceDamage *= 0.5f;
             }
         }
 
@@ -479,7 +588,28 @@ namespace Destiny2.Common.Perks
             ProcessHit(projectile, target, hit, damageDone);
 
             if (hasExplosiveHead)
-                SpawnExplosiveHeadExplosion(projectile, target, damageDone);
+                SpawnExplosiveHeadExplosion(projectile, target.Center);
+
+            if (hasExplosivePayload)
+                SpawnExplosivePayloadExplosion(projectile, target.Center);
+
+            bool isKill = false;
+            if (target != null)
+            {
+                if (hasPreHitLife && lastHitTargetId == target.whoAmI && lastPreHitLife > 0)
+                    isKill = lastPreHitLife - damageDone <= 0;
+                else
+                    isKill = target.life <= 0;
+            }
+            hasPreHitLife = false;
+
+            if (isKill)
+            {
+                if (hasDragonfly && isPrecisionHit)
+                    SpawnDragonflyExplosion(projectile, target.Center);
+                if (hasFirefly && isPrecisionHit)
+                    SpawnFireflyExplosion(projectile, target.Center);
+            }
 
             isPrecisionHit = false; // Reset AFTER processing perks
         }
@@ -487,6 +617,12 @@ namespace Destiny2.Common.Perks
 
         public override bool OnTileCollide(Projectile projectile, Vector2 oldVelocity)
         {
+            if (hasExplosiveHead)
+            {
+                SpawnExplosiveHeadExplosion(projectile, projectile.Center);
+                return true; // Kill the projectile on impact to "stick" the explosion there
+            }
+
             if (hasRicochetRounds && !ricocheted)
             {
                 ricocheted = true;
@@ -544,10 +680,9 @@ namespace Destiny2.Common.Perks
             // Incandescent: kills trigger explosion (1/4 weapon damage, 4 tiles, 40 scorch stacks)
             if (hasIncandescent && isKill && target != null && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                Main.NewText($"[Perk] Incandescent Triggered! Kill detected.", Color.Orange);
                 // Use projectile.damage instead of damageDone to ensure consistent explosion damage
                 int explosionDamage = Math.Max(1, (int)(projectile.damage * 0.25f));
-                ScorchGlobalNPC.TriggerIncandescentExplosion(target.Center, explosionDamage, target.whoAmI);
+                ScorchGlobalNPC.TriggerIncandescentExplosion(projectile.GetSource_FromThis(), target.Center, explosionDamage, target.whoAmI);
             }
 
             if (perks.Count > 0)
@@ -597,13 +732,11 @@ namespace Destiny2.Common.Perks
             if (hasKineticTremors)
                 sourceWeaponItem.RegisterKineticTremorsHit(projectile, target, projectile.damage);
 
-            if (!hasOutlaw && !hasRapidHit && !hasKillClip && !hasFrenzy && !hasFourthTimes && !hasRampage
-                && !hasOnslaught && !hasAdagio && !hasFeedingFrenzy && !hasChargedWithBlight && !hasArchersTempo)
-                return;
-
             Player owner = GetOwner(projectile.owner);
             sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
-                hasOnslaught, hasAdagio, hasFeedingFrenzy, hasArchersTempo, isKill, projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>(),
+                hasOnslaught, hasAdagio, hasFeedingFrenzy, hasArchersTempo, hasKillingWind, hasSuccessfulWarmUp, hasFirefly,
+                hasOneForAll, hasFocusedFury, hasKillingTally, hasExplosivePayload, isKill,
+                projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>(),
                 projectile.type == ModContent.ProjectileType<NaniteProjectile>(), isPrecisionHit);
         }
 
@@ -611,6 +744,9 @@ namespace Destiny2.Common.Perks
         {
             if (hasTargetLock && targetLockShotRegistered && !targetLockShotHit && sourceWeaponItem != null)
                 sourceWeaponItem.NotifyTargetLockMiss();
+
+            if (hasPrecisionInstrument && precisionInstrumentShotRegistered && !precisionInstrumentShotHit && sourceWeaponItem != null)
+                sourceWeaponItem.NotifyPrecisionInstrumentMiss();
         }
 
         private static Item GetSourceItem(IEntitySource source)
@@ -900,13 +1036,39 @@ namespace Destiny2.Common.Perks
             EyesUpChainHits.Remove(chainId);
         }
 
-        private void SpawnExplosiveHeadExplosion(Projectile projectile, NPC target, int damageDone)
+        private void SpawnExplosiveHeadExplosion(Projectile projectile, Vector2 position)
         {
             // Use the pre-calculated base damage to ensure headshots don't buff the explosion
             int damage = explosiveHeadBaseExplosionDamage;
             int element = sourceWeaponItem != null ? (int)sourceWeaponItem.WeaponElement : 0;
 
-            Projectile.NewProjectile(projectile.GetSource_FromThis(), target.Center, Vector2.Zero, ModContent.ProjectileType<ExplosiveHeadExplosion>(), damage, 0f, projectile.owner, element);
+            Projectile.NewProjectile(projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<ExplosiveHeadExplosion>(), damage, 0f, projectile.owner, element, 2f);
+        }
+        private void SpawnExplosivePayloadExplosion(Projectile projectile, Vector2 position)
+        {
+            int damage = explosivePayloadBaseExplosionDamage;
+            int element = sourceWeaponItem != null ? (int)sourceWeaponItem.WeaponElement : 0;
+            float radius = 2.5f; // Radius tiles
+
+            Projectile.NewProjectile(projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<global::Destiny2.Content.Projectiles.PerkExplosion>(), damage, 0f, projectile.owner, element, radius);
+        }
+
+        private void SpawnDragonflyExplosion(Projectile projectile, Vector2 position)
+        {
+            int damage = DragonflyPerk.ExplosionDamage;
+            int element = sourceWeaponItem != null ? (int)sourceWeaponItem.WeaponElement : 0;
+            float radius = DragonflyPerk.ExplosionRadiusTiles;
+
+            Projectile.NewProjectile(projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<global::Destiny2.Content.Projectiles.PerkExplosion>(), damage, 0f, projectile.owner, element, radius);
+        }
+
+        private void SpawnFireflyExplosion(Projectile projectile, Vector2 position)
+        {
+            int damage = FireflyPerk.ExplosionDamage;
+            int element = (int)Destiny2WeaponElement.Solar;
+            float radius = FireflyPerk.ExplosionRadiusTiles;
+
+            Projectile.NewProjectile(projectile.GetSource_FromThis(), position, Vector2.Zero, ModContent.ProjectileType<global::Destiny2.Content.Projectiles.PerkExplosion>(), damage, 0f, projectile.owner, element, radius);
         }
     }
 }

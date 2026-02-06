@@ -6,6 +6,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace Destiny2.Common.NPCs
 {
@@ -16,7 +17,7 @@ namespace Destiny2.Common.NPCs
         private const int MaxScorchStacks = 100;
         private const int IgniteThreshold = 100;
         private const int IgniteDamage = 90;
-        private const float IgniteRadiusTiles = 5f; // 10 blocks diameter
+        private const float IgniteRadiusTiles = 6f; // 12 blocks diameter
         private const float IgniteRadius = IgniteRadiusTiles * 16f;
         private const int IgniteDelayTicks = 60; // ~1 second delay before explosion
         private const int DecayRatePerSecond = 10;
@@ -24,16 +25,25 @@ namespace Destiny2.Common.NPCs
         private const int DotIntervalTicks = 30; // 0.5 seconds
         private const float ScorchDamageRatioAtMaxStacks = 0.1f; // 1/10th of weapon damage at 100 stacks
 
+        // Refined Scorch Constants
+        private const int DecayDelayTicks = 270; // 4.5 seconds
+        private const int DecayProcessInterval = 34; // ~0.56 seconds
+        private const float DecayAmount = 5.67f;
+        private const int VulnerabilityThreshold = 60;
+        private const float VulnerabilityMultiplier = 1.025f; // 2.5% increased damage
+
         // Solar color from Bullet.cs
         private static readonly Color SolarColor = new Color(236, 85, 0);
         private static readonly Color BrightSolarColor = new Color(255, 150, 50);
 
         public int ScorchStacks { get; private set; }
         private int referenceWeaponDamage; // Used for DoT formula: damage = weaponDamage * 0.1 * (stacks/100)
-        private int decayTimer;
+        private int decayDelayTimer;
+        private int decayProcessTimer;
         private int dotTimer;
         private int igniteDelayTimer; // Countdown to ignition explosion (~1 second after hitting 100 stacks)
         private bool isIgniting;
+        private float fractionalScorchStacks; // Internal tracker for fractional decay
 
         /// <param name="referenceWeaponDamage">Weapon damage used for DoT formula; at 100 stacks, DoT = this * 0.1</param>
         public void ApplyScorch(NPC npc, int stacks, int referenceWeaponDamage = 30)
@@ -45,6 +55,11 @@ namespace Destiny2.Common.NPCs
                 return;
 
             ScorchStacks = Math.Min(ScorchStacks + stacks, MaxScorchStacks);
+            fractionalScorchStacks = ScorchStacks; // Sync fractional
+
+            // Reset decay delay whenever scorch is applied
+            decayDelayTimer = DecayDelayTicks;
+
             this.referenceWeaponDamage = Math.Max(this.referenceWeaponDamage, referenceWeaponDamage);
 
             if (ScorchStacks >= IgniteThreshold && igniteDelayTimer <= 0)
@@ -65,7 +80,7 @@ namespace Destiny2.Common.NPCs
                 Vector2 center = npc.Center;
 
                 // Spawn ignite explosion visuals
-                SpawnIgniteExplosion(center);
+                SpawnIgniteExplosion(npc.GetSource_FromThis(), center);
 
                 ApplyExplosionDamage(center, IgniteDamage, IgniteRadius, excludeNpcId: -1);
             }
@@ -95,12 +110,27 @@ namespace Destiny2.Common.NPCs
             }
 
             // Decay scorch stacks
-            decayTimer++;
-            if (decayTimer >= DecayIntervalTicks)
+            // Scorch lasts for 4.5 seconds (DecayDelayTicks), then decreases by x5.67 stacks every 0.56 seconds.
+            if (decayDelayTimer > 0)
             {
-                decayTimer = 0;
-                int decayAmount = DecayRatePerSecond / 10; // 10 ticks per second at 60fps
-                ScorchStacks = Math.Max(0, ScorchStacks - decayAmount);
+                decayDelayTimer--;
+            }
+            else
+            {
+                decayProcessTimer++;
+                if (decayProcessTimer >= DecayProcessInterval)
+                {
+                    decayProcessTimer = 0;
+                    if (fractionalScorchStacks > 0)
+                    {
+                        fractionalScorchStacks = Math.Max(0f, fractionalScorchStacks - DecayAmount);
+                        ScorchStacks = (int)fractionalScorchStacks;
+                    }
+                    else
+                    {
+                        ScorchStacks = 0;
+                    }
+                }
             }
 
             // DoT damage: ramps to 1/10th of weapon damage at 100 stacks
@@ -120,13 +150,62 @@ namespace Destiny2.Common.NPCs
             if (Main.netMode == NetmodeID.MultiplayerClient)
                 return;
 
-            // Formula: damage = weaponDamage * 0.1 * (stacks/100), minimum 1 if stacks > 0
+            // Formula: damage = 2.7 + (0.175 * Scorch Stacks)
             if (ScorchStacks <= 0)
                 return;
 
-            float stackRatio = ScorchStacks / (float)MaxScorchStacks;
-            int damage = Math.Max(1, (int)(referenceWeaponDamage * ScorchDamageRatioAtMaxStacks * stackRatio));
+            int damage = (int)(.05f * referenceWeaponDamage + (0.05f * ScorchStacks));
+
+            // Apply damage
             npc.SimpleStrikeNPC(damage, 0, false, 0f);
+        }
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref NPC.HitModifiers modifiers)
+        {
+            if (ScorchStacks > VulnerabilityThreshold)
+            {
+                modifiers.SourceDamage *= VulnerabilityMultiplier;
+            }
+        }
+
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref NPC.HitModifiers modifiers)
+        {
+            if (ScorchStacks > VulnerabilityThreshold)
+            {
+                modifiers.SourceDamage *= VulnerabilityMultiplier;
+            }
+        }
+
+        public override void OnHitByProjectile(NPC npc, Projectile projectile, NPC.HitInfo hit, int damageDone)
+        {
+            HandleYellowDamageNumbers(npc, damageDone);
+        }
+
+        public override void OnHitByItem(NPC npc, Player player, Item item, NPC.HitInfo hit, int damageDone)
+        {
+            HandleYellowDamageNumbers(npc, damageDone);
+        }
+
+        private void HandleYellowDamageNumbers(NPC npc, int damageDone)
+        {
+            if (ScorchStacks > VulnerabilityThreshold)
+            {
+                // Scan for recent combat text and color it yellow
+                string damageStr = damageDone.ToString();
+                // Loop backwards through combatText to find the most recent matching text near this NPC
+                for (int i = 99; i >= 0; i--)
+                {
+                    CombatText text = Main.combatText[i];
+                    if (text != null && text.active && text.lifeTime > 20 && text.text == damageStr) // Fresh text
+                    {
+                        if (Vector2.DistanceSquared(text.position, npc.Center) < 100 * 100)
+                        {
+                            text.color = new Color(255, 235, 4); // Destiny Yellow
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>Thin flickering flame tongues and embers—controlled crackling, not explosive.</summary>
@@ -171,9 +250,9 @@ namespace Destiny2.Common.NPCs
             Lighting.AddLight(npc.Center, lightIntensity * 0.95f, lightIntensity * 0.35f, lightIntensity * 0.05f);
         }
 
-        private static void SpawnIgniteExplosion(Vector2 center)
+        private static void SpawnIgniteExplosion(IEntitySource source, Vector2 center)
         {
-            SolarExplosionRenderer.TriggerExplosion(center, isIgnition: true);
+            SolarExplosionRenderer.TriggerExplosion(source, center, isIgnition: true);
             if (!Main.dedServ)
                 Lighting.AddLight(center, 1f, 0.4f, 0f);
         }
@@ -182,14 +261,14 @@ namespace Destiny2.Common.NPCs
         /// Triggers the Incandescent explosion on kill: 1/4 weapon damage, 4 tiles, 40 scorch stacks.
         /// Called from Destiny2PerkProjectile when a projectile with Incandescent kills an NPC.
         /// </summary>
-        internal static void TriggerIncandescentExplosion(Vector2 center, int explosionDamage, int excludeNpcId)
+        internal static void TriggerIncandescentExplosion(IEntitySource source, Vector2 center, int explosionDamage, int excludeNpcId)
         {
             if (Main.netMode == NetmodeID.MultiplayerClient || explosionDamage <= 0)
                 return;
 
-            int weaponDamage = explosionDamage * 4; // explosion is 1/4 weapon damage
+            int weaponDamage = explosionDamage * 8; // explosion is 1/4 weapon damage
 
-            SolarExplosionRenderer.TriggerExplosion(center, isIgnition: false);
+            SolarExplosionRenderer.TriggerExplosion(source, center, isIgnition: false);
             if (!Main.dedServ)
             {
                 Lighting.AddLight(center, 0.9f, 0.35f, 0f);
