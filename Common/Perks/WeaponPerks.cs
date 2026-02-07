@@ -639,4 +639,15 @@ namespace Destiny2.Common.Perks
         public override string IconTexture => "Destiny2/Assets/Perks/OneForAll";
         public override PerkSlotType SlotType => PerkSlotType.Major;
     }
+
+    public sealed class DesperadoPerk : Destiny2Perk
+    {
+        internal const int PrecisionKillWindowTicks = 312; // 5.2 seconds
+        internal const int DurationTicks = 360; // 6 seconds
+        internal const float FiringDelayReduction = 0.30f; // 30% reduction
+        public override string DisplayName => "Desperado";
+        public override string Description => "Finishing a reload within 5.2 seconds of a Precision Kill reduces Firing Delay by 30% for 6 seconds. Burst weapons only.";
+        public override string IconTexture => "Destiny2/Assets/Perks/Desperado";
+        public override PerkSlotType SlotType => PerkSlotType.Major;
+    }
 }

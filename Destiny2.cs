@@ -12,6 +12,7 @@ namespace Destiny2
         public static ModKeybind EditorKeybind;
         public static ModKeybind InfoKeybind;
         public static ModKeybind DiagnosticsKeybind;
+        public static ModKeybind RPMMeterKeybind;
         internal static bool DiagnosticsEnabled;
         private static readonly object HitscanLogLock = new object();
         private static readonly object DiagnosticLogLock = new object();
@@ -24,6 +25,7 @@ namespace Destiny2
             EditorKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Editor", "O");
             InfoKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Weapon Info", "I");
             DiagnosticsKeybind = KeybindLoader.RegisterKeybind(this, "Toggle Perk Diagnostics", "P");
+            RPMMeterKeybind = KeybindLoader.RegisterKeybind(this, "Toggle RPM Meter", "M");
             DiagnosticsEnabled = false;
             InitializeHitscanLog();
             InitializeDiagnosticLog();
@@ -38,6 +40,7 @@ namespace Destiny2
             EditorKeybind = null;
             InfoKeybind = null;
             DiagnosticsKeybind = null;
+            RPMMeterKeybind = null;
             DiagnosticsEnabled = false;
             HitscanLogPath = null;
             DiagnosticLogPath = null;

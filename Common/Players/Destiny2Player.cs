@@ -74,6 +74,8 @@ namespace Destiny2.Common.Players
                 Main.NewText($"Destiny2 perk diagnostics {state}.");
                 global::Destiny2.Destiny2.LogDiagnostic($"Perk diagnostics {state}.");
             }
+            if (Destiny2.RPMMeterKeybind?.JustPressed == true)
+                Destiny2RPMMeter.ToggleRPMMeter();
 
             if (Destiny2.ReloadKeybind?.JustPressed != true)
                 return;

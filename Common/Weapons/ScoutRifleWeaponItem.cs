@@ -29,13 +29,11 @@ namespace Destiny2.Common.Weapons
             return 1f;
         }
 
+        public override ReloadFormula ReloadFormula => new ReloadFormula(3.11797f, -0.0276889f, 0.000102915f);
+        public override RangeFormula RangeFormula => new RangeFormula(60.5f, 0.3136f, 121.5f, 0f);
+        public override float DamageFloor => 0.5f;
+
         protected virtual float BaseRecoil => 0.83f;
-        protected virtual float MinFalloffTiles => 55f;
-        protected virtual float MaxFalloffTiles => 90f;
-        protected virtual float ReloadSecondsAtZero => 2.9f;
-        protected virtual float ReloadSecondsAtHundred => 1.4f;
-        protected virtual float ReloadSecondsAtFifty => 2.15f;
-        protected virtual float FalloffTilesAtFifty => 72.5f;
 
         public float GetRecoil()
         {
@@ -49,22 +47,9 @@ namespace Destiny2.Common.Weapons
             return GetRecoil();
         }
 
-        public override float GetFalloffTiles()
-        {
-            Destiny2WeaponStats stats = GetStats();
-            return CalculateFalloffTiles(stats.Range, MinFalloffTiles, MaxFalloffTiles, FalloffTilesAtFifty);
-        }
-
-        public override float GetMaxFalloffTiles()
-        {
-            return MaxFalloffTiles;
-        }
-
         public override float GetReloadSeconds()
         {
-            Destiny2WeaponStats stats = GetStats();
-            float reloadSeconds = CalculateScaledValue(stats.ReloadSpeed, ReloadSecondsAtZero, ReloadSecondsAtHundred, ReloadSecondsAtFifty);
-            return reloadSeconds * GetReloadSpeedTimeScalar() * GetRapidFireFrameReloadScalar();
+            return base.GetReloadSeconds() * GetRapidFireFrameReloadScalar();
         }
 
         private float GetRapidFireFrameReloadScalar()
@@ -85,7 +70,7 @@ namespace Destiny2.Common.Weapons
             if (framePerk is LightweightFramePerk)
                 return 200;
             if (framePerk is AggressiveFramePerk)
-                return 120; 
+                return 120;
             if (framePerk is PrecisionFramePerk)
                 return 180;
             if (framePerk is HighImpactFramePerk)

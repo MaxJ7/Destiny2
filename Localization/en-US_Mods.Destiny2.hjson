@@ -191,6 +191,7 @@ Keybinds: {
 	"Toggle Weapon Editor.DisplayName": Toggle  Weapon  Editor
 	"Toggle Weapon Info.DisplayName": Toggle  Weapon  Info
 	"Toggle Perk Diagnostics.DisplayName": Toggle  Perk  Diagnostics
+	"Toggle RPM Meter.DisplayName": Toggle  R P M  Meter
 }
 
 Tiles.ModificationStation.MapEntry: Modification Station

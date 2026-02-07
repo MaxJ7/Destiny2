@@ -47,7 +47,7 @@ namespace Destiny2.Content.Weapons
             Item.autoReuse = true;
             Item.scale = .85f;
             Item.DamageType = WeaponElement.GetDamageClass();
-            Item.damage = 32;
+            Item.damage = 44;
             Item.knockBack = 3f;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.useTime = 20;

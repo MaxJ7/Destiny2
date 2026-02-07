@@ -34,7 +34,7 @@ namespace Destiny2.Common.Weapons
             if (framePerk is PrecisionFramePerk || framePerk is ExplosiveShadowPerk)
                 return 1.55f;
             if (framePerk is AggressiveFramePerk)
-                return 1.2f;    
+                return 1.2f;
 
             return 1f;
         }
@@ -49,13 +49,26 @@ namespace Destiny2.Common.Weapons
             return 1;
         }
 
+        public override ReloadFormula ReloadFormula => new ReloadFormula(3.60004f, -0.0238552f, 0.0000613759f);
+        public override float DamageFloor => 0.33f;
+
+        public override RangeFormula RangeFormula
+        {
+            get
+            {
+                if (TryGetFramePerk(out Destiny2Perk frame))
+                {
+                    if (frame is AggressiveFramePerk)
+                        return new RangeFormula(27f, 0.135f, 48f, 0.03f);
+                    if (frame is HeavyBurstFramePerk || frame is AggressiveBurstFramePerk)
+                        return new RangeFormula(25.6f, 0.144f, 46.4f, 0.048f);
+                }
+                // Adaptive, Precision, Lightweight
+                return new RangeFormula(24f, 0.135f, 43.5f, 0.045f);
+            }
+        }
+
         protected virtual float BaseRecoil => 1.25f;
-        protected virtual float MinFalloffTiles => 24f;
-        protected virtual float MaxFalloffTiles => 40f;
-        protected virtual float ReloadSecondsAtZero => 3.3f;
-        protected virtual float ReloadSecondsAtHundred => 2.2f;
-        protected virtual float ReloadSecondsAtFifty => 2.8f;
-        protected virtual float FalloffTilesAtFifty => 30f;
 
         private static float GetFrameRecoilScalar(string framePerkKey)
         {
@@ -81,28 +94,6 @@ namespace Destiny2.Common.Weapons
             return GetRecoil();
         }
 
-        public override float GetFalloffTiles()
-        {
-            Destiny2WeaponStats stats = GetStats();
-            float falloffTiles = CalculateFalloffTiles(stats.Range, MinFalloffTiles, MaxFalloffTiles, FalloffTilesAtFifty);
-            if (TryGetFramePerk(out Destiny2Perk framePerk) && framePerk is AggressiveFramePerk)
-                falloffTiles *= AggressiveFrameRangeScalar;
-
-            return falloffTiles;
-        }
-
-        public override float GetMaxFalloffTiles()
-        {
-            return MaxFalloffTiles;
-        }
-
-        public override float GetReloadSeconds()
-        {
-            Destiny2WeaponStats stats = GetStats();
-            float reloadSeconds = CalculateScaledValue(stats.ReloadSpeed, ReloadSecondsAtZero, ReloadSecondsAtHundred, ReloadSecondsAtFifty);
-            return reloadSeconds * GetReloadSpeedTimeScalar();
-        }
-
         protected override int GetFrameRoundsPerMinute(Destiny2Perk framePerk, int currentRpm)
         {
             if (framePerk is AdaptiveFramePerk)
@@ -115,6 +106,8 @@ namespace Destiny2.Common.Weapons
                 return 120;
             if (framePerk is LightweightFramePerk)
                 return 150;
+            if (framePerk is HeavyBurstFramePerk)
+                return 255;
 
             return currentRpm;
         }

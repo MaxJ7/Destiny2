@@ -13,6 +13,32 @@
 
 	<!-- References -->
 	<ItemGroup>
+	  <Content Include="AgentFiles\.agent\AGENT_BEHAVIOR.md" />
+	  <Content Include="AgentFiles\.agent\formula_explanation.md" />
+	  <Content Include="AgentFiles\.agent\Range and Reload formulas.csv" />
+	  <Content Include="AgentFiles\.agent\rules\advancedfxtechniques.md" />
+	  <Content Include="AgentFiles\.agent\rules\agentbehavior.md" />
+	  <Content Include="AgentFiles\.agent\rules\bullets.md" />
+	  <Content Include="AgentFiles\.agent\rules\compilemod.md" />
+	  <Content Include="AgentFiles\.agent\rules\createnewarchtype.md" />
+	  <Content Include="AgentFiles\.agent\rules\createnewperk.md" />
+	  <Content Include="AgentFiles\.agent\rules\createoreditweapon.md" />
+	  <Content Include="AgentFiles\.agent\rules\developmentpipeline.md" />
+	  <Content Include="AgentFiles\.agent\rules\graphicsarchitecture.md" />
+	  <Content Include="AgentFiles\.agent\rules\referencearchitecture.md" />
+	  <Content Include="AgentFiles\.agent\rules\shaders.md" />
+	  <Content Include="AgentFiles\.agent\rules\styleguide.md" />
+	  <Content Include="AgentFiles\.agent\workflows\advanced_vfx_techniques.md" />
+	  <Content Include="AgentFiles\.agent\workflows\bullets.md" />
+	  <Content Include="AgentFiles\.agent\workflows\create_new_archetype.md" />
+	  <Content Include="AgentFiles\.agent\workflows\create_new_bow.md" />
+	  <Content Include="AgentFiles\.agent\workflows\create_new_perk.md" />
+	  <Content Include="AgentFiles\.agent\workflows\create_new_weapon.md" />
+	  <Content Include="AgentFiles\.agent\workflows\development_pipeline.md" />
+	  <Content Include="AgentFiles\.agent\workflows\graphics_architecture.md" />
+	  <Content Include="AgentFiles\.agent\workflows\reference_architecture.md" />
+	  <Content Include="AgentFiles\.agent\workflows\shaders.MD" />
+	  <Content Include="AgentFiles\.agent\workflows\Styleguide.md" />
 	</ItemGroup>
 
 	<!-- Folders -->

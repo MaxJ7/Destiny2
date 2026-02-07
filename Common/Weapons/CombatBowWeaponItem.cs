@@ -329,8 +329,9 @@ namespace Destiny2.Common.Weapons
         }
 
         protected override float GetRecoilStrength() => 0f;
-        public override float GetFalloffTiles() => 60f;
-        public override float GetMaxFalloffTiles() => 80f;
+        public override ReloadFormula ReloadFormula => new ReloadFormula(0.8f, -0.005f, 0.00002f);
+        public override RangeFormula RangeFormula => new RangeFormula(60f, 0f, 80f, 0f);
+        public override float DamageFloor => 0.5f;
 
         public override float GetPrecisionMultiplier()
         {
@@ -344,7 +345,7 @@ namespace Destiny2.Common.Weapons
 
         public override float GetReloadSeconds()
         {
-            return CalculateScaledValue(GetStats().ReloadSpeed, 0.8f, 0.5f, 0.6f);
+            return base.GetReloadSeconds();
         }
 
         protected override int GetFrameChargeTime(Destiny2Perk framePerk, int currentChargeTime)

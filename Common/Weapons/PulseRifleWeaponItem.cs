@@ -57,15 +57,22 @@ namespace Destiny2.Common.Weapons
             return 3; // Standard Pulse
         }
 
-        protected virtual float BaseRecoil => 1.0f;
-        protected virtual float MinFalloffTiles => 27f;
-        protected virtual float MaxFalloffTiles => 45f;
-        protected virtual float FalloffTilesAtFifty => 36f; // Approximate midpoint provided by user req
+        public override ReloadFormula ReloadFormula => new ReloadFormula(2.92627f, -0.0256877f, 0.0000926208f);
+        public override float DamageFloor => 0.5f;
 
-        // Reload Speeds
-        protected virtual float ReloadSecondsAtZero => 2.7f;
-        protected virtual float ReloadSecondsAtHundred => 1.3f;
-        protected virtual float ReloadSecondsAtFifty => 2.0f;
+        public override RangeFormula RangeFormula
+        {
+            get
+            {
+                if (TryGetFramePerk(out Destiny2Perk frame) && (frame is AggressiveBurstFramePerk || frame is HeavyBurstFramePerk))
+                {
+                    return new RangeFormula(28.8f, 0.135f, 72f, 0f);
+                }
+                return new RangeFormula(27.2f, 0.1275f, 68f, 0f);
+            }
+        }
+
+        protected virtual float BaseRecoil => 1.0f;
 
         private float GetFrameRecoilScalar(string framePerkKey)
         {
@@ -91,20 +98,6 @@ namespace Destiny2.Common.Weapons
         protected override float GetRecoilStrength()
         {
             return GetRecoil();
-        }
-
-        public override float GetFalloffTiles()
-        {
-            Destiny2WeaponStats stats = GetStats();
-            return CalculateFalloffTiles(stats.Range, MinFalloffTiles, MaxFalloffTiles, FalloffTilesAtFifty);
-        }
-
-        public override float GetReloadSeconds()
-        {
-            Destiny2WeaponStats stats = GetStats();
-            // User requested 2.7s at 0, 1.3s at 100.
-            return CalculateScaledValue(stats.ReloadSpeed, ReloadSecondsAtZero, ReloadSecondsAtHundred, ReloadSecondsAtFifty)
-                * GetReloadSpeedTimeScalar();
         }
 
         protected override int GetFrameRoundsPerMinute(Destiny2Perk framePerk, int currentRpm)

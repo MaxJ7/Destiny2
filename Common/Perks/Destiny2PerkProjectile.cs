@@ -68,6 +68,7 @@ namespace Destiny2.Common.Perks
         private bool hasFocusedFury;
         private bool hasKillingTally;
         private bool hasExplosivePayload;
+        private bool hasDesperado;
         private bool precisionInstrumentShotRegistered;
         private bool precisionInstrumentShotHit;
         private bool isPrecisionHit; // Track for OnHitNPC
@@ -178,6 +179,7 @@ namespace Destiny2.Common.Perks
             hasFocusedFury = false;
             hasKillingTally = false;
             hasExplosivePayload = false;
+            hasDesperado = false;
             precisionInstrumentShotRegistered = false;
             precisionInstrumentShotHit = false;
             CanCrit = true;
@@ -277,6 +279,8 @@ namespace Destiny2.Common.Perks
                         hasKillingTally = true;
                     else if (perk is ExplosivePayloadPerk && projectile.type != ModContent.ProjectileType<PerkExplosion>())
                         hasExplosivePayload = true;
+                    else if (perk is DesperadoPerk)
+                        hasDesperado = true;
                 }
 
                 // THE RIGHT CHOICE: Only count player-fired shots toward the 7-shot cycle
@@ -735,7 +739,7 @@ namespace Destiny2.Common.Perks
             Player owner = GetOwner(projectile.owner);
             sourceWeaponItem.NotifyProjectileHit(owner, target, hit, damageDone, hasOutlaw, hasRapidHit, hasKillClip, hasFrenzy, hasFourthTimes, hasRampage,
                 hasOnslaught, hasAdagio, hasFeedingFrenzy, hasArchersTempo, hasKillingWind, hasSuccessfulWarmUp, hasFirefly,
-                hasOneForAll, hasFocusedFury, hasKillingTally, hasExplosivePayload, isKill,
+                hasOneForAll, hasFocusedFury, hasKillingTally, hasExplosivePayload, hasDesperado, isKill,
                 projectile.type == ModContent.ProjectileType<ChargedWithBlightProjectile>(),
                 projectile.type == ModContent.ProjectileType<NaniteProjectile>(), isPrecisionHit);
         }

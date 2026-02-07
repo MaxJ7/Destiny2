@@ -86,6 +86,8 @@ namespace Destiny2.Common.Weapons
         private HashSet<int> oneForAllHitIds = new HashSet<int>();
         private int oneForAllWindowTimer;
         private int oneForAllBuffTimer;
+        private int desperadoPrecisionKillTimer;
+        private int desperadoBuffTimer;
         private Dictionary<int, KineticTremorsTargetState> kineticTremorsTargets = new Dictionary<int, KineticTremorsTargetState>();
         private readonly List<int> kineticTremorsTargetKeys = new List<int>();
 
@@ -139,6 +141,9 @@ namespace Destiny2.Common.Weapons
 
             if (successfulWarmUpTimer > 0)
                 stats.ChargeTime = (int)(stats.ChargeTime * SuccessfulWarmUpPerk.ChargeTimeScalar);
+
+            if (desperadoBuffTimer > 0 && GetBurstCount() > 1 && HasPerk<DesperadoPerk>())
+                stats.RoundsPerMinute = ApplyRpmScalar(stats.RoundsPerMinute, 1f / (1f - DesperadoPerk.FiringDelayReduction));
         }
 
         internal bool IsFocusedFuryActive => focusedFuryTimer > 0;
@@ -222,6 +227,9 @@ namespace Destiny2.Common.Weapons
 
             if (oneForAllBuffTimer > 0)
                 AddPerkHudEntry(entries, nameof(OneForAllPerk), oneForAllBuffTimer, OneForAllPerk.DurationTicks, 1, false);
+
+            if (desperadoBuffTimer > 0)
+                AddPerkHudEntry(entries, nameof(DesperadoPerk), desperadoBuffTimer, DesperadoPerk.DurationTicks, 1, false);
         }
 
         private static void AddPerkHudEntry(List<PerkHudEntry> entries, string perkKey, int timer, int maxTimer, int stacks, bool showStacks)
@@ -471,6 +479,13 @@ namespace Destiny2.Common.Weapons
             if (oneForAllBuffTimer > 0)
                 oneForAllBuffTimer--;
 
+            // DESPERADO
+            if (desperadoPrecisionKillTimer > 0)
+                desperadoPrecisionKillTimer--;
+
+            if (desperadoBuffTimer > 0)
+                desperadoBuffTimer--;
+
             // KILLING TALLY
             // Reset on stow
             if (player?.HeldItem?.ModItem != this)
@@ -498,7 +513,7 @@ namespace Destiny2.Common.Weapons
             UpdateBlightLauncherMode(player);
         }
 
-        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool hasArchersTempo, bool hasKillingWind, bool hasSuccessfulWarmUp, bool hasFirefly, bool hasOneForAll, bool hasFocusedFury, bool hasKillingTally, bool hasExplosivePayload, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
+        internal void NotifyProjectileHit(Player player, NPC target, NPC.HitInfo hit, int damageDone, bool hasOutlaw, bool hasRapidHit, bool hasKillClip, bool hasFrenzy, bool hasFourthTimes, bool hasRampage, bool hasOnslaught, bool hasAdagio, bool hasFeedingFrenzy, bool hasArchersTempo, bool hasKillingWind, bool hasSuccessfulWarmUp, bool hasFirefly, bool hasOneForAll, bool hasFocusedFury, bool hasKillingTally, bool hasExplosivePayload, bool hasDesperado, bool isKill, bool isBlightProjectile, bool isNaniteProjectile, bool isPrecision)
         {
             if (hasRapidHit && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 AddRapidHitStack(player);
@@ -509,6 +524,8 @@ namespace Destiny2.Common.Weapons
             if (hasOneForAll && target != null)
                 RegisterOneForAllHit(player, target.whoAmI);
 
+            if (hasDesperado && isPrecision && !isNaniteProjectile && !isBlightProjectile && isKill)
+                StartDesperadoPrecisionKillWindow(player);
 
             if (hasFourthTimes && isPrecision && !isNaniteProjectile && !isBlightProjectile)
                 RegisterFourthTimesHit(player);
@@ -1077,6 +1094,25 @@ namespace Destiny2.Common.Weapons
         private void ResetKillingTally()
         {
             killingTallyStacks = 0;
+        }
+
+        private void StartDesperadoPrecisionKillWindow(Player player)
+        {
+            if (!HasPerk<DesperadoPerk>())
+                return;
+
+            desperadoPrecisionKillTimer = DesperadoPerk.PrecisionKillWindowTicks;
+            SendPerkDebug(player, "Desperado: Precision Kill! Finish reload within 5.2s for buff");
+        }
+
+        private void ActivateDesperado(Player player)
+        {
+            if (!HasPerk<DesperadoPerk>() || desperadoPrecisionKillTimer <= 0)
+                return;
+
+            desperadoBuffTimer = DesperadoPerk.DurationTicks;
+            desperadoPrecisionKillTimer = 0;
+            SendPerkDebug(player, "Desperado: Buff Activated! -30% Firing Delay for 6s");
         }
 
     }

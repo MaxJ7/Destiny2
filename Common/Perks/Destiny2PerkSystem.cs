@@ -93,6 +93,7 @@ namespace Destiny2.Common.Perks
             Register(new FocusedFuryPerk());
             Register(new KillingTallyPerk());
             Register(new OneForAllPerk());
+            Register(new DesperadoPerk());
         }
 
         public static void Register(Destiny2Perk perk)

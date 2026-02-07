@@ -6,6 +6,7 @@ using Destiny2.Common.NPCs;
 using Destiny2.Common.Players;
 using Destiny2.Common.Perks;
 using Destiny2.Common.Rarities;
+using Destiny2.Common.UI;
 using Destiny2.Content.Projectiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -36,6 +37,36 @@ namespace Destiny2.Common.Weapons
             RoundsPerMinute = roundsPerMinute;
             Magazine = magazine;
             ChargeTime = chargeTime;
+        }
+    }
+
+    public struct ReloadFormula
+    {
+        public float ReloadBase;
+        public float LinearGain;
+        public float Curvature;
+
+        public ReloadFormula(float reloadBase, float linearGain, float curvature)
+        {
+            ReloadBase = reloadBase;
+            LinearGain = linearGain;
+            Curvature = curvature;
+        }
+    }
+
+    public struct RangeFormula
+    {
+        public float RangeStartBase;
+        public float RangeGain; // Per stat point
+        public float RangeEndBase;
+        public float RangeEndGain; // Per stat point (Calculated from 0-100 diff usually)
+
+        public RangeFormula(float rangeStartBase, float rangeGain, float rangeEndBase, float rangeEndGain)
+        {
+            RangeStartBase = rangeStartBase;
+            RangeGain = rangeGain;
+            RangeEndBase = rangeEndBase;
+            RangeEndGain = rangeEndGain;
         }
     }
 
@@ -123,6 +154,8 @@ namespace Destiny2.Common.Weapons
             clone.fireflyTimer = fireflyTimer;
             clone.precisionInstrumentTimer = precisionInstrumentTimer;
             clone.precisionInstrumentStacks = precisionInstrumentStacks;
+            clone.desperadoPrecisionKillTimer = desperadoPrecisionKillTimer;
+            clone.desperadoBuffTimer = desperadoBuffTimer;
             clone.hasElementOverride = hasElementOverride;
             clone.elementOverride = elementOverride;
             return clone;
@@ -169,6 +202,8 @@ namespace Destiny2.Common.Weapons
             tag["fireflyTimer"] = fireflyTimer;
             tag["precisionInstrumentTimer"] = precisionInstrumentTimer;
             tag["precisionInstrumentStacks"] = precisionInstrumentStacks;
+            tag["desperadoPrecisionKillTimer"] = desperadoPrecisionKillTimer;
+            tag["desperadoBuffTimer"] = desperadoBuffTimer;
         }
 
         public override void LoadData(TagCompound tag)
@@ -225,6 +260,8 @@ namespace Destiny2.Common.Weapons
             fireflyTimer = tag.GetInt("fireflyTimer");
             precisionInstrumentTimer = tag.GetInt("precisionInstrumentTimer");
             precisionInstrumentStacks = tag.GetInt("precisionInstrumentStacks");
+            desperadoPrecisionKillTimer = tag.GetInt("desperadoPrecisionKillTimer");
+            desperadoBuffTimer = tag.GetInt("desperadoBuffTimer");
 
             SyncDamageTypeToElement();
 
@@ -275,6 +312,8 @@ namespace Destiny2.Common.Weapons
             writer.Write(fireflyTimer);
             writer.Write(precisionInstrumentTimer);
             writer.Write(precisionInstrumentStacks);
+            writer.Write(desperadoPrecisionKillTimer);
+            writer.Write(desperadoBuffTimer);
         }
 
         public override void NetReceive(BinaryReader reader)
@@ -326,6 +365,8 @@ namespace Destiny2.Common.Weapons
             fireflyTimer = reader.ReadInt32();
             precisionInstrumentTimer = reader.ReadInt32();
             precisionInstrumentStacks = reader.ReadInt32();
+            desperadoPrecisionKillTimer = reader.ReadInt32();
+            desperadoBuffTimer = reader.ReadInt32();
 
             SyncDamageTypeToElement();
 
@@ -425,19 +466,41 @@ namespace Destiny2.Common.Weapons
             SyncDamageTypeToElement();
         }
 
+        public virtual ReloadFormula ReloadFormula => new ReloadFormula(0f, 0f, 0f);
+        public virtual RangeFormula RangeFormula => new RangeFormula(0f, 0f, 0f, 0f);
+        public virtual float DamageFloor => 0.5f;
+
+        protected static float CalculateReloadSeconds(float stat, ReloadFormula formula)
+        {
+            float clampedStat = Math.Clamp(stat, 0f, 100f);
+            return (formula.Curvature * clampedStat * clampedStat) + (formula.LinearGain * clampedStat) + formula.ReloadBase;
+        }
+
+        protected static float CalculateRangeStart(float stat, RangeFormula formula)
+        {
+            float clampedStat = Math.Clamp(stat, 0f, 100f);
+            return (formula.RangeGain * clampedStat) + formula.RangeStartBase;
+        }
+
+        protected static float CalculateRangeEnd(float stat, RangeFormula formula)
+        {
+            float clampedStat = Math.Clamp(stat, 0f, 100f);
+            return (formula.RangeEndGain * clampedStat) + formula.RangeEndBase;
+        }
+
         public virtual float GetFalloffTiles()
         {
-            return 0f;
+            return CalculateRangeStart(GetStats().Range, RangeFormula);
         }
 
         public virtual float GetMaxFalloffTiles()
         {
-            return 0f;
+            return CalculateRangeEnd(GetStats().Range, RangeFormula);
         }
 
         public virtual float GetReloadSeconds()
         {
-            return 0f;
+            return CalculateReloadSeconds(GetStats().ReloadSpeed, ReloadFormula) * GetReloadSpeedTimeScalar();
         }
 
         public int CurrentMagazine => currentMagazine;
@@ -555,9 +618,13 @@ namespace Destiny2.Common.Weapons
                     proj.netUpdate = true;
                 }
 
+                // Register shot for RPM measurement
+                Destiny2RPMMeter.RegisterShot();
                 return false;
             }
 
+            // Register shot for RPM measurement (vanilla ammo)
+            Destiny2RPMMeter.RegisterShot();
             return true;
         }
 
@@ -626,6 +693,12 @@ namespace Destiny2.Common.Weapons
                 tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "ChargeTime", $"Charge Time: {stats.ChargeTime} ms"));
             }
             tooltips.Add(new TooltipLine(Mod, StatsTooltipPrefix + "AmmoType", $"Ammo Type: {AmmoType}"));
+
+            if (global::Destiny2.Destiny2.DiagnosticsEnabled)
+            {
+                Main.NewText($"[DEBUG] {Item.Name}: RangeStart={GetFalloffTiles():0.0}t, RangeEnd={GetMaxFalloffTiles():0.0}t, Reload={GetReloadSeconds():0.00}s", Color.Yellow);
+            }
+
             tooltips.Add(new TooltipLine(Mod, PerkIconsTooltipName, " "));
         }
 
@@ -750,51 +823,10 @@ namespace Destiny2.Common.Weapons
             "Ammo"
         };
 
+
         protected virtual float GetRecoilStrength()
         {
             return 0f;
-        }
-
-        protected static float CalculateFalloffTiles(float range, float minTiles, float maxTiles, float tilesAtFifty)
-        {
-            if (maxTiles <= minTiles)
-                return minTiles;
-
-            float clampedRange = Math.Clamp(range, 0f, 100f);
-            float ratio = clampedRange / 100f;
-            float target = Math.Clamp(tilesAtFifty, minTiles, maxTiles);
-            float baseSpan = maxTiles - minTiles;
-            float targetSpan = target - minTiles;
-            float exponent = 1f;
-
-            if (targetSpan > 0f && baseSpan > 0f)
-            {
-                float normalizedTarget = targetSpan / baseSpan;
-                exponent = (float)(Math.Log(normalizedTarget) / Math.Log(0.5f));
-            }
-
-            float scaled = (float)Math.Pow(ratio, exponent);
-            return minTiles + baseSpan * scaled;
-        }
-
-        protected static float CalculateScaledValue(float stat, float valueAtZero, float valueAtHundred, float valueAtFifty)
-        {
-            float clampedStat = Math.Clamp(stat, 0f, 100f);
-            float ratio = clampedStat / 100f;
-            float baseSpan = valueAtHundred - valueAtZero;
-
-            if (Math.Abs(baseSpan) < 0.0001f)
-                return valueAtZero;
-
-            float targetSpan = valueAtFifty - valueAtZero;
-            float normalizedTarget = targetSpan / baseSpan;
-            float exponent = 1f;
-
-            if (normalizedTarget > 0f && normalizedTarget < 1f)
-                exponent = (float)(Math.Log(normalizedTarget) / Math.Log(0.5f));
-
-            float scaled = (float)Math.Pow(ratio, exponent);
-            return valueAtZero + baseSpan * scaled;
         }
 
         private void InitializeMagazine()
@@ -869,6 +901,7 @@ namespace Destiny2.Common.Weapons
                 currentMagazine = GetStats().Magazine;
                 ResetFocusedFuryCounter();
                 ResetKillingTally();
+                ActivateDesperado(player);
                 if (killClipPending)
                 {
                     killClipPending = false;

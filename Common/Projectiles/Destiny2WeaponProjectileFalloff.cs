@@ -6,79 +6,86 @@ using Terraria.ModLoader;
 
 namespace Destiny2.Common.Projectiles
 {
-	public sealed class Destiny2WeaponProjectileFalloff : GlobalProjectile
-	{
-		private const float MinDamageMultiplier = 0.5f;
+    public sealed class Destiny2WeaponProjectileFalloff : GlobalProjectile
+    {
+        private float falloffStartTiles;
+        private float falloffEndTiles;
+        private float damageFloor;
+        private Vector2 spawnPosition;
+        private bool hasFalloff;
 
-		private float falloffStartTiles;
-		private float maxFalloffTiles;
-		private Vector2 spawnPosition;
-		private bool hasFalloff;
+        public override bool InstancePerEntity => true;
 
-		public override bool InstancePerEntity => true;
+        public override void OnSpawn(Projectile projectile, IEntitySource source)
+        {
+            hasFalloff = false;
+            falloffStartTiles = 0f;
+            falloffEndTiles = 0f;
+            damageFloor = 0.5f;
+            spawnPosition = Vector2.Zero;
 
-		public override void OnSpawn(Projectile projectile, IEntitySource source)
-		{
-			hasFalloff = false;
-			falloffStartTiles = 0f;
-			maxFalloffTiles = 0f;
-			spawnPosition = Vector2.Zero;
+            Item sourceItem = GetSourceItem(source);
+            if (sourceItem?.ModItem is Destiny2WeaponItem weaponItem)
+            {
+                falloffStartTiles = weaponItem.GetFalloffTiles();
+                falloffEndTiles = weaponItem.GetMaxFalloffTiles();
+                damageFloor = weaponItem.DamageFloor;
 
-			Item sourceItem = GetSourceItem(source);
-			if (sourceItem?.ModItem is Destiny2WeaponItem weaponItem)
-			{
-				falloffStartTiles = weaponItem.GetFalloffTiles();
-				maxFalloffTiles = weaponItem.GetMaxFalloffTiles();
-				if (falloffStartTiles > 0f && maxFalloffTiles >= falloffStartTiles)
-				{
-					spawnPosition = projectile.Center;
-					hasFalloff = true;
-				}
-			}
-		}
+                if (falloffStartTiles > 0f && falloffEndTiles >= falloffStartTiles)
+                {
+                    spawnPosition = projectile.Center;
+                    hasFalloff = true;
+                }
+            }
+        }
 
-		public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
-		{
-			if (!hasFalloff)
-				return;
+        public override void ModifyHitNPC(Projectile projectile, NPC target, ref NPC.HitModifiers modifiers)
+        {
+            if (!hasFalloff)
+                return;
 
-			float multiplier = GetDamageMultiplier(target.Center);
-			if (multiplier < 1f)
-				modifiers.FinalDamage *= multiplier;
-		}
+            float multiplier = GetDamageMultiplier(target.Center);
+            if (multiplier < 1f)
+                modifiers.FinalDamage *= multiplier;
 
-		public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
-		{
-			if (!hasFalloff)
-				return;
+            if (global::Destiny2.Destiny2.DiagnosticsEnabled)
+            {
+                float distanceTiles = Vector2.Distance(spawnPosition, target.Center) / 16f;
+                CombatText.NewText(target.getRect(), Color.LightGray, $"Dist: {distanceTiles:0.0}t | Mult: {multiplier * 100:0}%", true);
+            }
+        }
 
-			float multiplier = GetDamageMultiplier(target.Center);
-			if (multiplier < 1f)
-				modifiers.FinalDamage *= multiplier;
-		}
+        public override void ModifyHitPlayer(Projectile projectile, Player target, ref Player.HurtModifiers modifiers)
+        {
+            if (!hasFalloff)
+                return;
 
-		private float GetDamageMultiplier(Vector2 targetCenter)
-		{
-			float distanceTiles = Vector2.Distance(spawnPosition, targetCenter) / 16f;
-			if (distanceTiles <= falloffStartTiles)
-				return 1f;
+            float multiplier = GetDamageMultiplier(target.Center);
+            if (multiplier < 1f)
+                modifiers.FinalDamage *= multiplier;
+        }
 
-			float endDistance = maxFalloffTiles + (maxFalloffTiles * 0.5f);
-			if (distanceTiles >= endDistance)
-				return MinDamageMultiplier;
+        private float GetDamageMultiplier(Vector2 targetCenter)
+        {
+            float distanceTiles = Vector2.Distance(spawnPosition, targetCenter) / 16f;
+            if (distanceTiles <= falloffStartTiles)
+                return 1f;
 
-			float t = (distanceTiles - falloffStartTiles) / (endDistance - falloffStartTiles);
-			return MathHelper.Lerp(1f, MinDamageMultiplier, MathHelper.Clamp(t, 0f, 1f));
-		}
+            if (distanceTiles >= falloffEndTiles)
+                return damageFloor;
 
-		private static Item GetSourceItem(IEntitySource source)
-		{
-			if (source is EntitySource_ItemUse itemUse)
-				return itemUse.Item;
-			if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
-				return itemUseWithAmmo.Item;
+            float t = (distanceTiles - falloffStartTiles) / (falloffEndTiles - falloffStartTiles);
+            return MathHelper.Lerp(1f, damageFloor, MathHelper.Clamp(t, 0f, 1f));
+        }
 
-			return null;
-		}
-	}
+        private static Item GetSourceItem(IEntitySource source)
+        {
+            if (source is EntitySource_ItemUse itemUse)
+                return itemUse.Item;
+            if (source is EntitySource_ItemUse_WithAmmo itemUseWithAmmo)
+                return itemUseWithAmmo.Item;
+
+            return null;
+        }
+    }
 }
