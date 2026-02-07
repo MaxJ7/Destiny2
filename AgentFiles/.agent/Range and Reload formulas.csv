@@ -1,9 +1,0 @@
-Weapon / Archetype,Reload (0)s,Reload (100)s,Reload Curvature (evpp),Reload Linear Gain (vpp),Reload Base (offset),Range Start (0)m,Range Start (100)m,Range End (0)m,Range End (100)m,Range Gain (m/stat)
-Auto Rifle (Adaptive/Precision/Rapid/Lightweight),2.81,1.24,0.0000855689,-0.0242021,2.80673,17.2,37.2,64,64,0.2
-Auto Rifle (High-Impact),2.81,1.24,0.0000855689,-0.0242021,2.80673,18.28,39.53,68,68,0.2125
-"Hand Cannon (Adaptive, Precision, Light)",3.6,1.83,0.0000613759,-0.0238552,3.60004,24,37.5,43.5,48,0.135
-Hand Cannon (Aggressive),3.6,1.83,0.0000613759,-0.0238552,3.60004,27,40.5,48,51,0.135
-Hand Cannon (Heavy Burst),3.6,1.83,0.0000613759,-0.0238552,3.60004,25.6,40,46.4,51.2,0.144
-Pulse Rifle (Adaptive/Light/Rapid Fire/High Impact),2.93,1.28,0.0000926208,-0.0256877,2.92627,27.2,39.95,68,68,0.1275
-Pulse Rifle (Aggressive/Heavy Burst),2.93,1.28,0.0000926208,-0.0256877,2.92627,28.8,42.3,72,72,0.135
-Scout Rifle (All),3.12,1.38,0.000102915,-0.0276889,3.11797,60.5,91.86,121.5,121.5,0.3136
